@@ -1,0 +1,301 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Observation",
+  "type": "object",
+  "properties": {
+    "annotations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Annotation"
+      }
+    },
+    "id": {
+      "type": "integer"
+    },
+    "cached_votes_total": {
+      "type": "integer"
+    },
+    "captive": {
+      "type": "boolean"
+    },
+    "comments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Comment"
+      }
+    },
+    "comments_count": {
+      "type": "integer"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_at_details": {
+      "$ref": "#/definitions/DateDetails"
+    },
+    "created_time_zone": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "faves_count": {
+      "type": "integer"
+    },
+    "geojson": {
+      "$ref": "#/definitions/PointGeoJson"
+    },
+    "geoprivacy": {
+      "type": "string"
+    },
+    "taxon_geoprivacy": {
+      "type": "string"
+    },
+    "id_please": {
+      "type": "boolean"
+    },
+    "identifications_count": {
+      "type": "integer"
+    },
+    "identifications_most_agree": {
+      "type": "boolean"
+    },
+    "identifications_most_disagree": {
+      "type": "boolean"
+    },
+    "identifications_some_agree": {
+      "type": "boolean"
+    },
+    "license_code": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string",
+      "description": "in the format \"lat,lng\""
+    },
+    "private_location": {
+      "type": "string",
+      "description": "in the format \"lat,lng\""
+    },
+    "mappable": {
+      "type": "boolean"
+    },
+    "non_owner_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/NonOwnerIdentification"
+      }
+    },
+    "num_identification_agreements": {
+      "type": "integer"
+    },
+    "num_identification_disagreements": {
+      "type": "integer"
+    },
+    "obscured": {
+      "type": "boolean"
+    },
+    "observed_on": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "observed_on_details": {
+      "$ref": "#/definitions/DateDetails"
+    },
+    "observed_on_string": {
+      "type": "string"
+    },
+    "observed_time_zone": {
+      "type": "string"
+    },
+    "ofvs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/FieldValue"
+      }
+    },
+    "out_of_range": {
+      "type": "boolean"
+    },
+    "photos": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Photo"
+      }
+    },
+    "place_guess": {
+      "type": "string"
+    },
+    "private_place_guess": {
+      "type": "string"
+    },
+    "place_ids": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "private_place_ids": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "positional_accuracy": {
+      "type": "integer"
+    },
+    "private_geojson": {
+      "$ref": "#/definitions/PointGeoJson"
+    },
+    "project_ids": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "project_ids_with_curator_id": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "project_ids_without_curator_id": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "public_positional_accuracy": {
+      "type": "integer"
+    },
+    "quality_grade": {
+      "type": "string"
+    },
+    "reviewed_by": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "site_id": {
+      "type": "integer"
+    },
+    "sounds": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Sound"
+      }
+    },
+    "species_guess": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "taxon": {
+      "$ref": "#/definitions/ObservationTaxon"
+    },
+    "time_observed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "time_zone_offset": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "uri": {
+      "type": "string"
+    },
+    "user": {
+      "$ref": "#/definitions/User"
+    },
+    "uuid": {
+      "type": "string"
+    },
+    "verifiable": {
+      "type": "boolean"
+    },
+    "observation_photos": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ObservationPhoto"
+      }
+    },
+    "quality_metrics": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/QualityMetric"
+      }
+    },
+    "flags": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Flag"
+      }
+    },
+    "community_taxon_id": {
+      "type": "integer"
+    },
+    "faves": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Fave"
+      }
+    },
+    "identifications": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Identification"
+      }
+    },
+    "oauth_application_id": {
+      "type": "integer"
+    },
+    "outlinks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Outlink"
+      }
+    },
+    "owners_identification_from_vision": {
+      "type": "boolean"
+    },
+    "preferences": {
+      "type": "object"
+    },
+    "project_observations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ProjectObservation"
+      }
+    },
+    "spam": {
+      "type": "boolean"
+    },
+    "votes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Vote"
+      }
+    },
+    "identification_disagreements_count": {
+      "type": "integer"
+    },
+    "ident_taxon_ids": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "map_scale": {
+      "type": "integer"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "operationId": "post-project_observations",
+  "method": "POST",
+  "path": "/project_observations",
+  "summary": "Project Observation Create",
+  "parameters": [
+    {
+      "name": "body",
+      "in": "body",
+      "description": "ProjectObservation object",
+      "schema": {
+        "$ref": "#/definitions/PostProjectObservation"
+      }
+    }
+  ],
+  "exampleResponse": null
+}

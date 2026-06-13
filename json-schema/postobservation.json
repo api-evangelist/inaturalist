@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PostObservation",
+  "type": "object",
+  "properties": {
+    "observation": {
+      "type": "object",
+      "properties": {
+        "species_guess": {
+          "type": "string"
+        },
+        "taxon_id": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

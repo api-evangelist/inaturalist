@@ -1,0 +1,12 @@
+{
+  "operationId": "delete-flags-id",
+  "method": "DELETE",
+  "path": "/flags/{id}",
+  "summary": "Flag Delete",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    }
+  ],
+  "exampleResponse": null
+}

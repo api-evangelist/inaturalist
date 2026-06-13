@@ -1,0 +1,329 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "inat": "https://www.inaturalist.org/ontology#",
+    "api": "https://api.inaturalist.org/v1/",
+    "observation": "inat:Observation",
+    "taxon": "inat:Taxon",
+    "identification": "inat:Identification",
+    "place": "inat:Place",
+    "project": "inat:Project",
+    "user": "inat:User",
+    "quality_grade": "inat:qualityGrade",
+    "observed_on": "inat:observedOn",
+    "captive": "inat:captive",
+    "introduced": "inat:introduced",
+    "native": "inat:native",
+    "endemic": "inat:endemic",
+    "coordinates_obscured": "inat:coordinatesObscured",
+    "license_code": "schema:license",
+    "created_at": "schema:dateCreated",
+    "updated_at": "schema:dateModified",
+    "description": "schema:description",
+    "url": "schema:url",
+    "id": "@id",
+    "type": "@type"
+  },
+  "@type": "WebAPI",
+  "@id": "https://api.inaturalist.org/v1",
+  "name": "iNaturalist API",
+  "description": "# https://api.inaturalist.org/v1/",
+  "version": "1.3.0",
+  "provider": {
+    "@type": "Organization",
+    "name": "iNaturalist",
+    "url": "https://www.inaturalist.org"
+  },
+  "documentation": "https://www.inaturalist.org/pages/api+reference",
+  "termsOfService": "https://www.inaturalist.org/pages/terms",
+  "endpointURL": "https://api.inaturalist.org/v1",
+  "availableChannel": [
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.inaturalist.org/v1/annotations",
+      "name": "",
+      "description": "Annotation Create"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://api.inaturalist.org/v1/annotations/{id}",
+      "name": "",
+      "description": "Annotation Delete"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.inaturalist.org/v1/votes/vote/annotation/{id}",
+      "name": "",
+      "description": "Annotation Vote"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://api.inaturalist.org/v1/votes/unvote/annotation/{id}",
+      "name": "",
+      "description": "Annotation Unvote"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.inaturalist.org/v1/comments",
+      "name": "",
+      "description": "Comment Create"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://api.inaturalist.org/v1/comments/{id}",
+      "name": "",
+      "description": "Comment Update"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://api.inaturalist.org/v1/comments/{id}",
+      "name": "",
+      "description": "Comment Delete"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://api.inaturalist.org/v1/controlled_terms",
+      "name": "",
+      "description": "Terms Index"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://api.inaturalist.org/v1/controlled_terms/for_taxon",
+      "name": "",
+      "description": "Terms for Taxon"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.inaturalist.org/v1/flags",
+      "name": "",
+      "description": "Flag Create"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://api.inaturalist.org/v1/flags/{id}",
+      "name": "",
+      "description": "Flag Update"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://api.inaturalist.org/v1/flags/{id}",
+      "name": "",
+      "description": "Flag Delete"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://api.inaturalist.org/v1/identifications/{id}",
+      "name": "",
+      "description": "Identification Details"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://api.inaturalist.org/v1/identifications/{id}",
+      "name": "",
+      "description": "Identification Update"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://api.inaturalist.org/v1/identifications/{id}",
+      "name": "",
+      "description": "Identification Delete"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.inaturalist.org/v1/identifications",
+      "name": "",
+      "description": "Identification Create"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://api.inaturalist.org/v1/identifications",
+      "name": "",
+      "description": "Identification Search"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://api.inaturalist.org/v1/identifications/categories",
+      "name": "",
+      "description": "Identification Categories"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://api.inaturalist.org/v1/identifications/species_counts",
+      "name": "",
+      "description": "Identification Species Counts"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://api.inaturalist.org/v1/identifications/identifiers",
+      "name": "",
+      "description": "Identification Identifiers"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://api.inaturalist.org/v1/identifications/observers",
+      "name": "",
+      "description": "Identification Observers"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://api.inaturalist.org/v1/identifications/recent_taxa",
+      "name": "",
+      "description": "Identification Recent Taxa"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://api.inaturalist.org/v1/identifications/similar_species",
+      "name": "",
+      "description": "Identification Similar Species"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://api.inaturalist.org/v1/messages",
+      "name": "",
+      "description": "Retrieve messages for the authenticated user. This does not mark them as read."
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.inaturalist.org/v1/messages",
+      "name": "",
+      "description": "Create a new message"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://api.inaturalist.org/v1/messages/{id}",
+      "name": "",
+      "description": "Retrieve messages in a thread"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://api.inaturalist.org/v1/messages/{id}",
+      "name": "",
+      "description": "Delete a message / thread"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://api.inaturalist.org/v1/messages/unread",
+      "name": "",
+      "description": "Gets a count of messages the authenticated user has not read"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://api.inaturalist.org/v1/observations/{id}",
+      "name": "",
+      "description": "Observation Details"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://api.inaturalist.org/v1/observations/{id}",
+      "name": "",
+      "description": "Observation Update"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://api.inaturalist.org/v1/observations/{id}",
+      "name": "",
+      "description": "Observation Delete"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.inaturalist.org/v1/observations/{id}/fave",
+      "name": "",
+      "description": "Observations Fave"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://api.inaturalist.org/v1/observations/{id}/unfave",
+      "name": "",
+      "description": "Observations Unfave"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.inaturalist.org/v1/observations/{id}/review",
+      "name": "",
+      "description": "Observations Review"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://api.inaturalist.org/v1/observations/{id}/review",
+      "name": "",
+      "description": "Observations Unreview"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://api.inaturalist.org/v1/observations/{id}/subscriptions",
+      "name": "",
+      "description": "Observation Subscriptions"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.inaturalist.org/v1/observations/{id}/quality/{metric}",
+      "name": "",
+      "description": "Quality Metric Set"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://api.inaturalist.org/v1/observations/{id}/quality/{metric}",
+      "name": "",
+      "description": "Quality Metric Delete"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://api.inaturalist.org/v1/observations/{id}/taxon_summary",
+      "name": "",
+      "description": "Observation Taxon Summary"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.inaturalist.org/v1/subscriptions/observation/{id}/subscribe",
+      "name": "",
+      "description": "Observation Subscribe"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.inaturalist.org/v1/votes/vote/observation/{id}",
+      "name": "",
+      "description": "Observation Vote"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "operationId": "delete-project_observations-id",
+  "method": "DELETE",
+  "path": "/project_observations/{id}",
+  "summary": "Project Observation Delete",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    }
+  ],
+  "exampleResponse": null
+}

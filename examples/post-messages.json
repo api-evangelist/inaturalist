@@ -1,0 +1,16 @@
+{
+  "operationId": "post-messages",
+  "method": "POST",
+  "path": "/messages",
+  "summary": "Create a new message",
+  "parameters": [
+    {
+      "name": "body",
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/PostMessage"
+      }
+    }
+  ],
+  "exampleResponse": null
+}

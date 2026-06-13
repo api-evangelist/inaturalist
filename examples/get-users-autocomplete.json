@@ -1,0 +1,18 @@
+{
+  "operationId": "get-users-autocomplete",
+  "method": "GET",
+  "path": "/users/autocomplete",
+  "summary": "User Autocomplete",
+  "parameters": [
+    {
+      "$ref": "#/parameters/autocomplete_q"
+    },
+    {
+      "$ref": "#/parameters/autocomplete_project_id"
+    },
+    {
+      "$ref": "#/parameters/per_page"
+    }
+  ],
+  "exampleResponse": null
+}

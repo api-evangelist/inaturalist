@@ -1,0 +1,15 @@
+{
+  "operationId": "get-projects-id",
+  "method": "GET",
+  "path": "/projects/{id}",
+  "summary": "Project Details",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_multi_id_or_slug"
+    },
+    {
+      "$ref": "#/parameters/rule_details"
+    }
+  ],
+  "exampleResponse": null
+}

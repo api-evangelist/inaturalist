@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PostPost",
+  "type": "object",
+  "properties": {
+    "commit": {
+      "type": "string",
+      "example": "Publish"
+    },
+    "post": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "preferred_formatting": {
+          "type": "string",
+          "example": "simple"
+        },
+        "user_id": {
+          "type": "number"
+        },
+        "parent_id": {
+          "type": "number"
+        },
+        "parent_type": {
+          "type": "string",
+          "example": "Project"
+        }
+      }
+    }
+  }
+}

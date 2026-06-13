@@ -1,0 +1,12 @@
+{
+  "operationId": "delete-messages-id",
+  "method": "DELETE",
+  "path": "/messages/{id}",
+  "summary": "Delete a message / thread",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    }
+  ],
+  "exampleResponse": null
+}

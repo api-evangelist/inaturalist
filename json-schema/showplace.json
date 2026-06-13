@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ShowPlace",
+  "allOf": [
+    {
+      "$ref": "#/definitions/CorePlace"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "admin_level": {
+          "type": "integer"
+        },
+        "ancestor_place_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "bbox_area": {
+          "type": "number",
+          "format": "double"
+        },
+        "geometry_geojson": {
+          "$ref": "#/definitions/PolygonGeoJson"
+        },
+        "location": {
+          "type": "string",
+          "description": "in the format \"lat,lng\""
+        },
+        "name": {
+          "type": "string"
+        },
+        "place_type": {
+          "type": "integer"
+        }
+      }
+    }
+  ]
+}

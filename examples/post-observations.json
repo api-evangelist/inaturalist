@@ -1,0 +1,17 @@
+{
+  "operationId": "post-observations",
+  "method": "POST",
+  "path": "/observations",
+  "summary": "Observation Create",
+  "parameters": [
+    {
+      "name": "body",
+      "in": "body",
+      "description": "Comment object",
+      "schema": {
+        "$ref": "#/definitions/PostObservation"
+      }
+    }
+  ],
+  "exampleResponse": null
+}

@@ -1,0 +1,20 @@
+{
+  "operationId": "put-observation_field_values-id",
+  "method": "PUT",
+  "path": "/observation_field_values/{id}",
+  "summary": "Observation Field Value Update",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    },
+    {
+      "name": "body",
+      "in": "body",
+      "description": "Observation field value object",
+      "schema": {
+        "$ref": "#/definitions/PostObservationFieldValue"
+      }
+    }
+  ],
+  "exampleResponse": null
+}

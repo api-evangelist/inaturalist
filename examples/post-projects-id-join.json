@@ -1,0 +1,12 @@
+{
+  "operationId": "post-projects-id-join",
+  "method": "POST",
+  "path": "/projects/{id}/join",
+  "summary": "Projects Join",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    }
+  ],
+  "exampleResponse": null
+}

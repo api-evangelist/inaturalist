@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AutocompleteTaxon",
+  "allOf": [
+    {
+      "$ref": "#/definitions/CoreTaxon"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "default_photo": {
+          "$ref": "#/definitions/TaxonPhoto"
+        },
+        "matched_term": {
+          "type": "string"
+        },
+        "observations_count": {
+          "type": "integer"
+        }
+      }
+    }
+  ]
+}

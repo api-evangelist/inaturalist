@@ -1,0 +1,8 @@
+{
+  "operationId": "get-messages-unread",
+  "method": "GET",
+  "path": "/messages/unread",
+  "summary": "Gets a count of messages the authenticated user has not read",
+  "parameters": [],
+  "exampleResponse": null
+}

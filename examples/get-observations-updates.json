@@ -1,0 +1,24 @@
+{
+  "operationId": "get-observations-updates",
+  "method": "GET",
+  "path": "/observations/updates",
+  "summary": "Observation User Updates",
+  "parameters": [
+    {
+      "$ref": "#/parameters/created_after"
+    },
+    {
+      "$ref": "#/parameters/viewed"
+    },
+    {
+      "$ref": "#/parameters/observations_by"
+    },
+    {
+      "$ref": "#/parameters/page"
+    },
+    {
+      "$ref": "#/parameters/per_page"
+    }
+  ],
+  "exampleResponse": null
+}

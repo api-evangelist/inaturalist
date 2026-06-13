@@ -1,0 +1,12 @@
+{
+  "operationId": "post-observations-id-review",
+  "method": "POST",
+  "path": "/observations/{id}/review",
+  "summary": "Observations Review",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    }
+  ],
+  "exampleResponse": null
+}

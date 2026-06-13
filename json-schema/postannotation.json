@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PostAnnotation",
+  "type": "object",
+  "properties": {
+    "annotation": {
+      "type": "object",
+      "properties": {
+        "resource_type": {
+          "type": "string",
+          "enum": [
+            "Observation"
+          ]
+        },
+        "resource_id": {
+          "type": "integer"
+        },
+        "controlled_attribute_id": {
+          "type": "integer"
+        },
+        "controlled_value_id": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

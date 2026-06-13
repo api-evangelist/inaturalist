@@ -1,0 +1,24 @@
+{
+  "operationId": "get-places-place_id-zoom-x-y.png",
+  "method": "GET",
+  "path": "/places/{place_id}/{zoom}/{x}/{y}.png",
+  "summary": "Place Tiles",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_place_id"
+    },
+    {
+      "$ref": "#/parameters/zoom"
+    },
+    {
+      "$ref": "#/parameters/x"
+    },
+    {
+      "$ref": "#/parameters/y"
+    },
+    {
+      "$ref": "#/parameters/ttl"
+    }
+  ],
+  "exampleResponse": null
+}

@@ -1,0 +1,43 @@
+{
+  "operationId": "get-messages",
+  "method": "GET",
+  "path": "/messages",
+  "summary": "Retrieve messages for the authenticated user. This does not mark them as read.",
+  "parameters": [
+    {
+      "$ref": "#/parameters/page"
+    },
+    {
+      "name": "box",
+      "in": "query",
+      "type": "string",
+      "description": "Whether to view messages the user has received (default) or messages the user has sent",
+      "default": "inbox",
+      "enum": [
+        "inbox",
+        "sent",
+        "any"
+      ]
+    },
+    {
+      "name": "q",
+      "in": "query",
+      "type": "string",
+      "description": "Search query for subject and body"
+    },
+    {
+      "name": "user_id",
+      "in": "query",
+      "type": "string",
+      "description": "User ID or username of correspondent to filter by"
+    },
+    {
+      "name": "threads",
+      "in": "query",
+      "type": "boolean",
+      "default": false,
+      "description": "Groups results by `thread_id`, only shows the latest message per\nthread, and includes a `thread_messages_count` attribute showing the\ntotal number of messages in that thread. Note that this will not\nwork with the `q` param, and it probably should only be used with\n`box=any` because the `thread_messages_count` will be inaccurate when\nyou restrict it to `inbox` or `sent`.\n"
+    }
+  ],
+  "exampleResponse": null
+}

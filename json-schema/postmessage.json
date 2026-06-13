@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PostMessage",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "object",
+      "properties": {
+        "to_user_id": {
+          "type": "integer",
+          "description": "User ID of the recipient"
+        },
+        "thread_id": {
+          "type": "integer",
+          "description": "Identifier for the thread. Should be blank for new threads,\nbut when replying to an existing message, it should be set to\nthe thread_id of the message being replied to.\n"
+        },
+        "subject": {
+          "type": "string",
+          "description": "Subject of the message"
+        },
+        "body": {
+          "type": "string",
+          "description": "Body of the message"
+        }
+      }
+    }
+  }
+}

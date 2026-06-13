@@ -1,0 +1,17 @@
+{
+  "operationId": "get-controlled_terms-for_taxon",
+  "method": "GET",
+  "path": "/controlled_terms/for_taxon",
+  "summary": "Terms for Taxon",
+  "parameters": [
+    {
+      "name": "taxon_id",
+      "type": "integer",
+      "in": "query",
+      "minimum": 1,
+      "description": "Filter by this taxon",
+      "required": true
+    }
+  ],
+  "exampleResponse": null
+}

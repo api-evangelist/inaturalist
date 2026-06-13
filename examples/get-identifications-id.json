@@ -1,0 +1,12 @@
+{
+  "operationId": "get-identifications-id",
+  "method": "GET",
+  "path": "/identifications/{id}",
+  "summary": "Identification Details",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_multi_id"
+    }
+  ],
+  "exampleResponse": null
+}

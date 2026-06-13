@@ -1,0 +1,24 @@
+{
+  "operationId": "get-taxon_places-taxon_id-zoom-x-y.png",
+  "method": "GET",
+  "path": "/taxon_places/{taxon_id}/{zoom}/{x}/{y}.png",
+  "summary": "Taxon Place Tiles",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_taxon_id"
+    },
+    {
+      "$ref": "#/parameters/zoom"
+    },
+    {
+      "$ref": "#/parameters/x"
+    },
+    {
+      "$ref": "#/parameters/y"
+    },
+    {
+      "$ref": "#/parameters/ttl"
+    }
+  ],
+  "exampleResponse": null
+}

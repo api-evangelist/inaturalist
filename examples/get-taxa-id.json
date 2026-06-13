@@ -1,0 +1,15 @@
+{
+  "operationId": "get-taxa-id",
+  "method": "GET",
+  "path": "/taxa/{id}",
+  "summary": "Taxon Details",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_multi_id"
+    },
+    {
+      "$ref": "#/parameters/rank_level"
+    }
+  ],
+  "exampleResponse": null
+}

@@ -1,0 +1,20 @@
+{
+  "operationId": "put-posts-id",
+  "method": "PUT",
+  "path": "/posts/{id}",
+  "summary": "Post Update",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    },
+    {
+      "name": "body",
+      "in": "body",
+      "description": "Post object",
+      "schema": {
+        "$ref": "#/definitions/PostPost"
+      }
+    }
+  ],
+  "exampleResponse": null
+}

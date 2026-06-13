@@ -1,0 +1,20 @@
+{
+  "operationId": "post-votes-vote-observation-id",
+  "method": "POST",
+  "path": "/votes/vote/observation/{id}",
+  "summary": "Observation Vote",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    },
+    {
+      "name": "body",
+      "in": "body",
+      "description": "Vote object",
+      "schema": {
+        "$ref": "#/definitions/PostObservationVote"
+      }
+    }
+  ],
+  "exampleResponse": null
+}

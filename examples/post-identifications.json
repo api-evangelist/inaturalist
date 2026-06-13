@@ -1,0 +1,17 @@
+{
+  "operationId": "post-identifications",
+  "method": "POST",
+  "path": "/identifications",
+  "summary": "Identification Create",
+  "parameters": [
+    {
+      "name": "body",
+      "in": "body",
+      "description": "Identification object",
+      "schema": {
+        "$ref": "#/definitions/PostIdentification"
+      }
+    }
+  ],
+  "exampleResponse": null
+}

@@ -1,0 +1,12 @@
+{
+  "operationId": "post-subscriptions-project-id-subscribe",
+  "method": "POST",
+  "path": "/subscriptions/project/{id}/subscribe",
+  "summary": "Project Subscribe",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    }
+  ],
+  "exampleResponse": null
+}

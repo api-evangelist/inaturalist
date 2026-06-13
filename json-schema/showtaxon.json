@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ShowTaxon",
+  "allOf": [
+    {
+      "$ref": "#/definitions/CoreTaxon"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "ancestor_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "colors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Color"
+          }
+        },
+        "conservation_status": {
+          "$ref": "#/definitions/ConservationStatus"
+        },
+        "conservation_statuses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaxonConservationStatus"
+          }
+        },
+        "default_photo": {
+          "$ref": "#/definitions/TaxonPhoto"
+        },
+        "establishment_means": {
+          "$ref": "#/definitions/EstablishmentMeans"
+        },
+        "observations_count": {
+          "type": "integer"
+        },
+        "preferred_establishment_means": {
+          "type": "string"
+        }
+      }
+    }
+  ]
+}

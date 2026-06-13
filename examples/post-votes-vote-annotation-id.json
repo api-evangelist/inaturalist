@@ -1,0 +1,20 @@
+{
+  "operationId": "post-votes-vote-annotation-id",
+  "method": "POST",
+  "path": "/votes/vote/annotation/{id}",
+  "summary": "Annotation Vote",
+  "parameters": [
+    {
+      "$ref": "#/parameters/annotation_path_id"
+    },
+    {
+      "name": "body",
+      "in": "body",
+      "description": "Vote object",
+      "schema": {
+        "$ref": "#/definitions/PostVote"
+      }
+    }
+  ],
+  "exampleResponse": null
+}

@@ -1,0 +1,8 @@
+{
+  "operationId": "get-controlled_terms",
+  "method": "GET",
+  "path": "/controlled_terms",
+  "summary": "Terms Index",
+  "parameters": [],
+  "exampleResponse": null
+}

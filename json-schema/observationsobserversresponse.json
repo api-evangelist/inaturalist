@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ObservationsObserversResponse",
+  "allOf": [
+    {
+      "$ref": "#/definitions/BaseResponse"
+    },
+    {
+      "required": [
+        "results"
+      ],
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "observation_count": {
+                "type": "integer"
+              },
+              "species_count": {
+                "type": "integer"
+              },
+              "user": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

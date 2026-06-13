@@ -1,0 +1,12 @@
+{
+  "operationId": "get-observations-deleted",
+  "method": "GET",
+  "path": "/observations/deleted",
+  "summary": "Observations Deleted",
+  "parameters": [
+    {
+      "$ref": "#/parameters/since"
+    }
+  ],
+  "exampleResponse": null
+}

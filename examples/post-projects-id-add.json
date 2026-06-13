@@ -1,0 +1,20 @@
+{
+  "operationId": "post-projects-id-add",
+  "method": "POST",
+  "path": "/projects/{id}/add",
+  "summary": "Project Add",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    },
+    {
+      "name": "body",
+      "in": "body",
+      "description": "ProjectObservation object",
+      "schema": {
+        "$ref": "#/definitions/PostProjectAdd"
+      }
+    }
+  ],
+  "exampleResponse": null
+}

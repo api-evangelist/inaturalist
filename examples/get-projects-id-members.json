@@ -1,0 +1,31 @@
+{
+  "operationId": "get-projects-id-members",
+  "method": "GET",
+  "path": "/projects/{id}/members",
+  "summary": "Project Members",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    },
+    {
+      "name": "role",
+      "type": "string",
+      "in": "query",
+      "description": "Membership role",
+      "enum": [
+        "curator",
+        "manager"
+      ]
+    },
+    {
+      "$ref": "#/parameters/skip_counts"
+    },
+    {
+      "$ref": "#/parameters/page"
+    },
+    {
+      "$ref": "#/parameters/per_page"
+    }
+  ],
+  "exampleResponse": null
+}

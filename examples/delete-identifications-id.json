@@ -1,0 +1,12 @@
+{
+  "operationId": "delete-identifications-id",
+  "method": "DELETE",
+  "path": "/identifications/{id}",
+  "summary": "Identification Delete",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    }
+  ],
+  "exampleResponse": null
+}

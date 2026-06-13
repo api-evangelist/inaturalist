@@ -1,0 +1,17 @@
+{
+  "operationId": "put-users-update_session",
+  "method": "PUT",
+  "path": "/users/update_session",
+  "summary": "User Update Session",
+  "parameters": [
+    {
+      "name": "body",
+      "in": "body",
+      "description": "Comment object",
+      "schema": {
+        "$ref": "#/definitions/PostUserUpdateSession"
+      }
+    }
+  ],
+  "exampleResponse": null
+}

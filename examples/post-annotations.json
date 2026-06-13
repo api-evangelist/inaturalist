@@ -1,0 +1,17 @@
+{
+  "operationId": "post-annotations",
+  "method": "POST",
+  "path": "/annotations",
+  "summary": "Annotation Create",
+  "parameters": [
+    {
+      "name": "body",
+      "in": "body",
+      "description": "Annotation object",
+      "schema": {
+        "$ref": "#/definitions/PostAnnotation"
+      }
+    }
+  ],
+  "exampleResponse": null
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PostObservationVote",
+  "type": "object",
+  "properties": {
+    "vote": {
+      "type": "string",
+      "enum": [
+        "up",
+        "down"
+      ]
+    },
+    "scope": {
+      "enum": [
+        "needs_id"
+      ]
+    }
+  }
+}

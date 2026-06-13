@@ -1,0 +1,12 @@
+{
+  "operationId": "delete-projects-id-leave",
+  "method": "DELETE",
+  "path": "/projects/{id}/leave",
+  "summary": "Projects Leave",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    }
+  ],
+  "exampleResponse": null
+}

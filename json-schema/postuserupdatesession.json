@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PostUserUpdateSession",
+  "type": "object",
+  "properties": {
+    "preferred_taxon_page_ancestors_shown": {
+      "type": "boolean"
+    },
+    "preferred_taxon_page_place_id": {
+      "type": "integer"
+    },
+    "preferred_taxon_page_tab": {
+      "type": "string"
+    },
+    "prefers_skip_coarer_id_modal": {
+      "type": "boolean"
+    },
+    "prefers_hide_obs_show_annotations": {
+      "type": "boolean"
+    },
+    "prefers_hide_obs_show_projects": {
+      "type": "boolean"
+    },
+    "prefers_hide_obs_show_tags": {
+      "type": "boolean"
+    },
+    "prefers_hide_obs_show_observation_fields": {
+      "type": "boolean"
+    },
+    "prefers_hide_obs_show_identifiers": {
+      "type": "boolean"
+    },
+    "prefers_hide_obs_show_copyright": {
+      "type": "boolean"
+    },
+    "prefers_hide_obs_show_quality_metrics": {
+      "type": "boolean"
+    }
+  }
+}

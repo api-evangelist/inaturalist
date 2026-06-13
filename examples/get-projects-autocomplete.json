@@ -1,0 +1,57 @@
+{
+  "operationId": "get-projects-autocomplete",
+  "method": "GET",
+  "path": "/projects/autocomplete",
+  "summary": "Project Autocomplete",
+  "parameters": [
+    {
+      "$ref": "#/parameters/autocomplete_q"
+    },
+    {
+      "$ref": "#/parameters/id"
+    },
+    {
+      "$ref": "#/parameters/not_id"
+    },
+    {
+      "$ref": "#/parameters/lat"
+    },
+    {
+      "$ref": "#/parameters/lng"
+    },
+    {
+      "$ref": "#/parameters/associated_place_id"
+    },
+    {
+      "$ref": "#/parameters/projects_radius"
+    },
+    {
+      "$ref": "#/parameters/featured"
+    },
+    {
+      "$ref": "#/parameters/noteworthy"
+    },
+    {
+      "$ref": "#/parameters/projects_site_id"
+    },
+    {
+      "$ref": "#/parameters/rule_details"
+    },
+    {
+      "$ref": "#/parameters/type"
+    },
+    {
+      "$ref": "#/parameters/member_id"
+    },
+    {
+      "$ref": "#/parameters/has_params"
+    },
+    {
+      "$ref": "#/parameters/has_posts"
+    },
+    {
+      "$ref": "#/parameters/per_page"
+    }
+  ],
+  "exampleResponse": null
+}

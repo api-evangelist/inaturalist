@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PostFlag",
+  "type": "object",
+  "properties": {
+    "flag": {
+      "type": "object",
+      "properties": {
+        "flaggable_type": {
+          "type": "string",
+          "enum": [
+            "Comment",
+            "Identification",
+            "Message",
+            "Observation",
+            "Post",
+            "Taxon"
+          ]
+        },
+        "flaggable_id": {
+          "type": "integer"
+        },
+        "flag": {
+          "enum": [
+            "spam",
+            "inappropriate",
+            "other"
+          ]
+        }
+      }
+    },
+    "flag_explanation": {
+      "type": "string"
+    }
+  }
+}

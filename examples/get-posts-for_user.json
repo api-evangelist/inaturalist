@@ -1,0 +1,24 @@
+{
+  "operationId": "get-posts-for_user",
+  "method": "GET",
+  "path": "/posts/for_user",
+  "summary": "Posts For User",
+  "parameters": [
+    {
+      "name": "newer_than",
+      "type": "integer",
+      "in": "query",
+      "description": "returns posts newer than the post with this ID"
+    },
+    {
+      "name": "older_than",
+      "type": "integer",
+      "in": "query",
+      "description": "returns posts older than the post with this ID"
+    },
+    {
+      "$ref": "#/parameters/page"
+    }
+  ],
+  "exampleResponse": null
+}

@@ -1,0 +1,12 @@
+{
+  "operationId": "delete-observations-id-review",
+  "method": "DELETE",
+  "path": "/observations/{id}/review",
+  "summary": "Observations Unreview",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    }
+  ],
+  "exampleResponse": null
+}

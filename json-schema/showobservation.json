@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ShowObservation",
+  "allOf": [
+    {
+      "$ref": "#/definitions/Observation"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "identifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Identification"
+          }
+        },
+        "faves": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Fave"
+          }
+        }
+      }
+    }
+  ]
+}

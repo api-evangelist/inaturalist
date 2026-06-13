@@ -1,0 +1,17 @@
+{
+  "operationId": "post-flags",
+  "method": "POST",
+  "path": "/flags",
+  "summary": "Flag Create",
+  "parameters": [
+    {
+      "name": "body",
+      "in": "body",
+      "description": "Flag object",
+      "schema": {
+        "$ref": "#/definitions/PostFlag"
+      }
+    }
+  ],
+  "exampleResponse": null
+}

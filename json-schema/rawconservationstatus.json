@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RawConservationStatus",
+  "type": "object",
+  "properties": {
+    "source_id": {
+      "type": "integer",
+      "description": "Identifier for the iNat source record associated with this status,\nretrievable via https://www.inaturalist.org/sources/:id.json\n(this endpoint is not a part of our public API and is thus subject to\nchange or removal)\n"
+    },
+    "authority": {
+      "type": "string",
+      "description": "Organization that declared this status\n"
+    },
+    "status": {
+      "type": "string",
+      "description": "Body of the status, often coded, particularly when the status comes\nfrom the IUCN or NatureServe. Consult the authority and/or the\nstatus URL for details about the meanings of codes.\n"
+    },
+    "status_name": {
+      "type": "string",
+      "description": "Human-readable name of the status if it was coded.\n"
+    },
+    "iucn": {
+      "type": "integer",
+      "description": "Coded value representing the equivalent IUCN status. Mappings:\nNOT_EVALUATED = 0, DATA_DEFICIENT = 5, LEAST_CONCERN = 10,\nNEAR_THREATENED = 20, VULNERABLE = 30, ENDANGERED = 40,\nCRITICALLY_ENDANGERED = 50, EXTINCT_IN_THE_WILD = 60, EXTINCT = 70\n"
+    },
+    "geoprivacy": {
+      "type": "string",
+      "description": "Default geoprivacy for observations of this taxon in the status's place.\n"
+    }
+  }
+}

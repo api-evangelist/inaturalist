@@ -1,0 +1,12 @@
+{
+  "operationId": "delete-observation_photos-id",
+  "method": "DELETE",
+  "path": "/observation_photos/{id}",
+  "summary": "Observation Photo Delete",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    }
+  ],
+  "exampleResponse": null
+}

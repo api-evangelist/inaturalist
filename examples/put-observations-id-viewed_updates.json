@@ -1,0 +1,12 @@
+{
+  "operationId": "put-observations-id-viewed_updates",
+  "method": "PUT",
+  "path": "/observations/{id}/viewed_updates",
+  "summary": "Observation Field Value Update",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    }
+  ],
+  "exampleResponse": null
+}

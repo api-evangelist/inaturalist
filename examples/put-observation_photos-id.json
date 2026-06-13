@@ -1,0 +1,24 @@
+{
+  "operationId": "put-observation_photos-id",
+  "method": "PUT",
+  "path": "/observation_photos/{id}",
+  "summary": "Observation Photo Update",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    },
+    {
+      "name": "observation_photo[position]",
+      "in": "formData",
+      "description": "Position in which the photo is displayed for the observation",
+      "type": "integer"
+    },
+    {
+      "name": "file",
+      "in": "formData",
+      "description": "The photo",
+      "type": "file"
+    }
+  ],
+  "exampleResponse": null
+}

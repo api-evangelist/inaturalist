@@ -1,0 +1,23 @@
+{
+  "operationId": "post-observations-id-quality-metric",
+  "method": "POST",
+  "path": "/observations/{id}/quality/{metric}",
+  "summary": "Quality Metric Set",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    },
+    {
+      "$ref": "#/parameters/path_metric"
+    },
+    {
+      "name": "body",
+      "in": "body",
+      "description": "Quality object",
+      "schema": {
+        "$ref": "#/definitions/PostQuality"
+      }
+    }
+  ],
+  "exampleResponse": null
+}

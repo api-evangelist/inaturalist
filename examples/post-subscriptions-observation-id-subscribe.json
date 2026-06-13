@@ -1,0 +1,12 @@
+{
+  "operationId": "post-subscriptions-observation-id-subscribe",
+  "method": "POST",
+  "path": "/subscriptions/observation/{id}/subscribe",
+  "summary": "Observation Subscribe",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    }
+  ],
+  "exampleResponse": null
+}

@@ -1,0 +1,12 @@
+{
+  "operationId": "post-users-id-mute",
+  "method": "POST",
+  "path": "/users/{id}/mute",
+  "summary": "Mute a User",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    }
+  ],
+  "exampleResponse": null
+}

@@ -1,0 +1,8 @@
+{
+  "operationId": "get-users-me",
+  "method": "GET",
+  "path": "/users/me",
+  "summary": "Users Me",
+  "parameters": [],
+  "exampleResponse": null
+}

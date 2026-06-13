@@ -1,0 +1,20 @@
+{
+  "operationId": "put-identifications-id",
+  "method": "PUT",
+  "path": "/identifications/{id}",
+  "summary": "Identification Update",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    },
+    {
+      "name": "body",
+      "in": "body",
+      "description": "Identification object",
+      "schema": {
+        "$ref": "#/definitions/PostIdentification"
+      }
+    }
+  ],
+  "exampleResponse": null
+}

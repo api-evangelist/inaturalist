@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ConservationStatus",
+  "type": "object",
+  "properties": {
+    "place_id": {
+      "type": "integer"
+    },
+    "place": {
+      "$ref": "#/definitions/CorePlace"
+    },
+    "status": {
+      "type": "string"
+    }
+  }
+}

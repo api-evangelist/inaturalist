@@ -1,0 +1,12 @@
+{
+  "operationId": "delete-annotations-id",
+  "method": "DELETE",
+  "path": "/annotations/{id}",
+  "summary": "Annotation Delete",
+  "parameters": [
+    {
+      "$ref": "#/parameters/annotation_path_id"
+    }
+  ],
+  "exampleResponse": null
+}

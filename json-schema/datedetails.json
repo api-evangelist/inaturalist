@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DateDetails",
+  "type": "object",
+  "properties": {
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "day": {
+      "type": "integer"
+    },
+    "hour": {
+      "type": "integer"
+    },
+    "month": {
+      "type": "integer"
+    },
+    "week": {
+      "type": "integer"
+    },
+    "year": {
+      "type": "integer"
+    }
+  }
+}

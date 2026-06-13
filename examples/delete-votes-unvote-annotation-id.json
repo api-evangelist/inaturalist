@@ -1,0 +1,12 @@
+{
+  "operationId": "delete-votes-unvote-annotation-id",
+  "method": "DELETE",
+  "path": "/votes/unvote/annotation/{id}",
+  "summary": "Annotation Unvote",
+  "parameters": [
+    {
+      "$ref": "#/parameters/annotation_path_id"
+    }
+  ],
+  "exampleResponse": null
+}

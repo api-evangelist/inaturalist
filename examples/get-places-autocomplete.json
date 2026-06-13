@@ -1,0 +1,21 @@
+{
+  "operationId": "get-places-autocomplete",
+  "method": "GET",
+  "path": "/places/autocomplete",
+  "summary": "Place Autocomplete",
+  "parameters": [
+    {
+      "$ref": "#/parameters/autocomplete_q"
+    },
+    {
+      "name": "order_by",
+      "type": "string",
+      "in": "query",
+      "description": "Sort field",
+      "enum": [
+        "area"
+      ]
+    }
+  ],
+  "exampleResponse": null
+}

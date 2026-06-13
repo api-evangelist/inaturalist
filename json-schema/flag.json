@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Flag",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "flag": {
+      "type": "string"
+    },
+    "comment": {
+      "type": "string"
+    },
+    "resolved": {
+      "type": "boolean"
+    },
+    "user": {
+      "$ref": "#/definitions/User"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

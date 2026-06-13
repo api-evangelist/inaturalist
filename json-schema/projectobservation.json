@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ProjectObservation",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "project_id": {
+      "type": "integer"
+    },
+    "observation_id": {
+      "type": "integer"
+    },
+    "curator_identification_id": {
+      "type": "integer"
+    },
+    "tracking_code": {
+      "type": "string"
+    },
+    "prefers_curator_coordinate_access": {
+      "type": "boolean"
+    }
+  }
+}

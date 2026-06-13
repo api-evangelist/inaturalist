@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PostUser",
+  "type": "object",
+  "properties": {
+    "user": {
+      "type": "object",
+      "properties": {
+        "login": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name for this user"
+        },
+        "locale": {
+          "type": "string",
+          "description": "Locale code for language/region localization. See\nhttps://github.com/inaturalist/inaturalist/tree/master/config/locales\nfor available locales. Valid strings can be derived from file\nnames, e.g. `es-MX` from `es-MX.yml`.\n"
+        },
+        "time_zone": {
+          "type": "string",
+          "description": "Default time zone for the user's observations. See\nhttp://api.rubyonrails.org/classes/ActiveSupport/TimeZone.html\nfor a list of values.\n"
+        },
+        "place_id": {
+          "type": "integer",
+          "description": "ID of the place for this user, customizes some common names and\ndefault search parameters\n"
+        },
+        "description": {
+          "type": "string",
+          "description": "User profile description"
+        },
+        "icon": {
+          "type": "object",
+          "description": "User's profile pic. Requires POST/PUT as a multipart request.\n"
+        }
+      }
+    },
+    "icon_delete": {
+      "type": "boolean",
+      "default": false,
+      "description": "Set to true to remove the current user icon."
+    }
+  }
+}

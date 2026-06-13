@@ -1,0 +1,27 @@
+{
+  "operationId": "post-observation_photos",
+  "method": "POST",
+  "path": "/observation_photos",
+  "summary": "Observation Photo Create",
+  "parameters": [
+    {
+      "name": "observation_photo[observation_id]",
+      "in": "formData",
+      "description": "Observation ID",
+      "type": "integer"
+    },
+    {
+      "name": "observation_photo[uuid]",
+      "in": "formData",
+      "description": "Observation UUID",
+      "type": "string"
+    },
+    {
+      "name": "file",
+      "in": "formData",
+      "description": "The photo",
+      "type": "file"
+    }
+  ],
+  "exampleResponse": null
+}

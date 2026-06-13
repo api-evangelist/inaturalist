@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PostComment",
+  "type": "object",
+  "properties": {
+    "comment": {
+      "type": "object",
+      "properties": {
+        "parent_type": {
+          "type": "string",
+          "enum": [
+            "Observation",
+            "ListedTaxon",
+            "AssessmentSection",
+            "ObservationField",
+            "Post",
+            "TaxonChange"
+          ]
+        },
+        "parent_id": {
+          "type": "integer"
+        },
+        "body": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

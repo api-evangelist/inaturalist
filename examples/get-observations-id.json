@@ -1,0 +1,12 @@
+{
+  "operationId": "get-observations-id",
+  "method": "GET",
+  "path": "/observations/{id}",
+  "summary": "Observation Details",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_multi_id"
+    }
+  ],
+  "exampleResponse": null
+}

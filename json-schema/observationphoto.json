@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ObservationPhoto",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "uuid": {
+      "type": "string"
+    },
+    "photo": {
+      "$ref": "#/definitions/Photo"
+    },
+    "position": {
+      "type": "integer"
+    }
+  }
+}

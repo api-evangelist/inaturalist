@@ -1,0 +1,29 @@
+{
+  "operationId": "get-places-id",
+  "method": "GET",
+  "path": "/places/{id}",
+  "summary": "Place Details",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_multi_id_or_slug"
+    },
+    {
+      "name": "admin_level",
+      "in": "query",
+      "type": "array",
+      "enum": [
+        -10,
+        0,
+        10,
+        20,
+        30,
+        100
+      ],
+      "items": {
+        "type": "integer"
+      },
+      "description": "Admin level of a place, or an array of admin levels\nin comma-delimited format. Supported admin levels are: -10\n(continent), 0 (country), 10 (state), 20 (county), 30 (town),\n100 (park)"
+    }
+  ],
+  "exampleResponse": null
+}

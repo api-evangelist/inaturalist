@@ -1,0 +1,12 @@
+{
+  "operationId": "get-observations-id-taxon_summary",
+  "method": "GET",
+  "path": "/observations/{id}/taxon_summary",
+  "summary": "Observation Taxon Summary",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    }
+  ],
+  "exampleResponse": null
+}

@@ -1,0 +1,12 @@
+{
+  "operationId": "get-projects-id-subscriptions",
+  "method": "GET",
+  "path": "/projects/{id}/subscriptions",
+  "summary": "Project Subscriptions",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    }
+  ],
+  "exampleResponse": null
+}

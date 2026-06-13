@@ -1,0 +1,12 @@
+{
+  "operationId": "delete-observations-id-unfave",
+  "method": "DELETE",
+  "path": "/observations/{id}/unfave",
+  "summary": "Observations Unfave",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    }
+  ],
+  "exampleResponse": null
+}

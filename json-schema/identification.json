@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Identification",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "observation_id": {
+      "type": "integer"
+    },
+    "body": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "improving",
+        "leading",
+        "maverick",
+        "supporting"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "current": {
+      "type": "boolean"
+    },
+    "taxon": {
+      "$ref": "#/definitions/ObservationTaxon"
+    },
+    "previous_observation_taxon": {
+      "$ref": "#/definitions/ObservationTaxon"
+    },
+    "user": {
+      "$ref": "#/definitions/User"
+    },
+    "uuid": {
+      "type": "string"
+    },
+    "created_at_details": {
+      "$ref": "#/definitions/DateDetails"
+    },
+    "flags": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Flag"
+      }
+    },
+    "own_observation": {
+      "type": "boolean"
+    },
+    "taxon_change": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "vision": {
+      "type": "boolean"
+    },
+    "disagreement": {
+      "type": "boolean"
+    },
+    "previous_observation_taxon_id": {
+      "type": "integer"
+    },
+    "spam": {
+      "type": "boolean"
+    },
+    "hidden": {
+      "type": "boolean"
+    },
+    "moderator_actions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ModeratorAction"
+      }
+    }
+  }
+}

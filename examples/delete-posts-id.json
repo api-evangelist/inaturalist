@@ -1,0 +1,12 @@
+{
+  "operationId": "delete-posts-id",
+  "method": "DELETE",
+  "path": "/posts/{id}",
+  "summary": "Post Delete",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    }
+  ],
+  "exampleResponse": null
+}

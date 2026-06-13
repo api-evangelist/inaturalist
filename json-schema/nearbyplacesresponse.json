@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NearbyPlacesResponse",
+  "allOf": [
+    {
+      "$ref": "#/definitions/BaseResponse"
+    },
+    {
+      "required": [
+        "results"
+      ],
+      "properties": {
+        "results": {
+          "type": "object",
+          "properties": {
+            "standard": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ShowPlace"
+              }
+            },
+            "community": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ShowPlace"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

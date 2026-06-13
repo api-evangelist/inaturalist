@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PostIdentification",
+  "type": "object",
+  "properties": {
+    "identification": {
+      "type": "object",
+      "properties": {
+        "observation_id": {
+          "type": "integer"
+        },
+        "taxon_id": {
+          "type": "integer"
+        },
+        "current": {
+          "type": "boolean"
+        },
+        "body": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

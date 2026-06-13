@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "User",
+  "type": "object",
+  "properties": {
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "id": {
+      "type": "integer"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "icon_url": {
+      "type": "string"
+    },
+    "identifications_count": {
+      "type": "integer"
+    },
+    "journal_posts_count": {
+      "type": "integer"
+    },
+    "login": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "observations_count": {
+      "type": "integer"
+    },
+    "orcid": {
+      "type": "string"
+    },
+    "roles": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "admin",
+          "app owner",
+          "curator"
+        ]
+      }
+    },
+    "site_id": {
+      "type": "integer"
+    },
+    "species_count": {
+      "type": "integer"
+    },
+    "spam": {
+      "type": "boolean"
+    },
+    "suspended": {
+      "type": "boolean"
+    }
+  }
+}

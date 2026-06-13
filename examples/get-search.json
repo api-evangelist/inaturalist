@@ -1,0 +1,30 @@
+{
+  "operationId": "get-search",
+  "method": "GET",
+  "path": "/search",
+  "summary": "Site Search",
+  "parameters": [
+    {
+      "$ref": "#/parameters/search_q"
+    },
+    {
+      "$ref": "#/parameters/sources"
+    },
+    {
+      "$ref": "#/parameters/associated_place_id"
+    },
+    {
+      "$ref": "#/parameters/include_taxon_ancestors"
+    },
+    {
+      "$ref": "#/parameters/per_page"
+    },
+    {
+      "$ref": "#/parameters/locale"
+    },
+    {
+      "$ref": "#/parameters/preferred_place_id"
+    }
+  ],
+  "exampleResponse": null
+}

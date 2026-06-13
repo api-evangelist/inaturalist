@@ -1,0 +1,12 @@
+{
+  "operationId": "get-messages-id",
+  "method": "GET",
+  "path": "/messages/{id}",
+  "summary": "Retrieve messages in a thread",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    }
+  ],
+  "exampleResponse": null
+}

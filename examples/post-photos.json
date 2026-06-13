@@ -1,0 +1,15 @@
+{
+  "operationId": "post-photos",
+  "method": "POST",
+  "path": "/photos",
+  "summary": "Photo Create",
+  "parameters": [
+    {
+      "name": "file",
+      "in": "formData",
+      "description": "The photo",
+      "type": "file"
+    }
+  ],
+  "exampleResponse": null
+}

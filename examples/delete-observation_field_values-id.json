@@ -1,0 +1,12 @@
+{
+  "operationId": "delete-observation_field_values-id",
+  "method": "DELETE",
+  "path": "/observation_field_values/{id}",
+  "summary": "Observation Field Value Delete",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    }
+  ],
+  "exampleResponse": null
+}

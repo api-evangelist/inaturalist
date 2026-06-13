@@ -1,0 +1,17 @@
+{
+  "operationId": "post-comments",
+  "method": "POST",
+  "path": "/comments",
+  "summary": "Comment Create",
+  "parameters": [
+    {
+      "name": "body",
+      "in": "body",
+      "description": "Comment object",
+      "schema": {
+        "$ref": "#/definitions/PostComment"
+      }
+    }
+  ],
+  "exampleResponse": null
+}

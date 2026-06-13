@@ -1,0 +1,17 @@
+{
+  "operationId": "post-posts",
+  "method": "POST",
+  "path": "/posts",
+  "summary": "Post Create",
+  "parameters": [
+    {
+      "name": "body",
+      "in": "body",
+      "description": "Post object",
+      "schema": {
+        "$ref": "#/definitions/PostPost"
+      }
+    }
+  ],
+  "exampleResponse": null
+}

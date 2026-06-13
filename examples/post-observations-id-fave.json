@@ -1,0 +1,12 @@
+{
+  "operationId": "post-observations-id-fave",
+  "method": "POST",
+  "path": "/observations/{id}/fave",
+  "summary": "Observations Fave",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    }
+  ],
+  "exampleResponse": null
+}

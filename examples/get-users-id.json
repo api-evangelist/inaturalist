@@ -1,0 +1,12 @@
+{
+  "operationId": "get-users-id",
+  "method": "GET",
+  "path": "/users/{id}",
+  "summary": "User Details",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    }
+  ],
+  "exampleResponse": null
+}

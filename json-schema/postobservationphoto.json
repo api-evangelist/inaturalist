@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PostObservationPhoto",
+  "type": "object",
+  "properties": {
+    "observation_photo": {
+      "type": "object",
+      "properties": {
+        "observation_id": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

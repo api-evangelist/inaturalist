@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Message",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "body": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "integer",
+      "description": "ID of the user to whom this message belongs. Messages work like email,\nso the sender gets a copy and the recipient gets a copy of each\nmessage. This is always the authenticated user, so there's no real\nneed for a full user object.\n"
+    },
+    "to_user": {
+      "$ref": "#/definitions/User"
+    },
+    "from_user": {
+      "$ref": "#/definitions/User"
+    },
+    "thread_id": {
+      "type": "integer",
+      "description": "Identifier for the message thread, generally the ID of the sender's\ncopy of the first message\n"
+    },
+    "thread_messages_count": {
+      "type": "integer",
+      "description": "Number of messages in this thread. Only included when threads=true\n"
+    },
+    "thread_flags": {
+      "type": "array",
+      "description": "Array of flags on messages in this thread. Only included when\nthreads=true\n",
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

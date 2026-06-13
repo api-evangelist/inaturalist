@@ -1,0 +1,19 @@
+{
+  "operationId": "put-flags-id",
+  "method": "PUT",
+  "path": "/flags/{id}",
+  "summary": "Flag Update",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    },
+    {
+      "name": "body",
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/PutFlag"
+      }
+    }
+  ],
+  "exampleResponse": null
+}

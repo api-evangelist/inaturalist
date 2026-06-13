@@ -1,0 +1,12 @@
+{
+  "operationId": "delete-comments-id",
+  "method": "DELETE",
+  "path": "/comments/{id}",
+  "summary": "Comment Delete",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    }
+  ],
+  "exampleResponse": null
+}

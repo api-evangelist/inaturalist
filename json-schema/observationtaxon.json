@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ObservationTaxon",
+  "allOf": [
+    {
+      "$ref": "#/definitions/CoreTaxon"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "ancestor_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "ancestry": {
+          "type": "string"
+        },
+        "conservation_status": {
+          "$ref": "#/definitions/RawConservationStatus"
+        },
+        "endemic": {
+          "type": "boolean"
+        },
+        "establishment_means": {
+          "$ref": "#/definitions/EstablishmentMeans"
+        },
+        "introduced": {
+          "type": "boolean"
+        },
+        "native": {
+          "type": "boolean"
+        },
+        "threatened": {
+          "type": "boolean"
+        }
+      }
+    }
+  ]
+}

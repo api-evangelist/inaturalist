@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "UTFGridResponse",
+  "properties": {
+    "grid": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "keys": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "data": {
+      "type": "object"
+    }
+  }
+}

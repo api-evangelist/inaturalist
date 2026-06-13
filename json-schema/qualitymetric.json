@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "QualityMetric",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "user_id": {
+      "type": "integer"
+    },
+    "metric": {
+      "type": "string"
+    },
+    "agree": {
+      "type": "boolean"
+    }
+  }
+}

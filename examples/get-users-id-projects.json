@@ -1,0 +1,24 @@
+{
+  "operationId": "get-users-id-projects",
+  "method": "GET",
+  "path": "/users/{id}/projects",
+  "summary": "User Projects",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    },
+    {
+      "$ref": "#/parameters/rule_details"
+    },
+    {
+      "$ref": "#/parameters/project_type"
+    },
+    {
+      "$ref": "#/parameters/page"
+    },
+    {
+      "$ref": "#/parameters/per_page"
+    }
+  ],
+  "exampleResponse": null
+}

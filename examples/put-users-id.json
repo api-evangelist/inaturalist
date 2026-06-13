@@ -1,0 +1,12 @@
+{
+  "operationId": "put-users-id",
+  "method": "PUT",
+  "path": "/users/{id}",
+  "summary": "User Update",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    }
+  ],
+  "exampleResponse": null
+}

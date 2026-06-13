@@ -1,0 +1,17 @@
+{
+  "operationId": "post-observation_field_values",
+  "method": "POST",
+  "path": "/observation_field_values",
+  "summary": "Observation Field Value Create",
+  "parameters": [
+    {
+      "name": "body",
+      "in": "body",
+      "description": "Observation field value object",
+      "schema": {
+        "$ref": "#/definitions/PostObservationFieldValue"
+      }
+    }
+  ],
+  "exampleResponse": null
+}

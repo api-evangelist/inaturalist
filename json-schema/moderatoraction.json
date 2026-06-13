@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ModeratorAction",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_at_details": {
+      "$ref": "#/definitions/DateDetails"
+    },
+    "user": {
+      "$ref": "#/definitions/User"
+    },
+    "action": {
+      "type": "string",
+      "enum": [
+        "hide",
+        "rename",
+        "unhide",
+        "suspend",
+        "unsuspend"
+      ]
+    },
+    "reason": {
+      "type": "string"
+    }
+  }
+}

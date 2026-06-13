@@ -1,0 +1,12 @@
+{
+  "operationId": "get-projects-id-membership",
+  "method": "GET",
+  "path": "/projects/{id}/membership",
+  "summary": "Membership of current user",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_multi_id"
+    }
+  ],
+  "exampleResponse": null
+}

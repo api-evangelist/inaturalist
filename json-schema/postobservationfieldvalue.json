@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PostObservationFieldValue",
+  "type": "object",
+  "properties": {
+    "observation_field_value": {
+      "type": "object",
+      "properties": {
+        "observation_id": {
+          "type": "integer"
+        },
+        "observation_field_id": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

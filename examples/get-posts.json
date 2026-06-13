@@ -1,0 +1,21 @@
+{
+  "operationId": "get-posts",
+  "method": "GET",
+  "path": "/posts",
+  "summary": "Posts Search",
+  "parameters": [
+    {
+      "$ref": "#/parameters/posts_login"
+    },
+    {
+      "$ref": "#/parameters/posts_project_id"
+    },
+    {
+      "$ref": "#/parameters/page"
+    },
+    {
+      "$ref": "#/parameters/per_page"
+    }
+  ],
+  "exampleResponse": null
+}

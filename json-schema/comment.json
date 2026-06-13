@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Comment",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "body": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_at_details": {
+      "$ref": "#/definitions/DateDetails"
+    },
+    "user": {
+      "$ref": "#/definitions/User"
+    },
+    "flags": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Flag"
+      }
+    },
+    "hidden": {
+      "type": "boolean"
+    },
+    "moderator_actions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ModeratorAction"
+      }
+    },
+    "uuid": {
+      "type": "string"
+    }
+  }
+}

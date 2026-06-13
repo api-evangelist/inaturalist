@@ -1,0 +1,8 @@
+{
+  "operationId": "post-users-resend_confirmation",
+  "method": "POST",
+  "path": "/users/resend_confirmation",
+  "summary": "User Resend Confirmation",
+  "parameters": [],
+  "exampleResponse": null
+}

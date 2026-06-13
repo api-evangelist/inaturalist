@@ -1,0 +1,30 @@
+{
+  "operationId": "get-places-nearby",
+  "method": "GET",
+  "path": "/places/nearby",
+  "summary": "Nearby Places",
+  "parameters": [
+    {
+      "$ref": "#/parameters/nelat_required"
+    },
+    {
+      "$ref": "#/parameters/nelng_required"
+    },
+    {
+      "$ref": "#/parameters/swlat_required"
+    },
+    {
+      "$ref": "#/parameters/swlng_required"
+    },
+    {
+      "name": "name",
+      "in": "query",
+      "type": "string",
+      "description": "Name must match this value"
+    },
+    {
+      "$ref": "#/parameters/per_page"
+    }
+  ],
+  "exampleResponse": null
+}

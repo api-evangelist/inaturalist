@@ -1,0 +1,15 @@
+{
+  "operationId": "delete-observations-id-quality-metric",
+  "method": "DELETE",
+  "path": "/observations/{id}/quality/{metric}",
+  "summary": "Quality Metric Delete",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    },
+    {
+      "$ref": "#/parameters/path_metric"
+    }
+  ],
+  "exampleResponse": null
+}

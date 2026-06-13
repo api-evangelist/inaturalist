@@ -1,0 +1,20 @@
+{
+  "operationId": "put-comments-id",
+  "method": "PUT",
+  "path": "/comments/{id}",
+  "summary": "Comment Update",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    },
+    {
+      "name": "body",
+      "in": "body",
+      "description": "Comment object",
+      "schema": {
+        "$ref": "#/definitions/PostComment"
+      }
+    }
+  ],
+  "exampleResponse": null
+}

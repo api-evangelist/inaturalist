@@ -1,0 +1,12 @@
+{
+  "operationId": "get-observations-id-subscriptions",
+  "method": "GET",
+  "path": "/observations/{id}/subscriptions",
+  "summary": "Observation Subscriptions",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    }
+  ],
+  "exampleResponse": null
+}

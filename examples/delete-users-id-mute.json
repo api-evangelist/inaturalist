@@ -1,0 +1,12 @@
+{
+  "operationId": "delete-users-id-mute",
+  "method": "DELETE",
+  "path": "/users/{id}/mute",
+  "summary": "Unmute a User",
+  "parameters": [
+    {
+      "$ref": "#/parameters/path_id"
+    }
+  ],
+  "exampleResponse": null
+}

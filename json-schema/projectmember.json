@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ProjectMember",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "project_id": {
+      "type": "integer"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "curator",
+        "manager"
+      ]
+    },
+    "observations_count": {
+      "type": "integer"
+    },
+    "taxa_count": {
+      "type": "integer"
+    },
+    "user": {
+      "$ref": "#/definitions/User"
+    }
+  }
+}

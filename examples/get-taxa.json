@@ -1,0 +1,63 @@
+{
+  "operationId": "get-taxa",
+  "method": "GET",
+  "path": "/taxa",
+  "summary": "Taxon Search",
+  "parameters": [
+    {
+      "$ref": "#/parameters/autocomplete_q_not_required"
+    },
+    {
+      "name": "is_active",
+      "type": "boolean",
+      "in": "query",
+      "description": "Taxon is `active`"
+    },
+    {
+      "name": "id",
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "in": "query",
+      "description": "Comma-separated list of taxon IDs"
+    },
+    {
+      "$ref": "#/parameters/parent_id"
+    },
+    {
+      "$ref": "#/parameters/rank"
+    },
+    {
+      "$ref": "#/parameters/rank_level"
+    },
+    {
+      "$ref": "#/parameters/id_above"
+    },
+    {
+      "$ref": "#/parameters/id_below"
+    },
+    {
+      "$ref": "#/parameters/per_page"
+    },
+    {
+      "$ref": "#/parameters/locale"
+    },
+    {
+      "$ref": "#/parameters/preferred_place_id"
+    },
+    {
+      "$ref": "#/parameters/only_id"
+    },
+    {
+      "$ref": "#/parameters/all_names"
+    },
+    {
+      "$ref": "#/parameters/order"
+    },
+    {
+      "$ref": "#/parameters/taxa_order_by"
+    }
+  ],
+  "exampleResponse": null
+}
