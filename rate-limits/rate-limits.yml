@@ -1,0 +1,44 @@
+rateLimits:
+  - name: Standard API Rate Limit
+    description: >
+      iNaturalist enforces rate limits on API requests to protect the
+      stability of the service. The exact rate limits are not publicly
+      documented with specific numbers, but the API will return HTTP 429
+      Too Many Requests responses when limits are exceeded. The iNaturalist
+      API Recommended Practices page advises clients to implement reasonable
+      request pacing and caching.
+    type: RequestsPerMinute
+    limit: 100
+    period: minute
+    notes: >
+      Approximate limit based on community reports and client library
+      defaults. iNaturalist asks developers to follow recommended practices
+      including: adding delays between requests, caching responses, using
+      bulk endpoints where available, and identifying your application
+      via the User-Agent header.
+    headers:
+      - name: X-RateLimit-Limit
+        description: Maximum number of requests allowed per time window
+      - name: X-RateLimit-Remaining
+        description: Number of requests remaining in current time window
+      - name: Retry-After
+        description: Seconds to wait before retrying after a 429 response
+    statusCodes:
+      - code: 429
+        description: Too Many Requests — slow down and retry after delay
+    resources:
+      - type: RecommendedPractices
+        url: https://www.inaturalist.org/pages/api+recommended+practices
+      - type: Forum
+        url: https://forum.inaturalist.org
+  - name: Unauthenticated Rate Limit
+    description: >
+      Unauthenticated requests to read-only public endpoints are subject
+      to stricter rate limiting than authenticated requests. OAuth-authenticated
+      clients generally receive higher limits.
+    type: RequestsPerMinute
+    authenticated: false
+    notes: >
+      Using OAuth authentication is recommended even for read operations
+      to benefit from higher rate limits and to identify your application
+      to iNaturalist for support purposes.

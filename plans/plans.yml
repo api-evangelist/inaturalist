@@ -1,0 +1,46 @@
+plans:
+  - name: Free
+    description: >
+      iNaturalist provides free API access to all registered users and
+      applications. There are no paid tiers or subscription plans for API
+      access. Users must register an OAuth application on iNaturalist.org
+      to obtain credentials for write operations. Read-only access to public
+      observation data does not require authentication for many endpoints.
+    type: free
+    authentication:
+      - type: OAuth2
+        description: >
+          OAuth 2.0 required for write operations and accessing private user
+          data. Requires registering an application at
+          https://www.inaturalist.org/oauth/applications/new to obtain
+          app_id and app_secret. Password-based OAuth flow used with
+          username, password, app_id, and app_secret credentials.
+      - type: None
+        description: >
+          Many read endpoints are accessible without authentication for
+          public observation and taxa data.
+    features:
+      - Access to 200M+ wildlife observations
+      - Species and taxon search and lookup
+      - Observation creation and updates (authenticated)
+      - Photo and sound uploads (authenticated)
+      - Identification submission (authenticated)
+      - Place and project data
+      - User profile access (authenticated)
+      - Observation statistics and histograms
+      - Full-text search across resources
+    rateLimit:
+      requests: 100
+      period: minute
+      notes: >
+        Rate limits are enforced to protect service stability. Clients are
+        encouraged to follow the iNaturalist API Recommended Practices,
+        including adding reasonable delays between requests and caching
+        responses where possible.
+    urls:
+      - type: SignUp
+        url: https://www.inaturalist.org/signup
+      - type: OAuthApplications
+        url: https://www.inaturalist.org/oauth/applications/new
+      - type: RecommendedPractices
+        url: https://www.inaturalist.org/pages/api+recommended+practices

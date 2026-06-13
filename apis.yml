@@ -1,0 +1,107 @@
+name: iNaturalist
+description: >
+  iNaturalist is a nature observation platform and citizen science network that
+  connects people to nature through biodiversity observation and identification.
+  The iNaturalist API provides programmatic access to over 200 million wildlife
+  observations, species identifications, taxon data, and biodiversity records
+  contributed by citizen scientists worldwide. The API supports reading and
+  writing observations, taxa lookups, identifications, places, projects, and
+  user data across v0, v1, and v2 endpoints.
+image: https://static.inaturalist.org/sites/1-logo.svg
+tags:
+  - Biodiversity
+  - Nature
+  - Citizen Science
+  - Wildlife
+  - Observations
+  - Taxa
+  - Ecology
+created: '2026-06-13'
+modified: '2026-06-13'
+url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/apis.yml
+specificationVersion: '0.19'
+apis:
+  - name: iNaturalist API v1
+    description: >
+      The primary iNaturalist REST API (v1) providing read and write access to
+      observations, taxa, identifications, places, projects, users, and other
+      iNaturalist resources. Built on Node.js with Elasticsearch and backed by
+      the iNaturalist PostgreSQL database.
+    image: https://static.inaturalist.org/sites/1-logo.svg
+    humanURL: https://www.inaturalist.org/pages/api+reference
+    baseURL: https://api.inaturalist.org/v1
+    tags:
+      - Observations
+      - Taxa
+      - Identifications
+      - Places
+      - Projects
+      - Users
+      - Biodiversity
+    properties:
+      - type: Documentation
+        url: https://www.inaturalist.org/pages/api+reference
+      - type: OpenAPI
+        url: https://api.inaturalist.org/v1/docs/swagger.json
+      - type: PostmanCollection
+        url: https://www.postman.com/collections/inaturalist-api
+      - type: RateLimits
+        url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/rate-limits/rate-limits.yml
+      - type: Plans
+        url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/plans/plans.yml
+      - type: FinOps
+        url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/finops/finops.yml
+    contact:
+      - FN: iNaturalist Help
+        url: https://help.inaturalist.org
+        email: help@inaturalist.org
+  - name: iNaturalist API v2
+    description: >
+      The next-generation iNaturalist API (v2) currently in development,
+      designed to eventually replace v0 and v1 endpoints. Provides access to
+      observation data with improved performance and response formats.
+    image: https://static.inaturalist.org/sites/1-logo.svg
+    humanURL: https://www.inaturalist.org/pages/api+reference
+    baseURL: https://api.inaturalist.org/v2
+    tags:
+      - Observations
+      - Biodiversity
+      - Beta
+    properties:
+      - type: Documentation
+        url: https://www.inaturalist.org/pages/api+reference
+    contact:
+      - FN: iNaturalist Help
+        url: https://help.inaturalist.org
+        email: help@inaturalist.org
+common:
+  - type: Portal
+    url: https://www.inaturalist.org/pages/developers
+  - type: Documentation
+    url: https://www.inaturalist.org/pages/api+reference
+  - type: Forum
+    url: https://forum.inaturalist.org
+  - type: GitHub
+    url: https://github.com/inaturalist
+  - type: Blog
+    url: https://www.inaturalist.org/blog
+  - type: Help
+    url: https://help.inaturalist.org
+  - type: TermsOfService
+    url: https://www.inaturalist.org/pages/terms
+  - type: PrivacyPolicy
+    url: https://www.inaturalist.org/pages/privacy
+  - type: RecommendedPractices
+    url: https://www.inaturalist.org/pages/api+recommended+practices
+  - type: Login
+    url: https://www.inaturalist.org/login
+  - type: SignUp
+    url: https://www.inaturalist.org/signup
+  - type: OAuthApplications
+    url: https://www.inaturalist.org/oauth/applications/new
+  - type: Status
+    url: https://status.inaturalist.org
+maintainers:
+  - FN: API Evangelist
+    url: https://apievangelist.com
+    email: info@apievangelist.com

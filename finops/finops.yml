@@ -1,0 +1,49 @@
+finops:
+  model: free
+  description: >
+    iNaturalist is a nonprofit joint initiative of the California Academy of
+    Sciences and the National Geographic Society. API access is provided free
+    of charge as part of iNaturalist's mission to connect people with nature
+    and support biodiversity science. There are no paid API tiers, usage fees,
+    or metered billing. iNaturalist sustains operations through institutional
+    support, grants, and donations rather than API monetization.
+  cost: $0
+  pricing:
+    - tier: Free
+      cost: $0
+      unit: all usage
+      description: >
+        All API access is free. No credit card required. No usage caps that
+        result in charges. Rate limits are enforced for service stability
+        rather than commercial purposes.
+  considerations:
+    - type: Attribution
+      description: >
+        Users of iNaturalist data should provide attribution to iNaturalist
+        and the original observers per the Creative Commons license terms
+        applied to observation data.
+    - type: DataLicense
+      description: >
+        Most iNaturalist observation data is shared under Creative Commons
+        licenses (CC0, CC-BY, CC-BY-NC). Commercial use may be restricted
+        depending on the license applied to specific records.
+    - type: ResponsibleUse
+      description: >
+        Large-scale data consumers are asked to follow API Recommended
+        Practices and use iNaturalist's bulk data export options (GBIF,
+        iNaturalist Exports) rather than scraping via the API.
+    - type: BulkData
+      description: >
+        For bulk data needs, iNaturalist provides data exports through GBIF
+        (https://www.gbif.org/publisher/28eb1a3f-1c15-4a95-931a-4af90ecb574d)
+        and direct export tools at https://www.inaturalist.org/observations/export
+        which are preferred over repeated API calls for large datasets.
+  urls:
+    - type: DataExport
+      url: https://www.inaturalist.org/observations/export
+    - type: GBIF
+      url: https://www.gbif.org/publisher/28eb1a3f-1c15-4a95-931a-4af90ecb574d
+    - type: Donate
+      url: https://www.inaturalist.org/donate
+    - type: About
+      url: https://www.inaturalist.org/pages/about
