@@ -79,7 +79,7 @@ common:
     url: https://www.inaturalist.org/pages/developers
   - type: Documentation
     url: https://www.inaturalist.org/pages/api+reference
-  - type: Forum
+  - type: Forums
     url: https://forum.inaturalist.org
   - type: GitHub
     url: https://github.com/inaturalist
@@ -95,7 +95,7 @@ common:
     url: https://www.inaturalist.org/pages/api+recommended+practices
   - type: Login
     url: https://www.inaturalist.org/login
-  - type: SignUp
+  - type: Signup
     url: https://www.inaturalist.org/signup
   - type: OAuthApplications
     url: https://www.inaturalist.org/oauth/applications/new
