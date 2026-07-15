@@ -75,6 +75,8 @@ apis:
         url: https://help.inaturalist.org
         email: help@inaturalist.org
 common:
+  - type: AgenticAccess
+    url: agentic-access/inaturalist-agentic-access.yml
   - type: DomainSecurity
     url: security/inaturalist-domain-security.yml
   - type: Authentication
