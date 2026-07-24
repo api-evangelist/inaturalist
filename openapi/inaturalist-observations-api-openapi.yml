@@ -1,0 +1,3094 @@
+swagger: '2.0'
+info:
+  title: iNaturalist Annotations Observations API
+  description: '# https://api.inaturalist.org/v1/
+
+
+    [iNaturalist](https://www.inaturalist.org/) is a global community of
+
+    naturalists, scientists, and members of the public sharing over a million
+
+    wildlife sightings to teach one another about the natural world while
+
+    creating high quality citizen science data for science and conservation.
+
+
+    These API methods return data in JSON/JSONP and PNG response formats. They
+
+    are meant to supplement the existing [iNaturalist
+
+    API](https://www.inaturalist.org/pages/api+reference), implemented in Ruby
+
+    on Rails, which has more functionality and supports more write operations,
+
+    but tends to be slower and have less consistent response formats. Visit our
+
+    [developers page](https://www.inaturalist.org/pages/developers) for more
+
+    information. Write operations that expect and return JSON describe a single
+
+    `body` parameter that represents the request body, which should be specified
+
+    as JSON. See the "Model" of each body parameter for attributes that we
+
+    accept in these JSON objects.
+
+
+    Multiple values for a single URL parameter should be separated by commas,
+
+    e.g. `taxon_id=1,2,3`.
+
+
+    Map tiles are generated using the
+
+    [node-mapnik](https://github.com/mapnik/node-mapnik) library, following the
+
+    XYZ map tiling scheme. The "Observation Tile" methods accept nearly all the
+
+    parameters of the observation search APIs, and will generate map tiles
+
+    reflecting the same observations returned by searches. These
+
+    "Observation Tile" methods have corresponding
+
+    [UTFGrid](https://github.com/mapbox/utfgrid-spec) JSON
+
+    responses which return information needed to make interactive maps.
+
+
+    Authentication in the Node API is handled via JSON Web Tokens (JWT). To
+
+    obtain one, make an [OAuth-authenticated
+
+    request](http://www.inaturalist.org/pages/api+reference#auth) to
+
+    https://www.inaturalist.org/users/api_token. Each JWT will expire after 24
+
+    hours. Authentication required for all PUT and POST requests. Some GET
+
+    requests will also include private information like hidden coordinates if
+
+    the authenticated user has permission to view them.
+
+
+    Photos served from https://static.inaturalist.org and
+
+    https://inaturalist-open-data.s3.amazonaws.com have multiple size
+
+    variants and not all size variants are returned in responses. To access
+
+    other sizes, the photo URL can be modified to replace only the size
+
+    qualifier (each variant shares the exact same extension). The domain a photo
+
+    is hosted under reflects the license under which the photo is being shared,
+
+    and the domain may change over time if the license changes. Photos in
+
+    the `inaturalist-open-data` domain are shared under open licenses. These can
+
+    be accessed in bulk in the [iNaturalist AWS Open Dataset](
+
+    https://registry.opendata.aws/inaturalist-open-data/). Photos in the
+
+    `static.inaturalist.org` domain do not have open licenses.
+
+
+    The available photo sizes are:
+
+    * original (max 2048px in either dimension)
+
+    * large (max 1024px in either dimension)
+
+    * medium (max 500px in either dimension)
+
+    * small (max 240px in either dimension)
+
+    * thumb (max 100px in either dimension)
+
+    * square (75px square)
+
+
+    iNaturalist Website: https://www.inaturalist.org/
+
+
+    Open Source Software: https://github.com/inaturalist/
+
+
+    ## Terms of Use
+
+
+    Use of this API is subject to the iNaturalist
+
+    [Terms of Service](https://www.inaturalist.org/terms) and
+
+    [Privacy Policy](https://www.inaturalist.org/privacy). We will block any
+
+    use of our API that violates our Terms or Privacy Policy without notice.
+
+    The API is intended to support application development, not data scraping.
+
+    For pre- generated data exports, see
+
+    https://www.inaturalist.org/pages/developers.
+
+
+    Please note that we throttle API usage to a max of 100 requests per minute,
+
+    though we ask that you try to keep it to 60 requests per minute or lower,
+
+    and to keep under 10,000 requests per day. If we notice usage that has
+
+    serious impact on our performance we may institute blocks without
+
+    notification.
+
+
+    Terms of Service: https://www.inaturalist.org/terms
+
+
+    Privacy Policy: https://www.inaturalist.org/privacy
+
+    '
+  version: 1.3.0
+basePath: /v1
+schemes:
+- http
+- https
+produces:
+- application/json
+tags:
+- name: Observations
+  description: CRUD, search, faving, quality metrics, stats, and more
+paths:
+  /observations/{id}:
+    get:
+      summary: Observation Details
+      description: 'Given an ID, or an array of IDs in comma-delimited format, returns
+
+        corresponding observations. A maximum of 200 results will be returned
+
+        '
+      parameters:
+      - $ref: '#/parameters/path_multi_id'
+      tags:
+      - Observations
+      security:
+      - api_token: []
+      responses:
+        '200':
+          description: 'Returns an object with metadata and an array of observations
+
+            '
+          schema:
+            $ref: '#/definitions/ObservationsShowResponse'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      summary: Observation Update
+      description: 'Update an observation
+
+        '
+      consumes:
+      - application/json
+      parameters:
+      - $ref: '#/parameters/path_id'
+      - name: body
+        in: body
+        description: Comment object
+        schema:
+          $ref: '#/definitions/PostObservation'
+      tags:
+      - Observations
+      security:
+      - api_token: []
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: Observation Delete
+      description: 'Delete an observation
+
+        '
+      parameters:
+      - $ref: '#/parameters/path_id'
+      tags:
+      - Observations
+      security:
+      - api_token: []
+      responses:
+        '200':
+          description: OK
+  /observations/{id}/fave:
+    post:
+      summary: Observations Fave
+      description: 'Fave an observation
+
+        '
+      parameters:
+      - $ref: '#/parameters/path_id'
+      tags:
+      - Observations
+      security:
+      - api_token: []
+      responses:
+        '200':
+          description: OK
+  /observations/{id}/unfave:
+    delete:
+      summary: Observations Unfave
+      description: 'Unfave an observation
+
+        '
+      parameters:
+      - $ref: '#/parameters/path_id'
+      tags:
+      - Observations
+      security:
+      - api_token: []
+      responses:
+        '200':
+          description: OK
+  /observations/{id}/review:
+    post:
+      summary: Observations Review
+      description: 'Review an observation
+
+        '
+      parameters:
+      - $ref: '#/parameters/path_id'
+      tags:
+      - Observations
+      security:
+      - api_token: []
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: Observations Unreview
+      description: 'Unreview an observation
+
+        '
+      parameters:
+      - $ref: '#/parameters/path_id'
+      tags:
+      - Observations
+      security:
+      - api_token: []
+      responses:
+        '200':
+          description: OK
+  /observations/{id}/subscriptions:
+    get:
+      summary: Observation Subscriptions
+      description: 'Fetches any subscriptions the current user has to this observation
+
+        or the observer
+
+        '
+      parameters:
+      - $ref: '#/parameters/path_id'
+      tags:
+      - Observations
+      security:
+      - api_token: []
+      responses:
+        '200':
+          description: OK
+  /observations/{id}/quality/{metric}:
+    post:
+      summary: Quality Metric Set
+      description: 'Set the value of a quality metric
+
+        '
+      parameters:
+      - $ref: '#/parameters/path_id'
+      - $ref: '#/parameters/path_metric'
+      - name: body
+        in: body
+        description: Quality object
+        schema:
+          $ref: '#/definitions/PostQuality'
+      tags:
+      - Observations
+      security:
+      - api_token: []
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: Quality Metric Delete
+      description: 'Delete a quality metric
+
+        '
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - $ref: '#/parameters/path_id'
+      - $ref: '#/parameters/path_metric'
+      tags:
+      - Observations
+      security:
+      - api_token: []
+      responses:
+        '200':
+          description: OK
+  /observations/{id}/taxon_summary:
+    get:
+      summary: Observation Taxon Summary
+      description: 'Fetches information about this observation''s taxon, within the context
+
+        of this observation''s location
+
+        '
+      parameters:
+      - $ref: '#/parameters/path_id'
+      tags:
+      - Observations
+      responses:
+        '200':
+          description: OK
+  /subscriptions/observation/{id}/subscribe:
+    post:
+      summary: Observation Subscribe
+      description: 'Toggles current user''s subscription to this observation. If the logged-in
+
+        user is not subscribed, POSTing here will subscribe them. If they are already
+
+        subscribed, this will remove the subscription
+
+        '
+      parameters:
+      - $ref: '#/parameters/path_id'
+      tags:
+      - Observations
+      security:
+      - api_token: []
+      responses:
+        '200':
+          description: OK
+  /votes/vote/observation/{id}:
+    post:
+      summary: Observation Vote
+      description: 'Vote on an observation. A vote with an empty `scope` is recorded as a
+
+        `fave` of the observation. A vote with scope `needs_id` is recorded as a
+
+        vote on the Quality Grade criterion "can the Community ID still be
+
+        confirmed or improved?", and can be an up or down vote
+
+        '
+      parameters:
+      - $ref: '#/parameters/path_id'
+      - name: body
+        in: body
+        description: Vote object
+        schema:
+          $ref: '#/definitions/PostObservationVote'
+      tags:
+      - Observations
+      security:
+      - api_token: []
+      responses:
+        '200':
+          description: OK
+  /votes/unvote/observation/{id}:
+    delete:
+      summary: Observation Unvote
+      description: Remove a vote from an observation
+      parameters:
+      - $ref: '#/parameters/path_id'
+      - name: body
+        in: body
+        description: Vote object
+        schema:
+          $ref: '#/definitions/PostObservationVote'
+      tags:
+      - Observations
+      security:
+      - api_token: []
+      responses:
+        '200':
+          description: OK
+  /observations:
+    get:
+      summary: Observation Search
+      description: 'Given zero to many of following parameters, returns observations
+
+        matching the search criteria. The large size of the observations index
+
+        prevents us from supporting the `page` parameter when retrieving records
+
+        from large result sets. If you need to retrieve large numbers of
+
+        records, use the `per_page` and `id_above` or `id_below` parameters
+
+        instead.
+
+        '
+      parameters:
+      - $ref: '#/parameters/acc'
+      - $ref: '#/parameters/captive'
+      - $ref: '#/parameters/endemic'
+      - $ref: '#/parameters/geo'
+      - $ref: '#/parameters/id_please'
+      - $ref: '#/parameters/identified'
+      - $ref: '#/parameters/introduced'
+      - $ref: '#/parameters/mappable'
+      - $ref: '#/parameters/native'
+      - $ref: '#/parameters/out_of_range'
+      - $ref: '#/parameters/pcid'
+      - $ref: '#/parameters/photos'
+      - $ref: '#/parameters/popular'
+      - $ref: '#/parameters/sounds'
+      - $ref: '#/parameters/taxon_is_active'
+      - $ref: '#/parameters/threatened'
+      - $ref: '#/parameters/verifiable'
+      - $ref: '#/parameters/licensed'
+      - $ref: '#/parameters/photo_licensed'
+      - $ref: '#/parameters/expected_nearby'
+      - $ref: '#/parameters/id'
+      - $ref: '#/parameters/not_id'
+      - $ref: '#/parameters/license'
+      - $ref: '#/parameters/ofv_datatype'
+      - $ref: '#/parameters/photo_license'
+      - $ref: '#/parameters/place_id'
+      - $ref: '#/parameters/project_id'
+      - $ref: '#/parameters/rank'
+      - $ref: '#/parameters/site_id'
+      - $ref: '#/parameters/sound_license'
+      - $ref: '#/parameters/taxon_id'
+      - $ref: '#/parameters/without_taxon_id'
+      - $ref: '#/parameters/taxon_name'
+      - $ref: '#/parameters/user_id'
+      - $ref: '#/parameters/user_login'
+      - $ref: '#/parameters/ident_user_id'
+      - $ref: '#/parameters/hour'
+      - $ref: '#/parameters/day'
+      - $ref: '#/parameters/month'
+      - $ref: '#/parameters/year'
+      - $ref: '#/parameters/created_day'
+      - $ref: '#/parameters/created_month'
+      - $ref: '#/parameters/created_year'
+      - $ref: '#/parameters/term_id'
+      - $ref: '#/parameters/term_value_id'
+      - $ref: '#/parameters/without_term_id'
+      - $ref: '#/parameters/without_term_value_id'
+      - $ref: '#/parameters/term_id_or_unknown'
+      - $ref: '#/parameters/annotation_user_id'
+      - $ref: '#/parameters/acc_above'
+      - $ref: '#/parameters/acc_below'
+      - $ref: '#/parameters/acc_below_or_unknown'
+      - $ref: '#/parameters/d1'
+      - $ref: '#/parameters/d2'
+      - $ref: '#/parameters/created_d1'
+      - $ref: '#/parameters/created_d2'
+      - $ref: '#/parameters/created_on'
+      - $ref: '#/parameters/observed_on'
+      - $ref: '#/parameters/unobserved_by_user_id'
+      - $ref: '#/parameters/apply_project_rules_for'
+      - $ref: '#/parameters/cs'
+      - $ref: '#/parameters/csa'
+      - $ref: '#/parameters/csi'
+      - $ref: '#/parameters/geoprivacy'
+      - $ref: '#/parameters/taxon_geoprivacy'
+      - $ref: '#/parameters/obscuration'
+      - $ref: '#/parameters/hrank'
+      - $ref: '#/parameters/lrank'
+      - $ref: '#/parameters/iconic_taxa'
+      - $ref: '#/parameters/id_above'
+      - $ref: '#/parameters/id_below'
+      - $ref: '#/parameters/identifications'
+      - $ref: '#/parameters/lat'
+      - $ref: '#/parameters/lng'
+      - $ref: '#/parameters/radius'
+      - $ref: '#/parameters/nelat'
+      - $ref: '#/parameters/nelng'
+      - $ref: '#/parameters/swlat'
+      - $ref: '#/parameters/swlng'
+      - $ref: '#/parameters/list_id'
+      - $ref: '#/parameters/not_in_project'
+      - $ref: '#/parameters/not_matching_project_rules_for'
+      - $ref: '#/parameters/observation_accuracy_experiment_id'
+      - $ref: '#/parameters/fails_dqa_accurate'
+      - $ref: '#/parameters/fails_dqa_date'
+      - $ref: '#/parameters/fails_dqa_evidence'
+      - $ref: '#/parameters/fails_dqa_location'
+      - $ref: '#/parameters/fails_dqa_needs_id'
+      - $ref: '#/parameters/fails_dqa_recent'
+      - $ref: '#/parameters/fails_dqa_subject'
+      - $ref: '#/parameters/fails_dqa_wild'
+      - $ref: '#/parameters/q'
+      - $ref: '#/parameters/search_on'
+      - $ref: '#/parameters/quality_grade'
+      - $ref: '#/parameters/updated_since'
+      - $ref: '#/parameters/viewer_id'
+      - $ref: '#/parameters/reviewed'
+      - $ref: '#/parameters/locale'
+      - $ref: '#/parameters/preferred_place_id'
+      - $ref: '#/parameters/ttl'
+      - $ref: '#/parameters/page'
+      - $ref: '#/parameters/per_page'
+      - $ref: '#/parameters/order'
+      - $ref: '#/parameters/order_by'
+      - $ref: '#/parameters/only_id'
+      tags:
+      - Observations
+      security:
+      - api_token: []
+      responses:
+        '200':
+          description: 'Returns an object with metadata and an array of observations
+
+            '
+          schema:
+            $ref: '#/definitions/ObservationsResponse'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Observation Create
+      description: 'Create an observation
+
+        '
+      consumes:
+      - application/json
+      parameters:
+      - name: body
+        in: body
+        description: Comment object
+        schema:
+          $ref: '#/definitions/PostObservation'
+      tags:
+      - Observations
+      security:
+      - api_token: []
+      responses:
+        '200':
+          description: OK
+  /observations/deleted:
+    get:
+      summary: Observations Deleted
+      description: 'Given a starting date, return an array of IDs of the authenticated
+
+        user''s observations that have been deleted since that date. Requires
+
+        authentication
+
+        '
+      parameters:
+      - $ref: '#/parameters/since'
+      tags:
+      - Observations
+      security:
+      - api_token: []
+      responses:
+        '200':
+          description: OK
+  /observations/histogram:
+    get:
+      summary: Observation Histogram
+      description: 'Given zero to many of following parameters, returns histogram data about
+
+        observations matching the search criteria
+
+        '
+      parameters:
+      - $ref: '#/parameters/acc'
+      - $ref: '#/parameters/captive'
+      - $ref: '#/parameters/endemic'
+      - $ref: '#/parameters/geo'
+      - $ref: '#/parameters/id_please'
+      - $ref: '#/parameters/identified'
+      - $ref: '#/parameters/introduced'
+      - $ref: '#/parameters/mappable'
+      - $ref: '#/parameters/native'
+      - $ref: '#/parameters/out_of_range'
+      - $ref: '#/parameters/pcid'
+      - $ref: '#/parameters/photos'
+      - $ref: '#/parameters/popular'
+      - $ref: '#/parameters/sounds'
+      - $ref: '#/parameters/taxon_is_active'
+      - $ref: '#/parameters/threatened'
+      - $ref: '#/parameters/verifiable'
+      - $ref: '#/parameters/licensed'
+      - $ref: '#/parameters/photo_licensed'
+      - $ref: '#/parameters/expected_nearby'
+      - $ref: '#/parameters/id'
+      - $ref: '#/parameters/not_id'
+      - $ref: '#/parameters/license'
+      - $ref: '#/parameters/ofv_datatype'
+      - $ref: '#/parameters/photo_license'
+      - $ref: '#/parameters/place_id'
+      - $ref: '#/parameters/project_id'
+      - $ref: '#/parameters/rank'
+      - $ref: '#/parameters/site_id'
+      - $ref: '#/parameters/sound_license'
+      - $ref: '#/parameters/taxon_id'
+      - $ref: '#/parameters/without_taxon_id'
+      - $ref: '#/parameters/taxon_name'
+      - $ref: '#/parameters/user_id'
+      - $ref: '#/parameters/user_login'
+      - $ref: '#/parameters/ident_user_id'
+      - $ref: '#/parameters/hour'
+      - $ref: '#/parameters/day'
+      - $ref: '#/parameters/month'
+      - $ref: '#/parameters/year'
+      - $ref: '#/parameters/created_day'
+      - $ref: '#/parameters/created_month'
+      - $ref: '#/parameters/created_year'
+      - $ref: '#/parameters/term_id'
+      - $ref: '#/parameters/term_value_id'
+      - $ref: '#/parameters/without_term_id'
+      - $ref: '#/parameters/without_term_value_id'
+      - $ref: '#/parameters/term_id_or_unknown'
+      - $ref: '#/parameters/annotation_user_id'
+      - $ref: '#/parameters/acc_above'
+      - $ref: '#/parameters/acc_below'
+      - $ref: '#/parameters/acc_below_or_unknown'
+      - $ref: '#/parameters/d1'
+      - $ref: '#/parameters/d2'
+      - $ref: '#/parameters/created_d1'
+      - $ref: '#/parameters/created_d2'
+      - $ref: '#/parameters/created_on'
+      - $ref: '#/parameters/observed_on'
+      - $ref: '#/parameters/unobserved_by_user_id'
+      - $ref: '#/parameters/apply_project_rules_for'
+      - $ref: '#/parameters/cs'
+      - $ref: '#/parameters/csa'
+      - $ref: '#/parameters/csi'
+      - $ref: '#/parameters/geoprivacy'
+      - $ref: '#/parameters/taxon_geoprivacy'
+      - $ref: '#/parameters/obscuration'
+      - $ref: '#/parameters/hrank'
+      - $ref: '#/parameters/lrank'
+      - $ref: '#/parameters/iconic_taxa'
+      - $ref: '#/parameters/id_above'
+      - $ref: '#/parameters/id_below'
+      - $ref: '#/parameters/identifications'
+      - $ref: '#/parameters/lat'
+      - $ref: '#/parameters/lng'
+      - $ref: '#/parameters/radius'
+      - $ref: '#/parameters/nelat'
+      - $ref: '#/parameters/nelng'
+      - $ref: '#/parameters/swlat'
+      - $ref: '#/parameters/swlng'
+      - $ref: '#/parameters/list_id'
+      - $ref: '#/parameters/not_in_project'
+      - $ref: '#/parameters/not_matching_project_rules_for'
+      - $ref: '#/parameters/observation_accuracy_experiment_id'
+      - $ref: '#/parameters/fails_dqa_accurate'
+      - $ref: '#/parameters/fails_dqa_date'
+      - $ref: '#/parameters/fails_dqa_evidence'
+      - $ref: '#/parameters/fails_dqa_location'
+      - $ref: '#/parameters/fails_dqa_needs_id'
+      - $ref: '#/parameters/fails_dqa_recent'
+      - $ref: '#/parameters/fails_dqa_subject'
+      - $ref: '#/parameters/fails_dqa_wild'
+      - $ref: '#/parameters/q'
+      - $ref: '#/parameters/search_on'
+      - $ref: '#/parameters/quality_grade'
+      - $ref: '#/parameters/updated_since'
+      - $ref: '#/parameters/viewer_id'
+      - $ref: '#/parameters/reviewed'
+      - $ref: '#/parameters/locale'
+      - $ref: '#/parameters/preferred_place_id'
+      - $ref: '#/parameters/ttl'
+      - $ref: '#/parameters/date_field'
+      - $ref: '#/parameters/interval'
+      tags:
+      - Observations
+      responses:
+        '200':
+          description: 'Returns an object with metadata and an array of histogram data
+
+            '
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /observations/identifiers:
+    get:
+      summary: Observation Identifiers
+      description: 'Given zero to many of following parameters, returns identifiers of
+
+        observations matching the search criteria and the count of
+
+        observations they have identified, ordered by count descending. A
+
+        maximum of 500 results will be returned
+
+        '
+      parameters:
+      - $ref: '#/parameters/acc'
+      - $ref: '#/parameters/captive'
+      - $ref: '#/parameters/endemic'
+      - $ref: '#/parameters/geo'
+      - $ref: '#/parameters/id_please'
+      - $ref: '#/parameters/identified'
+      - $ref: '#/parameters/introduced'
+      - $ref: '#/parameters/mappable'
+      - $ref: '#/parameters/native'
+      - $ref: '#/parameters/out_of_range'
+      - $ref: '#/parameters/pcid'
+      - $ref: '#/parameters/photos'
+      - $ref: '#/parameters/popular'
+      - $ref: '#/parameters/sounds'
+      - $ref: '#/parameters/taxon_is_active'
+      - $ref: '#/parameters/threatened'
+      - $ref: '#/parameters/verifiable'
+      - $ref: '#/parameters/licensed'
+      - $ref: '#/parameters/photo_licensed'
+      - $ref: '#/parameters/expected_nearby'
+      - $ref: '#/parameters/id'
+      - $ref: '#/parameters/not_id'
+      - $ref: '#/parameters/license'
+      - $ref: '#/parameters/ofv_datatype'
+      - $ref: '#/parameters/photo_license'
+      - $ref: '#/parameters/place_id'
+      - $ref: '#/parameters/project_id'
+      - $ref: '#/parameters/rank'
+      - $ref: '#/parameters/site_id'
+      - $ref: '#/parameters/sound_license'
+      - $ref: '#/parameters/taxon_id'
+      - $ref: '#/parameters/without_taxon_id'
+      - $ref: '#/parameters/taxon_name'
+      - $ref: '#/parameters/user_id'
+      - $ref: '#/parameters/user_login'
+      - $ref: '#/parameters/ident_user_id'
+      - $ref: '#/parameters/hour'
+      - $ref: '#/parameters/day'
+      - $ref: '#/parameters/month'
+      - $ref: '#/parameters/year'
+      - $ref: '#/parameters/created_day'
+      - $ref: '#/parameters/created_month'
+      - $ref: '#/parameters/created_year'
+      - $ref: '#/parameters/term_id'
+      - $ref: '#/parameters/term_value_id'
+      - $ref: '#/parameters/without_term_id'
+      - $ref: '#/parameters/without_term_value_id'
+      - $ref: '#/parameters/term_id_or_unknown'
+      - $ref: '#/parameters/annotation_user_id'
+      - $ref: '#/parameters/acc_above'
+      - $ref: '#/parameters/acc_below'
+      - $ref: '#/parameters/acc_below_or_unknown'
+      - $ref: '#/parameters/d1'
+      - $ref: '#/parameters/d2'
+      - $ref: '#/parameters/created_d1'
+      - $ref: '#/parameters/created_d2'
+      - $ref: '#/parameters/created_on'
+      - $ref: '#/parameters/observed_on'
+      - $ref: '#/parameters/unobserved_by_user_id'
+      - $ref: '#/parameters/apply_project_rules_for'
+      - $ref: '#/parameters/cs'
+      - $ref: '#/parameters/csa'
+      - $ref: '#/parameters/csi'
+      - $ref: '#/parameters/geoprivacy'
+      - $ref: '#/parameters/taxon_geoprivacy'
+      - $ref: '#/parameters/obscuration'
+      - $ref: '#/parameters/hrank'
+      - $ref: '#/parameters/lrank'
+      - $ref: '#/parameters/iconic_taxa'
+      - $ref: '#/parameters/id_above'
+      - $ref: '#/parameters/id_below'
+      - $ref: '#/parameters/identifications'
+      - $ref: '#/parameters/lat'
+      - $ref: '#/parameters/lng'
+      - $ref: '#/parameters/radius'
+      - $ref: '#/parameters/nelat'
+      - $ref: '#/parameters/nelng'
+      - $ref: '#/parameters/swlat'
+      - $ref: '#/parameters/swlng'
+      - $ref: '#/parameters/list_id'
+      - $ref: '#/parameters/not_in_project'
+      - $ref: '#/parameters/not_matching_project_rules_for'
+      - $ref: '#/parameters/observation_accuracy_experiment_id'
+      - $ref: '#/parameters/fails_dqa_accurate'
+      - $ref: '#/parameters/fails_dqa_date'
+      - $ref: '#/parameters/fails_dqa_evidence'
+      - $ref: '#/parameters/fails_dqa_location'
+      - $ref: '#/parameters/fails_dqa_needs_id'
+      - $ref: '#/parameters/fails_dqa_recent'
+      - $ref: '#/parameters/fails_dqa_subject'
+      - $ref: '#/parameters/fails_dqa_wild'
+      - $ref: '#/parameters/q'
+      - $ref: '#/parameters/search_on'
+      - $ref: '#/parameters/quality_grade'
+      - $ref: '#/parameters/updated_since'
+      - $ref: '#/parameters/viewer_id'
+      - $ref: '#/parameters/reviewed'
+      - $ref: '#/parameters/locale'
+      - $ref: '#/parameters/preferred_place_id'
+      - $ref: '#/parameters/ttl'
+      tags:
+      - Observations
+      responses:
+        '200':
+          description: 'Returns an object with metadata and an array of identifiers
+
+            '
+          schema:
+            $ref: '#/definitions/UserCountsResponse'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /observations/observers:
+    get:
+      summary: Observation Observers
+      description: 'Given zero to many of following parameters, returns observers of
+
+        observations matching the search criteria and the count of
+
+        observations and distinct taxa of rank `species` they have observed. A
+
+        maximum of 500 results will be returned
+
+        '
+      parameters:
+      - $ref: '#/parameters/acc'
+      - $ref: '#/parameters/captive'
+      - $ref: '#/parameters/endemic'
+      - $ref: '#/parameters/geo'
+      - $ref: '#/parameters/id_please'
+      - $ref: '#/parameters/identified'
+      - $ref: '#/parameters/introduced'
+      - $ref: '#/parameters/mappable'
+      - $ref: '#/parameters/native'
+      - $ref: '#/parameters/out_of_range'
+      - $ref: '#/parameters/pcid'
+      - $ref: '#/parameters/photos'
+      - $ref: '#/parameters/popular'
+      - $ref: '#/parameters/sounds'
+      - $ref: '#/parameters/taxon_is_active'
+      - $ref: '#/parameters/threatened'
+      - $ref: '#/parameters/verifiable'
+      - $ref: '#/parameters/licensed'
+      - $ref: '#/parameters/photo_licensed'
+      - $ref: '#/parameters/expected_nearby'
+      - $ref: '#/parameters/id'
+      - $ref: '#/parameters/not_id'
+      - $ref: '#/parameters/license'
+      - $ref: '#/parameters/ofv_datatype'
+      - $ref: '#/parameters/photo_license'
+      - $ref: '#/parameters/place_id'
+      - $ref: '#/parameters/project_id'
+      - $ref: '#/parameters/rank'
+      - $ref: '#/parameters/site_id'
+      - $ref: '#/parameters/sound_license'
+      - $ref: '#/parameters/taxon_id'
+      - $ref: '#/parameters/without_taxon_id'
+      - $ref: '#/parameters/taxon_name'
+      - $ref: '#/parameters/user_id'
+      - $ref: '#/parameters/user_login'
+      - $ref: '#/parameters/ident_user_id'
+      - $ref: '#/parameters/hour'
+      - $ref: '#/parameters/day'
+      - $ref: '#/parameters/month'
+      - $ref: '#/parameters/year'
+      - $ref: '#/parameters/created_day'
+      - $ref: '#/parameters/created_month'
+      - $ref: '#/parameters/created_year'
+      - $ref: '#/parameters/term_id'
+      - $ref: '#/parameters/term_value_id'
+      - $ref: '#/parameters/without_term_id'
+      - $ref: '#/parameters/without_term_value_id'
+      - $ref: '#/parameters/term_id_or_unknown'
+      - $ref: '#/parameters/annotation_user_id'
+      - $ref: '#/parameters/acc_above'
+      - $ref: '#/parameters/acc_below'
+      - $ref: '#/parameters/acc_below_or_unknown'
+      - $ref: '#/parameters/d1'
+      - $ref: '#/parameters/d2'
+      - $ref: '#/parameters/created_d1'
+      - $ref: '#/parameters/created_d2'
+      - $ref: '#/parameters/created_on'
+      - $ref: '#/parameters/observed_on'
+      - $ref: '#/parameters/unobserved_by_user_id'
+      - $ref: '#/parameters/apply_project_rules_for'
+      - $ref: '#/parameters/cs'
+      - $ref: '#/parameters/csa'
+      - $ref: '#/parameters/csi'
+      - $ref: '#/parameters/geoprivacy'
+      - $ref: '#/parameters/taxon_geoprivacy'
+      - $ref: '#/parameters/obscuration'
+      - $ref: '#/parameters/hrank'
+      - $ref: '#/parameters/lrank'
+      - $ref: '#/parameters/iconic_taxa'
+      - $ref: '#/parameters/id_above'
+      - $ref: '#/parameters/id_below'
+      - $ref: '#/parameters/identifications'
+      - $ref: '#/parameters/lat'
+      - $ref: '#/parameters/lng'
+      - $ref: '#/parameters/radius'
+      - $ref: '#/parameters/nelat'
+      - $ref: '#/parameters/nelng'
+      - $ref: '#/parameters/swlat'
+      - $ref: '#/parameters/swlng'
+      - $ref: '#/parameters/list_id'
+      - $ref: '#/parameters/not_in_project'
+      - $ref: '#/parameters/not_matching_project_rules_for'
+      - $ref: '#/parameters/observation_accuracy_experiment_id'
+      - $ref: '#/parameters/fails_dqa_accurate'
+      - $ref: '#/parameters/fails_dqa_date'
+      - $ref: '#/parameters/fails_dqa_evidence'
+      - $ref: '#/parameters/fails_dqa_location'
+      - $ref: '#/parameters/fails_dqa_needs_id'
+      - $ref: '#/parameters/fails_dqa_recent'
+      - $ref: '#/parameters/fails_dqa_subject'
+      - $ref: '#/parameters/fails_dqa_wild'
+      - $ref: '#/parameters/q'
+      - $ref: '#/parameters/search_on'
+      - $ref: '#/parameters/quality_grade'
+      - $ref: '#/parameters/updated_since'
+      - $ref: '#/parameters/viewer_id'
+      - $ref: '#/parameters/reviewed'
+      - $ref: '#/parameters/locale'
+      - $ref: '#/parameters/preferred_place_id'
+      - $ref: '#/parameters/ttl'
+      tags:
+      - Observations
+      responses:
+        '200':
+          description: 'Returns an object with metadata and an array of observers
+
+            '
+          schema:
+            $ref: '#/definitions/ObservationsObserversResponse'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /observations/popular_field_values:
+    get:
+      summary: Observation Popular Field Values
+      description: 'Given zero to many of following parameters, returns an array of
+
+        relevant controlled terms values and a monthly histogram
+
+        '
+      parameters:
+      - $ref: '#/parameters/acc'
+      - $ref: '#/parameters/captive'
+      - $ref: '#/parameters/endemic'
+      - $ref: '#/parameters/geo'
+      - $ref: '#/parameters/id_please'
+      - $ref: '#/parameters/identified'
+      - $ref: '#/parameters/introduced'
+      - $ref: '#/parameters/mappable'
+      - $ref: '#/parameters/native'
+      - $ref: '#/parameters/out_of_range'
+      - $ref: '#/parameters/pcid'
+      - $ref: '#/parameters/photos'
+      - $ref: '#/parameters/popular'
+      - $ref: '#/parameters/sounds'
+      - $ref: '#/parameters/taxon_is_active'
+      - $ref: '#/parameters/threatened'
+      - $ref: '#/parameters/verifiable'
+      - $ref: '#/parameters/licensed'
+      - $ref: '#/parameters/photo_licensed'
+      - $ref: '#/parameters/expected_nearby'
+      - $ref: '#/parameters/id'
+      - $ref: '#/parameters/not_id'
+      - $ref: '#/parameters/license'
+      - $ref: '#/parameters/ofv_datatype'
+      - $ref: '#/parameters/photo_license'
+      - $ref: '#/parameters/place_id'
+      - $ref: '#/parameters/project_id'
+      - $ref: '#/parameters/rank'
+      - $ref: '#/parameters/site_id'
+      - $ref: '#/parameters/sound_license'
+      - $ref: '#/parameters/taxon_id'
+      - $ref: '#/parameters/without_taxon_id'
+      - $ref: '#/parameters/taxon_name'
+      - $ref: '#/parameters/user_id'
+      - $ref: '#/parameters/user_login'
+      - $ref: '#/parameters/ident_user_id'
+      - $ref: '#/parameters/hour'
+      - $ref: '#/parameters/day'
+      - $ref: '#/parameters/month'
+      - $ref: '#/parameters/year'
+      - $ref: '#/parameters/created_day'
+      - $ref: '#/parameters/created_month'
+      - $ref: '#/parameters/created_year'
+      - $ref: '#/parameters/term_id'
+      - $ref: '#/parameters/term_value_id'
+      - $ref: '#/parameters/without_term_id'
+      - $ref: '#/parameters/without_term_value_id'
+      - $ref: '#/parameters/term_id_or_unknown'
+      - $ref: '#/parameters/annotation_user_id'
+      - $ref: '#/parameters/acc_above'
+      - $ref: '#/parameters/acc_below'
+      - $ref: '#/parameters/acc_below_or_unknown'
+      - $ref: '#/parameters/d1'
+      - $ref: '#/parameters/d2'
+      - $ref: '#/parameters/created_d1'
+      - $ref: '#/parameters/created_d2'
+      - $ref: '#/parameters/created_on'
+      - $ref: '#/parameters/observed_on'
+      - $ref: '#/parameters/unobserved_by_user_id'
+      - $ref: '#/parameters/apply_project_rules_for'
+      - $ref: '#/parameters/cs'
+      - $ref: '#/parameters/csa'
+      - $ref: '#/parameters/csi'
+      - $ref: '#/parameters/geoprivacy'
+      - $ref: '#/parameters/taxon_geoprivacy'
+      - $ref: '#/parameters/obscuration'
+      - $ref: '#/parameters/hrank'
+      - $ref: '#/parameters/lrank'
+      - $ref: '#/parameters/iconic_taxa'
+      - $ref: '#/parameters/id_above'
+      - $ref: '#/parameters/id_below'
+      - $ref: '#/parameters/identifications'
+      - $ref: '#/parameters/lat'
+      - $ref: '#/parameters/lng'
+      - $ref: '#/parameters/radius'
+      - $ref: '#/parameters/nelat'
+      - $ref: '#/parameters/nelng'
+      - $ref: '#/parameters/swlat'
+      - $ref: '#/parameters/swlng'
+      - $ref: '#/parameters/list_id'
+      - $ref: '#/parameters/not_in_project'
+      - $ref: '#/parameters/not_matching_project_rules_for'
+      - $ref: '#/parameters/observation_accuracy_experiment_id'
+      - $ref: '#/parameters/fails_dqa_accurate'
+      - $ref: '#/parameters/fails_dqa_date'
+      - $ref: '#/parameters/fails_dqa_evidence'
+      - $ref: '#/parameters/fails_dqa_location'
+      - $ref: '#/parameters/fails_dqa_needs_id'
+      - $ref: '#/parameters/fails_dqa_recent'
+      - $ref: '#/parameters/fails_dqa_subject'
+      - $ref: '#/parameters/fails_dqa_wild'
+      - $ref: '#/parameters/q'
+      - $ref: '#/parameters/search_on'
+      - $ref: '#/parameters/quality_grade'
+      - $ref: '#/parameters/updated_since'
+      - $ref: '#/parameters/viewer_id'
+      - $ref: '#/parameters/reviewed'
+      - $ref: '#/parameters/locale'
+      - $ref: '#/parameters/preferred_place_id'
+      - $ref: '#/parameters/ttl'
+      tags:
+      - Observations
+      responses:
+        '200':
+          description: OK
+  /observations/species_counts:
+    get:
+      summary: Observation Species Counts
+      description: 'Given zero to many of following parameters, returns `leaf taxa`
+
+        associated with observations matching the search criteria and the count of
+
+        observations they are associated with, ordered by count descending.
+
+        `Leaf taxa` are the leaves of the taxonomic tree containing only the
+
+        taxa associated with observations matching the search criteria.
+
+        '
+      parameters:
+      - $ref: '#/parameters/acc'
+      - $ref: '#/parameters/captive'
+      - $ref: '#/parameters/endemic'
+      - $ref: '#/parameters/geo'
+      - $ref: '#/parameters/id_please'
+      - $ref: '#/parameters/identified'
+      - $ref: '#/parameters/introduced'
+      - $ref: '#/parameters/mappable'
+      - $ref: '#/parameters/native'
+      - $ref: '#/parameters/out_of_range'
+      - $ref: '#/parameters/pcid'
+      - $ref: '#/parameters/photos'
+      - $ref: '#/parameters/popular'
+      - $ref: '#/parameters/sounds'
+      - $ref: '#/parameters/taxon_is_active'
+      - $ref: '#/parameters/threatened'
+      - $ref: '#/parameters/verifiable'
+      - $ref: '#/parameters/licensed'
+      - $ref: '#/parameters/photo_licensed'
+      - $ref: '#/parameters/expected_nearby'
+      - $ref: '#/parameters/id'
+      - $ref: '#/parameters/not_id'
+      - $ref: '#/parameters/license'
+      - $ref: '#/parameters/ofv_datatype'
+      - $ref: '#/parameters/photo_license'
+      - $ref: '#/parameters/place_id'
+      - $ref: '#/parameters/project_id'
+      - $ref: '#/parameters/rank'
+      - $ref: '#/parameters/site_id'
+      - $ref: '#/parameters/sound_license'
+      - $ref: '#/parameters/taxon_id'
+      - $ref: '#/parameters/without_taxon_id'
+      - $ref: '#/parameters/taxon_name'
+      - $ref: '#/parameters/user_id'
+      - $ref: '#/parameters/user_login'
+      - $ref: '#/parameters/ident_user_id'
+      - $ref: '#/parameters/hour'
+      - $ref: '#/parameters/day'
+      - $ref: '#/parameters/month'
+      - $ref: '#/parameters/year'
+      - $ref: '#/parameters/created_day'
+      - $ref: '#/parameters/created_month'
+      - $ref: '#/parameters/created_year'
+      - $ref: '#/parameters/term_id'
+      - $ref: '#/parameters/term_value_id'
+      - $ref: '#/parameters/without_term_id'
+      - $ref: '#/parameters/without_term_value_id'
+      - $ref: '#/parameters/term_id_or_unknown'
+      - $ref: '#/parameters/annotation_user_id'
+      - $ref: '#/parameters/acc_above'
+      - $ref: '#/parameters/acc_below'
+      - $ref: '#/parameters/acc_below_or_unknown'
+      - $ref: '#/parameters/d1'
+      - $ref: '#/parameters/d2'
+      - $ref: '#/parameters/created_d1'
+      - $ref: '#/parameters/created_d2'
+      - $ref: '#/parameters/created_on'
+      - $ref: '#/parameters/observed_on'
+      - $ref: '#/parameters/unobserved_by_user_id'
+      - $ref: '#/parameters/apply_project_rules_for'
+      - $ref: '#/parameters/cs'
+      - $ref: '#/parameters/csa'
+      - $ref: '#/parameters/csi'
+      - $ref: '#/parameters/geoprivacy'
+      - $ref: '#/parameters/taxon_geoprivacy'
+      - $ref: '#/parameters/obscuration'
+      - $ref: '#/parameters/hrank'
+      - $ref: '#/parameters/lrank'
+      - $ref: '#/parameters/iconic_taxa'
+      - $ref: '#/parameters/id_above'
+      - $ref: '#/parameters/id_below'
+      - $ref: '#/parameters/identifications'
+      - $ref: '#/parameters/lat'
+      - $ref: '#/parameters/lng'
+      - $ref: '#/parameters/radius'
+      - $ref: '#/parameters/nelat'
+      - $ref: '#/parameters/nelng'
+      - $ref: '#/parameters/swlat'
+      - $ref: '#/parameters/swlng'
+      - $ref: '#/parameters/list_id'
+      - $ref: '#/parameters/not_in_project'
+      - $ref: '#/parameters/not_matching_project_rules_for'
+      - $ref: '#/parameters/observation_accuracy_experiment_id'
+      - $ref: '#/parameters/fails_dqa_accurate'
+      - $ref: '#/parameters/fails_dqa_date'
+      - $ref: '#/parameters/fails_dqa_evidence'
+      - $ref: '#/parameters/fails_dqa_location'
+      - $ref: '#/parameters/fails_dqa_needs_id'
+      - $ref: '#/parameters/fails_dqa_recent'
+      - $ref: '#/parameters/fails_dqa_subject'
+      - $ref: '#/parameters/fails_dqa_wild'
+      - $ref: '#/parameters/q'
+      - $ref: '#/parameters/search_on'
+      - $ref: '#/parameters/quality_grade'
+      - $ref: '#/parameters/updated_since'
+      - $ref: '#/parameters/viewer_id'
+      - $ref: '#/parameters/reviewed'
+      - $ref: '#/parameters/locale'
+      - $ref: '#/parameters/preferred_place_id'
+      - $ref: '#/parameters/ttl'
+      - $ref: '#/parameters/include_ancestors'
+      - $ref: '#/parameters/page'
+      - $ref: '#/parameters/per_page_species_counts'
+      tags:
+      - Observations
+      responses:
+        '200':
+          description: 'Returns an object with metadata and an array of taxa
+
+            '
+          schema:
+            $ref: '#/definitions/SpeciesCountsResponse'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /observations/updates:
+    get:
+      summary: Observation User Updates
+      description: 'Given zero to many of following parameters, returns an array of objects
+
+        representing new comments and identifications on observations the authenticated
+
+        user has subscribed to. Requires authentication
+
+        '
+      parameters:
+      - $ref: '#/parameters/created_after'
+      - $ref: '#/parameters/viewed'
+      - $ref: '#/parameters/observations_by'
+      - $ref: '#/parameters/page'
+      - $ref: '#/parameters/per_page'
+      tags:
+      - Observations
+      security:
+      - api_token: []
+      responses:
+        '200':
+          description: OK
+  /observations/{id}/viewed_updates:
+    put:
+      summary: Observation Field Value Update
+      description: 'Mark all updates associated with this observation as viewed by logged-in user
+
+        '
+      consumes:
+      - application/json
+      parameters:
+      - $ref: '#/parameters/path_id'
+      tags:
+      - Observations
+      security:
+      - api_token: []
+      responses:
+        '200':
+          description: OK
+definitions:
+  PostQuality:
+    type: object
+    properties:
+      agree:
+        type: boolean
+  User:
+    type: object
+    properties:
+      created_at:
+        type: string
+        format: date-time
+      id:
+        type: integer
+      icon:
+        type: string
+      icon_url:
+        type: string
+      identifications_count:
+        type: integer
+      journal_posts_count:
+        type: integer
+      login:
+        type: string
+      name:
+        type: string
+      observations_count:
+        type: integer
+      orcid:
+        type: string
+      roles:
+        type: array
+        items:
+          type: string
+          enum:
+          - admin
+          - app owner
+          - curator
+      site_id:
+        type: integer
+      species_count:
+        type: integer
+      spam:
+        type: boolean
+      suspended:
+        type: boolean
+  ObservationsShowResponse:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - required:
+      - results
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/ShowObservation'
+  TaxonConservationStatus:
+    allOf:
+    - $ref: '#/definitions/RawConservationStatus'
+    - type: object
+      properties:
+        place:
+          $ref: '#/definitions/CorePlace'
+  EstablishmentMeans:
+    type: object
+    properties:
+      establishment_means:
+        type: string
+      place:
+        $ref: '#/definitions/CorePlace'
+  PostObservationVote:
+    type: object
+    properties:
+      vote:
+        type: string
+        enum:
+        - up
+        - down
+      scope:
+        enum:
+        - needs_id
+  CorePlace:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      display_name:
+        type: string
+  ObservationPhoto:
+    type: object
+    properties:
+      id:
+        type: integer
+      uuid:
+        type: string
+      photo:
+        $ref: '#/definitions/Photo'
+      position:
+        type: integer
+  SpeciesCountsResponse:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - required:
+      - results
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              count:
+                type: integer
+              taxon:
+                $ref: '#/definitions/ShowTaxon'
+  Identification:
+    type: object
+    properties:
+      id:
+        type: integer
+      observation_id:
+        type: integer
+      body:
+        type: string
+      category:
+        type: string
+        enum:
+        - improving
+        - leading
+        - maverick
+        - supporting
+      created_at:
+        type: string
+        format: date-time
+      updated_at:
+        type: string
+        format: date-time
+      current:
+        type: boolean
+      taxon:
+        $ref: '#/definitions/ObservationTaxon'
+      previous_observation_taxon:
+        $ref: '#/definitions/ObservationTaxon'
+      user:
+        $ref: '#/definitions/User'
+      uuid:
+        type: string
+      created_at_details:
+        $ref: '#/definitions/DateDetails'
+      flags:
+        type: array
+        items:
+          $ref: '#/definitions/Flag'
+      own_observation:
+        type: boolean
+      taxon_change:
+        type: object
+        properties:
+          id:
+            type: integer
+          type:
+            type: string
+      vision:
+        type: boolean
+      disagreement:
+        type: boolean
+      previous_observation_taxon_id:
+        type: integer
+      spam:
+        type: boolean
+      hidden:
+        type: boolean
+      moderator_actions:
+        type: array
+        items:
+          $ref: '#/definitions/ModeratorAction'
+  ShowTaxon:
+    allOf:
+    - $ref: '#/definitions/CoreTaxon'
+    - type: object
+      properties:
+        ancestor_ids:
+          type: array
+          items:
+            type: integer
+        colors:
+          type: array
+          items:
+            $ref: '#/definitions/Color'
+        conservation_status:
+          $ref: '#/definitions/ConservationStatus'
+        conservation_statuses:
+          type: array
+          items:
+            $ref: '#/definitions/TaxonConservationStatus'
+        default_photo:
+          $ref: '#/definitions/TaxonPhoto'
+        establishment_means:
+          $ref: '#/definitions/EstablishmentMeans'
+        observations_count:
+          type: integer
+        preferred_establishment_means:
+          type: string
+  ConservationStatus:
+    type: object
+    properties:
+      place_id:
+        type: integer
+      place:
+        $ref: '#/definitions/CorePlace'
+      status:
+        type: string
+  Fave:
+    type: object
+    properties:
+      id:
+        type: integer
+      votable_id:
+        type: integer
+      created_at:
+        type: string
+        format: date-time
+      user:
+        $ref: '#/definitions/User'
+  RawConservationStatus:
+    type: object
+    properties:
+      source_id:
+        type: integer
+        description: 'Identifier for the iNat source record associated with this status,
+
+          retrievable via https://www.inaturalist.org/sources/:id.json
+
+          (this endpoint is not a part of our public API and is thus subject to
+
+          change or removal)
+
+          '
+      authority:
+        type: string
+        description: 'Organization that declared this status
+
+          '
+      status:
+        type: string
+        description: 'Body of the status, often coded, particularly when the status comes
+
+          from the IUCN or NatureServe. Consult the authority and/or the
+
+          status URL for details about the meanings of codes.
+
+          '
+      status_name:
+        type: string
+        description: 'Human-readable name of the status if it was coded.
+
+          '
+      iucn:
+        type: integer
+        description: 'Coded value representing the equivalent IUCN status. Mappings:
+
+          NOT_EVALUATED = 0, DATA_DEFICIENT = 5, LEAST_CONCERN = 10,
+
+          NEAR_THREATENED = 20, VULNERABLE = 30, ENDANGERED = 40,
+
+          CRITICALLY_ENDANGERED = 50, EXTINCT_IN_THE_WILD = 60, EXTINCT = 70
+
+          '
+      geoprivacy:
+        type: string
+        description: 'Default geoprivacy for observations of this taxon in the status''s place.
+
+          '
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+      message:
+        type: string
+  Photo:
+    type: object
+    properties:
+      id:
+        type: integer
+      attribution:
+        type: string
+      license_code:
+        type: string
+      url:
+        type: string
+  PointGeoJson:
+    type: object
+    properties:
+      type:
+        type: string
+      coordinates:
+        type: array
+        description: an array of [long, lat]
+        items:
+          type: number
+          format: double
+  Flag:
+    type: object
+    properties:
+      id:
+        type: integer
+      flag:
+        type: string
+      comment:
+        type: string
+      resolved:
+        type: boolean
+      user:
+        $ref: '#/definitions/User'
+      created_at:
+        type: string
+        format: date-time
+  NonOwnerIdentification:
+    type: object
+    properties:
+      id:
+        type: integer
+      body:
+        type: string
+      created_at:
+        type: string
+        format: date-time
+      created_at_details:
+        $ref: '#/definitions/DateDetails'
+      user:
+        $ref: '#/definitions/User'
+  ObservationsResponse:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - required:
+      - results
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/Observation'
+  Outlink:
+    type: object
+    properties:
+      id:
+        type: integer
+      source:
+        type: string
+      url:
+        type: string
+  Observation:
+    type: object
+    properties:
+      annotations:
+        type: array
+        items:
+          $ref: '#/definitions/Annotation'
+      id:
+        type: integer
+      cached_votes_total:
+        type: integer
+      captive:
+        type: boolean
+      comments:
+        type: array
+        items:
+          $ref: '#/definitions/Comment'
+      comments_count:
+        type: integer
+      created_at:
+        type: string
+        format: date-time
+      created_at_details:
+        $ref: '#/definitions/DateDetails'
+      created_time_zone:
+        type: string
+      description:
+        type: string
+      faves_count:
+        type: integer
+      geojson:
+        $ref: '#/definitions/PointGeoJson'
+      geoprivacy:
+        type: string
+      taxon_geoprivacy:
+        type: string
+      id_please:
+        type: boolean
+      identifications_count:
+        type: integer
+      identifications_most_agree:
+        type: boolean
+      identifications_most_disagree:
+        type: boolean
+      identifications_some_agree:
+        type: boolean
+      license_code:
+        type: string
+      location:
+        type: string
+        description: in the format "lat,lng"
+      private_location:
+        type: string
+        description: in the format "lat,lng"
+      mappable:
+        type: boolean
+      non_owner_ids:
+        type: array
+        items:
+          $ref: '#/definitions/NonOwnerIdentification'
+      num_identification_agreements:
+        type: integer
+      num_identification_disagreements:
+        type: integer
+      obscured:
+        type: boolean
+      observed_on:
+        type: string
+        format: date-time
+      observed_on_details:
+        $ref: '#/definitions/DateDetails'
+      observed_on_string:
+        type: string
+      observed_time_zone:
+        type: string
+      ofvs:
+        type: array
+        items:
+          $ref: '#/definitions/FieldValue'
+      out_of_range:
+        type: boolean
+      photos:
+        type: array
+        items:
+          $ref: '#/definitions/Photo'
+      place_guess:
+        type: string
+      private_place_guess:
+        type: string
+      place_ids:
+        type: array
+        items:
+          type: integer
+      private_place_ids:
+        type: array
+        items:
+          type: integer
+      positional_accuracy:
+        type: integer
+      private_geojson:
+        $ref: '#/definitions/PointGeoJson'
+      project_ids:
+        type: array
+        items:
+          type: integer
+      project_ids_with_curator_id:
+        type: array
+        items:
+          type: integer
+      project_ids_without_curator_id:
+        type: array
+        items:
+          type: integer
+      public_positional_accuracy:
+        type: integer
+      quality_grade:
+        type: string
+      reviewed_by:
+        type: array
+        items:
+          type: integer
+      site_id:
+        type: integer
+      sounds:
+        type: array
+        items:
+          $ref: '#/definitions/Sound'
+      species_guess:
+        type: string
+      tags:
+        type: array
+        items:
+          type: string
+      taxon:
+        $ref: '#/definitions/ObservationTaxon'
+      time_observed_at:
+        type: string
+        format: date-time
+      time_zone_offset:
+        type: string
+      updated_at:
+        type: string
+        format: date-time
+      uri:
+        type: string
+      user:
+        $ref: '#/definitions/User'
+      uuid:
+        type: string
+      verifiable:
+        type: boolean
+      observation_photos:
+        type: array
+        items:
+          $ref: '#/definitions/ObservationPhoto'
+      quality_metrics:
+        type: array
+        items:
+          $ref: '#/definitions/QualityMetric'
+      flags:
+        type: array
+        items:
+          $ref: '#/definitions/Flag'
+      community_taxon_id:
+        type: integer
+      faves:
+        type: array
+        items:
+          $ref: '#/definitions/Fave'
+      identifications:
+        type: array
+        items:
+          $ref: '#/definitions/Identification'
+      oauth_application_id:
+        type: integer
+      outlinks:
+        type: array
+        items:
+          $ref: '#/definitions/Outlink'
+      owners_identification_from_vision:
+        type: boolean
+      preferences:
+        type: object
+      project_observations:
+        type: array
+        items:
+          $ref: '#/definitions/ProjectObservation'
+      spam:
+        type: boolean
+      votes:
+        type: array
+        items:
+          $ref: '#/definitions/Vote'
+      identification_disagreements_count:
+        type: integer
+      ident_taxon_ids:
+        type: array
+        items:
+          type: integer
+      map_scale:
+        type: integer
+  CoreTaxon:
+    type: object
+    properties:
+      id:
+        type: integer
+      iconic_taxon_id:
+        type: integer
+      iconic_taxon_name:
+        type: string
+      is_active:
+        type: boolean
+      name:
+        type: string
+      preferred_common_name:
+        type: string
+      rank:
+        type: string
+      rank_level:
+        type: number
+  Vote:
+    type: object
+    properties:
+      id:
+        type: integer
+      user_id:
+        type: integer
+      vote_flag:
+        type: boolean
+      vote_scope:
+        type: string
+      created_at:
+        type: string
+        format: date-time
+  Sound:
+    type: object
+    properties:
+      id:
+        type: integer
+      attribution:
+        type: string
+      license_code:
+        type: string
+      file_url:
+        type: string
+      file_content_type:
+        type: string
+      flags:
+        type: array
+        items:
+          $ref: '#/definitions/Flag'
+      hidden:
+        type: boolean
+      moderator_actions:
+        type: array
+        items:
+          $ref: '#/definitions/ModeratorAction'
+  ObservationTaxon:
+    allOf:
+    - $ref: '#/definitions/CoreTaxon'
+    - type: object
+      properties:
+        ancestor_ids:
+          type: array
+          items:
+            type: integer
+        ancestry:
+          type: string
+        conservation_status:
+          $ref: '#/definitions/RawConservationStatus'
+        endemic:
+          type: boolean
+        establishment_means:
+          $ref: '#/definitions/EstablishmentMeans'
+        introduced:
+          type: boolean
+        native:
+          type: boolean
+        threatened:
+          type: boolean
+  BaseResponse:
+    type: object
+    properties:
+      total_results:
+        type: integer
+      page:
+        type: integer
+      per_page:
+        type: integer
+  Annotation:
+    type: object
+    properties:
+      uuid:
+        type: string
+      controlled_attribute_id:
+        type: integer
+      controlled_value_id:
+        type: integer
+      concatenated_attr_val:
+        type: string
+      user:
+        $ref: '#/definitions/User'
+      user_id:
+        type: integer
+      vote_score:
+        type: integer
+      votes:
+        type: array
+        items:
+          $ref: '#/definitions/Vote'
+  Comment:
+    type: object
+    properties:
+      id:
+        type: integer
+      body:
+        type: string
+      created_at:
+        type: string
+        format: date-time
+      created_at_details:
+        $ref: '#/definitions/DateDetails'
+      user:
+        $ref: '#/definitions/User'
+      flags:
+        type: array
+        items:
+          $ref: '#/definitions/Flag'
+      hidden:
+        type: boolean
+      moderator_actions:
+        type: array
+        items:
+          $ref: '#/definitions/ModeratorAction'
+      uuid:
+        type: string
+  DateDetails:
+    type: object
+    properties:
+      date:
+        type: string
+        format: date
+      day:
+        type: integer
+      hour:
+        type: integer
+      month:
+        type: integer
+      week:
+        type: integer
+      year:
+        type: integer
+  ModeratorAction:
+    type: object
+    properties:
+      id:
+        type: integer
+      created_at:
+        type: string
+        format: date-time
+      created_at_details:
+        $ref: '#/definitions/DateDetails'
+      user:
+        $ref: '#/definitions/User'
+      action:
+        type: string
+        enum:
+        - hide
+        - rename
+        - unhide
+        - suspend
+        - unsuspend
+      reason:
+        type: string
+  Color:
+    type: object
+    properties:
+      id:
+        type: integer
+      value:
+        type: string
+  UserCountsResponse:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - required:
+      - results
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              count:
+                type: integer
+              user:
+                $ref: '#/definitions/User'
+  TaxonPhoto:
+    allOf:
+    - $ref: '#/definitions/Photo'
+    - type: object
+      properties:
+        medium_url:
+          type: string
+        square_url:
+          type: string
+  QualityMetric:
+    type: object
+    properties:
+      id:
+        type: integer
+      user_id:
+        type: integer
+      metric:
+        type: string
+      agree:
+        type: boolean
+  PostObservation:
+    type: object
+    properties:
+      observation:
+        type: object
+        properties:
+          species_guess:
+            type: string
+          taxon_id:
+            type: integer
+          description:
+            type: string
+  FieldValue:
+    type: object
+    properties:
+      name:
+        type: string
+      value:
+        type: string
+  ShowObservation:
+    allOf:
+    - $ref: '#/definitions/Observation'
+    - type: object
+      properties:
+        identifications:
+          type: array
+          items:
+            $ref: '#/definitions/Identification'
+        faves:
+          type: array
+          items:
+            $ref: '#/definitions/Fave'
+  ProjectObservation:
+    type: object
+    properties:
+      id:
+        type: integer
+      project_id:
+        type: integer
+      observation_id:
+        type: integer
+      curator_identification_id:
+        type: integer
+      tracking_code:
+        type: string
+      prefers_curator_coordinate_access:
+        type: boolean
+  ObservationsObserversResponse:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - required:
+      - results
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              observation_count:
+                type: integer
+              species_count:
+                type: integer
+              user:
+                $ref: '#/definitions/User'
+parameters:
+  observed_on:
+    name: observed_on
+    type: string
+    format: date
+    in: query
+    description: Must be observed on this date
+  created_year:
+    name: created_year
+    type: array
+    items:
+      type: string
+    in: query
+    minimum: 1
+    description: Must be created within this year
+  viewer_id:
+    name: viewer_id
+    type: string
+    in: query
+    description: See `reviewed`
+  created_on:
+    name: created_on
+    type: string
+    format: date
+    in: query
+    description: Must be created on this date
+  list_id:
+    name: list_id
+    type: integer
+    in: query
+    description: Taxon must be in the list with this ID
+  page:
+    name: page
+    type: string
+    in: query
+    description: Pagination `page` number
+  unobserved_by_user_id:
+    name: unobserved_by_user_id
+    type: integer
+    in: query
+    description: Must not be of a taxon previously observed by this user
+  lat:
+    name: lat
+    type: number
+    format: double
+    in: query
+    description: 'Must be within a {`radius`} kilometer circle around this lat/lng
+
+      (*lat, *lng, radius)
+
+      '
+  csa:
+    name: csa
+    type: string
+    in: query
+    description: 'Taxon must have a conservation status from this authority. If
+
+      the `place_id` parameter is also specified, this will only consider
+
+      statuses specific to that place
+
+      '
+  user_id:
+    name: user_id
+    type: array
+    items:
+      type: string
+    in: query
+    minimum: 1
+    description: User must have this ID or login
+  ttl:
+    name: ttl
+    type: string
+    in: query
+    description: 'Set the `Cache-Control` HTTP header with this value as `max-age`, in
+
+      seconds. This means subsequent identical requests will be cached on
+
+      iNaturalist servers, and commonly within web browsers
+
+      '
+  sound_license:
+    name: sound_license
+    type: array
+    items:
+      type: string
+    in: query
+    description: Must have at least one sound with this license
+    enum:
+    - cc-by
+    - cc-by-nc
+    - cc-by-nd
+    - cc-by-sa
+    - cc-by-nc-nd
+    - cc-by-nc-sa
+    - cc0
+  preferred_place_id:
+    name: preferred_place_id
+    type: integer
+    in: query
+    description: 'Place preference for regional taxon common names
+
+      '
+  out_of_range:
+    name: out_of_range
+    type: boolean
+    in: query
+    description: Observations whose taxa are outside their known ranges
+  identifications:
+    name: identifications
+    type: string
+    in: query
+    description: Identifications must meet these criteria
+    enum:
+    - most_agree
+    - most_disagree
+    - some_agree
+  per_page_species_counts:
+    name: per_page
+    type: string
+    in: query
+    description: 'Number of results to return in a `page`. The maximum value is 500
+
+      '
+  photos:
+    name: photos
+    type: boolean
+    in: query
+    description: Observations with photos
+  locale:
+    name: locale
+    type: string
+    in: query
+    description: 'Locale preference for taxon common names
+
+      '
+  taxon_id:
+    name: taxon_id
+    type: array
+    items:
+      type: string
+    in: query
+    minimum: 1
+    description: Only show observations of these taxa and their descendants
+  lng:
+    name: lng
+    type: number
+    format: double
+    in: query
+    description: 'Must be within a {`radius`} kilometer circle around this lat/lng
+
+      (*lat, *lng, radius)
+
+      '
+  quality_grade:
+    name: quality_grade
+    type: string
+    in: query
+    description: Must have this quality grade
+    enum:
+    - casual
+    - needs_id
+    - research
+  term_value_id:
+    name: term_value_id
+    type: array
+    items:
+      type: integer
+    in: query
+    description: 'Must have an annotation using this controlled value ID. Must be combined
+
+      with the `term_id` parameter
+
+      '
+  mappable:
+    name: mappable
+    type: boolean
+    in: query
+    description: Observations that show on map tiles
+  native:
+    name: native
+    type: boolean
+    in: query
+    description: Observations whose taxa are native to their location
+  ident_user_id:
+    name: ident_user_id
+    type: integer
+    in: query
+    description: Observations identified by a particular user
+  taxon_name:
+    name: taxon_name
+    type: array
+    items:
+      type: string
+    in: query
+    description: 'Taxon must have a scientific or common name matching this string
+
+      '
+  year:
+    name: year
+    type: array
+    items:
+      type: string
+    in: query
+    minimum: 1
+    description: Must be observed within this year
+  endemic:
+    name: endemic
+    type: boolean
+    in: query
+    description: Observations whose taxa are endemic to their location
+  interval:
+    name: interval
+    in: query
+    required: false
+    type: string
+    description: 'Time interval for histogram, with groups starting on or contained within
+
+      the group value. The year, month, week, day, and hour options will set
+
+      default values for `d1` or `created_d1` depending on the value of
+
+      `date_field`, to limit the number of groups returned. You can override
+
+      those values if you want data from a longer or shorter time span. The
+
+      `hour` interval only works with `date_field=created`, and this you
+
+      should filter dates with `created_d[1,2]`
+
+      '
+    default: month_of_year
+    enum:
+    - year
+    - month
+    - week
+    - day
+    - hour
+    - month_of_year
+    - week_of_year
+  nelng:
+    name: nelng
+    type: number
+    format: double
+    in: query
+    description: 'Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)
+
+      '
+  acc_above:
+    name: acc_above
+    type: string
+    in: query
+    description: Must have a positional accuracy above this value (meters)
+  order_by:
+    name: order_by
+    type: string
+    in: query
+    description: Sort field
+    default: created_at
+    enum:
+    - created_at
+    - geo_score
+    - id
+    - observed_on
+    - random
+    - species_guess
+    - updated_at
+    - votes
+  fails_dqa_recent:
+    name: fails_dqa_recent
+    type: boolean
+    in: query
+    description: Must be voted as not recent evidence of an organism
+  path_metric:
+    name: metric
+    in: path
+    required: true
+    type: string
+    description: Data quality category
+    enum:
+    - date
+    - location
+    - wild
+  without_term_value_id:
+    name: without_term_value_id
+    type: array
+    items:
+      type: integer
+    in: query
+    description: 'Exclude observations with annotations using this controlled value ID.
+
+      Must be combined with the `term_id` parameter
+
+      '
+  created_day:
+    name: created_day
+    type: array
+    items:
+      type: string
+    in: query
+    minimum: 1
+    maximum: 31
+    description: Must be created within this day of the month
+  site_id:
+    name: site_id
+    type: array
+    items:
+      type: string
+    in: query
+    description: 'Must be affiliated with the iNaturalist network website with this ID
+
+      '
+  expected_nearby:
+    name: expected_nearby
+    type: boolean
+    in: query
+    description: Observation taxon is expected nearby
+  fails_dqa_needs_id:
+    name: fails_dqa_needs_id
+    type: boolean
+    in: query
+    description: Must be voted as the community ID cannot be improved
+  d2:
+    name: d2
+    type: string
+    format: date
+    in: query
+    description: Must be observed on or before this date
+  fails_dqa_wild:
+    name: fails_dqa_wild
+    type: boolean
+    in: query
+    description: Must be voted as not wild
+  place_id:
+    name: place_id
+    type: array
+    items:
+      type: integer
+    in: query
+    description: Must be observed within the place with this ID
+  project_id:
+    name: project_id
+    type: array
+    items:
+      type: string
+    in: query
+    description: Must be added to the project this ID or slug
+  radius:
+    name: radius
+    type: string
+    in: query
+    description: 'Must be within a {`radius`} kilometer circle around this lat/lng
+
+      (*lat, *lng, radius)
+
+      '
+  annotation_user_id:
+    name: annotation_user_id
+    type: array
+    items:
+      type: string
+    in: query
+    description: 'Must have an annotation created by this user
+
+      '
+  order:
+    name: order
+    type: string
+    in: query
+    description: Sort order
+    default: desc
+    enum:
+    - desc
+    - asc
+  fails_dqa_date:
+    name: fails_dqa_date
+    type: boolean
+    in: query
+    description: Must be voted as not having an accurate date
+  geoprivacy:
+    name: geoprivacy
+    type: array
+    items:
+      type: string
+    in: query
+    description: Must have this geoprivacy setting
+    enum:
+    - obscured
+    - obscured_private
+    - open
+    - private
+  iconic_taxa:
+    name: iconic_taxa
+    type: array
+    items:
+      type: string
+    in: query
+    description: Taxon must by within this iconic taxon
+    enum:
+    - Actinopterygii
+    - Animalia
+    - Amphibia
+    - Arachnida
+    - Aves
+    - Chromista
+    - Fungi
+    - Insecta
+    - Mammalia
+    - Mollusca
+    - Reptilia
+    - Plantae
+    - Protozoa
+    - unknown
+  id_below:
+    name: id_below
+    type: string
+    in: query
+    description: Must have an ID below this value
+  path_id:
+    name: id
+    in: path
+    required: true
+    type: integer
+    description: ID of the record
+  created_after:
+    name: created_after
+    type: string
+    format: date-time
+    in: query
+    description: Must be created at or after this time
+  id_please:
+    name: id_please
+    type: boolean
+    in: query
+    description: Observations with the deprecated `ID, Please!` flag. Note that this will return observations, but that this attribute is no longer used.
+  user_login:
+    name: user_login
+    type: array
+    items:
+      type: string
+    in: query
+    description: User must have this login
+  updated_since:
+    name: updated_since
+    type: string
+    in: query
+    description: Must be updated since this time
+  fails_dqa_accurate:
+    name: fails_dqa_accurate
+    type: boolean
+    in: query
+    description: Must be voted as not accurately depicting an organism or scene
+  lrank:
+    name: lrank
+    type: string
+    in: query
+    description: Taxon must have this rank or higher
+    enum:
+    - stateofmatter
+    - kingdom
+    - phylum
+    - subphylum
+    - superclass
+    - class
+    - subclass
+    - superorder
+    - order
+    - suborder
+    - infraorder
+    - superfamily
+    - epifamily
+    - family
+    - subfamily
+    - supertribe
+    - tribe
+    - subtribe
+    - genus
+    - genushybrid
+    - species
+    - hybrid
+    - subspecies
+    - variety
+    - form
+  reviewed:
+    name: reviewed
+    type: boolean
+    in: query
+    description: 'Observations have been reviewed by the user with ID equal to
+
+      the value of the `viewer_id` parameter
+
+      '
+  sounds:
+    name: sounds
+    type: boolean
+    in: query
+    description: Observations with sounds
+  not_matching_project_rules_for:
+    name: not_matching_project_rules_for
+    type: string
+    in: query
+    description: Must not match the rules of the project with this ID or slug
+  photo_licensed:
+    name: photo_licensed
+    type: boolean
+    in: query
+    description: License attribute of at least one photo of an observation must not be null
+  not_in_project:
+    name: not_in_project
+    type: string
+    in: query
+    description: Must not be in the project with this ID or slug
+  observations_by:
+    name: observations_by
+    type: string
+    in: query
+    description: 'Only show updates on observations owned by the currently authenticated
+
+      user or on observations the authenticated user is following but does not
+
+      own.
+
+      '
+    enum:
+    - owner
+    - following
+  geo:
+    name: geo
+    type: boolean
+    in: query
+    description: Observations that are georeferenced
+  threatened:
+    name: threatened
+    type: boolean
+    in: query
+    description: 'Observations whose taxa are threatened in their location
+
+      '
+  acc:
+    name: acc
+    type: boolean
+    in: query
+    description: Whether or not positional accuracy / coordinate uncertainty has been specified
+  swlat:
+    name: swlat
+    type: number
+    format: double
+    in: query
+    description: 'Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)
+
+      '
+  acc_below:
+    name: acc_below
+    type: string
+    in: query
+    description: Must have a positional accuracy below this value (meters)
+  term_id:
+    name: term_id
+    type: array
+    items:
+      type: integer
+    in: query
+    description: Must have an annotation using this controlled term ID
+  photo_license:
+    name: photo_license
+    type: array
+    items:
+      type: string
+    in: query
+    description: Must have at least one photo with this license
+    enum:
+    - cc-by
+    - cc-by-nc
+    - cc-by-nd
+    - cc-by-sa
+    - cc-by-nc-nd
+    - cc-by-nc-sa
+    - cc0
+  apply_project_rules_for:
+    name: apply_project_rules_for
+    type: string
+    in: query
+    description: Must match the rules of the project with this ID or slug
+  license:
+    name: license
+    type: array
+    items:
+      type: string
+    in: query
+    description: Observation must have this license
+    enum:
+    - cc-by
+    - cc-by-nc
+    - cc-by-nd
+    - cc-by-sa
+    - cc-by-nc-nd
+    - cc-by-nc-sa
+    - cc0
+  path_multi_id:
+    name: id
+    in: path
+    required: true
+    type: array
+    items:
+      type: integer
+    description: Must have this ID
+  introduced:
+    name: introduced
+    type: boolean
+    in: query
+    description: 'Observations whose taxa are introduced in their location
+
+      '
+  captive:
+    name: captive
+    type: boolean
+    in: query
+    description: Captive or cultivated observations
+  csi:
+    name: csi
+    type: array
+    items:
+      type: string
+    in: query
+    description: 'Taxon must have this IUCN conservation status. If
+
+      the `place_id` parameter is also specified, this will only consider
+
+      statuses specific to that place
+
+      '
+    enum:
+    - LC
+    - NT
+    - VU
+    - EN
+    - CR
+    - EW
+    - EX
+  fails_dqa_evidence:
+    name: fails_dqa_evidence
+    type: boolean
+    in: query
+    description: Must be voted as not evidence of an organism
+  created_d2:
+    name: created_d2
+    type: string
+    format: date-time
+    in: query
+    description: Must be created at or before this time
+  taxon_geoprivacy:
+    name: taxon_geoprivacy
+    type: array
+    items:
+      type: string
+    in: query
+    description: 'Filter observations by the most conservative geoprivacy applied by a
+
+      conservation status associated with one of the taxa proposed in the
+
+      current identifications.
+
+      '
+    enum:
+    - obscured
+    - obscured_private
+    - open
+    - private
+  d1:
+    name: d1
+    type: string
+    format: date
+    in: query
+    description: Must be observed on or after this date
+  include_ancestors:
+    name: include_ancestors
+    type: boolean
+    in: query
+    description: Include taxon ancestors in the response
+    default: false
+  day:
+    name: day
+    type: array
+    items:
+      type: string
+    in: query
+    minimum: 1
+    maximum: 31
+    description: Must be observed within this day of the month
+  verifiable:
+    name: verifiable
+    type: boolean
+    in: query
+    description: 'Observations with a `quality_grade` of either `needs_id` or
+
+      `research`. Equivalent to `quality_grade=needs_id,research`
+
+      '
+  rank:
+    name: rank
+    type: array
+    items:
+      type: string
+    in: query
+    description: Taxon must have this rank
+    enum:
+    - stateofmatter
+    - kingdom
+    - phylum
+    - subphylum
+    - superclass
+    - class
+    - subclass
+    - superorder
+    - order
+    - suborder
+    - infraorder
+    - superfamily
+    - epifamily
+    - family
+    - subfamily
+    - supertribe
+    - tribe
+    - subtribe
+    - genus
+    - genushybrid
+    - species
+    - hybrid
+    - subspecies
+    - variety
+    - form
+  identified:
+    name: identified
+    type: boolean
+    in: query
+    description: Observations that have community identifications
+  date_field:
+    name: date_field
+    in: query
+    required: false
+    type: string
+    description: 'Histogram basis: when the observation was created or observed
+
+      '
+    default: observed
+    enum:
+    - created
+    - observed
+  month:
+    name: month
+    type: array
+    items:
+      type: string
+    in: query
+    minimum: 1
+    maximum: 12
+    description: Must be observed within this month
+  fails_dqa_location:
+    name: fails_dqa_location
+    type: boolean
+    in: query
+    description: Must be voted as not having an accurate location
+  swlng:
+    name: swlng
+    type: number
+    format: double
+    in: query
+    description: 'Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)
+
+      '
+  pcid:
+    name: pcid
+    type: boolean
+    in: query
+    description: 'Observations identified by the curator of a project. If
+
+      the `project_id` parameter is also specified, this will only consider
+
+      observations identified by curators of the specified project(s)
+
+      '
+  cs:
+    name: cs
+    type: string
+    in: query
+    description: 'Taxon must have this conservation status code. If
+
+      the `place_id` parameter is also specified, this will only consider
+
+      statuses specific to that place
+
+      '
+  without_term_id:
+    name: without_term_id
+    type: integer
+    in: query
+    description: 'Exclude observations with annotations using this controlled value ID.
+
+      '
+  not_id:
+    name: not_id
+    type: array
+    items:
+      type: string
+    in: query
+    minimum: 1
+    description: Must not have this ID
+  viewed:
+    name: viewed
+    type: boolean
+    in: query
+    description: Notification has been viewed by the user before
+  hrank:
+    name: hrank
+    type: string
+    in: query
+    description: Taxon must have this rank or lower
+    enum:
+    - stateofmatter
+    - kingdom
+    - phylum
+    - subphylum
+    - superclass
+    - class
+    - subclass
+    - superorder
+    - order
+    - suborder
+    - infraorder
+    - superfamily
+    - epifamily
+    - family
+    - subfamily
+    - supertribe
+    - tribe
+    - subtribe
+    - genus
+    - genushybrid
+    - species
+    - hybrid
+    - subspecies
+    - variety
+    - form
+  taxon_is_active:
+    name: taxon_is_active
+    type: boolean
+    in: query
+    description: 'Observations of active taxon concepts
+
+      '
+  observation_accuracy_experiment_id:
+    name: observation_accuracy_experiment_id
+    type: array
+    items:
+      type: integer
+    in: query
+    description: Must included in this observation accuracy experiment
+  search_on:
+    name: search_on
+    type: string
+    in: query
+    description: 'Properties to search on, when combined with `q`.
+
+      Searches across all properties by default
+
+      '
+    enum:
+    - names
+    - tags
+    - description
+    - place
+  since:
+    name: since
+    type: string
+    format: date-time
+    in: query
+    required: true
+    description: Deleted at or after this time
+  created_month:
+    name: created_month
+    type: array
+    items:
+      type: string
+    in: query
+    minimum: 1
+    maximum: 12
+    description: Must be created within this month
+  created_d1:
+    name: created_d1
+    type: string
+    format: date-time
+    in: query
+    description: Must be created at or after this time
+  id:
+    name: id
+    type: array
+    items:
+      type: string
+    in: query
+    minimum: 1
+    description: Must have this ID
+  acc_below_or_unknown:
+    name: acc_below_or_unknown
+    type: string
+    in: query
+    description: Positional accuracy must be below this value (in meters) or be unknown
+  q:
+    name: q
+    type: string
+    in: query
+    description: Search observation properties. Can be combined with `search_on`
+  id_above:
+    name: id_above
+    type: string
+    in: query
+    description: Must have an ID above this value
+  fails_dqa_subject:
+    name: fails_dqa_subject
+    type: boolean
+    in: query
+    description: Must be voted as not having evidence related to a single subject
+  hour:
+    name: hour
+    type: array
+    items:
+      type: string
+    in: query
+    minimum: 0
+    maximum: 23
+    description: Must be observed within this hour of the day
+  popular:
+    name: popular
+    type: boolean
+    in: query
+    description: 'Observations that have been favorited by at least one user
+
+      '
+  ofv_datatype:
+    name: ofv_datatype
+    type: array
+    items:
+      type: string
+    in: query
+    minimum: 1
+    maximum: 31
+    description: Must have an observation field value with this datatype
+  without_taxon_id:
+    name: without_taxon_id
+    type: array
+    items:
+      type: string
+    in: query
+    minimum: 1
+    description: Exclude observations of these taxa and their descendants
+  licensed:
+    name: licensed
+    type: boolean
+    in: query
+    description: License attribute of an observation must not be null
+  obscuration:
+    name: obscuration
+    type: array
+    items:
+      type: string
+    in: query
+    description: 'Must have `geoprivacy` or `taxon_geoprivacy` fields matching these values
+
+      '
+    enum:
+    - obscured
+    - private
+    - none
+  term_id_or_unknown:
+    name: term_id_or_unknown
+    type: array
+    items:
+      type: integer
+    in: query
+    description: 'Must be combined with the `term_value_id` or the `without_term_value_id` parameter.
+
+      Must have an annotation using this controlled term ID and associated term value IDs
+
+      or be missing this annotation.
+
+      '
+  only_id:
+    name: only_id
+    type: boolean
+    in: query
+    description: Return only the record IDs
+  per_page:
+    name: per_page
+    type: string
+    in: query
+    description: 'Number of results to return in a `page`. The maximum value is generally
+
+      200 unless otherwise noted
+
+      '
+  nelat:
+    name: nelat
+    type: number
+    format: double
+    in: query
+    description: 'Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)
+
+      '
+securityDefinitions:
+  api_token:
+    type: apiKey
+    name: Authorization
+    in: header

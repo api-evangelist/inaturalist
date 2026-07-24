@@ -1,0 +1,423 @@
+swagger: '2.0'
+info:
+  title: iNaturalist Annotations Places API
+  description: '# https://api.inaturalist.org/v1/
+
+
+    [iNaturalist](https://www.inaturalist.org/) is a global community of
+
+    naturalists, scientists, and members of the public sharing over a million
+
+    wildlife sightings to teach one another about the natural world while
+
+    creating high quality citizen science data for science and conservation.
+
+
+    These API methods return data in JSON/JSONP and PNG response formats. They
+
+    are meant to supplement the existing [iNaturalist
+
+    API](https://www.inaturalist.org/pages/api+reference), implemented in Ruby
+
+    on Rails, which has more functionality and supports more write operations,
+
+    but tends to be slower and have less consistent response formats. Visit our
+
+    [developers page](https://www.inaturalist.org/pages/developers) for more
+
+    information. Write operations that expect and return JSON describe a single
+
+    `body` parameter that represents the request body, which should be specified
+
+    as JSON. See the "Model" of each body parameter for attributes that we
+
+    accept in these JSON objects.
+
+
+    Multiple values for a single URL parameter should be separated by commas,
+
+    e.g. `taxon_id=1,2,3`.
+
+
+    Map tiles are generated using the
+
+    [node-mapnik](https://github.com/mapnik/node-mapnik) library, following the
+
+    XYZ map tiling scheme. The "Observation Tile" methods accept nearly all the
+
+    parameters of the observation search APIs, and will generate map tiles
+
+    reflecting the same observations returned by searches. These
+
+    "Observation Tile" methods have corresponding
+
+    [UTFGrid](https://github.com/mapbox/utfgrid-spec) JSON
+
+    responses which return information needed to make interactive maps.
+
+
+    Authentication in the Node API is handled via JSON Web Tokens (JWT). To
+
+    obtain one, make an [OAuth-authenticated
+
+    request](http://www.inaturalist.org/pages/api+reference#auth) to
+
+    https://www.inaturalist.org/users/api_token. Each JWT will expire after 24
+
+    hours. Authentication required for all PUT and POST requests. Some GET
+
+    requests will also include private information like hidden coordinates if
+
+    the authenticated user has permission to view them.
+
+
+    Photos served from https://static.inaturalist.org and
+
+    https://inaturalist-open-data.s3.amazonaws.com have multiple size
+
+    variants and not all size variants are returned in responses. To access
+
+    other sizes, the photo URL can be modified to replace only the size
+
+    qualifier (each variant shares the exact same extension). The domain a photo
+
+    is hosted under reflects the license under which the photo is being shared,
+
+    and the domain may change over time if the license changes. Photos in
+
+    the `inaturalist-open-data` domain are shared under open licenses. These can
+
+    be accessed in bulk in the [iNaturalist AWS Open Dataset](
+
+    https://registry.opendata.aws/inaturalist-open-data/). Photos in the
+
+    `static.inaturalist.org` domain do not have open licenses.
+
+
+    The available photo sizes are:
+
+    * original (max 2048px in either dimension)
+
+    * large (max 1024px in either dimension)
+
+    * medium (max 500px in either dimension)
+
+    * small (max 240px in either dimension)
+
+    * thumb (max 100px in either dimension)
+
+    * square (75px square)
+
+
+    iNaturalist Website: https://www.inaturalist.org/
+
+
+    Open Source Software: https://github.com/inaturalist/
+
+
+    ## Terms of Use
+
+
+    Use of this API is subject to the iNaturalist
+
+    [Terms of Service](https://www.inaturalist.org/terms) and
+
+    [Privacy Policy](https://www.inaturalist.org/privacy). We will block any
+
+    use of our API that violates our Terms or Privacy Policy without notice.
+
+    The API is intended to support application development, not data scraping.
+
+    For pre- generated data exports, see
+
+    https://www.inaturalist.org/pages/developers.
+
+
+    Please note that we throttle API usage to a max of 100 requests per minute,
+
+    though we ask that you try to keep it to 60 requests per minute or lower,
+
+    and to keep under 10,000 requests per day. If we notice usage that has
+
+    serious impact on our performance we may institute blocks without
+
+    notification.
+
+
+    Terms of Service: https://www.inaturalist.org/terms
+
+
+    Privacy Policy: https://www.inaturalist.org/privacy
+
+    '
+  version: 1.3.0
+basePath: /v1
+schemes:
+- http
+- https
+produces:
+- application/json
+tags:
+- name: Places
+  description: Search and fetch
+paths:
+  /places/{id}:
+    get:
+      summary: Place Details
+      description: 'Given an ID, or an array of IDs in comma-delimited format, returns
+
+        corresponding places. A maximum of 500 results will be returned
+
+        '
+      parameters:
+      - $ref: '#/parameters/path_multi_id_or_slug'
+      - name: admin_level
+        in: query
+        type: array
+        enum:
+        - -10
+        - 0
+        - 10
+        - 20
+        - 30
+        - 100
+        items:
+          type: integer
+        description: 'Admin level of a place, or an array of admin levels
+
+          in comma-delimited format. Supported admin levels are: -10
+
+          (continent), 0 (country), 10 (state), 20 (county), 30 (town),
+
+          100 (park)'
+      tags:
+      - Places
+      responses:
+        '200':
+          description: 'Returns an object with metadata and an results array of places
+
+            '
+          schema:
+            $ref: '#/definitions/PlacesResponse'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /places/autocomplete:
+    get:
+      summary: Place Autocomplete
+      description: 'Given an string, returns places with names starting with the search
+
+        term.
+
+        '
+      parameters:
+      - $ref: '#/parameters/autocomplete_q'
+      - name: order_by
+        type: string
+        in: query
+        description: Sort field
+        enum:
+        - area
+      tags:
+      - Places
+      responses:
+        '200':
+          description: 'Returns an object with metadata and an results array of places
+
+            '
+          schema:
+            $ref: '#/definitions/PlacesResponse'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /places/nearby:
+    get:
+      summary: Nearby Places
+      description: 'Given an bounding box, and an optional name query, return `standard`
+
+        iNaturalist curator approved and `community` non-curated places nearby
+
+        '
+      parameters:
+      - $ref: '#/parameters/nelat_required'
+      - $ref: '#/parameters/nelng_required'
+      - $ref: '#/parameters/swlat_required'
+      - $ref: '#/parameters/swlng_required'
+      - name: name
+        in: query
+        type: string
+        description: Name must match this value
+      - $ref: '#/parameters/per_page'
+      tags:
+      - Places
+      responses:
+        '200':
+          description: 'Returns an object with metadata and an results object containing
+
+            `standard` and `community` places
+
+            '
+          schema:
+            $ref: '#/definitions/NearbyPlacesResponse'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+      message:
+        type: string
+  PolygonGeoJson:
+    type: object
+    properties:
+      type:
+        type: string
+      coordinates:
+        type: array
+        items:
+          type: array
+          items:
+            type: array
+            description: an array of [long, lat]
+            items:
+              type: number
+              format: double
+  CorePlace:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      display_name:
+        type: string
+  BaseResponse:
+    type: object
+    properties:
+      total_results:
+        type: integer
+      page:
+        type: integer
+      per_page:
+        type: integer
+  ShowPlace:
+    allOf:
+    - $ref: '#/definitions/CorePlace'
+    - type: object
+      properties:
+        admin_level:
+          type: integer
+        ancestor_place_ids:
+          type: array
+          items:
+            type: integer
+        bbox_area:
+          type: number
+          format: double
+        geometry_geojson:
+          $ref: '#/definitions/PolygonGeoJson'
+        location:
+          type: string
+          description: in the format "lat,lng"
+        name:
+          type: string
+        place_type:
+          type: integer
+  NearbyPlacesResponse:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - required:
+      - results
+      properties:
+        results:
+          type: object
+          properties:
+            standard:
+              type: array
+              items:
+                $ref: '#/definitions/ShowPlace'
+            community:
+              type: array
+              items:
+                $ref: '#/definitions/ShowPlace'
+  PlacesResponse:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - required:
+      - results
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/ShowPlace'
+parameters:
+  nelat_required:
+    name: nelat
+    type: number
+    format: double
+    in: query
+    required: true
+    description: 'Must be nearby this bounding box (*nelat, *nelng, *swlat, *swlng)
+
+      '
+  nelng_required:
+    name: nelng
+    type: number
+    format: double
+    in: query
+    required: true
+    description: 'Must be nearby this bounding box (*nelat, *nelng, *swlat, *swlng)
+
+      '
+  path_multi_id_or_slug:
+    name: id
+    in: path
+    required: true
+    type: array
+    items:
+      type: string
+    description: Must have this ID or slug
+  autocomplete_q:
+    name: q
+    type: string
+    in: query
+    required: true
+    description: Search by name (must start with this value) or by ID (exact match).
+  swlng_required:
+    name: swlng
+    type: number
+    format: double
+    in: query
+    required: true
+    description: 'Must be nearby this bounding box (*nelat, *nelng, *swlat, *swlng)
+
+      '
+  swlat_required:
+    name: swlat
+    type: number
+    format: double
+    in: query
+    required: true
+    description: 'Must be nearby this bounding box (*nelat, *nelng, *swlat, *swlng)
+
+      '
+  per_page:
+    name: per_page
+    type: string
+    in: query
+    description: 'Number of results to return in a `page`. The maximum value is generally
+
+      200 unless otherwise noted
+
+      '
+securityDefinitions:
+  api_token:
+    type: apiKey
+    name: Authorization
+    in: header

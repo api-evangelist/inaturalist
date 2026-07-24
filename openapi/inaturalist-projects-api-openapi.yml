@@ -1,0 +1,724 @@
+swagger: '2.0'
+info:
+  title: iNaturalist Annotations Projects API
+  description: '# https://api.inaturalist.org/v1/
+
+
+    [iNaturalist](https://www.inaturalist.org/) is a global community of
+
+    naturalists, scientists, and members of the public sharing over a million
+
+    wildlife sightings to teach one another about the natural world while
+
+    creating high quality citizen science data for science and conservation.
+
+
+    These API methods return data in JSON/JSONP and PNG response formats. They
+
+    are meant to supplement the existing [iNaturalist
+
+    API](https://www.inaturalist.org/pages/api+reference), implemented in Ruby
+
+    on Rails, which has more functionality and supports more write operations,
+
+    but tends to be slower and have less consistent response formats. Visit our
+
+    [developers page](https://www.inaturalist.org/pages/developers) for more
+
+    information. Write operations that expect and return JSON describe a single
+
+    `body` parameter that represents the request body, which should be specified
+
+    as JSON. See the "Model" of each body parameter for attributes that we
+
+    accept in these JSON objects.
+
+
+    Multiple values for a single URL parameter should be separated by commas,
+
+    e.g. `taxon_id=1,2,3`.
+
+
+    Map tiles are generated using the
+
+    [node-mapnik](https://github.com/mapnik/node-mapnik) library, following the
+
+    XYZ map tiling scheme. The "Observation Tile" methods accept nearly all the
+
+    parameters of the observation search APIs, and will generate map tiles
+
+    reflecting the same observations returned by searches. These
+
+    "Observation Tile" methods have corresponding
+
+    [UTFGrid](https://github.com/mapbox/utfgrid-spec) JSON
+
+    responses which return information needed to make interactive maps.
+
+
+    Authentication in the Node API is handled via JSON Web Tokens (JWT). To
+
+    obtain one, make an [OAuth-authenticated
+
+    request](http://www.inaturalist.org/pages/api+reference#auth) to
+
+    https://www.inaturalist.org/users/api_token. Each JWT will expire after 24
+
+    hours. Authentication required for all PUT and POST requests. Some GET
+
+    requests will also include private information like hidden coordinates if
+
+    the authenticated user has permission to view them.
+
+
+    Photos served from https://static.inaturalist.org and
+
+    https://inaturalist-open-data.s3.amazonaws.com have multiple size
+
+    variants and not all size variants are returned in responses. To access
+
+    other sizes, the photo URL can be modified to replace only the size
+
+    qualifier (each variant shares the exact same extension). The domain a photo
+
+    is hosted under reflects the license under which the photo is being shared,
+
+    and the domain may change over time if the license changes. Photos in
+
+    the `inaturalist-open-data` domain are shared under open licenses. These can
+
+    be accessed in bulk in the [iNaturalist AWS Open Dataset](
+
+    https://registry.opendata.aws/inaturalist-open-data/). Photos in the
+
+    `static.inaturalist.org` domain do not have open licenses.
+
+
+    The available photo sizes are:
+
+    * original (max 2048px in either dimension)
+
+    * large (max 1024px in either dimension)
+
+    * medium (max 500px in either dimension)
+
+    * small (max 240px in either dimension)
+
+    * thumb (max 100px in either dimension)
+
+    * square (75px square)
+
+
+    iNaturalist Website: https://www.inaturalist.org/
+
+
+    Open Source Software: https://github.com/inaturalist/
+
+
+    ## Terms of Use
+
+
+    Use of this API is subject to the iNaturalist
+
+    [Terms of Service](https://www.inaturalist.org/terms) and
+
+    [Privacy Policy](https://www.inaturalist.org/privacy). We will block any
+
+    use of our API that violates our Terms or Privacy Policy without notice.
+
+    The API is intended to support application development, not data scraping.
+
+    For pre- generated data exports, see
+
+    https://www.inaturalist.org/pages/developers.
+
+
+    Please note that we throttle API usage to a max of 100 requests per minute,
+
+    though we ask that you try to keep it to 60 requests per minute or lower,
+
+    and to keep under 10,000 requests per day. If we notice usage that has
+
+    serious impact on our performance we may institute blocks without
+
+    notification.
+
+
+    Terms of Service: https://www.inaturalist.org/terms
+
+
+    Privacy Policy: https://www.inaturalist.org/privacy
+
+    '
+  version: 1.3.0
+basePath: /v1
+schemes:
+- http
+- https
+produces:
+- application/json
+tags:
+- name: Projects
+  description: Search and fetch projects and members
+paths:
+  /projects:
+    get:
+      summary: Project Search
+      description: 'Given zero to many of following parameters, returns projects
+
+        matching the search criteria
+
+        '
+      parameters:
+      - $ref: '#/parameters/autocomplete_q_not_required'
+      - $ref: '#/parameters/id'
+      - $ref: '#/parameters/not_id'
+      - $ref: '#/parameters/lat'
+      - $ref: '#/parameters/lng'
+      - $ref: '#/parameters/associated_place_id'
+      - $ref: '#/parameters/projects_radius'
+      - $ref: '#/parameters/featured'
+      - $ref: '#/parameters/noteworthy'
+      - $ref: '#/parameters/projects_site_id'
+      - $ref: '#/parameters/rule_details'
+      - $ref: '#/parameters/type'
+      - $ref: '#/parameters/member_id'
+      - $ref: '#/parameters/has_params'
+      - $ref: '#/parameters/has_posts'
+      - $ref: '#/parameters/per_page'
+      - $ref: '#/parameters/projects_order_by'
+      tags:
+      - Projects
+      responses:
+        '200':
+          description: 'Returns an object with metadata and an array of projects
+
+            '
+          schema:
+            $ref: '#/definitions/ProjectsResponse'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /projects/{id}:
+    get:
+      summary: Project Details
+      description: 'Given an ID, or an array of IDs in comma-delimited format, returns
+
+        corresponding projects. A maximum of 100 results will be returned
+
+        '
+      parameters:
+      - $ref: '#/parameters/path_multi_id_or_slug'
+      - $ref: '#/parameters/rule_details'
+      tags:
+      - Projects
+      responses:
+        '200':
+          description: 'Returns an object with metadata and an array of projects
+
+            '
+          schema:
+            $ref: '#/definitions/ProjectsResponse'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /projects/{id}/join:
+    post:
+      summary: Projects Join
+      description: 'Join a project
+
+        '
+      parameters:
+      - $ref: '#/parameters/path_id'
+      tags:
+      - Projects
+      security:
+      - api_token: []
+      responses:
+        '200':
+          description: OK
+  /projects/{id}/leave:
+    delete:
+      summary: Projects Leave
+      description: 'Leave a project
+
+        '
+      parameters:
+      - $ref: '#/parameters/path_id'
+      tags:
+      - Projects
+      security:
+      - api_token: []
+      responses:
+        '200':
+          description: OK
+  /projects/{id}/members:
+    get:
+      summary: Project Members
+      description: 'Given an ID, return members of the project
+
+        '
+      parameters:
+      - $ref: '#/parameters/path_id'
+      - name: role
+        type: string
+        in: query
+        description: Membership role
+        enum:
+        - curator
+        - manager
+      - $ref: '#/parameters/skip_counts'
+      - $ref: '#/parameters/page'
+      - $ref: '#/parameters/per_page'
+      tags:
+      - Projects
+      responses:
+        '200':
+          description: 'Returns an object with metadata and an results array of projects
+
+            '
+          schema:
+            $ref: '#/definitions/ProjectMembersResponse'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /projects/{id}/membership:
+    get:
+      summary: Membership of current user
+      description: 'Given an ID, or an array of IDs in comma-delimited format, return the details of the
+
+        authenticated user''s membership in these projects
+
+        '
+      parameters:
+      - $ref: '#/parameters/path_multi_id'
+      tags:
+      - Projects
+      security:
+      - api_token: []
+      responses:
+        '200':
+          description: OK
+  /projects/{id}/subscriptions:
+    get:
+      deprecated: true
+      summary: Project Subscriptions
+      description: '[Deprecated] Subscriptions to projects are managed through joining and
+
+        leaving projects, so this will not return any useful information.
+
+
+        Given an ID, return subscription of the current user
+
+        '
+      parameters:
+      - $ref: '#/parameters/path_id'
+      tags:
+      - Projects
+      security:
+      - api_token: []
+      responses:
+        '200':
+          description: OK
+  /projects/{id}/add:
+    post:
+      summary: Project Add
+      description: Add an observation to a project
+      consumes:
+      - application/json
+      parameters:
+      - $ref: '#/parameters/path_id'
+      - name: body
+        in: body
+        description: ProjectObservation object
+        schema:
+          $ref: '#/definitions/PostProjectAdd'
+      tags:
+      - Projects
+      security:
+      - api_token: []
+      responses:
+        '200':
+          description: OK
+  /projects/{id}/remove:
+    delete:
+      summary: Project Add
+      description: Remove an observation from a project
+      consumes:
+      - application/json
+      parameters:
+      - $ref: '#/parameters/path_id'
+      - name: body
+        in: body
+        description: ProjectObservation object
+        schema:
+          $ref: '#/definitions/PostProjectAdd'
+      tags:
+      - Projects
+      security:
+      - api_token: []
+      responses:
+        '200':
+          description: OK
+  /projects/autocomplete:
+    get:
+      summary: Project Autocomplete
+      description: 'Given an string, returns projects with titles starting with the search term
+
+        '
+      parameters:
+      - $ref: '#/parameters/autocomplete_q'
+      - $ref: '#/parameters/id'
+      - $ref: '#/parameters/not_id'
+      - $ref: '#/parameters/lat'
+      - $ref: '#/parameters/lng'
+      - $ref: '#/parameters/associated_place_id'
+      - $ref: '#/parameters/projects_radius'
+      - $ref: '#/parameters/featured'
+      - $ref: '#/parameters/noteworthy'
+      - $ref: '#/parameters/projects_site_id'
+      - $ref: '#/parameters/rule_details'
+      - $ref: '#/parameters/type'
+      - $ref: '#/parameters/member_id'
+      - $ref: '#/parameters/has_params'
+      - $ref: '#/parameters/has_posts'
+      - $ref: '#/parameters/per_page'
+      tags:
+      - Projects
+      responses:
+        '200':
+          description: 'Returns an object with metadata and an results array of places
+
+            '
+          schema:
+            $ref: '#/definitions/ProjectsResponse'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /subscriptions/project/{id}/subscribe:
+    post:
+      summary: Project Subscribe
+      description: 'Toggles current user''s subscription to this project. If the logged-in
+
+        user is not subscribed, POSTing here will subscribe them. If they are already
+
+        subscribed, this will remove the subscription
+
+        '
+      parameters:
+      - $ref: '#/parameters/path_id'
+      tags:
+      - Projects
+      security:
+      - api_token: []
+      responses:
+        '200':
+          description: OK
+definitions:
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+      message:
+        type: string
+  Project:
+    type: object
+    properties:
+      id:
+        type: integer
+      title:
+        type: string
+      description:
+        type: string
+      slug:
+        type: string
+  PostProjectAdd:
+    type: object
+    properties:
+      observation_id:
+        type: integer
+  User:
+    type: object
+    properties:
+      created_at:
+        type: string
+        format: date-time
+      id:
+        type: integer
+      icon:
+        type: string
+      icon_url:
+        type: string
+      identifications_count:
+        type: integer
+      journal_posts_count:
+        type: integer
+      login:
+        type: string
+      name:
+        type: string
+      observations_count:
+        type: integer
+      orcid:
+        type: string
+      roles:
+        type: array
+        items:
+          type: string
+          enum:
+          - admin
+          - app owner
+          - curator
+      site_id:
+        type: integer
+      species_count:
+        type: integer
+      spam:
+        type: boolean
+      suspended:
+        type: boolean
+  ProjectsResponse:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - required:
+      - results
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/Project'
+  ProjectMembersResponse:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - required:
+      - results
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/ProjectMember'
+  ProjectMember:
+    type: object
+    properties:
+      id:
+        type: integer
+      project_id:
+        type: integer
+      created_at:
+        type: string
+        format: date-time
+      updated_at:
+        type: string
+        format: date-time
+      role:
+        type: string
+        enum:
+        - curator
+        - manager
+      observations_count:
+        type: integer
+      taxa_count:
+        type: integer
+      user:
+        $ref: '#/definitions/User'
+  BaseResponse:
+    type: object
+    properties:
+      total_results:
+        type: integer
+      page:
+        type: integer
+      per_page:
+        type: integer
+parameters:
+  projects_site_id:
+    name: site_id
+    type: integer
+    in: query
+    description: 'Site ID that applies to `featured` and `noteworthy`. Defaults to the site
+
+      of the authenticated user, or to the main iNaturalist site
+
+      https://www.inaturalist.org
+
+      '
+  associated_place_id:
+    name: place_id
+    type: array
+    items:
+      type: string
+    in: query
+    description: Must be associated with this place
+  noteworthy:
+    name: noteworthy
+    type: string
+    in: query
+    enum:
+    - true
+    description: Must be marked noteworthy for the relevant site
+  autocomplete_q:
+    name: q
+    type: string
+    in: query
+    required: true
+    description: Search by name (must start with this value) or by ID (exact match).
+  featured:
+    name: featured
+    type: string
+    in: query
+    enum:
+    - true
+    description: Must be marked featured for the relevant site
+  not_id:
+    name: not_id
+    type: array
+    items:
+      type: string
+    in: query
+    minimum: 1
+    description: Must not have this ID
+  rule_details:
+    name: rule_details
+    type: string
+    in: query
+    enum:
+    - true
+    description: 'Return more information about project rules, for example return a full
+
+      taxon object instead of simply an ID
+
+      '
+  page:
+    name: page
+    type: string
+    in: query
+    description: Pagination `page` number
+  lat:
+    name: lat
+    type: number
+    format: double
+    in: query
+    description: 'Must be within a {`radius`} kilometer circle around this lat/lng
+
+      (*lat, *lng, radius)
+
+      '
+  skip_counts:
+    name: skip_counts
+    type: boolean
+    default: false
+    in: query
+    description: 'If counts are not needed, consider setting this to true to save on
+
+      processing time, resulting in faster responses
+
+      '
+  path_multi_id:
+    name: id
+    in: path
+    required: true
+    type: array
+    items:
+      type: integer
+    description: Must have this ID
+  path_multi_id_or_slug:
+    name: id
+    in: path
+    required: true
+    type: array
+    items:
+      type: string
+    description: Must have this ID or slug
+  type:
+    name: type
+    type: array
+    items:
+      type: string
+    enum:
+    - collection
+    - umbrella
+    in: query
+    description: Projects must be of this type
+  has_posts:
+    name: has_posts
+    type: boolean
+    in: query
+    description: Must have posts
+  member_id:
+    name: member_id
+    type: integer
+    in: query
+    description: Project must have member with this user ID
+  projects_radius:
+    name: radius
+    type: string
+    in: query
+    description: 'Must be within a {`radius`} kilometer circle around this lat/lng
+
+      (*lat, *lng, radius). Defaults to 500km
+
+      '
+  id:
+    name: id
+    type: array
+    items:
+      type: string
+    in: query
+    minimum: 1
+    description: Must have this ID
+  projects_order_by:
+    name: order_by
+    type: string
+    in: query
+    description: Sort field
+    enum:
+    - recent_posts
+    - created
+    - updated
+    - distance
+    - featured
+  lng:
+    name: lng
+    type: number
+    format: double
+    in: query
+    description: 'Must be within a {`radius`} kilometer circle around this lat/lng
+
+      (*lat, *lng, radius)
+
+      '
+  autocomplete_q_not_required:
+    name: q
+    type: string
+    in: query
+    description: Search by name (must start with this value) or by ID (exact match).
+  has_params:
+    name: has_params
+    type: boolean
+    in: query
+    description: Must have search parameter requirements
+  path_id:
+    name: id
+    in: path
+    required: true
+    type: integer
+    description: ID of the record
+  per_page:
+    name: per_page
+    type: string
+    in: query
+    description: 'Number of results to return in a `page`. The maximum value is generally
+
+      200 unless otherwise noted
+
+      '
+securityDefinitions:
+  api_token:
+    type: apiKey
+    name: Authorization
+    in: header
