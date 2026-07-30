@@ -7,6 +7,19 @@ description: >
   contributed by citizen scientists worldwide. The API supports reading and
   writing observations, taxa lookups, identifications, places, projects, and
   user data across v0, v1, and v2 endpoints.
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://static.inaturalist.org/sites/1-logo.svg
 tags:
   - Biodiversity
@@ -21,59 +34,444 @@ modified: '2026-06-13'
 url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - name: iNaturalist API v1
-    description: >
-      The primary iNaturalist REST API (v1) providing read and write access to
-      observations, taxa, identifications, places, projects, users, and other
-      iNaturalist resources. Built on Node.js with Elasticsearch and backed by
-      the iNaturalist PostgreSQL database.
-    image: https://static.inaturalist.org/sites/1-logo.svg
-    humanURL: https://www.inaturalist.org/pages/api+reference
-    baseURL: https://api.inaturalist.org/v1
-    tags:
-      - Observations
-      - Taxa
-      - Identifications
-      - Places
-      - Projects
-      - Users
-      - Biodiversity
-    properties:
-      - type: Documentation
-        url: https://www.inaturalist.org/pages/api+reference
-      - type: OpenAPI
-        url: https://api.inaturalist.org/v1/docs/swagger.json
-      - type: PostmanCollection
-        url: https://www.postman.com/collections/inaturalist-api
-      - type: RateLimits
-        url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/rate-limits/rate-limits.yml
-      - type: Plans
-        url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/plans/plans.yml
-      - type: FinOps
-        url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/finops/finops.yml
-    contact:
-      - FN: iNaturalist Help
-        url: https://help.inaturalist.org
-        email: help@inaturalist.org
-  - name: iNaturalist API v2
-    description: >
-      The next-generation iNaturalist API (v2) currently in development,
-      designed to eventually replace v0 and v1 endpoints. Provides access to
-      observation data with improved performance and response formats.
-    image: https://static.inaturalist.org/sites/1-logo.svg
-    humanURL: https://www.inaturalist.org/pages/api+reference
-    baseURL: https://api.inaturalist.org/v2
-    tags:
-      - Observations
-      - Biodiversity
-      - Beta
-    properties:
-      - type: Documentation
-        url: https://www.inaturalist.org/pages/api+reference
-    contact:
-      - FN: iNaturalist Help
-        url: https://help.inaturalist.org
-        email: help@inaturalist.org
+- name: iNaturalist API v2
+  description: >
+    The next-generation iNaturalist API (v2) currently in development, designed to eventually replace
+    v0 and v1 endpoints. Provides access to observation data with improved performance and response formats.
+  image: https://static.inaturalist.org/sites/1-logo.svg
+  humanURL: https://www.inaturalist.org/pages/api+reference
+  baseURL: https://api.inaturalist.org/v2
+  tags:
+  - Observations
+  - Biodiversity
+  - Beta
+  properties:
+  - type: Documentation
+    url: https://www.inaturalist.org/pages/api+reference
+  contact:
+  - FN: iNaturalist Help
+    url: https://help.inaturalist.org
+    email: help@inaturalist.org
+- aid: inaturalist:inaturalist-annotations-api
+  name: iNaturalist Annotations API
+  description: Create, delete, and vote
+  humanURL: https://www.inaturalist.org/pages/api+reference
+  baseURL: https://api.inaturalist.org/v1
+  tags:
+  - Annotations
+  properties:
+  - type: OpenAPI
+    url: openapi/inaturalist-annotations-api-openapi.yml
+  - type: Documentation
+    url: https://www.inaturalist.org/pages/api+reference
+  - type: PostmanCollection
+    url: https://www.postman.com/collections/inaturalist-api
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/inaturalist/main/rate-limits/rate-limits.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/plans/plans.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/finops/finops.yml
+- aid: inaturalist:inaturalist-comments-api
+  name: iNaturalist Comments API
+  description: Create, update, and delete
+  humanURL: https://www.inaturalist.org/pages/api+reference
+  baseURL: https://api.inaturalist.org/v1
+  tags:
+  - Comments
+  properties:
+  - type: OpenAPI
+    url: openapi/inaturalist-comments-api-openapi.yml
+  - type: Documentation
+    url: https://www.inaturalist.org/pages/api+reference
+  - type: PostmanCollection
+    url: https://www.postman.com/collections/inaturalist-api
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/inaturalist/main/rate-limits/rate-limits.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/plans/plans.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/finops/finops.yml
+- aid: inaturalist:inaturalist-controlled-terms-api
+  name: iNaturalist Controlled Terms API
+  description: Search and fetch
+  humanURL: https://www.inaturalist.org/pages/api+reference
+  baseURL: https://api.inaturalist.org/v1
+  tags:
+  - Controlled Terms
+  properties:
+  - type: OpenAPI
+    url: openapi/inaturalist-controlled-terms-api-openapi.yml
+  - type: Documentation
+    url: https://www.inaturalist.org/pages/api+reference
+  - type: PostmanCollection
+    url: https://www.postman.com/collections/inaturalist-api
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/inaturalist/main/rate-limits/rate-limits.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/plans/plans.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/finops/finops.yml
+- aid: inaturalist:inaturalist-flags-api
+  name: iNaturalist Flags API
+  description: Create, update, and delete flags
+  humanURL: https://www.inaturalist.org/pages/api+reference
+  baseURL: https://api.inaturalist.org/v1
+  tags:
+  - Flags
+  properties:
+  - type: OpenAPI
+    url: openapi/inaturalist-flags-api-openapi.yml
+  - type: Documentation
+    url: https://www.inaturalist.org/pages/api+reference
+  - type: PostmanCollection
+    url: https://www.postman.com/collections/inaturalist-api
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/inaturalist/main/rate-limits/rate-limits.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/plans/plans.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/finops/finops.yml
+- aid: inaturalist:inaturalist-identifications-api
+  name: iNaturalist Identifications API
+  description: Create, update, and delete
+  humanURL: https://www.inaturalist.org/pages/api+reference
+  baseURL: https://api.inaturalist.org/v1
+  tags:
+  - Identifications
+  properties:
+  - type: OpenAPI
+    url: openapi/inaturalist-identifications-api-openapi.yml
+  - type: Documentation
+    url: https://www.inaturalist.org/pages/api+reference
+  - type: PostmanCollection
+    url: https://www.postman.com/collections/inaturalist-api
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/inaturalist/main/rate-limits/rate-limits.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/plans/plans.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/finops/finops.yml
+- aid: inaturalist:inaturalist-messages-api
+  name: iNaturalist Messages API
+  description: Create, fetch, delete
+  humanURL: https://www.inaturalist.org/pages/api+reference
+  baseURL: https://api.inaturalist.org/v1
+  tags:
+  - Messages
+  properties:
+  - type: OpenAPI
+    url: openapi/inaturalist-messages-api-openapi.yml
+  - type: Documentation
+    url: https://www.inaturalist.org/pages/api+reference
+  - type: PostmanCollection
+    url: https://www.postman.com/collections/inaturalist-api
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/inaturalist/main/rate-limits/rate-limits.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/plans/plans.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/finops/finops.yml
+- aid: inaturalist:inaturalist-observation-field-values-api
+  name: iNaturalist Observation Field Values API
+  description: Create, update, and delete
+  humanURL: https://www.inaturalist.org/pages/api+reference
+  baseURL: https://api.inaturalist.org/v1
+  tags:
+  - Observation Field Values
+  properties:
+  - type: OpenAPI
+    url: openapi/inaturalist-observation-field-values-api-openapi.yml
+  - type: Documentation
+    url: https://www.inaturalist.org/pages/api+reference
+  - type: PostmanCollection
+    url: https://www.postman.com/collections/inaturalist-api
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/inaturalist/main/rate-limits/rate-limits.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/plans/plans.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/finops/finops.yml
+- aid: inaturalist:inaturalist-observation-photos-api
+  name: iNaturalist Observation Photos API
+  description: Create and delete
+  humanURL: https://www.inaturalist.org/pages/api+reference
+  baseURL: https://api.inaturalist.org/v1
+  tags:
+  - Observation Photos
+  properties:
+  - type: OpenAPI
+    url: openapi/inaturalist-observation-photos-api-openapi.yml
+  - type: Documentation
+    url: https://www.inaturalist.org/pages/api+reference
+  - type: PostmanCollection
+    url: https://www.postman.com/collections/inaturalist-api
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/inaturalist/main/rate-limits/rate-limits.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/plans/plans.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/finops/finops.yml
+- aid: inaturalist:inaturalist-observation-tiles-api
+  name: iNaturalist Observation Tiles API
+  description: Map observation search results
+  humanURL: https://www.inaturalist.org/pages/api+reference
+  baseURL: https://api.inaturalist.org/v1
+  tags:
+  - Observation Tiles
+  properties:
+  - type: OpenAPI
+    url: openapi/inaturalist-observation-tiles-api-openapi.yml
+  - type: Documentation
+    url: https://www.inaturalist.org/pages/api+reference
+  - type: PostmanCollection
+    url: https://www.postman.com/collections/inaturalist-api
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/inaturalist/main/rate-limits/rate-limits.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/plans/plans.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/finops/finops.yml
+- aid: inaturalist:inaturalist-observations-api
+  name: iNaturalist Observations API
+  description: CRUD, search, faving, quality metrics, stats, and more
+  humanURL: https://www.inaturalist.org/pages/api+reference
+  baseURL: https://api.inaturalist.org/v1
+  tags:
+  - Observations
+  properties:
+  - type: OpenAPI
+    url: openapi/inaturalist-observations-api-openapi.yml
+  - type: Documentation
+    url: https://www.inaturalist.org/pages/api+reference
+  - type: PostmanCollection
+    url: https://www.postman.com/collections/inaturalist-api
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/inaturalist/main/rate-limits/rate-limits.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/plans/plans.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/finops/finops.yml
+- aid: inaturalist:inaturalist-photos-api
+  name: iNaturalist Photos API
+  description: The Photos API from iNaturalist — 1 operation(s) for photos.
+  humanURL: https://www.inaturalist.org/pages/api+reference
+  baseURL: https://api.inaturalist.org/v1
+  tags:
+  - Photos
+  properties:
+  - type: OpenAPI
+    url: openapi/inaturalist-photos-api-openapi.yml
+  - type: Documentation
+    url: https://www.inaturalist.org/pages/api+reference
+  - type: PostmanCollection
+    url: https://www.postman.com/collections/inaturalist-api
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/inaturalist/main/rate-limits/rate-limits.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/plans/plans.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/finops/finops.yml
+- aid: inaturalist:inaturalist-places-api
+  name: iNaturalist Places API
+  description: Search and fetch
+  humanURL: https://www.inaturalist.org/pages/api+reference
+  baseURL: https://api.inaturalist.org/v1
+  tags:
+  - Places
+  properties:
+  - type: OpenAPI
+    url: openapi/inaturalist-places-api-openapi.yml
+  - type: Documentation
+    url: https://www.inaturalist.org/pages/api+reference
+  - type: PostmanCollection
+    url: https://www.postman.com/collections/inaturalist-api
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/inaturalist/main/rate-limits/rate-limits.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/plans/plans.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/finops/finops.yml
+- aid: inaturalist:inaturalist-polygon-tiles-api
+  name: iNaturalist Polygon Tiles API
+  description: Place geometry and taxon range tiles
+  humanURL: https://www.inaturalist.org/pages/api+reference
+  baseURL: https://api.inaturalist.org/v1
+  tags:
+  - Polygon Tiles
+  properties:
+  - type: OpenAPI
+    url: openapi/inaturalist-polygon-tiles-api-openapi.yml
+  - type: Documentation
+    url: https://www.inaturalist.org/pages/api+reference
+  - type: PostmanCollection
+    url: https://www.postman.com/collections/inaturalist-api
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/inaturalist/main/rate-limits/rate-limits.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/plans/plans.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/finops/finops.yml
+- aid: inaturalist:inaturalist-posts-api
+  name: iNaturalist Posts API
+  description: Fetch site and project posts
+  humanURL: https://www.inaturalist.org/pages/api+reference
+  baseURL: https://api.inaturalist.org/v1
+  tags:
+  - Posts
+  properties:
+  - type: OpenAPI
+    url: openapi/inaturalist-posts-api-openapi.yml
+  - type: Documentation
+    url: https://www.inaturalist.org/pages/api+reference
+  - type: PostmanCollection
+    url: https://www.postman.com/collections/inaturalist-api
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/inaturalist/main/rate-limits/rate-limits.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/plans/plans.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/finops/finops.yml
+- aid: inaturalist:inaturalist-project-observations-api
+  name: iNaturalist Project Observations API
+  description: Create, update, and delete
+  humanURL: https://www.inaturalist.org/pages/api+reference
+  baseURL: https://api.inaturalist.org/v1
+  tags:
+  - Project Observations
+  properties:
+  - type: OpenAPI
+    url: openapi/inaturalist-project-observations-api-openapi.yml
+  - type: Documentation
+    url: https://www.inaturalist.org/pages/api+reference
+  - type: PostmanCollection
+    url: https://www.postman.com/collections/inaturalist-api
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/inaturalist/main/rate-limits/rate-limits.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/plans/plans.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/finops/finops.yml
+- aid: inaturalist:inaturalist-projects-api
+  name: iNaturalist Projects API
+  description: Search and fetch projects and members
+  humanURL: https://www.inaturalist.org/pages/api+reference
+  baseURL: https://api.inaturalist.org/v1
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/inaturalist-projects-api-openapi.yml
+  - type: Documentation
+    url: https://www.inaturalist.org/pages/api+reference
+  - type: PostmanCollection
+    url: https://www.postman.com/collections/inaturalist-api
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/inaturalist/main/rate-limits/rate-limits.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/plans/plans.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/finops/finops.yml
+- aid: inaturalist:inaturalist-search-api
+  name: iNaturalist Search API
+  description: Site search
+  humanURL: https://www.inaturalist.org/pages/api+reference
+  baseURL: https://api.inaturalist.org/v1
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/inaturalist-search-api-openapi.yml
+  - type: Documentation
+    url: https://www.inaturalist.org/pages/api+reference
+  - type: PostmanCollection
+    url: https://www.postman.com/collections/inaturalist-api
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/inaturalist/main/rate-limits/rate-limits.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/plans/plans.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/finops/finops.yml
+- aid: inaturalist:inaturalist-taxa-api
+  name: iNaturalist Taxa API
+  description: Search and fetch
+  humanURL: https://www.inaturalist.org/pages/api+reference
+  baseURL: https://api.inaturalist.org/v1
+  tags:
+  - Taxa
+  properties:
+  - type: OpenAPI
+    url: openapi/inaturalist-taxa-api-openapi.yml
+  - type: Documentation
+    url: https://www.inaturalist.org/pages/api+reference
+  - type: PostmanCollection
+    url: https://www.postman.com/collections/inaturalist-api
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/inaturalist/main/rate-limits/rate-limits.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/plans/plans.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/finops/finops.yml
+- aid: inaturalist:inaturalist-users-api
+  name: iNaturalist Users API
+  description: Fetch and update
+  humanURL: https://www.inaturalist.org/pages/api+reference
+  baseURL: https://api.inaturalist.org/v1
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/inaturalist-users-api-openapi.yml
+  - type: Documentation
+    url: https://www.inaturalist.org/pages/api+reference
+  - type: PostmanCollection
+    url: https://www.postman.com/collections/inaturalist-api
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/inaturalist/main/rate-limits/rate-limits.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/plans/plans.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/finops/finops.yml
+- aid: inaturalist:inaturalist-utfgrid-api
+  name: iNaturalist UTFGrid API
+  description: JSON for observation tiles
+  humanURL: https://www.inaturalist.org/pages/api+reference
+  baseURL: https://api.inaturalist.org/v1
+  tags:
+  - UTFGrid
+  properties:
+  - type: OpenAPI
+    url: openapi/inaturalist-utfgrid-api-openapi.yml
+  - type: Documentation
+    url: https://www.inaturalist.org/pages/api+reference
+  - type: PostmanCollection
+    url: https://www.postman.com/collections/inaturalist-api
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/inaturalist/main/rate-limits/rate-limits.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/plans/plans.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/finops/finops.yml
 common:
   - type: AgenticAccess
     url: agentic-access/inaturalist-agentic-access.yml
