@@ -1,0 +1,121 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "iNaturalist Annotations Messages API",
+    "version": "1.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve messages for the authenticated user. This does not mark them as read.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/messages",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination `page` number"
+              },
+              {
+                "name": "box",
+                "value": "",
+                "type": "query",
+                "description": "Whether to view messages the user has received (default) or messages the user has sent"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query for subject and body"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "User ID or username of correspondent to filter by"
+              },
+              {
+                "name": "threads",
+                "value": "",
+                "type": "query",
+                "description": "Groups results by `thread_id`, only shows the latest message per\nthread, and includes a `thread_messages_count` attribute showing the\ntotal number of messages in that thread. Note that this will not\nwork with the `q` param, and it probably should only be used with\n`box=any` because the `thread_messages_count` will be inaccurate when\nyou restrict it to `inbox` or `sent`.\n"
+              }
+            ]
+          },
+          "docs": "Show the user's inbox or sent box"
+        },
+        {
+          "info": {
+            "name": "Create a new message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messages"
+          },
+          "docs": "Create and deliver a new message to another user"
+        },
+        {
+          "info": {
+            "name": "Retrieve messages in a thread",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/messages/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Retrieves all messages in the thread the specified message belongs to\nand marks them all as read.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a message / thread",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/messages/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "This will all of the authenticated user's copies of the messages in tha\nthread to which the specified message belongs.\n"
+        },
+        {
+          "info": {
+            "name": "Gets a count of messages the authenticated user has not read",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/messages/unread"
+          },
+          "docs": "Gets a count of messages the authenticated user has not read"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

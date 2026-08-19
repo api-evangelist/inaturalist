@@ -1,0 +1,201 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "iNaturalist Annotations Users API",
+    "version": "1.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "User Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Given an ID, returns corresponding user"
+        },
+        {
+          "info": {
+            "name": "User Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Update a user\n"
+        },
+        {
+          "info": {
+            "name": "User Projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/users/:id/projects",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              },
+              {
+                "name": "rule_details",
+                "value": "",
+                "type": "query",
+                "description": "Return more information about project rules, for example return a full\ntaxon object instead of simply an ID\n"
+              },
+              {
+                "name": "project_type",
+                "value": "",
+                "type": "query",
+                "description": "Specify the type of project to return\n"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination `page` number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return in a `page`. The maximum value is generally\n200 unless otherwise noted\n"
+              }
+            ]
+          },
+          "docs": "Return projects as user has joined / followed\n"
+        },
+        {
+          "info": {
+            "name": "User Autocomplete",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/users/autocomplete",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search by name (must start with this value) or by ID (exact match)."
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Only show users with memberships to this project"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return in a `page`. The maximum value is generally\n200 unless otherwise noted\n"
+              }
+            ]
+          },
+          "docs": "Given an string, returns users with names or logins starting with the search term\n"
+        },
+        {
+          "info": {
+            "name": "Users Me",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/users/me"
+          },
+          "docs": "Fetch the logged-in user"
+        },
+        {
+          "info": {
+            "name": "Mute a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/users/:id/mute",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Make it so the authenticated user stops receiving notifications about\nactivity by the user specified by {id}.\n"
+        },
+        {
+          "info": {
+            "name": "Unmute a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/users/:id/mute",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Remove a mute on the user specified by {id}"
+        },
+        {
+          "info": {
+            "name": "User Resend Confirmation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/users/resend_confirmation"
+          },
+          "docs": "Resend an email confirmation"
+        },
+        {
+          "info": {
+            "name": "User Update Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/users/update_session"
+          },
+          "docs": "Update the logged-in user's session"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "iNaturalist Annotations Comments API",
+    "version": "1.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Comments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Comment Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/comments"
+          },
+          "docs": "Create a comment\n"
+        },
+        {
+          "info": {
+            "name": "Comment Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/comments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Update a comment\n"
+        },
+        {
+          "info": {
+            "name": "Comment Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/comments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Delete a comment\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

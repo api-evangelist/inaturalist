@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "iNaturalist Annotations API",
+    "version": "1.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Annotations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Annotation Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/annotations"
+          },
+          "docs": "Create an annotation\n"
+        },
+        {
+          "info": {
+            "name": "Annotation Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/annotations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID or UUID of the annotation"
+              }
+            ]
+          },
+          "docs": "Delete an annotation\n"
+        },
+        {
+          "info": {
+            "name": "Annotation Vote",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/votes/vote/annotation/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID or UUID of the annotation"
+              }
+            ]
+          },
+          "docs": "Vote on an annotation\n"
+        },
+        {
+          "info": {
+            "name": "Annotation Unvote",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/votes/unvote/annotation/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID or UUID of the annotation"
+              }
+            ]
+          },
+          "docs": "Remove a vote from annotation\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

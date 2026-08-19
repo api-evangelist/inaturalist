@@ -1,0 +1,1009 @@
+{
+  "item": [
+    {
+      "id": "190d8f20-fa6c-46b9-82e9-57c8cee3dc95",
+      "name": "Users",
+      "description": {
+        "content": "Fetch and update",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "030de707-0966-4186-ac8a-b145aa8c4b65",
+          "name": "User Details",
+          "request": {
+            "name": "User Details",
+            "description": {
+              "content": "Given an ID, returns corresponding user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the record"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3989b539-0d9e-493b-9cb8-188c9f1a6b62",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the record"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cbc9947f-b732-4f64-afdc-f622d215c9ef",
+          "name": "User Update",
+          "request": {
+            "name": "User Update",
+            "description": {
+              "content": "Update a user\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the record"
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f68fe11c-e6a3-42bf-8d5a-4fadd601b668",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the record"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "021db131-a38c-4c67-b929-b82e2e50176d",
+          "name": "User Projects",
+          "request": {
+            "name": "User Projects",
+            "description": {
+              "content": "Return projects as user has joined / followed\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":id",
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "rule_details",
+                  "value": "<string>",
+                  "description": "Return more information about project rules, for example return a full\ntaxon object instead of simply an ID\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "project_type",
+                  "value": "<string>",
+                  "description": "Specify the type of project to return\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>",
+                  "description": "Pagination `page` number"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<string>",
+                  "description": "Number of results to return in a `page`. The maximum value is generally\n200 unless otherwise noted\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the record"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "81cb2846-1ce9-42fc-a070-9693899acb13",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "rule_details",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the record"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10ffef48-63e0-4db3-bbda-060aeaeb1d96",
+          "name": "User Autocomplete",
+          "request": {
+            "name": "User Autocomplete",
+            "description": {
+              "content": "Given an string, returns users with names or logins starting with the search term\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "autocomplete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) Search by name (must start with this value) or by ID (exact match)."
+                },
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<integer>",
+                  "description": "Only show users with memberships to this project"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<string>",
+                  "description": "Number of results to return in a `page`. The maximum value is generally\n200 unless otherwise noted\n"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "76faf0de-dd36-4c96-82e0-139c93b994df",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a5d3eedf-bf91-41ca-8504-db9d38b89b3e",
+          "name": "Users Me",
+          "request": {
+            "name": "Users Me",
+            "description": {
+              "content": "Fetch the logged-in user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1b5a5583-d5b3-46e2-98c3-5fcfd741cec1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c0766fdb-525d-4cc3-a957-efa5fe9d7c33",
+          "name": "Mute a User",
+          "request": {
+            "name": "Mute a User",
+            "description": {
+              "content": "Make it so the authenticated user stops receiving notifications about\nactivity by the user specified by {id}.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":id",
+                "mute"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the record"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9e96616e-da70-4859-9e4a-03571bb0550c",
+              "name": "Returns an empty 200 response on success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id",
+                    "mute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the record"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e6f0df68-c4b6-42a9-9776-76e2684bc0c5",
+              "name": "Specified user does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id",
+                    "mute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the record"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a2176163-088b-4c00-a193-48fb0e926913",
+          "name": "Unmute a User",
+          "request": {
+            "name": "Unmute a User",
+            "description": {
+              "content": "Remove a mute on the user specified by {id}",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":id",
+                "mute"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the record"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e607bc48-1680-4f62-a137-508e5ec6bc2f",
+              "name": "Returns an empty 200 response on success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id",
+                    "mute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the record"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bb2622f5-2b7c-4726-a991-7ea17b9fded0",
+              "name": "Specified user does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id",
+                    "mute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the record"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d50f6a0-5fac-45ef-a241-1b6b341d6da0",
+          "name": "User Resend Confirmation",
+          "request": {
+            "name": "User Resend Confirmation",
+            "description": {
+              "content": "Resend an email confirmation",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "resend_confirmation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0d4bffe8-4bd8-4a09-b231-fce9f1509b44",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "resend_confirmation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9db8f9b2-99b1-46fc-9591-3c564d86c00a",
+          "name": "User Update Session",
+          "request": {
+            "name": "User Update Session",
+            "description": {
+              "content": "Update the logged-in user's session",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "update_session"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"preferred_taxon_page_ancestors_shown\": \"<boolean>\",\n  \"preferred_taxon_page_place_id\": \"<integer>\",\n  \"preferred_taxon_page_tab\": \"<string>\",\n  \"prefers_skip_coarer_id_modal\": \"<boolean>\",\n  \"prefers_hide_obs_show_annotations\": \"<boolean>\",\n  \"prefers_hide_obs_show_projects\": \"<boolean>\",\n  \"prefers_hide_obs_show_tags\": \"<boolean>\",\n  \"prefers_hide_obs_show_observation_fields\": \"<boolean>\",\n  \"prefers_hide_obs_show_identifiers\": \"<boolean>\",\n  \"prefers_hide_obs_show_copyright\": \"<boolean>\",\n  \"prefers_hide_obs_show_quality_metrics\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "50ab46cc-e5a3-4007-8038-efa2e4f46ca6",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "update_session"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"preferred_taxon_page_ancestors_shown\": \"<boolean>\",\n  \"preferred_taxon_page_place_id\": \"<integer>\",\n  \"preferred_taxon_page_tab\": \"<string>\",\n  \"prefers_skip_coarer_id_modal\": \"<boolean>\",\n  \"prefers_hide_obs_show_annotations\": \"<boolean>\",\n  \"prefers_hide_obs_show_projects\": \"<boolean>\",\n  \"prefers_hide_obs_show_tags\": \"<boolean>\",\n  \"prefers_hide_obs_show_observation_fields\": \"<boolean>\",\n  \"prefers_hide_obs_show_identifiers\": \"<boolean>\",\n  \"prefers_hide_obs_show_copyright\": \"<boolean>\",\n  \"prefers_hide_obs_show_quality_metrics\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2edad14d-3e41-4e17-9851-c7072f91b2c8",
+    "name": "iNaturalist Annotations Users API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# https://api.inaturalist.org/v1/\n\n[iNaturalist](https://www.inaturalist.org/) is a global community of\nnaturalists, scientists, and members of the public sharing over a million\nwildlife sightings to teach one another about the natural world while\ncreating high quality citizen science data for science and conservation.\n\nThese API methods return data in JSON/JSONP and PNG response formats. They\nare meant to supplement the existing [iNaturalist\nAPI](https://www.inaturalist.org/pages/api+reference), implemented in Ruby\non Rails, which has more functionality and supports more write operations,\nbut tends to be slower and have less consistent response formats. Visit our\n[developers page](https://www.inaturalist.org/pages/developers) for more\ninformation. Write operations that expect and return JSON describe a single\n`body` parameter that represents the request body, which should be specified\nas JSON. See the \"Model\" of each body parameter for attributes that we\naccept in these JSON objects.\n\nMultiple values for a single URL parameter should be separated by commas,\ne.g. `taxon_id=1,2,3`.\n\nMap tiles are generated using the\n[node-mapnik](https://github.com/mapnik/node-mapnik) library, following the\nXYZ map tiling scheme. The \"Observation Tile\" methods accept nearly all the\nparameters of the observation search APIs, and will generate map tiles\nreflecting the same observations returned by searches. These\n\"Observation Tile\" methods have corresponding\n[UTFGrid](https://github.com/mapbox/utfgrid-spec) JSON\nresponses which return information needed to make interactive maps.\n\nAuthentication in the Node API is handled via JSON Web Tokens (JWT). To\nobtain one, make an [OAuth-authenticated\nrequest](http://www.inaturalist.org/pages/api+reference#auth) to\nhttps://www.inaturalist.org/users/api_token. Each JWT will expire after 24\nhours. Authentication required for all PUT and POST requests. Some GET\nrequests will also include private information like hidden coordinates if\nthe authenticated user has permission to view them.\n\nPhotos served from https://static.inaturalist.org and\nhttps://inaturalist-open-data.s3.amazonaws.com have multiple size\nvariants and not all size variants are returned in responses. To access\nother sizes, the photo URL can be modified to replace only the size\nqualifier (each variant shares the exact same extension). The domain a photo\nis hosted under reflects the license under which the photo is being shared,\nand the domain may change over time if the license changes. Photos in\nthe `inaturalist-open-data` domain are shared under open licenses. These can\nbe accessed in bulk in the [iNaturalist AWS Open Dataset](\nhttps://registry.opendata.aws/inaturalist-open-data/). Photos in the\n`static.inaturalist.org` domain do not have open licenses.\n\nThe available photo sizes are:\n* original (max 2048px in either dimension)\n* large (max 1024px in either dimension)\n* medium (max 500px in either dimension)\n* small (max 240px in either dimension)\n* thumb (max 100px in either dimension)\n* square (75px square)\n\niNaturalist Website: https://www.inaturalist.org/\n\nOpen Source Software: https://github.com/inaturalist/\n\n## Terms of Use\n\nUse of this API is subject to the iNaturalist\n[Terms of Service](https://www.inaturalist.org/terms) and\n[Privacy Policy](https://www.inaturalist.org/privacy). We will block any\nuse of our API that violates our Terms or Privacy Policy without notice.\nThe API is intended to support application development, not data scraping.\nFor pre- generated data exports, see\nhttps://www.inaturalist.org/pages/developers.\n\nPlease note that we throttle API usage to a max of 100 requests per minute,\nthough we ask that you try to keep it to 60 requests per minute or lower,\nand to keep under 10,000 requests per day. If we notice usage that has\nserious impact on our performance we may institute blocks without\nnotification.\n\nTerms of Service: https://www.inaturalist.org/terms\n\nPrivacy Policy: https://www.inaturalist.org/privacy\n",
+      "type": "text/plain"
+    }
+  }
+}

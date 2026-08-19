@@ -1,0 +1,213 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "iNaturalist Annotations Taxa API",
+    "version": "1.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Taxa",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Taxon Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/taxa/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Must have this ID"
+              },
+              {
+                "name": "rank_level",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this rank level. Some example values are 70 (kingdom),\n60 (phylum), 50 (class), 40 (order), 30 (family), 20 (genus),\n10 (species), 5 (subspecies)\n"
+              }
+            ]
+          },
+          "docs": "Given an ID, or an array of IDs in comma-delimited format, returns\ncorresponding taxa. A maximum of 30 results will be returned\n"
+        },
+        {
+          "info": {
+            "name": "Taxon Search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/taxa",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search by name (must start with this value) or by ID (exact match)."
+              },
+              {
+                "name": "is_active",
+                "value": "",
+                "type": "query",
+                "description": "Taxon is `active`"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of taxon IDs"
+              },
+              {
+                "name": "parent_id",
+                "value": "",
+                "type": "query",
+                "description": "Taxon's parent must have this ID"
+              },
+              {
+                "name": "rank",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this rank"
+              },
+              {
+                "name": "rank_level",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this rank level. Some example values are 70 (kingdom),\n60 (phylum), 50 (class), 40 (order), 30 (family), 20 (genus),\n10 (species), 5 (subspecies)\n"
+              },
+              {
+                "name": "id_above",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID above this value"
+              },
+              {
+                "name": "id_below",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID below this value"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return in a `page`. The maximum value is generally\n200 unless otherwise noted\n"
+              },
+              {
+                "name": "locale",
+                "value": "",
+                "type": "query",
+                "description": "Locale preference for taxon common names\n"
+              },
+              {
+                "name": "preferred_place_id",
+                "value": "",
+                "type": "query",
+                "description": "Place preference for regional taxon common names\n"
+              },
+              {
+                "name": "only_id",
+                "value": "",
+                "type": "query",
+                "description": "Return only the record IDs"
+              },
+              {
+                "name": "all_names",
+                "value": "",
+                "type": "query",
+                "description": "Include all taxon names in the response"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "Sort field"
+              }
+            ]
+          },
+          "docs": "Given zero to many of following parameters, returns taxa matching the search criteria\n"
+        },
+        {
+          "info": {
+            "name": "Taxon Autocomplete",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/taxa/autocomplete",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search by name (must start with this value) or by ID (exact match)."
+              },
+              {
+                "name": "is_active",
+                "value": "",
+                "type": "query",
+                "description": "Taxon is `active`"
+              },
+              {
+                "name": "taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Only show taxa with this ID, or its descendants"
+              },
+              {
+                "name": "rank",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this rank"
+              },
+              {
+                "name": "rank_level",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this rank level. Some example values are 70 (kingdom),\n60 (phylum), 50 (class), 40 (order), 30 (family), 20 (genus),\n10 (species), 5 (subspecies)\n"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return in a `page`. The maximum value is 30 for this endpoint"
+              },
+              {
+                "name": "locale",
+                "value": "",
+                "type": "query",
+                "description": "Locale preference for taxon common names\n"
+              },
+              {
+                "name": "preferred_place_id",
+                "value": "",
+                "type": "query",
+                "description": "Place preference for regional taxon common names\n"
+              },
+              {
+                "name": "all_names",
+                "value": "",
+                "type": "query",
+                "description": "Include all taxon names in the response"
+              }
+            ]
+          },
+          "docs": "Given an string, returns taxa with names starting with the search term\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

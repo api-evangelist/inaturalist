@@ -1,0 +1,913 @@
+{
+  "item": [
+    {
+      "id": "46d355c8-5d6e-4956-9f66-558d33cb7454",
+      "name": "Messages",
+      "description": {
+        "content": "Create, fetch, delete",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "64aa5a4f-5dc6-409a-a67b-fd6b95373850",
+          "name": "Retrieve messages for the authenticated user. This does not mark them as read.",
+          "request": {
+            "name": "Retrieve messages for the authenticated user. This does not mark them as read.",
+            "description": {
+              "content": "Show the user's inbox or sent box",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>",
+                  "description": "Pagination `page` number"
+                },
+                {
+                  "disabled": false,
+                  "key": "box",
+                  "value": "inbox",
+                  "description": "Whether to view messages the user has received (default) or messages the user has sent"
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Search query for subject and body"
+                },
+                {
+                  "disabled": false,
+                  "key": "user_id",
+                  "value": "<string>",
+                  "description": "User ID or username of correspondent to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "threads",
+                  "value": "false",
+                  "description": "Groups results by `thread_id`, only shows the latest message per\nthread, and includes a `thread_messages_count` attribute showing the\ntotal number of messages in that thread. Note that this will not\nwork with the `q` param, and it probably should only be used with\n`box=any` because the `thread_messages_count` will be inaccurate when\nyou restrict it to `inbox` or `sent`.\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "686b5d7f-8f11-4d55-b6c5-e02e186640d4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "box",
+                      "value": "inbox"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "threads",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "669fa44b-d5a5-4436-9c5e-a88f322f679f",
+              "name": "Returns an object with metadata and an array of messages\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "box",
+                      "value": "inbox"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "threads",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"id\": 6778,\n      \"subject\": \"string\",\n      \"body\": \"string\",\n      \"user_id\": 7191,\n      \"to_user\": {\n        \"created_at\": \"1954-02-01T03:01:18.504Z\",\n        \"id\": 4269,\n        \"icon\": \"string\",\n        \"icon_url\": \"string\",\n        \"identifications_count\": 4245,\n        \"journal_posts_count\": 612,\n        \"login\": \"string\",\n        \"name\": \"string\",\n        \"observations_count\": 3749,\n        \"orcid\": \"string\",\n        \"roles\": [\n          \"curator\",\n          \"curator\"\n        ],\n        \"site_id\": 5239,\n        \"species_count\": 8213,\n        \"spam\": true,\n        \"suspended\": false\n      },\n      \"from_user\": {\n        \"created_at\": \"1969-07-08T14:08:36.299Z\",\n        \"id\": 4484,\n        \"icon\": \"string\",\n        \"icon_url\": \"string\",\n        \"identifications_count\": 9301,\n        \"journal_posts_count\": 4414,\n        \"login\": \"string\",\n        \"name\": \"string\",\n        \"observations_count\": 1139,\n        \"orcid\": \"string\",\n        \"roles\": [\n          \"admin\",\n          \"app owner\"\n        ],\n        \"site_id\": 1775,\n        \"species_count\": 1747,\n        \"spam\": true,\n        \"suspended\": false\n      },\n      \"thread_id\": 4640,\n      \"thread_messages_count\": 6560\n    },\n    {\n      \"id\": 4924,\n      \"subject\": \"string\",\n      \"body\": \"string\",\n      \"user_id\": 1604,\n      \"to_user\": {\n        \"created_at\": \"2018-07-08T22:23:50.707Z\",\n        \"id\": 5776,\n        \"icon\": \"string\",\n        \"icon_url\": \"string\",\n        \"identifications_count\": 7773,\n        \"journal_posts_count\": 8660,\n        \"login\": \"string\",\n        \"name\": \"string\",\n        \"observations_count\": 2810,\n        \"orcid\": \"string\",\n        \"roles\": [\n          \"app owner\",\n          \"admin\"\n        ],\n        \"site_id\": 3792,\n        \"species_count\": 1651,\n        \"spam\": true,\n        \"suspended\": false\n      },\n      \"from_user\": {\n        \"created_at\": \"1982-02-18T07:09:41.762Z\",\n        \"id\": 6601,\n        \"icon\": \"string\",\n        \"icon_url\": \"string\",\n        \"identifications_count\": 576,\n        \"journal_posts_count\": 9907,\n        \"login\": \"string\",\n        \"name\": \"string\",\n        \"observations_count\": 4172,\n        \"orcid\": \"string\",\n        \"roles\": [\n          \"admin\",\n          \"curator\"\n        ],\n        \"site_id\": 1350,\n        \"species_count\": 8886,\n        \"spam\": false,\n        \"suspended\": false\n      },\n      \"thread_id\": 7234,\n      \"thread_messages_count\": 3923\n    }\n  ],\n  \"total_results\": 984,\n  \"page\": 777,\n  \"per_page\": 8508\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "785e9506-7fa7-42ef-b947-b44ead74dfe3",
+          "name": "Create a new message",
+          "request": {
+            "name": "Create a new message",
+            "description": {
+              "content": "Create and deliver a new message to another user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": {\n    \"to_user_id\": \"<integer>\",\n    \"thread_id\": \"<integer>\",\n    \"subject\": \"<string>\",\n    \"body\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2a71c730-b67f-44bf-b9d6-2abd7ea6a0ee",
+              "name": "Returns the message just created\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": {\n    \"to_user_id\": \"<integer>\",\n    \"thread_id\": \"<integer>\",\n    \"subject\": \"<string>\",\n    \"body\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 6277,\n  \"subject\": \"string\",\n  \"body\": \"string\",\n  \"user_id\": 5008,\n  \"to_user\": {\n    \"created_at\": \"1949-03-14T01:52:16.449Z\",\n    \"id\": 6118,\n    \"icon\": \"string\",\n    \"icon_url\": \"string\",\n    \"identifications_count\": 2244,\n    \"journal_posts_count\": 6373,\n    \"login\": \"string\",\n    \"name\": \"string\",\n    \"observations_count\": 3253,\n    \"orcid\": \"string\",\n    \"roles\": [\n      \"curator\",\n      \"app owner\"\n    ],\n    \"site_id\": 388,\n    \"species_count\": 6327,\n    \"spam\": true,\n    \"suspended\": false\n  },\n  \"from_user\": {\n    \"created_at\": \"1958-02-12T17:19:13.483Z\",\n    \"id\": 3836,\n    \"icon\": \"string\",\n    \"icon_url\": \"string\",\n    \"identifications_count\": 7419,\n    \"journal_posts_count\": 2398,\n    \"login\": \"string\",\n    \"name\": \"string\",\n    \"observations_count\": 5657,\n    \"orcid\": \"string\",\n    \"roles\": [\n      \"admin\",\n      \"admin\"\n    ],\n    \"site_id\": 9908,\n    \"species_count\": 964,\n    \"spam\": false,\n    \"suspended\": false\n  },\n  \"thread_id\": 1961,\n  \"thread_messages_count\": 9888\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2387452c-e0e2-47c6-9721-f04cb16ac8a3",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": {\n    \"to_user_id\": \"<integer>\",\n    \"thread_id\": \"<integer>\",\n    \"subject\": \"<string>\",\n    \"body\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 52,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "728ff24c-83d2-4cf2-9dde-621a9308dbd9",
+          "name": "Retrieve messages in a thread",
+          "request": {
+            "name": "Retrieve messages in a thread",
+            "description": {
+              "content": "Retrieves all messages in the thread the specified message belongs to\nand marks them all as read.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "messages",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the record"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fa6cad4d-8390-4e62-a200-450e09846d83",
+              "name": "Returns an object with metadata and an array of messages\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the record"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"reply_to_user\": {\n    \"created_at\": \"2023-02-13T11:27:30.176Z\",\n    \"id\": 5716,\n    \"icon\": \"string\",\n    \"icon_url\": \"string\",\n    \"identifications_count\": 8931,\n    \"journal_posts_count\": 2690,\n    \"login\": \"string\",\n    \"name\": \"string\",\n    \"observations_count\": 3026,\n    \"orcid\": \"string\",\n    \"roles\": [\n      \"app owner\",\n      \"curator\"\n    ],\n    \"site_id\": 1387,\n    \"species_count\": 1469,\n    \"spam\": false,\n    \"suspended\": false\n  },\n  \"thread_id\": 9146,\n  \"flaggable_message_id\": 4853,\n  \"results\": [\n    {\n      \"id\": 2663,\n      \"subject\": \"string\",\n      \"body\": \"string\",\n      \"user_id\": 2707,\n      \"to_user\": {\n        \"created_at\": \"1994-05-09T18:54:30.165Z\",\n        \"id\": 309,\n        \"icon\": \"string\",\n        \"icon_url\": \"string\",\n        \"identifications_count\": 681,\n        \"journal_posts_count\": 5994,\n        \"login\": \"string\",\n        \"name\": \"string\",\n        \"observations_count\": 5864,\n        \"orcid\": \"string\",\n        \"roles\": [\n          \"app owner\",\n          \"admin\"\n        ],\n        \"site_id\": 3573,\n        \"species_count\": 9399,\n        \"spam\": false,\n        \"suspended\": false\n      },\n      \"from_user\": {\n        \"created_at\": \"2023-12-02T15:38:06.867Z\",\n        \"id\": 145,\n        \"icon\": \"string\",\n        \"icon_url\": \"string\",\n        \"identifications_count\": 5922,\n        \"journal_posts_count\": 1311,\n        \"login\": \"string\",\n        \"name\": \"string\",\n        \"observations_count\": 3033,\n        \"orcid\": \"string\",\n        \"roles\": [\n          \"app owner\",\n          \"curator\"\n        ],\n        \"site_id\": 8032,\n        \"species_count\": 7623,\n        \"spam\": true,\n        \"suspended\": false\n      },\n      \"thread_id\": 2348,\n      \"thread_messages_count\": 5895\n    },\n    {\n      \"id\": 8154,\n      \"subject\": \"string\",\n      \"body\": \"string\",\n      \"user_id\": 7615,\n      \"to_user\": {\n        \"created_at\": \"2009-06-14T22:53:17.486Z\",\n        \"id\": 3895,\n        \"icon\": \"string\",\n        \"icon_url\": \"string\",\n        \"identifications_count\": 6587,\n        \"journal_posts_count\": 3788,\n        \"login\": \"string\",\n        \"name\": \"string\",\n        \"observations_count\": 4141,\n        \"orcid\": \"string\",\n        \"roles\": [\n          \"app owner\",\n          \"curator\"\n        ],\n        \"site_id\": 7402,\n        \"species_count\": 3867,\n        \"spam\": false,\n        \"suspended\": false\n      },\n      \"from_user\": {\n        \"created_at\": \"1947-08-18T12:05:27.986Z\",\n        \"id\": 3619,\n        \"icon\": \"string\",\n        \"icon_url\": \"string\",\n        \"identifications_count\": 6244,\n        \"journal_posts_count\": 4464,\n        \"login\": \"string\",\n        \"name\": \"string\",\n        \"observations_count\": 4667,\n        \"orcid\": \"string\",\n        \"roles\": [\n          \"curator\",\n          \"curator\"\n        ],\n        \"site_id\": 692,\n        \"species_count\": 156,\n        \"spam\": false,\n        \"suspended\": true\n      },\n      \"thread_id\": 3849,\n      \"thread_messages_count\": 5418\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70df1ae1-a9be-4130-a2a9-7aaa9bac6658",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the record"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 52,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e5b9049-1b99-4f22-80c1-ef6a1c6a2f9d",
+          "name": "Delete a message / thread",
+          "request": {
+            "name": "Delete a message / thread",
+            "description": {
+              "content": "This will all of the authenticated user's copies of the messages in tha\nthread to which the specified message belongs.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "messages",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the record"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0ab4cff1-623b-4bc0-958b-a0ef1eb3e671",
+              "name": "No return data, 200 just means deletion was successful\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the record"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "22cb2d36-7932-4019-b5c7-e8f272a49a5e",
+              "name": "Specified message doesn't exist\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the record"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2712ea16-c243-49d4-be31-ebc1eff41410",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the record"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 52,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "837ba953-48a3-4153-b0a7-ca8f65c476e3",
+          "name": "Gets a count of messages the authenticated user has not read",
+          "request": {
+            "name": "Gets a count of messages the authenticated user has not read",
+            "description": {},
+            "url": {
+              "path": [
+                "messages",
+                "unread"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7b8e2a66-2dfc-469e-bae1-f474d1dfc4d8",
+              "name": "Number of unread messages",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    "unread"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 6043\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ff5b1cb-1598-48ff-8be2-4fdbd132424e",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    "unread"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 52,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "37d1756e-2fd1-41be-bbed-deb33c980d4e",
+    "name": "iNaturalist Annotations Messages API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# https://api.inaturalist.org/v1/\n\n[iNaturalist](https://www.inaturalist.org/) is a global community of\nnaturalists, scientists, and members of the public sharing over a million\nwildlife sightings to teach one another about the natural world while\ncreating high quality citizen science data for science and conservation.\n\nThese API methods return data in JSON/JSONP and PNG response formats. They\nare meant to supplement the existing [iNaturalist\nAPI](https://www.inaturalist.org/pages/api+reference), implemented in Ruby\non Rails, which has more functionality and supports more write operations,\nbut tends to be slower and have less consistent response formats. Visit our\n[developers page](https://www.inaturalist.org/pages/developers) for more\ninformation. Write operations that expect and return JSON describe a single\n`body` parameter that represents the request body, which should be specified\nas JSON. See the \"Model\" of each body parameter for attributes that we\naccept in these JSON objects.\n\nMultiple values for a single URL parameter should be separated by commas,\ne.g. `taxon_id=1,2,3`.\n\nMap tiles are generated using the\n[node-mapnik](https://github.com/mapnik/node-mapnik) library, following the\nXYZ map tiling scheme. The \"Observation Tile\" methods accept nearly all the\nparameters of the observation search APIs, and will generate map tiles\nreflecting the same observations returned by searches. These\n\"Observation Tile\" methods have corresponding\n[UTFGrid](https://github.com/mapbox/utfgrid-spec) JSON\nresponses which return information needed to make interactive maps.\n\nAuthentication in the Node API is handled via JSON Web Tokens (JWT). To\nobtain one, make an [OAuth-authenticated\nrequest](http://www.inaturalist.org/pages/api+reference#auth) to\nhttps://www.inaturalist.org/users/api_token. Each JWT will expire after 24\nhours. Authentication required for all PUT and POST requests. Some GET\nrequests will also include private information like hidden coordinates if\nthe authenticated user has permission to view them.\n\nPhotos served from https://static.inaturalist.org and\nhttps://inaturalist-open-data.s3.amazonaws.com have multiple size\nvariants and not all size variants are returned in responses. To access\nother sizes, the photo URL can be modified to replace only the size\nqualifier (each variant shares the exact same extension). The domain a photo\nis hosted under reflects the license under which the photo is being shared,\nand the domain may change over time if the license changes. Photos in\nthe `inaturalist-open-data` domain are shared under open licenses. These can\nbe accessed in bulk in the [iNaturalist AWS Open Dataset](\nhttps://registry.opendata.aws/inaturalist-open-data/). Photos in the\n`static.inaturalist.org` domain do not have open licenses.\n\nThe available photo sizes are:\n* original (max 2048px in either dimension)\n* large (max 1024px in either dimension)\n* medium (max 500px in either dimension)\n* small (max 240px in either dimension)\n* thumb (max 100px in either dimension)\n* square (75px square)\n\niNaturalist Website: https://www.inaturalist.org/\n\nOpen Source Software: https://github.com/inaturalist/\n\n## Terms of Use\n\nUse of this API is subject to the iNaturalist\n[Terms of Service](https://www.inaturalist.org/terms) and\n[Privacy Policy](https://www.inaturalist.org/privacy). We will block any\nuse of our API that violates our Terms or Privacy Policy without notice.\nThe API is intended to support application development, not data scraping.\nFor pre- generated data exports, see\nhttps://www.inaturalist.org/pages/developers.\n\nPlease note that we throttle API usage to a max of 100 requests per minute,\nthough we ask that you try to keep it to 60 requests per minute or lower,\nand to keep under 10,000 requests per day. If we notice usage that has\nserious impact on our performance we may institute blocks without\nnotification.\n\nTerms of Service: https://www.inaturalist.org/terms\n\nPrivacy Policy: https://www.inaturalist.org/privacy\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,418 @@
+{
+  "item": [
+    {
+      "id": "6c2eed7c-498b-4e88-a622-06810e01ef47",
+      "name": "Polygon Tiles",
+      "description": {
+        "content": "Place geometry and taxon range tiles",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1d6c1a35-8b9f-4a5c-8238-e017a993276b",
+          "name": "Place Tiles",
+          "request": {
+            "name": "Place Tiles",
+            "description": {
+              "content": "Returns a PNG map tile representing the boundary of this place,\nfollowing the XYZ tiling scheme\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "places",
+                ":place_id",
+                ":zoom",
+                ":x",
+                "{{y}}.png"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ttl",
+                  "value": "<string>",
+                  "description": "Set the `Cache-Control` HTTP header with this value as `max-age`, in\nseconds. This means subsequent identical requests will be cached on\niNaturalist servers, and commonly within web browsers\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "place_id",
+                  "description": "(Required) Place ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "zoom",
+                  "description": "(Required) Zoom level. Z coordinate in the XYZ tiling scheme"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "x",
+                  "description": "(Required) X coordinate in the XYZ tiling scheme. Must be less than 2^zoom"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "21405587-544d-4024-a874-d4762a81d623",
+              "name": "Returns a PNG map tile image\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places",
+                    ":place_id",
+                    ":zoom",
+                    ":x",
+                    "{{y}}.png"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ttl",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "place_id",
+                      "description": "(Required) Place ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "zoom",
+                      "description": "(Required) Zoom level. Z coordinate in the XYZ tiling scheme"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "x",
+                      "description": "(Required) X coordinate in the XYZ tiling scheme. Must be less than 2^zoom"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba0b64b2-702c-4862-8f47-9157f45da8cb",
+          "name": "Taxon Place Tiles",
+          "request": {
+            "name": "Taxon Place Tiles",
+            "description": {
+              "content": "Returns a PNG map tile representing the boundaries of places this taxon\nis known to occur, following the XYZ tiling scheme\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "taxon_places",
+                ":taxon_id",
+                ":zoom",
+                ":x",
+                "{{y}}.png"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ttl",
+                  "value": "<string>",
+                  "description": "Set the `Cache-Control` HTTP header with this value as `max-age`, in\nseconds. This means subsequent identical requests will be cached on\niNaturalist servers, and commonly within web browsers\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "taxon_id",
+                  "description": "(Required) Taxon ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "zoom",
+                  "description": "(Required) Zoom level. Z coordinate in the XYZ tiling scheme"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "x",
+                  "description": "(Required) X coordinate in the XYZ tiling scheme. Must be less than 2^zoom"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7c973ab1-5cff-49a9-9b5c-a22841e4be2d",
+              "name": "Returns a PNG map tile image\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taxon_places",
+                    ":taxon_id",
+                    ":zoom",
+                    ":x",
+                    "{{y}}.png"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ttl",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "taxon_id",
+                      "description": "(Required) Taxon ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "zoom",
+                      "description": "(Required) Zoom level. Z coordinate in the XYZ tiling scheme"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "x",
+                      "description": "(Required) X coordinate in the XYZ tiling scheme. Must be less than 2^zoom"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d15ebf68-1311-49e7-a57f-9df5c5bd38a7",
+          "name": "Taxon Range Tiles",
+          "request": {
+            "name": "Taxon Range Tiles",
+            "description": {
+              "content": "Returns a PNG map tile representing the range of this taxon, following\nthe XYZ tiling scheme\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "taxon_ranges",
+                ":taxon_id",
+                ":zoom",
+                ":x",
+                "{{y}}.png"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "color",
+                  "value": "<string>",
+                  "description": "Primary color to use in tile creation. Accepts common colors by string\n(e.g. `color=blue`), and accepts escaped color HEX codes\n(e.g. `color=%2386a91c`)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "ttl",
+                  "value": "<string>",
+                  "description": "Set the `Cache-Control` HTTP header with this value as `max-age`, in\nseconds. This means subsequent identical requests will be cached on\niNaturalist servers, and commonly within web browsers\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "taxon_id",
+                  "description": "(Required) Taxon ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "zoom",
+                  "description": "(Required) Zoom level. Z coordinate in the XYZ tiling scheme"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "x",
+                  "description": "(Required) X coordinate in the XYZ tiling scheme. Must be less than 2^zoom"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "76ef48af-2358-4457-9f5e-f31b3188de42",
+              "name": "Returns a PNG map tile image\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taxon_ranges",
+                    ":taxon_id",
+                    ":zoom",
+                    ":x",
+                    "{{y}}.png"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "color",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ttl",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "taxon_id",
+                      "description": "(Required) Taxon ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "zoom",
+                      "description": "(Required) Zoom level. Z coordinate in the XYZ tiling scheme"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "x",
+                      "description": "(Required) X coordinate in the XYZ tiling scheme. Must be less than 2^zoom"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/v1",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Y coordinate in the XYZ tiling scheme. Must be less than 2^zoom",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<integer>",
+      "key": "y"
+    }
+  ],
+  "info": {
+    "_postman_id": "989bb5d8-d9ae-4c7c-9671-e17f9c49a46d",
+    "name": "iNaturalist Annotations Polygon Tiles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# https://api.inaturalist.org/v1/\n\n[iNaturalist](https://www.inaturalist.org/) is a global community of\nnaturalists, scientists, and members of the public sharing over a million\nwildlife sightings to teach one another about the natural world while\ncreating high quality citizen science data for science and conservation.\n\nThese API methods return data in JSON/JSONP and PNG response formats. They\nare meant to supplement the existing [iNaturalist\nAPI](https://www.inaturalist.org/pages/api+reference), implemented in Ruby\non Rails, which has more functionality and supports more write operations,\nbut tends to be slower and have less consistent response formats. Visit our\n[developers page](https://www.inaturalist.org/pages/developers) for more\ninformation. Write operations that expect and return JSON describe a single\n`body` parameter that represents the request body, which should be specified\nas JSON. See the \"Model\" of each body parameter for attributes that we\naccept in these JSON objects.\n\nMultiple values for a single URL parameter should be separated by commas,\ne.g. `taxon_id=1,2,3`.\n\nMap tiles are generated using the\n[node-mapnik](https://github.com/mapnik/node-mapnik) library, following the\nXYZ map tiling scheme. The \"Observation Tile\" methods accept nearly all the\nparameters of the observation search APIs, and will generate map tiles\nreflecting the same observations returned by searches. These\n\"Observation Tile\" methods have corresponding\n[UTFGrid](https://github.com/mapbox/utfgrid-spec) JSON\nresponses which return information needed to make interactive maps.\n\nAuthentication in the Node API is handled via JSON Web Tokens (JWT). To\nobtain one, make an [OAuth-authenticated\nrequest](http://www.inaturalist.org/pages/api+reference#auth) to\nhttps://www.inaturalist.org/users/api_token. Each JWT will expire after 24\nhours. Authentication required for all PUT and POST requests. Some GET\nrequests will also include private information like hidden coordinates if\nthe authenticated user has permission to view them.\n\nPhotos served from https://static.inaturalist.org and\nhttps://inaturalist-open-data.s3.amazonaws.com have multiple size\nvariants and not all size variants are returned in responses. To access\nother sizes, the photo URL can be modified to replace only the size\nqualifier (each variant shares the exact same extension). The domain a photo\nis hosted under reflects the license under which the photo is being shared,\nand the domain may change over time if the license changes. Photos in\nthe `inaturalist-open-data` domain are shared under open licenses. These can\nbe accessed in bulk in the [iNaturalist AWS Open Dataset](\nhttps://registry.opendata.aws/inaturalist-open-data/). Photos in the\n`static.inaturalist.org` domain do not have open licenses.\n\nThe available photo sizes are:\n* original (max 2048px in either dimension)\n* large (max 1024px in either dimension)\n* medium (max 500px in either dimension)\n* small (max 240px in either dimension)\n* thumb (max 100px in either dimension)\n* square (75px square)\n\niNaturalist Website: https://www.inaturalist.org/\n\nOpen Source Software: https://github.com/inaturalist/\n\n## Terms of Use\n\nUse of this API is subject to the iNaturalist\n[Terms of Service](https://www.inaturalist.org/terms) and\n[Privacy Policy](https://www.inaturalist.org/privacy). We will block any\nuse of our API that violates our Terms or Privacy Policy without notice.\nThe API is intended to support application development, not data scraping.\nFor pre- generated data exports, see\nhttps://www.inaturalist.org/pages/developers.\n\nPlease note that we throttle API usage to a max of 100 requests per minute,\nthough we ask that you try to keep it to 60 requests per minute or lower,\nand to keep under 10,000 requests per day. If we notice usage that has\nserious impact on our performance we may institute blocks without\nnotification.\n\nTerms of Service: https://www.inaturalist.org/terms\n\nPrivacy Policy: https://www.inaturalist.org/privacy\n",
+      "type": "text/plain"
+    }
+  }
+}

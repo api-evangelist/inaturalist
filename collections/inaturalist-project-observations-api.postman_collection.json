@@ -1,0 +1,366 @@
+{
+  "item": [
+    {
+      "id": "9016dbee-cdb5-4ee5-af17-42deff9b4c20",
+      "name": "Project Observations",
+      "description": {
+        "content": "Create, update, and delete",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ee83375e-3d47-475e-ae18-da3eb01b9145",
+          "name": "Project Observation Update",
+          "request": {
+            "name": "Project Observation Update",
+            "description": {
+              "content": "Update a project observation",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "project_observations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the record"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project_observation\": {\n    \"project_id\": \"<integer>\",\n    \"observation_id\": \"<integer>\",\n    \"prefers_curator_coordinate_access\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dfccc32a-2a42-4fbd-bb8d-25ae4f17d51d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "project_observations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the record"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project_observation\": {\n    \"project_id\": \"<integer>\",\n    \"observation_id\": \"<integer>\",\n    \"prefers_curator_coordinate_access\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e2cecedb-9f41-45f8-8fb3-9a67d48abfe0",
+          "name": "Project Observation Delete",
+          "request": {
+            "name": "Project Observation Delete",
+            "description": {
+              "content": "Delete a project observation",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "project_observations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the record"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2fce5f51-0b83-460f-8481-9017a729ed66",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "project_observations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the record"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "91028970-8be7-4698-9fa4-5aa124c05a99",
+          "name": "Project Observation Create",
+          "request": {
+            "name": "Project Observation Create",
+            "description": {
+              "content": "Add an observation to a project",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "project_observations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project_id\": \"<integer>\",\n  \"observation_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1ebe5d10-cafe-464e-aa93-198dd115c1d0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "project_observations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project_id\": \"<integer>\",\n  \"observation_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2eea7379-c86e-4a88-ae74-3a332a9fccbe",
+    "name": "iNaturalist Annotations Project Observations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# https://api.inaturalist.org/v1/\n\n[iNaturalist](https://www.inaturalist.org/) is a global community of\nnaturalists, scientists, and members of the public sharing over a million\nwildlife sightings to teach one another about the natural world while\ncreating high quality citizen science data for science and conservation.\n\nThese API methods return data in JSON/JSONP and PNG response formats. They\nare meant to supplement the existing [iNaturalist\nAPI](https://www.inaturalist.org/pages/api+reference), implemented in Ruby\non Rails, which has more functionality and supports more write operations,\nbut tends to be slower and have less consistent response formats. Visit our\n[developers page](https://www.inaturalist.org/pages/developers) for more\ninformation. Write operations that expect and return JSON describe a single\n`body` parameter that represents the request body, which should be specified\nas JSON. See the \"Model\" of each body parameter for attributes that we\naccept in these JSON objects.\n\nMultiple values for a single URL parameter should be separated by commas,\ne.g. `taxon_id=1,2,3`.\n\nMap tiles are generated using the\n[node-mapnik](https://github.com/mapnik/node-mapnik) library, following the\nXYZ map tiling scheme. The \"Observation Tile\" methods accept nearly all the\nparameters of the observation search APIs, and will generate map tiles\nreflecting the same observations returned by searches. These\n\"Observation Tile\" methods have corresponding\n[UTFGrid](https://github.com/mapbox/utfgrid-spec) JSON\nresponses which return information needed to make interactive maps.\n\nAuthentication in the Node API is handled via JSON Web Tokens (JWT). To\nobtain one, make an [OAuth-authenticated\nrequest](http://www.inaturalist.org/pages/api+reference#auth) to\nhttps://www.inaturalist.org/users/api_token. Each JWT will expire after 24\nhours. Authentication required for all PUT and POST requests. Some GET\nrequests will also include private information like hidden coordinates if\nthe authenticated user has permission to view them.\n\nPhotos served from https://static.inaturalist.org and\nhttps://inaturalist-open-data.s3.amazonaws.com have multiple size\nvariants and not all size variants are returned in responses. To access\nother sizes, the photo URL can be modified to replace only the size\nqualifier (each variant shares the exact same extension). The domain a photo\nis hosted under reflects the license under which the photo is being shared,\nand the domain may change over time if the license changes. Photos in\nthe `inaturalist-open-data` domain are shared under open licenses. These can\nbe accessed in bulk in the [iNaturalist AWS Open Dataset](\nhttps://registry.opendata.aws/inaturalist-open-data/). Photos in the\n`static.inaturalist.org` domain do not have open licenses.\n\nThe available photo sizes are:\n* original (max 2048px in either dimension)\n* large (max 1024px in either dimension)\n* medium (max 500px in either dimension)\n* small (max 240px in either dimension)\n* thumb (max 100px in either dimension)\n* square (75px square)\n\niNaturalist Website: https://www.inaturalist.org/\n\nOpen Source Software: https://github.com/inaturalist/\n\n## Terms of Use\n\nUse of this API is subject to the iNaturalist\n[Terms of Service](https://www.inaturalist.org/terms) and\n[Privacy Policy](https://www.inaturalist.org/privacy). We will block any\nuse of our API that violates our Terms or Privacy Policy without notice.\nThe API is intended to support application development, not data scraping.\nFor pre- generated data exports, see\nhttps://www.inaturalist.org/pages/developers.\n\nPlease note that we throttle API usage to a max of 100 requests per minute,\nthough we ask that you try to keep it to 60 requests per minute or lower,\nand to keep under 10,000 requests per day. If we notice usage that has\nserious impact on our performance we may institute blocks without\nnotification.\n\nTerms of Service: https://www.inaturalist.org/terms\n\nPrivacy Policy: https://www.inaturalist.org/privacy\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,443 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "iNaturalist Annotations Projects API",
+    "version": "1.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Project Search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/projects",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search by name (must start with this value) or by ID (exact match)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Must have this ID"
+              },
+              {
+                "name": "not_id",
+                "value": "",
+                "type": "query",
+                "description": "Must not have this ID"
+              },
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Must be within a {`radius`} kilometer circle around this lat/lng\n(*lat, *lng, radius)\n"
+              },
+              {
+                "name": "lng",
+                "value": "",
+                "type": "query",
+                "description": "Must be within a {`radius`} kilometer circle around this lat/lng\n(*lat, *lng, radius)\n"
+              },
+              {
+                "name": "place_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be associated with this place"
+              },
+              {
+                "name": "radius",
+                "value": "",
+                "type": "query",
+                "description": "Must be within a {`radius`} kilometer circle around this lat/lng\n(*lat, *lng, radius). Defaults to 500km\n"
+              },
+              {
+                "name": "featured",
+                "value": "",
+                "type": "query",
+                "description": "Must be marked featured for the relevant site"
+              },
+              {
+                "name": "noteworthy",
+                "value": "",
+                "type": "query",
+                "description": "Must be marked noteworthy for the relevant site"
+              },
+              {
+                "name": "site_id",
+                "value": "",
+                "type": "query",
+                "description": "Site ID that applies to `featured` and `noteworthy`. Defaults to the site\nof the authenticated user, or to the main iNaturalist site\nhttps://www.inaturalist.org\n"
+              },
+              {
+                "name": "rule_details",
+                "value": "",
+                "type": "query",
+                "description": "Return more information about project rules, for example return a full\ntaxon object instead of simply an ID\n"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Projects must be of this type"
+              },
+              {
+                "name": "member_id",
+                "value": "",
+                "type": "query",
+                "description": "Project must have member with this user ID"
+              },
+              {
+                "name": "has_params",
+                "value": "",
+                "type": "query",
+                "description": "Must have search parameter requirements"
+              },
+              {
+                "name": "has_posts",
+                "value": "",
+                "type": "query",
+                "description": "Must have posts"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return in a `page`. The maximum value is generally\n200 unless otherwise noted\n"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "Sort field"
+              }
+            ]
+          },
+          "docs": "Given zero to many of following parameters, returns projects\nmatching the search criteria\n"
+        },
+        {
+          "info": {
+            "name": "Project Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/projects/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Must have this ID or slug"
+              },
+              {
+                "name": "rule_details",
+                "value": "",
+                "type": "query",
+                "description": "Return more information about project rules, for example return a full\ntaxon object instead of simply an ID\n"
+              }
+            ]
+          },
+          "docs": "Given an ID, or an array of IDs in comma-delimited format, returns\ncorresponding projects. A maximum of 100 results will be returned\n"
+        },
+        {
+          "info": {
+            "name": "Projects Join",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/projects/:id/join",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Join a project\n"
+        },
+        {
+          "info": {
+            "name": "Projects Leave",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/projects/:id/leave",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Leave a project\n"
+        },
+        {
+          "info": {
+            "name": "Project Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/projects/:id/members",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              },
+              {
+                "name": "role",
+                "value": "",
+                "type": "query",
+                "description": "Membership role"
+              },
+              {
+                "name": "skip_counts",
+                "value": "",
+                "type": "query",
+                "description": "If counts are not needed, consider setting this to true to save on\nprocessing time, resulting in faster responses\n"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination `page` number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return in a `page`. The maximum value is generally\n200 unless otherwise noted\n"
+              }
+            ]
+          },
+          "docs": "Given an ID, return members of the project\n"
+        },
+        {
+          "info": {
+            "name": "Membership of current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/projects/:id/membership",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Must have this ID"
+              }
+            ]
+          },
+          "docs": "Given an ID, or an array of IDs in comma-delimited format, return the details of the\nauthenticated user's membership in these projects\n"
+        },
+        {
+          "info": {
+            "name": "Project Subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/projects/:id/subscriptions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "[Deprecated] Subscriptions to projects are managed through joining and\nleaving projects, so this will not return any useful information.\n\nGiven an ID, return subscription of the current user\n"
+        },
+        {
+          "info": {
+            "name": "Project Add",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/projects/:id/add",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Add an observation to a project"
+        },
+        {
+          "info": {
+            "name": "Project Add",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/projects/:id/remove",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Remove an observation from a project"
+        },
+        {
+          "info": {
+            "name": "Project Autocomplete",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/projects/autocomplete",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search by name (must start with this value) or by ID (exact match)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Must have this ID"
+              },
+              {
+                "name": "not_id",
+                "value": "",
+                "type": "query",
+                "description": "Must not have this ID"
+              },
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Must be within a {`radius`} kilometer circle around this lat/lng\n(*lat, *lng, radius)\n"
+              },
+              {
+                "name": "lng",
+                "value": "",
+                "type": "query",
+                "description": "Must be within a {`radius`} kilometer circle around this lat/lng\n(*lat, *lng, radius)\n"
+              },
+              {
+                "name": "place_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be associated with this place"
+              },
+              {
+                "name": "radius",
+                "value": "",
+                "type": "query",
+                "description": "Must be within a {`radius`} kilometer circle around this lat/lng\n(*lat, *lng, radius). Defaults to 500km\n"
+              },
+              {
+                "name": "featured",
+                "value": "",
+                "type": "query",
+                "description": "Must be marked featured for the relevant site"
+              },
+              {
+                "name": "noteworthy",
+                "value": "",
+                "type": "query",
+                "description": "Must be marked noteworthy for the relevant site"
+              },
+              {
+                "name": "site_id",
+                "value": "",
+                "type": "query",
+                "description": "Site ID that applies to `featured` and `noteworthy`. Defaults to the site\nof the authenticated user, or to the main iNaturalist site\nhttps://www.inaturalist.org\n"
+              },
+              {
+                "name": "rule_details",
+                "value": "",
+                "type": "query",
+                "description": "Return more information about project rules, for example return a full\ntaxon object instead of simply an ID\n"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Projects must be of this type"
+              },
+              {
+                "name": "member_id",
+                "value": "",
+                "type": "query",
+                "description": "Project must have member with this user ID"
+              },
+              {
+                "name": "has_params",
+                "value": "",
+                "type": "query",
+                "description": "Must have search parameter requirements"
+              },
+              {
+                "name": "has_posts",
+                "value": "",
+                "type": "query",
+                "description": "Must have posts"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return in a `page`. The maximum value is generally\n200 unless otherwise noted\n"
+              }
+            ]
+          },
+          "docs": "Given an string, returns projects with titles starting with the search term\n"
+        },
+        {
+          "info": {
+            "name": "Project Subscribe",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/project/:id/subscribe",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Toggles current user's subscription to this project. If the logged-in\nuser is not subscribed, POSTing here will subscribe them. If they are already\nsubscribed, this will remove the subscription\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

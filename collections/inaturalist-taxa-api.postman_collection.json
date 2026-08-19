@@ -1,0 +1,736 @@
+{
+  "item": [
+    {
+      "id": "79549de6-c4d3-49b3-88a8-336a0139186e",
+      "name": "Taxa",
+      "description": {
+        "content": "Search and fetch",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5a0c865a-6a50-445f-a2df-24673a05eea6",
+          "name": "Taxon Details",
+          "request": {
+            "name": "Taxon Details",
+            "description": {
+              "content": "Given an ID, or an array of IDs in comma-delimited format, returns\ncorresponding taxa. A maximum of 30 results will be returned\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "taxa",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "rank_level",
+                  "value": "<number>",
+                  "description": "Taxon must have this rank level. Some example values are 70 (kingdom),\n60 (phylum), 50 (class), 40 (order), 30 (family), 20 (genus),\n10 (species), 5 (subspecies)\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>,<integer>",
+                  "key": "id",
+                  "description": "(Required) Must have this ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a94f4622-8cb5-4b38-99dc-44fd75c291ab",
+              "name": "Returns an object with metadata and a results array of taxa\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taxa",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "rank_level",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>,<integer>",
+                      "key": "id",
+                      "description": "(Required) Must have this ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"id\": 4282,\n      \"iconic_taxon_id\": 1679,\n      \"iconic_taxon_name\": \"string\",\n      \"is_active\": true,\n      \"name\": \"string\",\n      \"preferred_common_name\": \"string\",\n      \"rank\": \"string\",\n      \"rank_level\": 3663.7522393187273,\n      \"ancestor_ids\": [\n        2046,\n        7394\n      ],\n      \"colors\": [\n        {\n          \"id\": 388,\n          \"value\": \"string\"\n        },\n        {\n          \"id\": 7053,\n          \"value\": \"string\"\n        }\n      ],\n      \"conservation_status\": {\n        \"place_id\": 6186,\n        \"place\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"display_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"status\": \"string\"\n      },\n      \"conservation_statuses\": [\n        {\n          \"place\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"place\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"default_photo\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"attribution\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"license_code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"medium_url\": \"string\",\n        \"square_url\": \"string\"\n      },\n      \"establishment_means\": {\n        \"establishment_means\": \"string\",\n        \"place\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"display_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"observations_count\": 2429,\n      \"preferred_establishment_means\": \"string\"\n    },\n    {\n      \"id\": 1494,\n      \"iconic_taxon_id\": 7901,\n      \"iconic_taxon_name\": \"string\",\n      \"is_active\": true,\n      \"name\": \"string\",\n      \"preferred_common_name\": \"string\",\n      \"rank\": \"string\",\n      \"rank_level\": 4238.848959823978,\n      \"ancestor_ids\": [\n        7004,\n        2400\n      ],\n      \"colors\": [\n        {\n          \"id\": 9565,\n          \"value\": \"string\"\n        },\n        {\n          \"id\": 8827,\n          \"value\": \"string\"\n        }\n      ],\n      \"conservation_status\": {\n        \"place_id\": 9647,\n        \"place\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"display_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"status\": \"string\"\n      },\n      \"conservation_statuses\": [\n        {\n          \"place\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"place\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"default_photo\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"attribution\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"license_code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"medium_url\": \"string\",\n        \"square_url\": \"string\"\n      },\n      \"establishment_means\": {\n        \"establishment_means\": \"string\",\n        \"place\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"display_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"observations_count\": 6398,\n      \"preferred_establishment_means\": \"string\"\n    }\n  ],\n  \"total_results\": 6207,\n  \"page\": 2447,\n  \"per_page\": 9255\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "edc6683f-46ba-4e4e-a11e-2b9bd0b9e23e",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taxa",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "rank_level",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>,<integer>",
+                      "key": "id",
+                      "description": "(Required) Must have this ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5717,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "143e3426-85be-4240-8ac8-a2517d57f9a7",
+          "name": "Taxon Search",
+          "request": {
+            "name": "Taxon Search",
+            "description": {
+              "content": "Given zero to many of following parameters, returns taxa matching the search criteria\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "taxa"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Search by name (must start with this value) or by ID (exact match)."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_active",
+                  "value": "<boolean>",
+                  "description": "Taxon is `active`"
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<integer>,<integer>",
+                  "description": "Comma-separated list of taxon IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "parent_id",
+                  "value": "<integer>",
+                  "description": "Taxon's parent must have this ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "rank",
+                  "value": "subspecies",
+                  "description": "Taxon must have this rank"
+                },
+                {
+                  "disabled": false,
+                  "key": "rank_level",
+                  "value": "<number>",
+                  "description": "Taxon must have this rank level. Some example values are 70 (kingdom),\n60 (phylum), 50 (class), 40 (order), 30 (family), 20 (genus),\n10 (species), 5 (subspecies)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "id_above",
+                  "value": "<string>",
+                  "description": "Must have an ID above this value"
+                },
+                {
+                  "disabled": false,
+                  "key": "id_below",
+                  "value": "<string>",
+                  "description": "Must have an ID below this value"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<string>",
+                  "description": "Number of results to return in a `page`. The maximum value is generally\n200 unless otherwise noted\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "Locale preference for taxon common names\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "preferred_place_id",
+                  "value": "<integer>",
+                  "description": "Place preference for regional taxon common names\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "only_id",
+                  "value": "<boolean>",
+                  "description": "Return only the record IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "all_names",
+                  "value": "<boolean>",
+                  "description": "Include all taxon names in the response"
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "desc",
+                  "description": "Sort order"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "observations_count",
+                  "description": "Sort field"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6f05fa5f-dbba-46ff-97fd-5ad21b63c90d",
+              "name": "Returns an object with search metadata and a results array of taxa\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taxa"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_active",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<integer>,<integer>"
+                    },
+                    {
+                      "key": "parent_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "rank",
+                      "value": "genus"
+                    },
+                    {
+                      "key": "rank_level",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "id_above",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id_below",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "preferred_place_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "only_id",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "all_names",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "observations_count"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"id\": 1627,\n      \"iconic_taxon_id\": 4075,\n      \"iconic_taxon_name\": \"string\",\n      \"is_active\": true,\n      \"name\": \"string\",\n      \"preferred_common_name\": \"string\",\n      \"rank\": \"string\",\n      \"rank_level\": 5844.565358581843,\n      \"ancestor_ids\": [\n        8019,\n        4028\n      ],\n      \"colors\": [\n        {\n          \"id\": 5457,\n          \"value\": \"string\"\n        },\n        {\n          \"id\": 8916,\n          \"value\": \"string\"\n        }\n      ],\n      \"conservation_status\": {\n        \"place_id\": 3674,\n        \"place\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"display_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"status\": \"string\"\n      },\n      \"conservation_statuses\": [\n        {\n          \"place\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"place\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"default_photo\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"attribution\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"license_code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"medium_url\": \"string\",\n        \"square_url\": \"string\"\n      },\n      \"establishment_means\": {\n        \"establishment_means\": \"string\",\n        \"place\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"display_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"observations_count\": 4082,\n      \"preferred_establishment_means\": \"string\"\n    },\n    {\n      \"id\": 1728,\n      \"iconic_taxon_id\": 9004,\n      \"iconic_taxon_name\": \"string\",\n      \"is_active\": true,\n      \"name\": \"string\",\n      \"preferred_common_name\": \"string\",\n      \"rank\": \"string\",\n      \"rank_level\": 735.832752961979,\n      \"ancestor_ids\": [\n        1693,\n        5725\n      ],\n      \"colors\": [\n        {\n          \"id\": 6870,\n          \"value\": \"string\"\n        },\n        {\n          \"id\": 6540,\n          \"value\": \"string\"\n        }\n      ],\n      \"conservation_status\": {\n        \"place_id\": 2488,\n        \"place\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"display_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"status\": \"string\"\n      },\n      \"conservation_statuses\": [\n        {\n          \"place\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"place\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"default_photo\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"attribution\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"license_code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"medium_url\": \"string\",\n        \"square_url\": \"string\"\n      },\n      \"establishment_means\": {\n        \"establishment_means\": \"string\",\n        \"place\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"display_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"observations_count\": 142,\n      \"preferred_establishment_means\": \"string\"\n    }\n  ],\n  \"total_results\": 2591,\n  \"page\": 208,\n  \"per_page\": 2841\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a341a77-ebe7-4243-9249-a057639985f5",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taxa"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_active",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<integer>,<integer>"
+                    },
+                    {
+                      "key": "parent_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "rank",
+                      "value": "genus"
+                    },
+                    {
+                      "key": "rank_level",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "id_above",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id_below",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "preferred_place_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "only_id",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "all_names",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "observations_count"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5717,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a536a6d-2bbb-4a28-8dcf-2e477127afb1",
+          "name": "Taxon Autocomplete",
+          "request": {
+            "name": "Taxon Autocomplete",
+            "description": {
+              "content": "Given an string, returns taxa with names starting with the search term\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "taxa",
+                "autocomplete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) Search by name (must start with this value) or by ID (exact match)."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_active",
+                  "value": "<boolean>",
+                  "description": "Taxon is `active`"
+                },
+                {
+                  "disabled": false,
+                  "key": "taxon_id",
+                  "value": "<string>,<string>",
+                  "description": "Only show taxa with this ID, or its descendants"
+                },
+                {
+                  "disabled": false,
+                  "key": "rank",
+                  "value": "epifamily",
+                  "description": "Taxon must have this rank"
+                },
+                {
+                  "disabled": false,
+                  "key": "rank_level",
+                  "value": "<number>",
+                  "description": "Taxon must have this rank level. Some example values are 70 (kingdom),\n60 (phylum), 50 (class), 40 (order), 30 (family), 20 (genus),\n10 (species), 5 (subspecies)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<string>",
+                  "description": "Number of results to return in a `page`. The maximum value is 30 for this endpoint"
+                },
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "Locale preference for taxon common names\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "preferred_place_id",
+                  "value": "<integer>",
+                  "description": "Place preference for regional taxon common names\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "all_names",
+                  "value": "<boolean>",
+                  "description": "Include all taxon names in the response"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "de7d4fad-e703-4be1-9e9a-4c7157f27075",
+              "name": "Returns an object with search metadata and a results array of taxa\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taxa",
+                    "autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_active",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "taxon_id",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "rank",
+                      "value": "genus"
+                    },
+                    {
+                      "key": "rank_level",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "preferred_place_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "all_names",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"id\": 4714,\n      \"iconic_taxon_id\": 3055,\n      \"iconic_taxon_name\": \"string\",\n      \"is_active\": false,\n      \"name\": \"string\",\n      \"preferred_common_name\": \"string\",\n      \"rank\": \"string\",\n      \"rank_level\": 3973.985970931234,\n      \"default_photo\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"attribution\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"license_code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"medium_url\": \"string\",\n        \"square_url\": \"string\"\n      },\n      \"matched_term\": \"string\",\n      \"observations_count\": 4614\n    },\n    {\n      \"id\": 5360,\n      \"iconic_taxon_id\": 2438,\n      \"iconic_taxon_name\": \"string\",\n      \"is_active\": false,\n      \"name\": \"string\",\n      \"preferred_common_name\": \"string\",\n      \"rank\": \"string\",\n      \"rank_level\": 3235.937834188223,\n      \"default_photo\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"attribution\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"license_code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"medium_url\": \"string\",\n        \"square_url\": \"string\"\n      },\n      \"matched_term\": \"string\",\n      \"observations_count\": 5384\n    }\n  ],\n  \"total_results\": 8061,\n  \"page\": 9875,\n  \"per_page\": 9170\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ca119c7-446f-4cc5-9686-b3062fcba794",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taxa",
+                    "autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_active",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "taxon_id",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "rank",
+                      "value": "genus"
+                    },
+                    {
+                      "key": "rank_level",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "preferred_place_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "all_names",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5717,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b7999635-0fca-4163-8d68-d2862778ef2e",
+    "name": "iNaturalist Annotations Taxa API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# https://api.inaturalist.org/v1/\n\n[iNaturalist](https://www.inaturalist.org/) is a global community of\nnaturalists, scientists, and members of the public sharing over a million\nwildlife sightings to teach one another about the natural world while\ncreating high quality citizen science data for science and conservation.\n\nThese API methods return data in JSON/JSONP and PNG response formats. They\nare meant to supplement the existing [iNaturalist\nAPI](https://www.inaturalist.org/pages/api+reference), implemented in Ruby\non Rails, which has more functionality and supports more write operations,\nbut tends to be slower and have less consistent response formats. Visit our\n[developers page](https://www.inaturalist.org/pages/developers) for more\ninformation. Write operations that expect and return JSON describe a single\n`body` parameter that represents the request body, which should be specified\nas JSON. See the \"Model\" of each body parameter for attributes that we\naccept in these JSON objects.\n\nMultiple values for a single URL parameter should be separated by commas,\ne.g. `taxon_id=1,2,3`.\n\nMap tiles are generated using the\n[node-mapnik](https://github.com/mapnik/node-mapnik) library, following the\nXYZ map tiling scheme. The \"Observation Tile\" methods accept nearly all the\nparameters of the observation search APIs, and will generate map tiles\nreflecting the same observations returned by searches. These\n\"Observation Tile\" methods have corresponding\n[UTFGrid](https://github.com/mapbox/utfgrid-spec) JSON\nresponses which return information needed to make interactive maps.\n\nAuthentication in the Node API is handled via JSON Web Tokens (JWT). To\nobtain one, make an [OAuth-authenticated\nrequest](http://www.inaturalist.org/pages/api+reference#auth) to\nhttps://www.inaturalist.org/users/api_token. Each JWT will expire after 24\nhours. Authentication required for all PUT and POST requests. Some GET\nrequests will also include private information like hidden coordinates if\nthe authenticated user has permission to view them.\n\nPhotos served from https://static.inaturalist.org and\nhttps://inaturalist-open-data.s3.amazonaws.com have multiple size\nvariants and not all size variants are returned in responses. To access\nother sizes, the photo URL can be modified to replace only the size\nqualifier (each variant shares the exact same extension). The domain a photo\nis hosted under reflects the license under which the photo is being shared,\nand the domain may change over time if the license changes. Photos in\nthe `inaturalist-open-data` domain are shared under open licenses. These can\nbe accessed in bulk in the [iNaturalist AWS Open Dataset](\nhttps://registry.opendata.aws/inaturalist-open-data/). Photos in the\n`static.inaturalist.org` domain do not have open licenses.\n\nThe available photo sizes are:\n* original (max 2048px in either dimension)\n* large (max 1024px in either dimension)\n* medium (max 500px in either dimension)\n* small (max 240px in either dimension)\n* thumb (max 100px in either dimension)\n* square (75px square)\n\niNaturalist Website: https://www.inaturalist.org/\n\nOpen Source Software: https://github.com/inaturalist/\n\n## Terms of Use\n\nUse of this API is subject to the iNaturalist\n[Terms of Service](https://www.inaturalist.org/terms) and\n[Privacy Policy](https://www.inaturalist.org/privacy). We will block any\nuse of our API that violates our Terms or Privacy Policy without notice.\nThe API is intended to support application development, not data scraping.\nFor pre- generated data exports, see\nhttps://www.inaturalist.org/pages/developers.\n\nPlease note that we throttle API usage to a max of 100 requests per minute,\nthough we ask that you try to keep it to 60 requests per minute or lower,\nand to keep under 10,000 requests per day. If we notice usage that has\nserious impact on our performance we may institute blocks without\nnotification.\n\nTerms of Service: https://www.inaturalist.org/terms\n\nPrivacy Policy: https://www.inaturalist.org/privacy\n",
+      "type": "text/plain"
+    }
+  }
+}

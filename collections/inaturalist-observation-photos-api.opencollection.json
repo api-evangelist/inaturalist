@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "iNaturalist Annotations Observation Photos API",
+    "version": "1.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Observation Photos",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Observation Photo Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/observation_photos/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Update an observation photo"
+        },
+        {
+          "info": {
+            "name": "Observation Photo Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/observation_photos/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Delete an observation photo\n"
+        },
+        {
+          "info": {
+            "name": "Observation Photo Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/observation_photos"
+          },
+          "docs": "Create an observation photo\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

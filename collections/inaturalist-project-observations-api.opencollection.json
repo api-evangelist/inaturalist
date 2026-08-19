@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "iNaturalist Annotations Project Observations API",
+    "version": "1.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Project Observations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Project Observation Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/project_observations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Update a project observation"
+        },
+        {
+          "info": {
+            "name": "Project Observation Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/project_observations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Delete a project observation"
+        },
+        {
+          "info": {
+            "name": "Project Observation Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/project_observations"
+          },
+          "docs": "Add an observation to a project"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

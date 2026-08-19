@@ -1,0 +1,515 @@
+{
+  "item": [
+    {
+      "id": "38ecdf4d-dd66-447d-98ca-90fb61174749",
+      "name": "Places",
+      "description": {
+        "content": "Search and fetch",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "36b7e68b-73ba-43ed-a331-24d3f47b67c2",
+          "name": "Place Details",
+          "request": {
+            "name": "Place Details",
+            "description": {
+              "content": "Given an ID, or an array of IDs in comma-delimited format, returns\ncorresponding places. A maximum of 500 results will be returned\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "places",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "admin_level",
+                  "value": "10",
+                  "description": "Admin level of a place, or an array of admin levels\nin comma-delimited format. Supported admin levels are: -10\n(continent), 0 (country), 10 (state), 20 (county), 30 (town),\n100 (park)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>,<string>",
+                  "key": "id",
+                  "description": "(Required) Must have this ID or slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d11be2dd-6928-4ccf-885a-dfdc6a6e36a9",
+              "name": "Returns an object with metadata and an results array of places\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "admin_level",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>,<string>",
+                      "key": "id",
+                      "description": "(Required) Must have this ID or slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"id\": 346,\n      \"name\": \"string\",\n      \"display_name\": \"string\",\n      \"admin_level\": 9412,\n      \"ancestor_place_ids\": [\n        6451,\n        7909\n      ],\n      \"bbox_area\": 1555.2741071554233,\n      \"geometry_geojson\": {\n        \"type\": \"string\",\n        \"coordinates\": [\n          [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        ]\n      },\n      \"location\": \"string\",\n      \"place_type\": 7696\n    },\n    {\n      \"id\": 6545,\n      \"name\": \"string\",\n      \"display_name\": \"string\",\n      \"admin_level\": 2124,\n      \"ancestor_place_ids\": [\n        6357,\n        9621\n      ],\n      \"bbox_area\": 4978.509850324802,\n      \"geometry_geojson\": {\n        \"type\": \"string\",\n        \"coordinates\": [\n          [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        ]\n      },\n      \"location\": \"string\",\n      \"place_type\": 5289\n    }\n  ],\n  \"total_results\": 9504,\n  \"page\": 9280,\n  \"per_page\": 4408\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f03689c4-0d59-4e14-9970-95f6896e52b4",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "admin_level",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>,<string>",
+                      "key": "id",
+                      "description": "(Required) Must have this ID or slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1723,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ace1bf9f-3f52-4f0f-becf-b1e5e078f204",
+          "name": "Place Autocomplete",
+          "request": {
+            "name": "Place Autocomplete",
+            "description": {
+              "content": "Given an string, returns places with names starting with the search\nterm.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "places",
+                "autocomplete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) Search by name (must start with this value) or by ID (exact match)."
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "<string>",
+                  "description": "Sort field"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "49fee020-3697-4a76-84f5-98dbf8c2329f",
+              "name": "Returns an object with metadata and an results array of places\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places",
+                    "autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"id\": 9224,\n      \"name\": \"string\",\n      \"display_name\": \"string\",\n      \"admin_level\": 8058,\n      \"ancestor_place_ids\": [\n        459,\n        2775\n      ],\n      \"bbox_area\": 7815.12629149594,\n      \"geometry_geojson\": {\n        \"type\": \"string\",\n        \"coordinates\": [\n          [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        ]\n      },\n      \"location\": \"string\",\n      \"place_type\": 5449\n    },\n    {\n      \"id\": 9738,\n      \"name\": \"string\",\n      \"display_name\": \"string\",\n      \"admin_level\": 6007,\n      \"ancestor_place_ids\": [\n        5077,\n        3427\n      ],\n      \"bbox_area\": 4932.172900952801,\n      \"geometry_geojson\": {\n        \"type\": \"string\",\n        \"coordinates\": [\n          [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        ]\n      },\n      \"location\": \"string\",\n      \"place_type\": 5001\n    }\n  ],\n  \"total_results\": 775,\n  \"page\": 4890,\n  \"per_page\": 3945\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b9e3b0a-7e29-43dd-b01e-7164012fd7c3",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places",
+                    "autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1723,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e0c0240-6ddc-4863-bb5e-521b3797ba86",
+          "name": "Nearby Places",
+          "request": {
+            "name": "Nearby Places",
+            "description": {
+              "content": "Given an bounding box, and an optional name query, return `standard`\niNaturalist curator approved and `community` non-curated places nearby\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "places",
+                "nearby"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "nelat",
+                  "value": "<double>",
+                  "description": "(Required) Must be nearby this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelng",
+                  "value": "<double>",
+                  "description": "(Required) Must be nearby this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "swlat",
+                  "value": "<double>",
+                  "description": "(Required) Must be nearby this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "swlng",
+                  "value": "<double>",
+                  "description": "(Required) Must be nearby this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Name must match this value"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<string>",
+                  "description": "Number of results to return in a `page`. The maximum value is generally\n200 unless otherwise noted\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "02777be4-2e94-4558-8e0c-4b928558ea0c",
+              "name": "Returns an object with metadata and an results object containing\n`standard` and `community` places\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places",
+                    "nearby"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "nelat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "nelng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "swlat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "swlng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": {\n    \"standard\": [\n      {\n        \"id\": 8377,\n        \"name\": \"string\",\n        \"display_name\": \"string\",\n        \"admin_level\": 82,\n        \"ancestor_place_ids\": [\n          6655,\n          4067\n        ],\n        \"bbox_area\": 5385.60891515798,\n        \"geometry_geojson\": {\n          \"type\": \"string\",\n          \"coordinates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"location\": \"string\",\n        \"place_type\": 6531\n      },\n      {\n        \"id\": 3846,\n        \"name\": \"string\",\n        \"display_name\": \"string\",\n        \"admin_level\": 5870,\n        \"ancestor_place_ids\": [\n          4804,\n          750\n        ],\n        \"bbox_area\": 7450.892620648833,\n        \"geometry_geojson\": {\n          \"type\": \"string\",\n          \"coordinates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"location\": \"string\",\n        \"place_type\": 4695\n      }\n    ],\n    \"community\": [\n      {\n        \"id\": 3631,\n        \"name\": \"string\",\n        \"display_name\": \"string\",\n        \"admin_level\": 3687,\n        \"ancestor_place_ids\": [\n          7573,\n          19\n        ],\n        \"bbox_area\": 1478.6452430727347,\n        \"geometry_geojson\": {\n          \"type\": \"string\",\n          \"coordinates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"location\": \"string\",\n        \"place_type\": 4587\n      },\n      {\n        \"id\": 4746,\n        \"name\": \"string\",\n        \"display_name\": \"string\",\n        \"admin_level\": 4718,\n        \"ancestor_place_ids\": [\n          5920,\n          574\n        ],\n        \"bbox_area\": 5567.164896000041,\n        \"geometry_geojson\": {\n          \"type\": \"string\",\n          \"coordinates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"location\": \"string\",\n        \"place_type\": 4950\n      }\n    ]\n  },\n  \"total_results\": 8987,\n  \"page\": 6670,\n  \"per_page\": 8166\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59c222ea-7ec3-45c6-9dd6-bdc210505be9",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places",
+                    "nearby"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "nelat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "nelng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "swlat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "swlng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1723,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "98ce4d3f-4488-4670-84c0-71c230078c17",
+    "name": "iNaturalist Annotations Places API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# https://api.inaturalist.org/v1/\n\n[iNaturalist](https://www.inaturalist.org/) is a global community of\nnaturalists, scientists, and members of the public sharing over a million\nwildlife sightings to teach one another about the natural world while\ncreating high quality citizen science data for science and conservation.\n\nThese API methods return data in JSON/JSONP and PNG response formats. They\nare meant to supplement the existing [iNaturalist\nAPI](https://www.inaturalist.org/pages/api+reference), implemented in Ruby\non Rails, which has more functionality and supports more write operations,\nbut tends to be slower and have less consistent response formats. Visit our\n[developers page](https://www.inaturalist.org/pages/developers) for more\ninformation. Write operations that expect and return JSON describe a single\n`body` parameter that represents the request body, which should be specified\nas JSON. See the \"Model\" of each body parameter for attributes that we\naccept in these JSON objects.\n\nMultiple values for a single URL parameter should be separated by commas,\ne.g. `taxon_id=1,2,3`.\n\nMap tiles are generated using the\n[node-mapnik](https://github.com/mapnik/node-mapnik) library, following the\nXYZ map tiling scheme. The \"Observation Tile\" methods accept nearly all the\nparameters of the observation search APIs, and will generate map tiles\nreflecting the same observations returned by searches. These\n\"Observation Tile\" methods have corresponding\n[UTFGrid](https://github.com/mapbox/utfgrid-spec) JSON\nresponses which return information needed to make interactive maps.\n\nAuthentication in the Node API is handled via JSON Web Tokens (JWT). To\nobtain one, make an [OAuth-authenticated\nrequest](http://www.inaturalist.org/pages/api+reference#auth) to\nhttps://www.inaturalist.org/users/api_token. Each JWT will expire after 24\nhours. Authentication required for all PUT and POST requests. Some GET\nrequests will also include private information like hidden coordinates if\nthe authenticated user has permission to view them.\n\nPhotos served from https://static.inaturalist.org and\nhttps://inaturalist-open-data.s3.amazonaws.com have multiple size\nvariants and not all size variants are returned in responses. To access\nother sizes, the photo URL can be modified to replace only the size\nqualifier (each variant shares the exact same extension). The domain a photo\nis hosted under reflects the license under which the photo is being shared,\nand the domain may change over time if the license changes. Photos in\nthe `inaturalist-open-data` domain are shared under open licenses. These can\nbe accessed in bulk in the [iNaturalist AWS Open Dataset](\nhttps://registry.opendata.aws/inaturalist-open-data/). Photos in the\n`static.inaturalist.org` domain do not have open licenses.\n\nThe available photo sizes are:\n* original (max 2048px in either dimension)\n* large (max 1024px in either dimension)\n* medium (max 500px in either dimension)\n* small (max 240px in either dimension)\n* thumb (max 100px in either dimension)\n* square (75px square)\n\niNaturalist Website: https://www.inaturalist.org/\n\nOpen Source Software: https://github.com/inaturalist/\n\n## Terms of Use\n\nUse of this API is subject to the iNaturalist\n[Terms of Service](https://www.inaturalist.org/terms) and\n[Privacy Policy](https://www.inaturalist.org/privacy). We will block any\nuse of our API that violates our Terms or Privacy Policy without notice.\nThe API is intended to support application development, not data scraping.\nFor pre- generated data exports, see\nhttps://www.inaturalist.org/pages/developers.\n\nPlease note that we throttle API usage to a max of 100 requests per minute,\nthough we ask that you try to keep it to 60 requests per minute or lower,\nand to keep under 10,000 requests per day. If we notice usage that has\nserious impact on our performance we may institute blocks without\nnotification.\n\nTerms of Service: https://www.inaturalist.org/terms\n\nPrivacy Policy: https://www.inaturalist.org/privacy\n",
+      "type": "text/plain"
+    }
+  }
+}

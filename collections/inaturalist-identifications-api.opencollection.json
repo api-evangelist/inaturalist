@@ -1,0 +1,2133 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "iNaturalist Annotations Identifications API",
+    "version": "1.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Identifications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Identification Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/identifications/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Must have this ID"
+              }
+            ]
+          },
+          "docs": "Given an ID, or an array of IDs in comma-delimited format, returns\ncorresponding identifications. A maximum of 30 results will be returned\n"
+        },
+        {
+          "info": {
+            "name": "Identification Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/identifications/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Update an identification. Note that to \"withdraw\" an observation you\nsend a `PUT` request to this endpoint and set the `current`\nattribute to false. To \"restore\" it you do the same but set\n`current` to `true`. Only one identification by a given user can be\n`current` for a given observation, so if you \"restore\" one all the other\nidentifications by the authenticated user for the given observation will\nbe withdrawn.\n"
+        },
+        {
+          "info": {
+            "name": "Identification Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/identifications/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Delete an identification. See description of `PUT /identifications/{id}\nfor notes on withdrawing and restoring identifications.\n"
+        },
+        {
+          "info": {
+            "name": "Identification Search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/identifications",
+            "params": [
+              {
+                "name": "current_taxon",
+                "value": "",
+                "type": "query",
+                "description": "ID's taxon is the same it's observation's taxon"
+              },
+              {
+                "name": "own_observation",
+                "value": "",
+                "type": "query",
+                "description": "ID was added by the observer"
+              },
+              {
+                "name": "is_change",
+                "value": "",
+                "type": "query",
+                "description": "ID was created as a results of a taxon change"
+              },
+              {
+                "name": "taxon_active",
+                "value": "",
+                "type": "query",
+                "description": "ID's taxon is currently an active taxon"
+              },
+              {
+                "name": "observation_taxon_active",
+                "value": "",
+                "type": "query",
+                "description": "Observation's taxon is currently an active taxon"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Identification ID"
+              },
+              {
+                "name": "rank",
+                "value": "",
+                "type": "query",
+                "description": "ID's taxon must have this rank"
+              },
+              {
+                "name": "observation_rank",
+                "value": "",
+                "type": "query",
+                "description": "Observation's taxon must have this rank"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "Identifier must have this user ID"
+              },
+              {
+                "name": "user_login",
+                "value": "",
+                "type": "query",
+                "description": "Identifier must have this login"
+              },
+              {
+                "name": "current",
+                "value": "",
+                "type": "query",
+                "description": "Most recent ID on a observation by a user"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Type of identification"
+              },
+              {
+                "name": "place_id",
+                "value": "",
+                "type": "query",
+                "description": "Observation must occur in this place"
+              },
+              {
+                "name": "quality_grade",
+                "value": "",
+                "type": "query",
+                "description": "Observation must have this quality grade"
+              },
+              {
+                "name": "taxon_change_id",
+                "value": "",
+                "type": "query",
+                "description": "Only return identifications that were created as part of the specified taxon change"
+              },
+              {
+                "name": "taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "ID taxa must match the given taxa or their descendants"
+              },
+              {
+                "name": "observation_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Observation taxa must match the given taxa or their descendants"
+              },
+              {
+                "name": "iconic_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "ID iconic taxon ID"
+              },
+              {
+                "name": "observation_iconic_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Observation iconic taxon ID"
+              },
+              {
+                "name": "lrank",
+                "value": "",
+                "type": "query",
+                "description": "ID taxon must have this rank or higher"
+              },
+              {
+                "name": "hrank",
+                "value": "",
+                "type": "query",
+                "description": "ID taxon must have this rank or lower"
+              },
+              {
+                "name": "observation_lrank",
+                "value": "",
+                "type": "query",
+                "description": "Observation taxon must have this rank or higher"
+              },
+              {
+                "name": "observation_hrank",
+                "value": "",
+                "type": "query",
+                "description": "Observation taxon must have this rank or lower"
+              },
+              {
+                "name": "without_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude IDs of these taxa and their descendants"
+              },
+              {
+                "name": "without_observation_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude IDs of observations of these taxa and their descendants"
+              },
+              {
+                "name": "d1",
+                "value": "",
+                "type": "query",
+                "description": "ID created on or after this time"
+              },
+              {
+                "name": "d2",
+                "value": "",
+                "type": "query",
+                "description": "ID created on or before this time"
+              },
+              {
+                "name": "observation_created_d1",
+                "value": "",
+                "type": "query",
+                "description": "Observation created on or after this date"
+              },
+              {
+                "name": "observation_created_d2",
+                "value": "",
+                "type": "query",
+                "description": "Observation created on or before this date"
+              },
+              {
+                "name": "observed_d1",
+                "value": "",
+                "type": "query",
+                "description": "Observation observed on or after this date"
+              },
+              {
+                "name": "observed_d2",
+                "value": "",
+                "type": "query",
+                "description": "Observation observed on or before this date"
+              },
+              {
+                "name": "id_above",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID above this value"
+              },
+              {
+                "name": "id_below",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID below this value"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination `page` number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return in a `page`. The maximum value is generally\n200 unless otherwise noted\n"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "Sort field"
+              },
+              {
+                "name": "only_id",
+                "value": "",
+                "type": "query",
+                "description": "Return only the record IDs"
+              }
+            ]
+          },
+          "docs": "Given zero to many of following parameters, returns identifications\nmatching the search criteria\n"
+        },
+        {
+          "info": {
+            "name": "Identification Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/identifications"
+          },
+          "docs": "Create an identification"
+        },
+        {
+          "info": {
+            "name": "Identification Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/identifications/categories",
+            "params": [
+              {
+                "name": "current_taxon",
+                "value": "",
+                "type": "query",
+                "description": "ID's taxon is the same it's observation's taxon"
+              },
+              {
+                "name": "own_observation",
+                "value": "",
+                "type": "query",
+                "description": "ID was added by the observer"
+              },
+              {
+                "name": "is_change",
+                "value": "",
+                "type": "query",
+                "description": "ID was created as a results of a taxon change"
+              },
+              {
+                "name": "taxon_active",
+                "value": "",
+                "type": "query",
+                "description": "ID's taxon is currently an active taxon"
+              },
+              {
+                "name": "observation_taxon_active",
+                "value": "",
+                "type": "query",
+                "description": "Observation's taxon is currently an active taxon"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Identification ID"
+              },
+              {
+                "name": "rank",
+                "value": "",
+                "type": "query",
+                "description": "ID's taxon must have this rank"
+              },
+              {
+                "name": "observation_rank",
+                "value": "",
+                "type": "query",
+                "description": "Observation's taxon must have this rank"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "Identifier must have this user ID"
+              },
+              {
+                "name": "user_login",
+                "value": "",
+                "type": "query",
+                "description": "Identifier must have this login"
+              },
+              {
+                "name": "current",
+                "value": "",
+                "type": "query",
+                "description": "Most recent ID on a observation by a user"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Type of identification"
+              },
+              {
+                "name": "place_id",
+                "value": "",
+                "type": "query",
+                "description": "Observation must occur in this place"
+              },
+              {
+                "name": "quality_grade",
+                "value": "",
+                "type": "query",
+                "description": "Observation must have this quality grade"
+              },
+              {
+                "name": "taxon_change_id",
+                "value": "",
+                "type": "query",
+                "description": "Only return identifications that were created as part of the specified taxon change"
+              },
+              {
+                "name": "taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "ID taxa must match the given taxa or their descendants"
+              },
+              {
+                "name": "observation_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Observation taxa must match the given taxa or their descendants"
+              },
+              {
+                "name": "iconic_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "ID iconic taxon ID"
+              },
+              {
+                "name": "observation_iconic_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Observation iconic taxon ID"
+              },
+              {
+                "name": "lrank",
+                "value": "",
+                "type": "query",
+                "description": "ID taxon must have this rank or higher"
+              },
+              {
+                "name": "hrank",
+                "value": "",
+                "type": "query",
+                "description": "ID taxon must have this rank or lower"
+              },
+              {
+                "name": "observation_lrank",
+                "value": "",
+                "type": "query",
+                "description": "Observation taxon must have this rank or higher"
+              },
+              {
+                "name": "observation_hrank",
+                "value": "",
+                "type": "query",
+                "description": "Observation taxon must have this rank or lower"
+              },
+              {
+                "name": "without_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude IDs of these taxa and their descendants"
+              },
+              {
+                "name": "without_observation_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude IDs of observations of these taxa and their descendants"
+              },
+              {
+                "name": "d1",
+                "value": "",
+                "type": "query",
+                "description": "ID created on or after this time"
+              },
+              {
+                "name": "d2",
+                "value": "",
+                "type": "query",
+                "description": "ID created on or before this time"
+              },
+              {
+                "name": "observation_created_d1",
+                "value": "",
+                "type": "query",
+                "description": "Observation created on or after this date"
+              },
+              {
+                "name": "observation_created_d2",
+                "value": "",
+                "type": "query",
+                "description": "Observation created on or before this date"
+              },
+              {
+                "name": "observed_d1",
+                "value": "",
+                "type": "query",
+                "description": "Observation observed on or after this date"
+              },
+              {
+                "name": "observed_d2",
+                "value": "",
+                "type": "query",
+                "description": "Observation observed on or before this date"
+              },
+              {
+                "name": "id_above",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID above this value"
+              },
+              {
+                "name": "id_below",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID below this value"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination `page` number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return in a `page`. The maximum value is generally\n200 unless otherwise noted\n"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "Sort field"
+              },
+              {
+                "name": "only_id",
+                "value": "",
+                "type": "query",
+                "description": "Return only the record IDs"
+              }
+            ]
+          },
+          "docs": "Given zero to many of following parameters, return counts of the\ncategories of identifications matching the search criteria\n"
+        },
+        {
+          "info": {
+            "name": "Identification Species Counts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/identifications/species_counts",
+            "params": [
+              {
+                "name": "current_taxon",
+                "value": "",
+                "type": "query",
+                "description": "ID's taxon is the same it's observation's taxon"
+              },
+              {
+                "name": "own_observation",
+                "value": "",
+                "type": "query",
+                "description": "ID was added by the observer"
+              },
+              {
+                "name": "is_change",
+                "value": "",
+                "type": "query",
+                "description": "ID was created as a results of a taxon change"
+              },
+              {
+                "name": "taxon_active",
+                "value": "",
+                "type": "query",
+                "description": "ID's taxon is currently an active taxon"
+              },
+              {
+                "name": "observation_taxon_active",
+                "value": "",
+                "type": "query",
+                "description": "Observation's taxon is currently an active taxon"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Identification ID"
+              },
+              {
+                "name": "rank",
+                "value": "",
+                "type": "query",
+                "description": "ID's taxon must have this rank"
+              },
+              {
+                "name": "observation_rank",
+                "value": "",
+                "type": "query",
+                "description": "Observation's taxon must have this rank"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "Identifier must have this user ID"
+              },
+              {
+                "name": "user_login",
+                "value": "",
+                "type": "query",
+                "description": "Identifier must have this login"
+              },
+              {
+                "name": "current",
+                "value": "",
+                "type": "query",
+                "description": "Most recent ID on a observation by a user"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Type of identification"
+              },
+              {
+                "name": "place_id",
+                "value": "",
+                "type": "query",
+                "description": "Observation must occur in this place"
+              },
+              {
+                "name": "quality_grade",
+                "value": "",
+                "type": "query",
+                "description": "Observation must have this quality grade"
+              },
+              {
+                "name": "taxon_change_id",
+                "value": "",
+                "type": "query",
+                "description": "Only return identifications that were created as part of the specified taxon change"
+              },
+              {
+                "name": "taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "ID taxa must match the given taxa or their descendants"
+              },
+              {
+                "name": "observation_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Observation taxa must match the given taxa or their descendants"
+              },
+              {
+                "name": "iconic_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "ID iconic taxon ID"
+              },
+              {
+                "name": "observation_iconic_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Observation iconic taxon ID"
+              },
+              {
+                "name": "lrank",
+                "value": "",
+                "type": "query",
+                "description": "ID taxon must have this rank or higher"
+              },
+              {
+                "name": "hrank",
+                "value": "",
+                "type": "query",
+                "description": "ID taxon must have this rank or lower"
+              },
+              {
+                "name": "observation_lrank",
+                "value": "",
+                "type": "query",
+                "description": "Observation taxon must have this rank or higher"
+              },
+              {
+                "name": "observation_hrank",
+                "value": "",
+                "type": "query",
+                "description": "Observation taxon must have this rank or lower"
+              },
+              {
+                "name": "without_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude IDs of these taxa and their descendants"
+              },
+              {
+                "name": "without_observation_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude IDs of observations of these taxa and their descendants"
+              },
+              {
+                "name": "d1",
+                "value": "",
+                "type": "query",
+                "description": "ID created on or after this time"
+              },
+              {
+                "name": "d2",
+                "value": "",
+                "type": "query",
+                "description": "ID created on or before this time"
+              },
+              {
+                "name": "observation_created_d1",
+                "value": "",
+                "type": "query",
+                "description": "Observation created on or after this date"
+              },
+              {
+                "name": "observation_created_d2",
+                "value": "",
+                "type": "query",
+                "description": "Observation created on or before this date"
+              },
+              {
+                "name": "observed_d1",
+                "value": "",
+                "type": "query",
+                "description": "Observation observed on or after this date"
+              },
+              {
+                "name": "observed_d2",
+                "value": "",
+                "type": "query",
+                "description": "Observation observed on or before this date"
+              },
+              {
+                "name": "id_above",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID above this value"
+              },
+              {
+                "name": "id_below",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID below this value"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination `page` number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return in a `page`. The maximum value is generally\n200 unless otherwise noted\n"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "Sort field"
+              },
+              {
+                "name": "only_id",
+                "value": "",
+                "type": "query",
+                "description": "Return only the record IDs"
+              },
+              {
+                "name": "taxon_of",
+                "value": "",
+                "type": "query",
+                "description": "Source of the taxon for counting"
+              }
+            ]
+          },
+          "docs": "Given zero to many of following parameters, returns `leaf taxa`\nassociated with identifications matching the search criteria and the\ncount of identifications they are associated with, ordered by count\ndescending. `Leaf taxa` are the leaves of the taxonomic tree containing\nonly the taxa associated with observations matching the search criteria.\n"
+        },
+        {
+          "info": {
+            "name": "Identification Identifiers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/identifications/identifiers",
+            "params": [
+              {
+                "name": "current_taxon",
+                "value": "",
+                "type": "query",
+                "description": "ID's taxon is the same it's observation's taxon"
+              },
+              {
+                "name": "own_observation",
+                "value": "",
+                "type": "query",
+                "description": "ID was added by the observer"
+              },
+              {
+                "name": "is_change",
+                "value": "",
+                "type": "query",
+                "description": "ID was created as a results of a taxon change"
+              },
+              {
+                "name": "taxon_active",
+                "value": "",
+                "type": "query",
+                "description": "ID's taxon is currently an active taxon"
+              },
+              {
+                "name": "observation_taxon_active",
+                "value": "",
+                "type": "query",
+                "description": "Observation's taxon is currently an active taxon"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Identification ID"
+              },
+              {
+                "name": "rank",
+                "value": "",
+                "type": "query",
+                "description": "ID's taxon must have this rank"
+              },
+              {
+                "name": "observation_rank",
+                "value": "",
+                "type": "query",
+                "description": "Observation's taxon must have this rank"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "Identifier must have this user ID"
+              },
+              {
+                "name": "user_login",
+                "value": "",
+                "type": "query",
+                "description": "Identifier must have this login"
+              },
+              {
+                "name": "current",
+                "value": "",
+                "type": "query",
+                "description": "Most recent ID on a observation by a user"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Type of identification"
+              },
+              {
+                "name": "place_id",
+                "value": "",
+                "type": "query",
+                "description": "Observation must occur in this place"
+              },
+              {
+                "name": "quality_grade",
+                "value": "",
+                "type": "query",
+                "description": "Observation must have this quality grade"
+              },
+              {
+                "name": "taxon_change_id",
+                "value": "",
+                "type": "query",
+                "description": "Only return identifications that were created as part of the specified taxon change"
+              },
+              {
+                "name": "taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "ID taxa must match the given taxa or their descendants"
+              },
+              {
+                "name": "observation_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Observation taxa must match the given taxa or their descendants"
+              },
+              {
+                "name": "iconic_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "ID iconic taxon ID"
+              },
+              {
+                "name": "observation_iconic_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Observation iconic taxon ID"
+              },
+              {
+                "name": "lrank",
+                "value": "",
+                "type": "query",
+                "description": "ID taxon must have this rank or higher"
+              },
+              {
+                "name": "hrank",
+                "value": "",
+                "type": "query",
+                "description": "ID taxon must have this rank or lower"
+              },
+              {
+                "name": "observation_lrank",
+                "value": "",
+                "type": "query",
+                "description": "Observation taxon must have this rank or higher"
+              },
+              {
+                "name": "observation_hrank",
+                "value": "",
+                "type": "query",
+                "description": "Observation taxon must have this rank or lower"
+              },
+              {
+                "name": "without_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude IDs of these taxa and their descendants"
+              },
+              {
+                "name": "without_observation_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude IDs of observations of these taxa and their descendants"
+              },
+              {
+                "name": "d1",
+                "value": "",
+                "type": "query",
+                "description": "ID created on or after this time"
+              },
+              {
+                "name": "d2",
+                "value": "",
+                "type": "query",
+                "description": "ID created on or before this time"
+              },
+              {
+                "name": "observation_created_d1",
+                "value": "",
+                "type": "query",
+                "description": "Observation created on or after this date"
+              },
+              {
+                "name": "observation_created_d2",
+                "value": "",
+                "type": "query",
+                "description": "Observation created on or before this date"
+              },
+              {
+                "name": "observed_d1",
+                "value": "",
+                "type": "query",
+                "description": "Observation observed on or after this date"
+              },
+              {
+                "name": "observed_d2",
+                "value": "",
+                "type": "query",
+                "description": "Observation observed on or before this date"
+              },
+              {
+                "name": "id_above",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID above this value"
+              },
+              {
+                "name": "id_below",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID below this value"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination `page` number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return in a `page`. The maximum value is generally\n200 unless otherwise noted\n"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "Sort field"
+              },
+              {
+                "name": "only_id",
+                "value": "",
+                "type": "query",
+                "description": "Return only the record IDs"
+              }
+            ]
+          },
+          "docs": "Given zero to many of following parameters, returns creators of\nidentifications matching the search criteria and the count of\nmatching identifications, ordered by count descending. A\nmaximum of 500 results will be returned\n"
+        },
+        {
+          "info": {
+            "name": "Identification Observers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/identifications/observers",
+            "params": [
+              {
+                "name": "current_taxon",
+                "value": "",
+                "type": "query",
+                "description": "ID's taxon is the same it's observation's taxon"
+              },
+              {
+                "name": "own_observation",
+                "value": "",
+                "type": "query",
+                "description": "ID was added by the observer"
+              },
+              {
+                "name": "is_change",
+                "value": "",
+                "type": "query",
+                "description": "ID was created as a results of a taxon change"
+              },
+              {
+                "name": "taxon_active",
+                "value": "",
+                "type": "query",
+                "description": "ID's taxon is currently an active taxon"
+              },
+              {
+                "name": "observation_taxon_active",
+                "value": "",
+                "type": "query",
+                "description": "Observation's taxon is currently an active taxon"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Identification ID"
+              },
+              {
+                "name": "rank",
+                "value": "",
+                "type": "query",
+                "description": "ID's taxon must have this rank"
+              },
+              {
+                "name": "observation_rank",
+                "value": "",
+                "type": "query",
+                "description": "Observation's taxon must have this rank"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "Identifier must have this user ID"
+              },
+              {
+                "name": "user_login",
+                "value": "",
+                "type": "query",
+                "description": "Identifier must have this login"
+              },
+              {
+                "name": "current",
+                "value": "",
+                "type": "query",
+                "description": "Most recent ID on a observation by a user"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Type of identification"
+              },
+              {
+                "name": "place_id",
+                "value": "",
+                "type": "query",
+                "description": "Observation must occur in this place"
+              },
+              {
+                "name": "quality_grade",
+                "value": "",
+                "type": "query",
+                "description": "Observation must have this quality grade"
+              },
+              {
+                "name": "taxon_change_id",
+                "value": "",
+                "type": "query",
+                "description": "Only return identifications that were created as part of the specified taxon change"
+              },
+              {
+                "name": "taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "ID taxa must match the given taxa or their descendants"
+              },
+              {
+                "name": "observation_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Observation taxa must match the given taxa or their descendants"
+              },
+              {
+                "name": "iconic_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "ID iconic taxon ID"
+              },
+              {
+                "name": "observation_iconic_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Observation iconic taxon ID"
+              },
+              {
+                "name": "lrank",
+                "value": "",
+                "type": "query",
+                "description": "ID taxon must have this rank or higher"
+              },
+              {
+                "name": "hrank",
+                "value": "",
+                "type": "query",
+                "description": "ID taxon must have this rank or lower"
+              },
+              {
+                "name": "observation_lrank",
+                "value": "",
+                "type": "query",
+                "description": "Observation taxon must have this rank or higher"
+              },
+              {
+                "name": "observation_hrank",
+                "value": "",
+                "type": "query",
+                "description": "Observation taxon must have this rank or lower"
+              },
+              {
+                "name": "without_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude IDs of these taxa and their descendants"
+              },
+              {
+                "name": "without_observation_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude IDs of observations of these taxa and their descendants"
+              },
+              {
+                "name": "d1",
+                "value": "",
+                "type": "query",
+                "description": "ID created on or after this time"
+              },
+              {
+                "name": "d2",
+                "value": "",
+                "type": "query",
+                "description": "ID created on or before this time"
+              },
+              {
+                "name": "observation_created_d1",
+                "value": "",
+                "type": "query",
+                "description": "Observation created on or after this date"
+              },
+              {
+                "name": "observation_created_d2",
+                "value": "",
+                "type": "query",
+                "description": "Observation created on or before this date"
+              },
+              {
+                "name": "observed_d1",
+                "value": "",
+                "type": "query",
+                "description": "Observation observed on or after this date"
+              },
+              {
+                "name": "observed_d2",
+                "value": "",
+                "type": "query",
+                "description": "Observation observed on or before this date"
+              },
+              {
+                "name": "id_above",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID above this value"
+              },
+              {
+                "name": "id_below",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID below this value"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination `page` number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return in a `page`. The maximum value is generally\n200 unless otherwise noted\n"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "Sort field"
+              },
+              {
+                "name": "only_id",
+                "value": "",
+                "type": "query",
+                "description": "Return only the record IDs"
+              }
+            ]
+          },
+          "docs": "Given zero to many of following parameters, returns creators of\nobservations of identifications matching the search criteria and\nthe count of matching observations, ordered by count descending\n"
+        },
+        {
+          "info": {
+            "name": "Identification Recent Taxa",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/identifications/recent_taxa",
+            "params": [
+              {
+                "name": "current_taxon",
+                "value": "",
+                "type": "query",
+                "description": "ID's taxon is the same it's observation's taxon"
+              },
+              {
+                "name": "own_observation",
+                "value": "",
+                "type": "query",
+                "description": "ID was added by the observer"
+              },
+              {
+                "name": "is_change",
+                "value": "",
+                "type": "query",
+                "description": "ID was created as a results of a taxon change"
+              },
+              {
+                "name": "taxon_active",
+                "value": "",
+                "type": "query",
+                "description": "ID's taxon is currently an active taxon"
+              },
+              {
+                "name": "observation_taxon_active",
+                "value": "",
+                "type": "query",
+                "description": "Observation's taxon is currently an active taxon"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Identification ID"
+              },
+              {
+                "name": "rank",
+                "value": "",
+                "type": "query",
+                "description": "ID's taxon must have this rank"
+              },
+              {
+                "name": "observation_rank",
+                "value": "",
+                "type": "query",
+                "description": "Observation's taxon must have this rank"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "Identifier must have this user ID"
+              },
+              {
+                "name": "user_login",
+                "value": "",
+                "type": "query",
+                "description": "Identifier must have this login"
+              },
+              {
+                "name": "current",
+                "value": "",
+                "type": "query",
+                "description": "Most recent ID on a observation by a user"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Type of identification"
+              },
+              {
+                "name": "place_id",
+                "value": "",
+                "type": "query",
+                "description": "Observation must occur in this place"
+              },
+              {
+                "name": "quality_grade",
+                "value": "",
+                "type": "query",
+                "description": "Observation must have this quality grade"
+              },
+              {
+                "name": "taxon_change_id",
+                "value": "",
+                "type": "query",
+                "description": "Only return identifications that were created as part of the specified taxon change"
+              },
+              {
+                "name": "taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "ID taxa must match the given taxa or their descendants"
+              },
+              {
+                "name": "observation_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Observation taxa must match the given taxa or their descendants"
+              },
+              {
+                "name": "iconic_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "ID iconic taxon ID"
+              },
+              {
+                "name": "observation_iconic_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Observation iconic taxon ID"
+              },
+              {
+                "name": "lrank",
+                "value": "",
+                "type": "query",
+                "description": "ID taxon must have this rank or higher"
+              },
+              {
+                "name": "hrank",
+                "value": "",
+                "type": "query",
+                "description": "ID taxon must have this rank or lower"
+              },
+              {
+                "name": "observation_lrank",
+                "value": "",
+                "type": "query",
+                "description": "Observation taxon must have this rank or higher"
+              },
+              {
+                "name": "observation_hrank",
+                "value": "",
+                "type": "query",
+                "description": "Observation taxon must have this rank or lower"
+              },
+              {
+                "name": "without_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude IDs of these taxa and their descendants"
+              },
+              {
+                "name": "without_observation_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude IDs of observations of these taxa and their descendants"
+              },
+              {
+                "name": "d1",
+                "value": "",
+                "type": "query",
+                "description": "ID created on or after this time"
+              },
+              {
+                "name": "d2",
+                "value": "",
+                "type": "query",
+                "description": "ID created on or before this time"
+              },
+              {
+                "name": "observation_created_d1",
+                "value": "",
+                "type": "query",
+                "description": "Observation created on or after this date"
+              },
+              {
+                "name": "observation_created_d2",
+                "value": "",
+                "type": "query",
+                "description": "Observation created on or before this date"
+              },
+              {
+                "name": "observed_d1",
+                "value": "",
+                "type": "query",
+                "description": "Observation observed on or after this date"
+              },
+              {
+                "name": "observed_d2",
+                "value": "",
+                "type": "query",
+                "description": "Observation observed on or before this date"
+              },
+              {
+                "name": "id_above",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID above this value"
+              },
+              {
+                "name": "id_below",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID below this value"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination `page` number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return in a `page`. The maximum value is generally\n200 unless otherwise noted\n"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "Sort field"
+              },
+              {
+                "name": "only_id",
+                "value": "",
+                "type": "query",
+                "description": "Return only the record IDs"
+              }
+            ]
+          },
+          "docs": "Returns an array of objects each containing an identification and a\ntaxon. Returns IDs representing the earliest occurrence of taxa\nassociated with identifications in the filtered set of results\n"
+        },
+        {
+          "info": {
+            "name": "Identification Similar Species",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/identifications/similar_species",
+            "params": [
+              {
+                "name": "acc",
+                "value": "",
+                "type": "query",
+                "description": "Whether or not positional accuracy / coordinate uncertainty has been specified"
+              },
+              {
+                "name": "captive",
+                "value": "",
+                "type": "query",
+                "description": "Captive or cultivated observations"
+              },
+              {
+                "name": "endemic",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are endemic to their location"
+              },
+              {
+                "name": "geo",
+                "value": "",
+                "type": "query",
+                "description": "Observations that are georeferenced"
+              },
+              {
+                "name": "id_please",
+                "value": "",
+                "type": "query",
+                "description": "Observations with the deprecated `ID, Please!` flag. Note that this will return observations, but that this attribute is no longer used."
+              },
+              {
+                "name": "identified",
+                "value": "",
+                "type": "query",
+                "description": "Observations that have community identifications"
+              },
+              {
+                "name": "introduced",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are introduced in their location\n"
+              },
+              {
+                "name": "mappable",
+                "value": "",
+                "type": "query",
+                "description": "Observations that show on map tiles"
+              },
+              {
+                "name": "native",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are native to their location"
+              },
+              {
+                "name": "out_of_range",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are outside their known ranges"
+              },
+              {
+                "name": "pcid",
+                "value": "",
+                "type": "query",
+                "description": "Observations identified by the curator of a project. If\nthe `project_id` parameter is also specified, this will only consider\nobservations identified by curators of the specified project(s)\n"
+              },
+              {
+                "name": "photos",
+                "value": "",
+                "type": "query",
+                "description": "Observations with photos"
+              },
+              {
+                "name": "popular",
+                "value": "",
+                "type": "query",
+                "description": "Observations that have been favorited by at least one user\n"
+              },
+              {
+                "name": "sounds",
+                "value": "",
+                "type": "query",
+                "description": "Observations with sounds"
+              },
+              {
+                "name": "taxon_is_active",
+                "value": "",
+                "type": "query",
+                "description": "Observations of active taxon concepts\n"
+              },
+              {
+                "name": "threatened",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are threatened in their location\n"
+              },
+              {
+                "name": "verifiable",
+                "value": "",
+                "type": "query",
+                "description": "Observations with a `quality_grade` of either `needs_id` or\n`research`. Equivalent to `quality_grade=needs_id,research`\n"
+              },
+              {
+                "name": "licensed",
+                "value": "",
+                "type": "query",
+                "description": "License attribute of an observation must not be null"
+              },
+              {
+                "name": "photo_licensed",
+                "value": "",
+                "type": "query",
+                "description": "License attribute of at least one photo of an observation must not be null"
+              },
+              {
+                "name": "expected_nearby",
+                "value": "",
+                "type": "query",
+                "description": "Observation taxon is expected nearby"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Must have this ID"
+              },
+              {
+                "name": "not_id",
+                "value": "",
+                "type": "query",
+                "description": "Must not have this ID"
+              },
+              {
+                "name": "license",
+                "value": "",
+                "type": "query",
+                "description": "Observation must have this license"
+              },
+              {
+                "name": "ofv_datatype",
+                "value": "",
+                "type": "query",
+                "description": "Must have an observation field value with this datatype"
+              },
+              {
+                "name": "photo_license",
+                "value": "",
+                "type": "query",
+                "description": "Must have at least one photo with this license"
+              },
+              {
+                "name": "place_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within the place with this ID"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be added to the project this ID or slug"
+              },
+              {
+                "name": "rank",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this rank"
+              },
+              {
+                "name": "site_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be affiliated with the iNaturalist network website with this ID\n"
+              },
+              {
+                "name": "sound_license",
+                "value": "",
+                "type": "query",
+                "description": "Must have at least one sound with this license"
+              },
+              {
+                "name": "without_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude observations of these taxa and their descendants"
+              },
+              {
+                "name": "taxon_name",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have a scientific or common name matching this string\n"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "User must have this ID or login"
+              },
+              {
+                "name": "user_login",
+                "value": "",
+                "type": "query",
+                "description": "User must have this login"
+              },
+              {
+                "name": "ident_user_id",
+                "value": "",
+                "type": "query",
+                "description": "Observations identified by a particular user"
+              },
+              {
+                "name": "hour",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this hour of the day"
+              },
+              {
+                "name": "day",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this day of the month"
+              },
+              {
+                "name": "month",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this month"
+              },
+              {
+                "name": "year",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this year"
+              },
+              {
+                "name": "created_day",
+                "value": "",
+                "type": "query",
+                "description": "Must be created within this day of the month"
+              },
+              {
+                "name": "created_month",
+                "value": "",
+                "type": "query",
+                "description": "Must be created within this month"
+              },
+              {
+                "name": "created_year",
+                "value": "",
+                "type": "query",
+                "description": "Must be created within this year"
+              },
+              {
+                "name": "term_id",
+                "value": "",
+                "type": "query",
+                "description": "Must have an annotation using this controlled term ID"
+              },
+              {
+                "name": "term_value_id",
+                "value": "",
+                "type": "query",
+                "description": "Must have an annotation using this controlled value ID. Must be combined\nwith the `term_id` parameter\n"
+              },
+              {
+                "name": "without_term_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude observations with annotations using this controlled value ID.\n"
+              },
+              {
+                "name": "without_term_value_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude observations with annotations using this controlled value ID.\nMust be combined with the `term_id` parameter\n"
+              },
+              {
+                "name": "term_id_or_unknown",
+                "value": "",
+                "type": "query",
+                "description": "Must be combined with the `term_value_id` or the `without_term_value_id` parameter.\nMust have an annotation using this controlled term ID and associated term value IDs\nor be missing this annotation.\n"
+              },
+              {
+                "name": "annotation_user_id",
+                "value": "",
+                "type": "query",
+                "description": "Must have an annotation created by this user\n"
+              },
+              {
+                "name": "acc_above",
+                "value": "",
+                "type": "query",
+                "description": "Must have a positional accuracy above this value (meters)"
+              },
+              {
+                "name": "acc_below",
+                "value": "",
+                "type": "query",
+                "description": "Must have a positional accuracy below this value (meters)"
+              },
+              {
+                "name": "acc_below_or_unknown",
+                "value": "",
+                "type": "query",
+                "description": "Positional accuracy must be below this value (in meters) or be unknown"
+              },
+              {
+                "name": "d1",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed on or after this date"
+              },
+              {
+                "name": "d2",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed on or before this date"
+              },
+              {
+                "name": "created_d1",
+                "value": "",
+                "type": "query",
+                "description": "Must be created at or after this time"
+              },
+              {
+                "name": "created_d2",
+                "value": "",
+                "type": "query",
+                "description": "Must be created at or before this time"
+              },
+              {
+                "name": "created_on",
+                "value": "",
+                "type": "query",
+                "description": "Must be created on this date"
+              },
+              {
+                "name": "observed_on",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed on this date"
+              },
+              {
+                "name": "unobserved_by_user_id",
+                "value": "",
+                "type": "query",
+                "description": "Must not be of a taxon previously observed by this user"
+              },
+              {
+                "name": "apply_project_rules_for",
+                "value": "",
+                "type": "query",
+                "description": "Must match the rules of the project with this ID or slug"
+              },
+              {
+                "name": "cs",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this conservation status code. If\nthe `place_id` parameter is also specified, this will only consider\nstatuses specific to that place\n"
+              },
+              {
+                "name": "csa",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have a conservation status from this authority. If\nthe `place_id` parameter is also specified, this will only consider\nstatuses specific to that place\n"
+              },
+              {
+                "name": "csi",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this IUCN conservation status. If\nthe `place_id` parameter is also specified, this will only consider\nstatuses specific to that place\n"
+              },
+              {
+                "name": "geoprivacy",
+                "value": "",
+                "type": "query",
+                "description": "Must have this geoprivacy setting"
+              },
+              {
+                "name": "taxon_geoprivacy",
+                "value": "",
+                "type": "query",
+                "description": "Filter observations by the most conservative geoprivacy applied by a\nconservation status associated with one of the taxa proposed in the\ncurrent identifications.\n"
+              },
+              {
+                "name": "obscuration",
+                "value": "",
+                "type": "query",
+                "description": "Must have `geoprivacy` or `taxon_geoprivacy` fields matching these values\n"
+              },
+              {
+                "name": "hrank",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this rank or lower"
+              },
+              {
+                "name": "lrank",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this rank or higher"
+              },
+              {
+                "name": "iconic_taxa",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must by within this iconic taxon"
+              },
+              {
+                "name": "id_above",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID above this value"
+              },
+              {
+                "name": "id_below",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID below this value"
+              },
+              {
+                "name": "identifications",
+                "value": "",
+                "type": "query",
+                "description": "Identifications must meet these criteria"
+              },
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Must be within a {`radius`} kilometer circle around this lat/lng\n(*lat, *lng, radius)\n"
+              },
+              {
+                "name": "lng",
+                "value": "",
+                "type": "query",
+                "description": "Must be within a {`radius`} kilometer circle around this lat/lng\n(*lat, *lng, radius)\n"
+              },
+              {
+                "name": "radius",
+                "value": "",
+                "type": "query",
+                "description": "Must be within a {`radius`} kilometer circle around this lat/lng\n(*lat, *lng, radius)\n"
+              },
+              {
+                "name": "nelat",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "nelng",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "swlat",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "swlng",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must be in the list with this ID"
+              },
+              {
+                "name": "not_in_project",
+                "value": "",
+                "type": "query",
+                "description": "Must not be in the project with this ID or slug"
+              },
+              {
+                "name": "not_matching_project_rules_for",
+                "value": "",
+                "type": "query",
+                "description": "Must not match the rules of the project with this ID or slug"
+              },
+              {
+                "name": "observation_accuracy_experiment_id",
+                "value": "",
+                "type": "query",
+                "description": "Must included in this observation accuracy experiment"
+              },
+              {
+                "name": "fails_dqa_accurate",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not accurately depicting an organism or scene"
+              },
+              {
+                "name": "fails_dqa_date",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not having an accurate date"
+              },
+              {
+                "name": "fails_dqa_evidence",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not evidence of an organism"
+              },
+              {
+                "name": "fails_dqa_location",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not having an accurate location"
+              },
+              {
+                "name": "fails_dqa_needs_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as the community ID cannot be improved"
+              },
+              {
+                "name": "fails_dqa_recent",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not recent evidence of an organism"
+              },
+              {
+                "name": "fails_dqa_subject",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not having evidence related to a single subject"
+              },
+              {
+                "name": "fails_dqa_wild",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not wild"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search observation properties. Can be combined with `search_on`"
+              },
+              {
+                "name": "search_on",
+                "value": "",
+                "type": "query",
+                "description": "Properties to search on, when combined with `q`.\nSearches across all properties by default\n"
+              },
+              {
+                "name": "quality_grade",
+                "value": "",
+                "type": "query",
+                "description": "Must have this quality grade"
+              },
+              {
+                "name": "updated_since",
+                "value": "",
+                "type": "query",
+                "description": "Must be updated since this time"
+              },
+              {
+                "name": "viewer_id",
+                "value": "",
+                "type": "query",
+                "description": "See `reviewed`"
+              },
+              {
+                "name": "reviewed",
+                "value": "",
+                "type": "query",
+                "description": "Observations have been reviewed by the user with ID equal to\nthe value of the `viewer_id` parameter\n"
+              },
+              {
+                "name": "taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Only show observations of these taxa and their descendants"
+              }
+            ]
+          },
+          "docs": "Returns species attached to IDs of observations of this taxon, or\nattached to observations identified as this species, ordered by combined\nfrequency descending. This will only return species in the same iconic\ntaxon, and will never return descendants of the chosen taxon\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

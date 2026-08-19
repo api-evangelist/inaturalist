@@ -1,0 +1,4126 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "iNaturalist Annotations Observations API",
+    "version": "1.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Observations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Observation Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/observations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Must have this ID"
+              }
+            ]
+          },
+          "docs": "Given an ID, or an array of IDs in comma-delimited format, returns\ncorresponding observations. A maximum of 200 results will be returned\n"
+        },
+        {
+          "info": {
+            "name": "Observation Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/observations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Update an observation\n"
+        },
+        {
+          "info": {
+            "name": "Observation Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/observations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Delete an observation\n"
+        },
+        {
+          "info": {
+            "name": "Observations Fave",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/observations/:id/fave",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Fave an observation\n"
+        },
+        {
+          "info": {
+            "name": "Observations Unfave",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/observations/:id/unfave",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Unfave an observation\n"
+        },
+        {
+          "info": {
+            "name": "Observations Review",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/observations/:id/review",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Review an observation\n"
+        },
+        {
+          "info": {
+            "name": "Observations Unreview",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/observations/:id/review",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Unreview an observation\n"
+        },
+        {
+          "info": {
+            "name": "Observation Subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/observations/:id/subscriptions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Fetches any subscriptions the current user has to this observation\nor the observer\n"
+        },
+        {
+          "info": {
+            "name": "Quality Metric Set",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/observations/:id/quality/:metric",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              },
+              {
+                "name": "metric",
+                "value": "",
+                "type": "path",
+                "description": "Data quality category"
+              }
+            ]
+          },
+          "docs": "Set the value of a quality metric\n"
+        },
+        {
+          "info": {
+            "name": "Quality Metric Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/observations/:id/quality/:metric",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              },
+              {
+                "name": "metric",
+                "value": "",
+                "type": "path",
+                "description": "Data quality category"
+              }
+            ]
+          },
+          "docs": "Delete a quality metric\n"
+        },
+        {
+          "info": {
+            "name": "Observation Taxon Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/observations/:id/taxon_summary",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Fetches information about this observation's taxon, within the context\nof this observation's location\n"
+        },
+        {
+          "info": {
+            "name": "Observation Subscribe",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/observation/:id/subscribe",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Toggles current user's subscription to this observation. If the logged-in\nuser is not subscribed, POSTing here will subscribe them. If they are already\nsubscribed, this will remove the subscription\n"
+        },
+        {
+          "info": {
+            "name": "Observation Vote",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/votes/vote/observation/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Vote on an observation. A vote with an empty `scope` is recorded as a\n`fave` of the observation. A vote with scope `needs_id` is recorded as a\nvote on the Quality Grade criterion \"can the Community ID still be\nconfirmed or improved?\", and can be an up or down vote\n"
+        },
+        {
+          "info": {
+            "name": "Observation Unvote",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/votes/unvote/observation/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Remove a vote from an observation"
+        },
+        {
+          "info": {
+            "name": "Observation Search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/observations",
+            "params": [
+              {
+                "name": "acc",
+                "value": "",
+                "type": "query",
+                "description": "Whether or not positional accuracy / coordinate uncertainty has been specified"
+              },
+              {
+                "name": "captive",
+                "value": "",
+                "type": "query",
+                "description": "Captive or cultivated observations"
+              },
+              {
+                "name": "endemic",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are endemic to their location"
+              },
+              {
+                "name": "geo",
+                "value": "",
+                "type": "query",
+                "description": "Observations that are georeferenced"
+              },
+              {
+                "name": "id_please",
+                "value": "",
+                "type": "query",
+                "description": "Observations with the deprecated `ID, Please!` flag. Note that this will return observations, but that this attribute is no longer used."
+              },
+              {
+                "name": "identified",
+                "value": "",
+                "type": "query",
+                "description": "Observations that have community identifications"
+              },
+              {
+                "name": "introduced",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are introduced in their location\n"
+              },
+              {
+                "name": "mappable",
+                "value": "",
+                "type": "query",
+                "description": "Observations that show on map tiles"
+              },
+              {
+                "name": "native",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are native to their location"
+              },
+              {
+                "name": "out_of_range",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are outside their known ranges"
+              },
+              {
+                "name": "pcid",
+                "value": "",
+                "type": "query",
+                "description": "Observations identified by the curator of a project. If\nthe `project_id` parameter is also specified, this will only consider\nobservations identified by curators of the specified project(s)\n"
+              },
+              {
+                "name": "photos",
+                "value": "",
+                "type": "query",
+                "description": "Observations with photos"
+              },
+              {
+                "name": "popular",
+                "value": "",
+                "type": "query",
+                "description": "Observations that have been favorited by at least one user\n"
+              },
+              {
+                "name": "sounds",
+                "value": "",
+                "type": "query",
+                "description": "Observations with sounds"
+              },
+              {
+                "name": "taxon_is_active",
+                "value": "",
+                "type": "query",
+                "description": "Observations of active taxon concepts\n"
+              },
+              {
+                "name": "threatened",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are threatened in their location\n"
+              },
+              {
+                "name": "verifiable",
+                "value": "",
+                "type": "query",
+                "description": "Observations with a `quality_grade` of either `needs_id` or\n`research`. Equivalent to `quality_grade=needs_id,research`\n"
+              },
+              {
+                "name": "licensed",
+                "value": "",
+                "type": "query",
+                "description": "License attribute of an observation must not be null"
+              },
+              {
+                "name": "photo_licensed",
+                "value": "",
+                "type": "query",
+                "description": "License attribute of at least one photo of an observation must not be null"
+              },
+              {
+                "name": "expected_nearby",
+                "value": "",
+                "type": "query",
+                "description": "Observation taxon is expected nearby"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Must have this ID"
+              },
+              {
+                "name": "not_id",
+                "value": "",
+                "type": "query",
+                "description": "Must not have this ID"
+              },
+              {
+                "name": "license",
+                "value": "",
+                "type": "query",
+                "description": "Observation must have this license"
+              },
+              {
+                "name": "ofv_datatype",
+                "value": "",
+                "type": "query",
+                "description": "Must have an observation field value with this datatype"
+              },
+              {
+                "name": "photo_license",
+                "value": "",
+                "type": "query",
+                "description": "Must have at least one photo with this license"
+              },
+              {
+                "name": "place_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within the place with this ID"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be added to the project this ID or slug"
+              },
+              {
+                "name": "rank",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this rank"
+              },
+              {
+                "name": "site_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be affiliated with the iNaturalist network website with this ID\n"
+              },
+              {
+                "name": "sound_license",
+                "value": "",
+                "type": "query",
+                "description": "Must have at least one sound with this license"
+              },
+              {
+                "name": "taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Only show observations of these taxa and their descendants"
+              },
+              {
+                "name": "without_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude observations of these taxa and their descendants"
+              },
+              {
+                "name": "taxon_name",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have a scientific or common name matching this string\n"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "User must have this ID or login"
+              },
+              {
+                "name": "user_login",
+                "value": "",
+                "type": "query",
+                "description": "User must have this login"
+              },
+              {
+                "name": "ident_user_id",
+                "value": "",
+                "type": "query",
+                "description": "Observations identified by a particular user"
+              },
+              {
+                "name": "hour",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this hour of the day"
+              },
+              {
+                "name": "day",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this day of the month"
+              },
+              {
+                "name": "month",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this month"
+              },
+              {
+                "name": "year",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this year"
+              },
+              {
+                "name": "created_day",
+                "value": "",
+                "type": "query",
+                "description": "Must be created within this day of the month"
+              },
+              {
+                "name": "created_month",
+                "value": "",
+                "type": "query",
+                "description": "Must be created within this month"
+              },
+              {
+                "name": "created_year",
+                "value": "",
+                "type": "query",
+                "description": "Must be created within this year"
+              },
+              {
+                "name": "term_id",
+                "value": "",
+                "type": "query",
+                "description": "Must have an annotation using this controlled term ID"
+              },
+              {
+                "name": "term_value_id",
+                "value": "",
+                "type": "query",
+                "description": "Must have an annotation using this controlled value ID. Must be combined\nwith the `term_id` parameter\n"
+              },
+              {
+                "name": "without_term_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude observations with annotations using this controlled value ID.\n"
+              },
+              {
+                "name": "without_term_value_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude observations with annotations using this controlled value ID.\nMust be combined with the `term_id` parameter\n"
+              },
+              {
+                "name": "term_id_or_unknown",
+                "value": "",
+                "type": "query",
+                "description": "Must be combined with the `term_value_id` or the `without_term_value_id` parameter.\nMust have an annotation using this controlled term ID and associated term value IDs\nor be missing this annotation.\n"
+              },
+              {
+                "name": "annotation_user_id",
+                "value": "",
+                "type": "query",
+                "description": "Must have an annotation created by this user\n"
+              },
+              {
+                "name": "acc_above",
+                "value": "",
+                "type": "query",
+                "description": "Must have a positional accuracy above this value (meters)"
+              },
+              {
+                "name": "acc_below",
+                "value": "",
+                "type": "query",
+                "description": "Must have a positional accuracy below this value (meters)"
+              },
+              {
+                "name": "acc_below_or_unknown",
+                "value": "",
+                "type": "query",
+                "description": "Positional accuracy must be below this value (in meters) or be unknown"
+              },
+              {
+                "name": "d1",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed on or after this date"
+              },
+              {
+                "name": "d2",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed on or before this date"
+              },
+              {
+                "name": "created_d1",
+                "value": "",
+                "type": "query",
+                "description": "Must be created at or after this time"
+              },
+              {
+                "name": "created_d2",
+                "value": "",
+                "type": "query",
+                "description": "Must be created at or before this time"
+              },
+              {
+                "name": "created_on",
+                "value": "",
+                "type": "query",
+                "description": "Must be created on this date"
+              },
+              {
+                "name": "observed_on",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed on this date"
+              },
+              {
+                "name": "unobserved_by_user_id",
+                "value": "",
+                "type": "query",
+                "description": "Must not be of a taxon previously observed by this user"
+              },
+              {
+                "name": "apply_project_rules_for",
+                "value": "",
+                "type": "query",
+                "description": "Must match the rules of the project with this ID or slug"
+              },
+              {
+                "name": "cs",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this conservation status code. If\nthe `place_id` parameter is also specified, this will only consider\nstatuses specific to that place\n"
+              },
+              {
+                "name": "csa",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have a conservation status from this authority. If\nthe `place_id` parameter is also specified, this will only consider\nstatuses specific to that place\n"
+              },
+              {
+                "name": "csi",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this IUCN conservation status. If\nthe `place_id` parameter is also specified, this will only consider\nstatuses specific to that place\n"
+              },
+              {
+                "name": "geoprivacy",
+                "value": "",
+                "type": "query",
+                "description": "Must have this geoprivacy setting"
+              },
+              {
+                "name": "taxon_geoprivacy",
+                "value": "",
+                "type": "query",
+                "description": "Filter observations by the most conservative geoprivacy applied by a\nconservation status associated with one of the taxa proposed in the\ncurrent identifications.\n"
+              },
+              {
+                "name": "obscuration",
+                "value": "",
+                "type": "query",
+                "description": "Must have `geoprivacy` or `taxon_geoprivacy` fields matching these values\n"
+              },
+              {
+                "name": "hrank",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this rank or lower"
+              },
+              {
+                "name": "lrank",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this rank or higher"
+              },
+              {
+                "name": "iconic_taxa",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must by within this iconic taxon"
+              },
+              {
+                "name": "id_above",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID above this value"
+              },
+              {
+                "name": "id_below",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID below this value"
+              },
+              {
+                "name": "identifications",
+                "value": "",
+                "type": "query",
+                "description": "Identifications must meet these criteria"
+              },
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Must be within a {`radius`} kilometer circle around this lat/lng\n(*lat, *lng, radius)\n"
+              },
+              {
+                "name": "lng",
+                "value": "",
+                "type": "query",
+                "description": "Must be within a {`radius`} kilometer circle around this lat/lng\n(*lat, *lng, radius)\n"
+              },
+              {
+                "name": "radius",
+                "value": "",
+                "type": "query",
+                "description": "Must be within a {`radius`} kilometer circle around this lat/lng\n(*lat, *lng, radius)\n"
+              },
+              {
+                "name": "nelat",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "nelng",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "swlat",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "swlng",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must be in the list with this ID"
+              },
+              {
+                "name": "not_in_project",
+                "value": "",
+                "type": "query",
+                "description": "Must not be in the project with this ID or slug"
+              },
+              {
+                "name": "not_matching_project_rules_for",
+                "value": "",
+                "type": "query",
+                "description": "Must not match the rules of the project with this ID or slug"
+              },
+              {
+                "name": "observation_accuracy_experiment_id",
+                "value": "",
+                "type": "query",
+                "description": "Must included in this observation accuracy experiment"
+              },
+              {
+                "name": "fails_dqa_accurate",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not accurately depicting an organism or scene"
+              },
+              {
+                "name": "fails_dqa_date",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not having an accurate date"
+              },
+              {
+                "name": "fails_dqa_evidence",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not evidence of an organism"
+              },
+              {
+                "name": "fails_dqa_location",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not having an accurate location"
+              },
+              {
+                "name": "fails_dqa_needs_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as the community ID cannot be improved"
+              },
+              {
+                "name": "fails_dqa_recent",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not recent evidence of an organism"
+              },
+              {
+                "name": "fails_dqa_subject",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not having evidence related to a single subject"
+              },
+              {
+                "name": "fails_dqa_wild",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not wild"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search observation properties. Can be combined with `search_on`"
+              },
+              {
+                "name": "search_on",
+                "value": "",
+                "type": "query",
+                "description": "Properties to search on, when combined with `q`.\nSearches across all properties by default\n"
+              },
+              {
+                "name": "quality_grade",
+                "value": "",
+                "type": "query",
+                "description": "Must have this quality grade"
+              },
+              {
+                "name": "updated_since",
+                "value": "",
+                "type": "query",
+                "description": "Must be updated since this time"
+              },
+              {
+                "name": "viewer_id",
+                "value": "",
+                "type": "query",
+                "description": "See `reviewed`"
+              },
+              {
+                "name": "reviewed",
+                "value": "",
+                "type": "query",
+                "description": "Observations have been reviewed by the user with ID equal to\nthe value of the `viewer_id` parameter\n"
+              },
+              {
+                "name": "locale",
+                "value": "",
+                "type": "query",
+                "description": "Locale preference for taxon common names\n"
+              },
+              {
+                "name": "preferred_place_id",
+                "value": "",
+                "type": "query",
+                "description": "Place preference for regional taxon common names\n"
+              },
+              {
+                "name": "ttl",
+                "value": "",
+                "type": "query",
+                "description": "Set the `Cache-Control` HTTP header with this value as `max-age`, in\nseconds. This means subsequent identical requests will be cached on\niNaturalist servers, and commonly within web browsers\n"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination `page` number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return in a `page`. The maximum value is generally\n200 unless otherwise noted\n"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "Sort field"
+              },
+              {
+                "name": "only_id",
+                "value": "",
+                "type": "query",
+                "description": "Return only the record IDs"
+              }
+            ]
+          },
+          "docs": "Given zero to many of following parameters, returns observations\nmatching the search criteria. The large size of the observations index\nprevents us from supporting the `page` parameter when retrieving records\nfrom large result sets. If you need to retrieve large numbers of\nrecords, use the `per_page` and `id_above` or `id_below` parameters\ninstead.\n"
+        },
+        {
+          "info": {
+            "name": "Observation Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/observations"
+          },
+          "docs": "Create an observation\n"
+        },
+        {
+          "info": {
+            "name": "Observations Deleted",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/observations/deleted",
+            "params": [
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Deleted at or after this time"
+              }
+            ]
+          },
+          "docs": "Given a starting date, return an array of IDs of the authenticated\nuser's observations that have been deleted since that date. Requires\nauthentication\n"
+        },
+        {
+          "info": {
+            "name": "Observation Histogram",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/observations/histogram",
+            "params": [
+              {
+                "name": "acc",
+                "value": "",
+                "type": "query",
+                "description": "Whether or not positional accuracy / coordinate uncertainty has been specified"
+              },
+              {
+                "name": "captive",
+                "value": "",
+                "type": "query",
+                "description": "Captive or cultivated observations"
+              },
+              {
+                "name": "endemic",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are endemic to their location"
+              },
+              {
+                "name": "geo",
+                "value": "",
+                "type": "query",
+                "description": "Observations that are georeferenced"
+              },
+              {
+                "name": "id_please",
+                "value": "",
+                "type": "query",
+                "description": "Observations with the deprecated `ID, Please!` flag. Note that this will return observations, but that this attribute is no longer used."
+              },
+              {
+                "name": "identified",
+                "value": "",
+                "type": "query",
+                "description": "Observations that have community identifications"
+              },
+              {
+                "name": "introduced",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are introduced in their location\n"
+              },
+              {
+                "name": "mappable",
+                "value": "",
+                "type": "query",
+                "description": "Observations that show on map tiles"
+              },
+              {
+                "name": "native",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are native to their location"
+              },
+              {
+                "name": "out_of_range",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are outside their known ranges"
+              },
+              {
+                "name": "pcid",
+                "value": "",
+                "type": "query",
+                "description": "Observations identified by the curator of a project. If\nthe `project_id` parameter is also specified, this will only consider\nobservations identified by curators of the specified project(s)\n"
+              },
+              {
+                "name": "photos",
+                "value": "",
+                "type": "query",
+                "description": "Observations with photos"
+              },
+              {
+                "name": "popular",
+                "value": "",
+                "type": "query",
+                "description": "Observations that have been favorited by at least one user\n"
+              },
+              {
+                "name": "sounds",
+                "value": "",
+                "type": "query",
+                "description": "Observations with sounds"
+              },
+              {
+                "name": "taxon_is_active",
+                "value": "",
+                "type": "query",
+                "description": "Observations of active taxon concepts\n"
+              },
+              {
+                "name": "threatened",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are threatened in their location\n"
+              },
+              {
+                "name": "verifiable",
+                "value": "",
+                "type": "query",
+                "description": "Observations with a `quality_grade` of either `needs_id` or\n`research`. Equivalent to `quality_grade=needs_id,research`\n"
+              },
+              {
+                "name": "licensed",
+                "value": "",
+                "type": "query",
+                "description": "License attribute of an observation must not be null"
+              },
+              {
+                "name": "photo_licensed",
+                "value": "",
+                "type": "query",
+                "description": "License attribute of at least one photo of an observation must not be null"
+              },
+              {
+                "name": "expected_nearby",
+                "value": "",
+                "type": "query",
+                "description": "Observation taxon is expected nearby"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Must have this ID"
+              },
+              {
+                "name": "not_id",
+                "value": "",
+                "type": "query",
+                "description": "Must not have this ID"
+              },
+              {
+                "name": "license",
+                "value": "",
+                "type": "query",
+                "description": "Observation must have this license"
+              },
+              {
+                "name": "ofv_datatype",
+                "value": "",
+                "type": "query",
+                "description": "Must have an observation field value with this datatype"
+              },
+              {
+                "name": "photo_license",
+                "value": "",
+                "type": "query",
+                "description": "Must have at least one photo with this license"
+              },
+              {
+                "name": "place_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within the place with this ID"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be added to the project this ID or slug"
+              },
+              {
+                "name": "rank",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this rank"
+              },
+              {
+                "name": "site_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be affiliated with the iNaturalist network website with this ID\n"
+              },
+              {
+                "name": "sound_license",
+                "value": "",
+                "type": "query",
+                "description": "Must have at least one sound with this license"
+              },
+              {
+                "name": "taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Only show observations of these taxa and their descendants"
+              },
+              {
+                "name": "without_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude observations of these taxa and their descendants"
+              },
+              {
+                "name": "taxon_name",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have a scientific or common name matching this string\n"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "User must have this ID or login"
+              },
+              {
+                "name": "user_login",
+                "value": "",
+                "type": "query",
+                "description": "User must have this login"
+              },
+              {
+                "name": "ident_user_id",
+                "value": "",
+                "type": "query",
+                "description": "Observations identified by a particular user"
+              },
+              {
+                "name": "hour",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this hour of the day"
+              },
+              {
+                "name": "day",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this day of the month"
+              },
+              {
+                "name": "month",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this month"
+              },
+              {
+                "name": "year",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this year"
+              },
+              {
+                "name": "created_day",
+                "value": "",
+                "type": "query",
+                "description": "Must be created within this day of the month"
+              },
+              {
+                "name": "created_month",
+                "value": "",
+                "type": "query",
+                "description": "Must be created within this month"
+              },
+              {
+                "name": "created_year",
+                "value": "",
+                "type": "query",
+                "description": "Must be created within this year"
+              },
+              {
+                "name": "term_id",
+                "value": "",
+                "type": "query",
+                "description": "Must have an annotation using this controlled term ID"
+              },
+              {
+                "name": "term_value_id",
+                "value": "",
+                "type": "query",
+                "description": "Must have an annotation using this controlled value ID. Must be combined\nwith the `term_id` parameter\n"
+              },
+              {
+                "name": "without_term_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude observations with annotations using this controlled value ID.\n"
+              },
+              {
+                "name": "without_term_value_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude observations with annotations using this controlled value ID.\nMust be combined with the `term_id` parameter\n"
+              },
+              {
+                "name": "term_id_or_unknown",
+                "value": "",
+                "type": "query",
+                "description": "Must be combined with the `term_value_id` or the `without_term_value_id` parameter.\nMust have an annotation using this controlled term ID and associated term value IDs\nor be missing this annotation.\n"
+              },
+              {
+                "name": "annotation_user_id",
+                "value": "",
+                "type": "query",
+                "description": "Must have an annotation created by this user\n"
+              },
+              {
+                "name": "acc_above",
+                "value": "",
+                "type": "query",
+                "description": "Must have a positional accuracy above this value (meters)"
+              },
+              {
+                "name": "acc_below",
+                "value": "",
+                "type": "query",
+                "description": "Must have a positional accuracy below this value (meters)"
+              },
+              {
+                "name": "acc_below_or_unknown",
+                "value": "",
+                "type": "query",
+                "description": "Positional accuracy must be below this value (in meters) or be unknown"
+              },
+              {
+                "name": "d1",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed on or after this date"
+              },
+              {
+                "name": "d2",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed on or before this date"
+              },
+              {
+                "name": "created_d1",
+                "value": "",
+                "type": "query",
+                "description": "Must be created at or after this time"
+              },
+              {
+                "name": "created_d2",
+                "value": "",
+                "type": "query",
+                "description": "Must be created at or before this time"
+              },
+              {
+                "name": "created_on",
+                "value": "",
+                "type": "query",
+                "description": "Must be created on this date"
+              },
+              {
+                "name": "observed_on",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed on this date"
+              },
+              {
+                "name": "unobserved_by_user_id",
+                "value": "",
+                "type": "query",
+                "description": "Must not be of a taxon previously observed by this user"
+              },
+              {
+                "name": "apply_project_rules_for",
+                "value": "",
+                "type": "query",
+                "description": "Must match the rules of the project with this ID or slug"
+              },
+              {
+                "name": "cs",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this conservation status code. If\nthe `place_id` parameter is also specified, this will only consider\nstatuses specific to that place\n"
+              },
+              {
+                "name": "csa",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have a conservation status from this authority. If\nthe `place_id` parameter is also specified, this will only consider\nstatuses specific to that place\n"
+              },
+              {
+                "name": "csi",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this IUCN conservation status. If\nthe `place_id` parameter is also specified, this will only consider\nstatuses specific to that place\n"
+              },
+              {
+                "name": "geoprivacy",
+                "value": "",
+                "type": "query",
+                "description": "Must have this geoprivacy setting"
+              },
+              {
+                "name": "taxon_geoprivacy",
+                "value": "",
+                "type": "query",
+                "description": "Filter observations by the most conservative geoprivacy applied by a\nconservation status associated with one of the taxa proposed in the\ncurrent identifications.\n"
+              },
+              {
+                "name": "obscuration",
+                "value": "",
+                "type": "query",
+                "description": "Must have `geoprivacy` or `taxon_geoprivacy` fields matching these values\n"
+              },
+              {
+                "name": "hrank",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this rank or lower"
+              },
+              {
+                "name": "lrank",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this rank or higher"
+              },
+              {
+                "name": "iconic_taxa",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must by within this iconic taxon"
+              },
+              {
+                "name": "id_above",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID above this value"
+              },
+              {
+                "name": "id_below",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID below this value"
+              },
+              {
+                "name": "identifications",
+                "value": "",
+                "type": "query",
+                "description": "Identifications must meet these criteria"
+              },
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Must be within a {`radius`} kilometer circle around this lat/lng\n(*lat, *lng, radius)\n"
+              },
+              {
+                "name": "lng",
+                "value": "",
+                "type": "query",
+                "description": "Must be within a {`radius`} kilometer circle around this lat/lng\n(*lat, *lng, radius)\n"
+              },
+              {
+                "name": "radius",
+                "value": "",
+                "type": "query",
+                "description": "Must be within a {`radius`} kilometer circle around this lat/lng\n(*lat, *lng, radius)\n"
+              },
+              {
+                "name": "nelat",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "nelng",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "swlat",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "swlng",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must be in the list with this ID"
+              },
+              {
+                "name": "not_in_project",
+                "value": "",
+                "type": "query",
+                "description": "Must not be in the project with this ID or slug"
+              },
+              {
+                "name": "not_matching_project_rules_for",
+                "value": "",
+                "type": "query",
+                "description": "Must not match the rules of the project with this ID or slug"
+              },
+              {
+                "name": "observation_accuracy_experiment_id",
+                "value": "",
+                "type": "query",
+                "description": "Must included in this observation accuracy experiment"
+              },
+              {
+                "name": "fails_dqa_accurate",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not accurately depicting an organism or scene"
+              },
+              {
+                "name": "fails_dqa_date",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not having an accurate date"
+              },
+              {
+                "name": "fails_dqa_evidence",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not evidence of an organism"
+              },
+              {
+                "name": "fails_dqa_location",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not having an accurate location"
+              },
+              {
+                "name": "fails_dqa_needs_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as the community ID cannot be improved"
+              },
+              {
+                "name": "fails_dqa_recent",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not recent evidence of an organism"
+              },
+              {
+                "name": "fails_dqa_subject",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not having evidence related to a single subject"
+              },
+              {
+                "name": "fails_dqa_wild",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not wild"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search observation properties. Can be combined with `search_on`"
+              },
+              {
+                "name": "search_on",
+                "value": "",
+                "type": "query",
+                "description": "Properties to search on, when combined with `q`.\nSearches across all properties by default\n"
+              },
+              {
+                "name": "quality_grade",
+                "value": "",
+                "type": "query",
+                "description": "Must have this quality grade"
+              },
+              {
+                "name": "updated_since",
+                "value": "",
+                "type": "query",
+                "description": "Must be updated since this time"
+              },
+              {
+                "name": "viewer_id",
+                "value": "",
+                "type": "query",
+                "description": "See `reviewed`"
+              },
+              {
+                "name": "reviewed",
+                "value": "",
+                "type": "query",
+                "description": "Observations have been reviewed by the user with ID equal to\nthe value of the `viewer_id` parameter\n"
+              },
+              {
+                "name": "locale",
+                "value": "",
+                "type": "query",
+                "description": "Locale preference for taxon common names\n"
+              },
+              {
+                "name": "preferred_place_id",
+                "value": "",
+                "type": "query",
+                "description": "Place preference for regional taxon common names\n"
+              },
+              {
+                "name": "ttl",
+                "value": "",
+                "type": "query",
+                "description": "Set the `Cache-Control` HTTP header with this value as `max-age`, in\nseconds. This means subsequent identical requests will be cached on\niNaturalist servers, and commonly within web browsers\n"
+              },
+              {
+                "name": "date_field",
+                "value": "",
+                "type": "query",
+                "description": "Histogram basis: when the observation was created or observed\n"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Time interval for histogram, with groups starting on or contained within\nthe group value. The year, month, week, day, and hour options will set\ndefault values for `d1` or `created_d1` depending on the value of\n`date_field`, to limit the number of groups returned. You can override\nthose values if you want data from a longer or shorter time span. The\n`hour` interval only works with `date_field=created`, and this you\nshould filter dates with `created_d[1,2]`\n"
+              }
+            ]
+          },
+          "docs": "Given zero to many of following parameters, returns histogram data about\nobservations matching the search criteria\n"
+        },
+        {
+          "info": {
+            "name": "Observation Identifiers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/observations/identifiers",
+            "params": [
+              {
+                "name": "acc",
+                "value": "",
+                "type": "query",
+                "description": "Whether or not positional accuracy / coordinate uncertainty has been specified"
+              },
+              {
+                "name": "captive",
+                "value": "",
+                "type": "query",
+                "description": "Captive or cultivated observations"
+              },
+              {
+                "name": "endemic",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are endemic to their location"
+              },
+              {
+                "name": "geo",
+                "value": "",
+                "type": "query",
+                "description": "Observations that are georeferenced"
+              },
+              {
+                "name": "id_please",
+                "value": "",
+                "type": "query",
+                "description": "Observations with the deprecated `ID, Please!` flag. Note that this will return observations, but that this attribute is no longer used."
+              },
+              {
+                "name": "identified",
+                "value": "",
+                "type": "query",
+                "description": "Observations that have community identifications"
+              },
+              {
+                "name": "introduced",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are introduced in their location\n"
+              },
+              {
+                "name": "mappable",
+                "value": "",
+                "type": "query",
+                "description": "Observations that show on map tiles"
+              },
+              {
+                "name": "native",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are native to their location"
+              },
+              {
+                "name": "out_of_range",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are outside their known ranges"
+              },
+              {
+                "name": "pcid",
+                "value": "",
+                "type": "query",
+                "description": "Observations identified by the curator of a project. If\nthe `project_id` parameter is also specified, this will only consider\nobservations identified by curators of the specified project(s)\n"
+              },
+              {
+                "name": "photos",
+                "value": "",
+                "type": "query",
+                "description": "Observations with photos"
+              },
+              {
+                "name": "popular",
+                "value": "",
+                "type": "query",
+                "description": "Observations that have been favorited by at least one user\n"
+              },
+              {
+                "name": "sounds",
+                "value": "",
+                "type": "query",
+                "description": "Observations with sounds"
+              },
+              {
+                "name": "taxon_is_active",
+                "value": "",
+                "type": "query",
+                "description": "Observations of active taxon concepts\n"
+              },
+              {
+                "name": "threatened",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are threatened in their location\n"
+              },
+              {
+                "name": "verifiable",
+                "value": "",
+                "type": "query",
+                "description": "Observations with a `quality_grade` of either `needs_id` or\n`research`. Equivalent to `quality_grade=needs_id,research`\n"
+              },
+              {
+                "name": "licensed",
+                "value": "",
+                "type": "query",
+                "description": "License attribute of an observation must not be null"
+              },
+              {
+                "name": "photo_licensed",
+                "value": "",
+                "type": "query",
+                "description": "License attribute of at least one photo of an observation must not be null"
+              },
+              {
+                "name": "expected_nearby",
+                "value": "",
+                "type": "query",
+                "description": "Observation taxon is expected nearby"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Must have this ID"
+              },
+              {
+                "name": "not_id",
+                "value": "",
+                "type": "query",
+                "description": "Must not have this ID"
+              },
+              {
+                "name": "license",
+                "value": "",
+                "type": "query",
+                "description": "Observation must have this license"
+              },
+              {
+                "name": "ofv_datatype",
+                "value": "",
+                "type": "query",
+                "description": "Must have an observation field value with this datatype"
+              },
+              {
+                "name": "photo_license",
+                "value": "",
+                "type": "query",
+                "description": "Must have at least one photo with this license"
+              },
+              {
+                "name": "place_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within the place with this ID"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be added to the project this ID or slug"
+              },
+              {
+                "name": "rank",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this rank"
+              },
+              {
+                "name": "site_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be affiliated with the iNaturalist network website with this ID\n"
+              },
+              {
+                "name": "sound_license",
+                "value": "",
+                "type": "query",
+                "description": "Must have at least one sound with this license"
+              },
+              {
+                "name": "taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Only show observations of these taxa and their descendants"
+              },
+              {
+                "name": "without_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude observations of these taxa and their descendants"
+              },
+              {
+                "name": "taxon_name",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have a scientific or common name matching this string\n"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "User must have this ID or login"
+              },
+              {
+                "name": "user_login",
+                "value": "",
+                "type": "query",
+                "description": "User must have this login"
+              },
+              {
+                "name": "ident_user_id",
+                "value": "",
+                "type": "query",
+                "description": "Observations identified by a particular user"
+              },
+              {
+                "name": "hour",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this hour of the day"
+              },
+              {
+                "name": "day",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this day of the month"
+              },
+              {
+                "name": "month",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this month"
+              },
+              {
+                "name": "year",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this year"
+              },
+              {
+                "name": "created_day",
+                "value": "",
+                "type": "query",
+                "description": "Must be created within this day of the month"
+              },
+              {
+                "name": "created_month",
+                "value": "",
+                "type": "query",
+                "description": "Must be created within this month"
+              },
+              {
+                "name": "created_year",
+                "value": "",
+                "type": "query",
+                "description": "Must be created within this year"
+              },
+              {
+                "name": "term_id",
+                "value": "",
+                "type": "query",
+                "description": "Must have an annotation using this controlled term ID"
+              },
+              {
+                "name": "term_value_id",
+                "value": "",
+                "type": "query",
+                "description": "Must have an annotation using this controlled value ID. Must be combined\nwith the `term_id` parameter\n"
+              },
+              {
+                "name": "without_term_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude observations with annotations using this controlled value ID.\n"
+              },
+              {
+                "name": "without_term_value_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude observations with annotations using this controlled value ID.\nMust be combined with the `term_id` parameter\n"
+              },
+              {
+                "name": "term_id_or_unknown",
+                "value": "",
+                "type": "query",
+                "description": "Must be combined with the `term_value_id` or the `without_term_value_id` parameter.\nMust have an annotation using this controlled term ID and associated term value IDs\nor be missing this annotation.\n"
+              },
+              {
+                "name": "annotation_user_id",
+                "value": "",
+                "type": "query",
+                "description": "Must have an annotation created by this user\n"
+              },
+              {
+                "name": "acc_above",
+                "value": "",
+                "type": "query",
+                "description": "Must have a positional accuracy above this value (meters)"
+              },
+              {
+                "name": "acc_below",
+                "value": "",
+                "type": "query",
+                "description": "Must have a positional accuracy below this value (meters)"
+              },
+              {
+                "name": "acc_below_or_unknown",
+                "value": "",
+                "type": "query",
+                "description": "Positional accuracy must be below this value (in meters) or be unknown"
+              },
+              {
+                "name": "d1",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed on or after this date"
+              },
+              {
+                "name": "d2",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed on or before this date"
+              },
+              {
+                "name": "created_d1",
+                "value": "",
+                "type": "query",
+                "description": "Must be created at or after this time"
+              },
+              {
+                "name": "created_d2",
+                "value": "",
+                "type": "query",
+                "description": "Must be created at or before this time"
+              },
+              {
+                "name": "created_on",
+                "value": "",
+                "type": "query",
+                "description": "Must be created on this date"
+              },
+              {
+                "name": "observed_on",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed on this date"
+              },
+              {
+                "name": "unobserved_by_user_id",
+                "value": "",
+                "type": "query",
+                "description": "Must not be of a taxon previously observed by this user"
+              },
+              {
+                "name": "apply_project_rules_for",
+                "value": "",
+                "type": "query",
+                "description": "Must match the rules of the project with this ID or slug"
+              },
+              {
+                "name": "cs",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this conservation status code. If\nthe `place_id` parameter is also specified, this will only consider\nstatuses specific to that place\n"
+              },
+              {
+                "name": "csa",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have a conservation status from this authority. If\nthe `place_id` parameter is also specified, this will only consider\nstatuses specific to that place\n"
+              },
+              {
+                "name": "csi",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this IUCN conservation status. If\nthe `place_id` parameter is also specified, this will only consider\nstatuses specific to that place\n"
+              },
+              {
+                "name": "geoprivacy",
+                "value": "",
+                "type": "query",
+                "description": "Must have this geoprivacy setting"
+              },
+              {
+                "name": "taxon_geoprivacy",
+                "value": "",
+                "type": "query",
+                "description": "Filter observations by the most conservative geoprivacy applied by a\nconservation status associated with one of the taxa proposed in the\ncurrent identifications.\n"
+              },
+              {
+                "name": "obscuration",
+                "value": "",
+                "type": "query",
+                "description": "Must have `geoprivacy` or `taxon_geoprivacy` fields matching these values\n"
+              },
+              {
+                "name": "hrank",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this rank or lower"
+              },
+              {
+                "name": "lrank",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this rank or higher"
+              },
+              {
+                "name": "iconic_taxa",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must by within this iconic taxon"
+              },
+              {
+                "name": "id_above",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID above this value"
+              },
+              {
+                "name": "id_below",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID below this value"
+              },
+              {
+                "name": "identifications",
+                "value": "",
+                "type": "query",
+                "description": "Identifications must meet these criteria"
+              },
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Must be within a {`radius`} kilometer circle around this lat/lng\n(*lat, *lng, radius)\n"
+              },
+              {
+                "name": "lng",
+                "value": "",
+                "type": "query",
+                "description": "Must be within a {`radius`} kilometer circle around this lat/lng\n(*lat, *lng, radius)\n"
+              },
+              {
+                "name": "radius",
+                "value": "",
+                "type": "query",
+                "description": "Must be within a {`radius`} kilometer circle around this lat/lng\n(*lat, *lng, radius)\n"
+              },
+              {
+                "name": "nelat",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "nelng",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "swlat",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "swlng",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must be in the list with this ID"
+              },
+              {
+                "name": "not_in_project",
+                "value": "",
+                "type": "query",
+                "description": "Must not be in the project with this ID or slug"
+              },
+              {
+                "name": "not_matching_project_rules_for",
+                "value": "",
+                "type": "query",
+                "description": "Must not match the rules of the project with this ID or slug"
+              },
+              {
+                "name": "observation_accuracy_experiment_id",
+                "value": "",
+                "type": "query",
+                "description": "Must included in this observation accuracy experiment"
+              },
+              {
+                "name": "fails_dqa_accurate",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not accurately depicting an organism or scene"
+              },
+              {
+                "name": "fails_dqa_date",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not having an accurate date"
+              },
+              {
+                "name": "fails_dqa_evidence",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not evidence of an organism"
+              },
+              {
+                "name": "fails_dqa_location",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not having an accurate location"
+              },
+              {
+                "name": "fails_dqa_needs_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as the community ID cannot be improved"
+              },
+              {
+                "name": "fails_dqa_recent",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not recent evidence of an organism"
+              },
+              {
+                "name": "fails_dqa_subject",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not having evidence related to a single subject"
+              },
+              {
+                "name": "fails_dqa_wild",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not wild"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search observation properties. Can be combined with `search_on`"
+              },
+              {
+                "name": "search_on",
+                "value": "",
+                "type": "query",
+                "description": "Properties to search on, when combined with `q`.\nSearches across all properties by default\n"
+              },
+              {
+                "name": "quality_grade",
+                "value": "",
+                "type": "query",
+                "description": "Must have this quality grade"
+              },
+              {
+                "name": "updated_since",
+                "value": "",
+                "type": "query",
+                "description": "Must be updated since this time"
+              },
+              {
+                "name": "viewer_id",
+                "value": "",
+                "type": "query",
+                "description": "See `reviewed`"
+              },
+              {
+                "name": "reviewed",
+                "value": "",
+                "type": "query",
+                "description": "Observations have been reviewed by the user with ID equal to\nthe value of the `viewer_id` parameter\n"
+              },
+              {
+                "name": "locale",
+                "value": "",
+                "type": "query",
+                "description": "Locale preference for taxon common names\n"
+              },
+              {
+                "name": "preferred_place_id",
+                "value": "",
+                "type": "query",
+                "description": "Place preference for regional taxon common names\n"
+              },
+              {
+                "name": "ttl",
+                "value": "",
+                "type": "query",
+                "description": "Set the `Cache-Control` HTTP header with this value as `max-age`, in\nseconds. This means subsequent identical requests will be cached on\niNaturalist servers, and commonly within web browsers\n"
+              }
+            ]
+          },
+          "docs": "Given zero to many of following parameters, returns identifiers of\nobservations matching the search criteria and the count of\nobservations they have identified, ordered by count descending. A\nmaximum of 500 results will be returned\n"
+        },
+        {
+          "info": {
+            "name": "Observation Observers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/observations/observers",
+            "params": [
+              {
+                "name": "acc",
+                "value": "",
+                "type": "query",
+                "description": "Whether or not positional accuracy / coordinate uncertainty has been specified"
+              },
+              {
+                "name": "captive",
+                "value": "",
+                "type": "query",
+                "description": "Captive or cultivated observations"
+              },
+              {
+                "name": "endemic",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are endemic to their location"
+              },
+              {
+                "name": "geo",
+                "value": "",
+                "type": "query",
+                "description": "Observations that are georeferenced"
+              },
+              {
+                "name": "id_please",
+                "value": "",
+                "type": "query",
+                "description": "Observations with the deprecated `ID, Please!` flag. Note that this will return observations, but that this attribute is no longer used."
+              },
+              {
+                "name": "identified",
+                "value": "",
+                "type": "query",
+                "description": "Observations that have community identifications"
+              },
+              {
+                "name": "introduced",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are introduced in their location\n"
+              },
+              {
+                "name": "mappable",
+                "value": "",
+                "type": "query",
+                "description": "Observations that show on map tiles"
+              },
+              {
+                "name": "native",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are native to their location"
+              },
+              {
+                "name": "out_of_range",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are outside their known ranges"
+              },
+              {
+                "name": "pcid",
+                "value": "",
+                "type": "query",
+                "description": "Observations identified by the curator of a project. If\nthe `project_id` parameter is also specified, this will only consider\nobservations identified by curators of the specified project(s)\n"
+              },
+              {
+                "name": "photos",
+                "value": "",
+                "type": "query",
+                "description": "Observations with photos"
+              },
+              {
+                "name": "popular",
+                "value": "",
+                "type": "query",
+                "description": "Observations that have been favorited by at least one user\n"
+              },
+              {
+                "name": "sounds",
+                "value": "",
+                "type": "query",
+                "description": "Observations with sounds"
+              },
+              {
+                "name": "taxon_is_active",
+                "value": "",
+                "type": "query",
+                "description": "Observations of active taxon concepts\n"
+              },
+              {
+                "name": "threatened",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are threatened in their location\n"
+              },
+              {
+                "name": "verifiable",
+                "value": "",
+                "type": "query",
+                "description": "Observations with a `quality_grade` of either `needs_id` or\n`research`. Equivalent to `quality_grade=needs_id,research`\n"
+              },
+              {
+                "name": "licensed",
+                "value": "",
+                "type": "query",
+                "description": "License attribute of an observation must not be null"
+              },
+              {
+                "name": "photo_licensed",
+                "value": "",
+                "type": "query",
+                "description": "License attribute of at least one photo of an observation must not be null"
+              },
+              {
+                "name": "expected_nearby",
+                "value": "",
+                "type": "query",
+                "description": "Observation taxon is expected nearby"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Must have this ID"
+              },
+              {
+                "name": "not_id",
+                "value": "",
+                "type": "query",
+                "description": "Must not have this ID"
+              },
+              {
+                "name": "license",
+                "value": "",
+                "type": "query",
+                "description": "Observation must have this license"
+              },
+              {
+                "name": "ofv_datatype",
+                "value": "",
+                "type": "query",
+                "description": "Must have an observation field value with this datatype"
+              },
+              {
+                "name": "photo_license",
+                "value": "",
+                "type": "query",
+                "description": "Must have at least one photo with this license"
+              },
+              {
+                "name": "place_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within the place with this ID"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be added to the project this ID or slug"
+              },
+              {
+                "name": "rank",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this rank"
+              },
+              {
+                "name": "site_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be affiliated with the iNaturalist network website with this ID\n"
+              },
+              {
+                "name": "sound_license",
+                "value": "",
+                "type": "query",
+                "description": "Must have at least one sound with this license"
+              },
+              {
+                "name": "taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Only show observations of these taxa and their descendants"
+              },
+              {
+                "name": "without_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude observations of these taxa and their descendants"
+              },
+              {
+                "name": "taxon_name",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have a scientific or common name matching this string\n"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "User must have this ID or login"
+              },
+              {
+                "name": "user_login",
+                "value": "",
+                "type": "query",
+                "description": "User must have this login"
+              },
+              {
+                "name": "ident_user_id",
+                "value": "",
+                "type": "query",
+                "description": "Observations identified by a particular user"
+              },
+              {
+                "name": "hour",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this hour of the day"
+              },
+              {
+                "name": "day",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this day of the month"
+              },
+              {
+                "name": "month",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this month"
+              },
+              {
+                "name": "year",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this year"
+              },
+              {
+                "name": "created_day",
+                "value": "",
+                "type": "query",
+                "description": "Must be created within this day of the month"
+              },
+              {
+                "name": "created_month",
+                "value": "",
+                "type": "query",
+                "description": "Must be created within this month"
+              },
+              {
+                "name": "created_year",
+                "value": "",
+                "type": "query",
+                "description": "Must be created within this year"
+              },
+              {
+                "name": "term_id",
+                "value": "",
+                "type": "query",
+                "description": "Must have an annotation using this controlled term ID"
+              },
+              {
+                "name": "term_value_id",
+                "value": "",
+                "type": "query",
+                "description": "Must have an annotation using this controlled value ID. Must be combined\nwith the `term_id` parameter\n"
+              },
+              {
+                "name": "without_term_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude observations with annotations using this controlled value ID.\n"
+              },
+              {
+                "name": "without_term_value_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude observations with annotations using this controlled value ID.\nMust be combined with the `term_id` parameter\n"
+              },
+              {
+                "name": "term_id_or_unknown",
+                "value": "",
+                "type": "query",
+                "description": "Must be combined with the `term_value_id` or the `without_term_value_id` parameter.\nMust have an annotation using this controlled term ID and associated term value IDs\nor be missing this annotation.\n"
+              },
+              {
+                "name": "annotation_user_id",
+                "value": "",
+                "type": "query",
+                "description": "Must have an annotation created by this user\n"
+              },
+              {
+                "name": "acc_above",
+                "value": "",
+                "type": "query",
+                "description": "Must have a positional accuracy above this value (meters)"
+              },
+              {
+                "name": "acc_below",
+                "value": "",
+                "type": "query",
+                "description": "Must have a positional accuracy below this value (meters)"
+              },
+              {
+                "name": "acc_below_or_unknown",
+                "value": "",
+                "type": "query",
+                "description": "Positional accuracy must be below this value (in meters) or be unknown"
+              },
+              {
+                "name": "d1",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed on or after this date"
+              },
+              {
+                "name": "d2",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed on or before this date"
+              },
+              {
+                "name": "created_d1",
+                "value": "",
+                "type": "query",
+                "description": "Must be created at or after this time"
+              },
+              {
+                "name": "created_d2",
+                "value": "",
+                "type": "query",
+                "description": "Must be created at or before this time"
+              },
+              {
+                "name": "created_on",
+                "value": "",
+                "type": "query",
+                "description": "Must be created on this date"
+              },
+              {
+                "name": "observed_on",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed on this date"
+              },
+              {
+                "name": "unobserved_by_user_id",
+                "value": "",
+                "type": "query",
+                "description": "Must not be of a taxon previously observed by this user"
+              },
+              {
+                "name": "apply_project_rules_for",
+                "value": "",
+                "type": "query",
+                "description": "Must match the rules of the project with this ID or slug"
+              },
+              {
+                "name": "cs",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this conservation status code. If\nthe `place_id` parameter is also specified, this will only consider\nstatuses specific to that place\n"
+              },
+              {
+                "name": "csa",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have a conservation status from this authority. If\nthe `place_id` parameter is also specified, this will only consider\nstatuses specific to that place\n"
+              },
+              {
+                "name": "csi",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this IUCN conservation status. If\nthe `place_id` parameter is also specified, this will only consider\nstatuses specific to that place\n"
+              },
+              {
+                "name": "geoprivacy",
+                "value": "",
+                "type": "query",
+                "description": "Must have this geoprivacy setting"
+              },
+              {
+                "name": "taxon_geoprivacy",
+                "value": "",
+                "type": "query",
+                "description": "Filter observations by the most conservative geoprivacy applied by a\nconservation status associated with one of the taxa proposed in the\ncurrent identifications.\n"
+              },
+              {
+                "name": "obscuration",
+                "value": "",
+                "type": "query",
+                "description": "Must have `geoprivacy` or `taxon_geoprivacy` fields matching these values\n"
+              },
+              {
+                "name": "hrank",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this rank or lower"
+              },
+              {
+                "name": "lrank",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this rank or higher"
+              },
+              {
+                "name": "iconic_taxa",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must by within this iconic taxon"
+              },
+              {
+                "name": "id_above",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID above this value"
+              },
+              {
+                "name": "id_below",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID below this value"
+              },
+              {
+                "name": "identifications",
+                "value": "",
+                "type": "query",
+                "description": "Identifications must meet these criteria"
+              },
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Must be within a {`radius`} kilometer circle around this lat/lng\n(*lat, *lng, radius)\n"
+              },
+              {
+                "name": "lng",
+                "value": "",
+                "type": "query",
+                "description": "Must be within a {`radius`} kilometer circle around this lat/lng\n(*lat, *lng, radius)\n"
+              },
+              {
+                "name": "radius",
+                "value": "",
+                "type": "query",
+                "description": "Must be within a {`radius`} kilometer circle around this lat/lng\n(*lat, *lng, radius)\n"
+              },
+              {
+                "name": "nelat",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "nelng",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "swlat",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "swlng",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must be in the list with this ID"
+              },
+              {
+                "name": "not_in_project",
+                "value": "",
+                "type": "query",
+                "description": "Must not be in the project with this ID or slug"
+              },
+              {
+                "name": "not_matching_project_rules_for",
+                "value": "",
+                "type": "query",
+                "description": "Must not match the rules of the project with this ID or slug"
+              },
+              {
+                "name": "observation_accuracy_experiment_id",
+                "value": "",
+                "type": "query",
+                "description": "Must included in this observation accuracy experiment"
+              },
+              {
+                "name": "fails_dqa_accurate",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not accurately depicting an organism or scene"
+              },
+              {
+                "name": "fails_dqa_date",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not having an accurate date"
+              },
+              {
+                "name": "fails_dqa_evidence",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not evidence of an organism"
+              },
+              {
+                "name": "fails_dqa_location",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not having an accurate location"
+              },
+              {
+                "name": "fails_dqa_needs_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as the community ID cannot be improved"
+              },
+              {
+                "name": "fails_dqa_recent",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not recent evidence of an organism"
+              },
+              {
+                "name": "fails_dqa_subject",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not having evidence related to a single subject"
+              },
+              {
+                "name": "fails_dqa_wild",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not wild"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search observation properties. Can be combined with `search_on`"
+              },
+              {
+                "name": "search_on",
+                "value": "",
+                "type": "query",
+                "description": "Properties to search on, when combined with `q`.\nSearches across all properties by default\n"
+              },
+              {
+                "name": "quality_grade",
+                "value": "",
+                "type": "query",
+                "description": "Must have this quality grade"
+              },
+              {
+                "name": "updated_since",
+                "value": "",
+                "type": "query",
+                "description": "Must be updated since this time"
+              },
+              {
+                "name": "viewer_id",
+                "value": "",
+                "type": "query",
+                "description": "See `reviewed`"
+              },
+              {
+                "name": "reviewed",
+                "value": "",
+                "type": "query",
+                "description": "Observations have been reviewed by the user with ID equal to\nthe value of the `viewer_id` parameter\n"
+              },
+              {
+                "name": "locale",
+                "value": "",
+                "type": "query",
+                "description": "Locale preference for taxon common names\n"
+              },
+              {
+                "name": "preferred_place_id",
+                "value": "",
+                "type": "query",
+                "description": "Place preference for regional taxon common names\n"
+              },
+              {
+                "name": "ttl",
+                "value": "",
+                "type": "query",
+                "description": "Set the `Cache-Control` HTTP header with this value as `max-age`, in\nseconds. This means subsequent identical requests will be cached on\niNaturalist servers, and commonly within web browsers\n"
+              }
+            ]
+          },
+          "docs": "Given zero to many of following parameters, returns observers of\nobservations matching the search criteria and the count of\nobservations and distinct taxa of rank `species` they have observed. A\nmaximum of 500 results will be returned\n"
+        },
+        {
+          "info": {
+            "name": "Observation Popular Field Values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/observations/popular_field_values",
+            "params": [
+              {
+                "name": "acc",
+                "value": "",
+                "type": "query",
+                "description": "Whether or not positional accuracy / coordinate uncertainty has been specified"
+              },
+              {
+                "name": "captive",
+                "value": "",
+                "type": "query",
+                "description": "Captive or cultivated observations"
+              },
+              {
+                "name": "endemic",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are endemic to their location"
+              },
+              {
+                "name": "geo",
+                "value": "",
+                "type": "query",
+                "description": "Observations that are georeferenced"
+              },
+              {
+                "name": "id_please",
+                "value": "",
+                "type": "query",
+                "description": "Observations with the deprecated `ID, Please!` flag. Note that this will return observations, but that this attribute is no longer used."
+              },
+              {
+                "name": "identified",
+                "value": "",
+                "type": "query",
+                "description": "Observations that have community identifications"
+              },
+              {
+                "name": "introduced",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are introduced in their location\n"
+              },
+              {
+                "name": "mappable",
+                "value": "",
+                "type": "query",
+                "description": "Observations that show on map tiles"
+              },
+              {
+                "name": "native",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are native to their location"
+              },
+              {
+                "name": "out_of_range",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are outside their known ranges"
+              },
+              {
+                "name": "pcid",
+                "value": "",
+                "type": "query",
+                "description": "Observations identified by the curator of a project. If\nthe `project_id` parameter is also specified, this will only consider\nobservations identified by curators of the specified project(s)\n"
+              },
+              {
+                "name": "photos",
+                "value": "",
+                "type": "query",
+                "description": "Observations with photos"
+              },
+              {
+                "name": "popular",
+                "value": "",
+                "type": "query",
+                "description": "Observations that have been favorited by at least one user\n"
+              },
+              {
+                "name": "sounds",
+                "value": "",
+                "type": "query",
+                "description": "Observations with sounds"
+              },
+              {
+                "name": "taxon_is_active",
+                "value": "",
+                "type": "query",
+                "description": "Observations of active taxon concepts\n"
+              },
+              {
+                "name": "threatened",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are threatened in their location\n"
+              },
+              {
+                "name": "verifiable",
+                "value": "",
+                "type": "query",
+                "description": "Observations with a `quality_grade` of either `needs_id` or\n`research`. Equivalent to `quality_grade=needs_id,research`\n"
+              },
+              {
+                "name": "licensed",
+                "value": "",
+                "type": "query",
+                "description": "License attribute of an observation must not be null"
+              },
+              {
+                "name": "photo_licensed",
+                "value": "",
+                "type": "query",
+                "description": "License attribute of at least one photo of an observation must not be null"
+              },
+              {
+                "name": "expected_nearby",
+                "value": "",
+                "type": "query",
+                "description": "Observation taxon is expected nearby"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Must have this ID"
+              },
+              {
+                "name": "not_id",
+                "value": "",
+                "type": "query",
+                "description": "Must not have this ID"
+              },
+              {
+                "name": "license",
+                "value": "",
+                "type": "query",
+                "description": "Observation must have this license"
+              },
+              {
+                "name": "ofv_datatype",
+                "value": "",
+                "type": "query",
+                "description": "Must have an observation field value with this datatype"
+              },
+              {
+                "name": "photo_license",
+                "value": "",
+                "type": "query",
+                "description": "Must have at least one photo with this license"
+              },
+              {
+                "name": "place_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within the place with this ID"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be added to the project this ID or slug"
+              },
+              {
+                "name": "rank",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this rank"
+              },
+              {
+                "name": "site_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be affiliated with the iNaturalist network website with this ID\n"
+              },
+              {
+                "name": "sound_license",
+                "value": "",
+                "type": "query",
+                "description": "Must have at least one sound with this license"
+              },
+              {
+                "name": "taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Only show observations of these taxa and their descendants"
+              },
+              {
+                "name": "without_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude observations of these taxa and their descendants"
+              },
+              {
+                "name": "taxon_name",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have a scientific or common name matching this string\n"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "User must have this ID or login"
+              },
+              {
+                "name": "user_login",
+                "value": "",
+                "type": "query",
+                "description": "User must have this login"
+              },
+              {
+                "name": "ident_user_id",
+                "value": "",
+                "type": "query",
+                "description": "Observations identified by a particular user"
+              },
+              {
+                "name": "hour",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this hour of the day"
+              },
+              {
+                "name": "day",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this day of the month"
+              },
+              {
+                "name": "month",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this month"
+              },
+              {
+                "name": "year",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this year"
+              },
+              {
+                "name": "created_day",
+                "value": "",
+                "type": "query",
+                "description": "Must be created within this day of the month"
+              },
+              {
+                "name": "created_month",
+                "value": "",
+                "type": "query",
+                "description": "Must be created within this month"
+              },
+              {
+                "name": "created_year",
+                "value": "",
+                "type": "query",
+                "description": "Must be created within this year"
+              },
+              {
+                "name": "term_id",
+                "value": "",
+                "type": "query",
+                "description": "Must have an annotation using this controlled term ID"
+              },
+              {
+                "name": "term_value_id",
+                "value": "",
+                "type": "query",
+                "description": "Must have an annotation using this controlled value ID. Must be combined\nwith the `term_id` parameter\n"
+              },
+              {
+                "name": "without_term_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude observations with annotations using this controlled value ID.\n"
+              },
+              {
+                "name": "without_term_value_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude observations with annotations using this controlled value ID.\nMust be combined with the `term_id` parameter\n"
+              },
+              {
+                "name": "term_id_or_unknown",
+                "value": "",
+                "type": "query",
+                "description": "Must be combined with the `term_value_id` or the `without_term_value_id` parameter.\nMust have an annotation using this controlled term ID and associated term value IDs\nor be missing this annotation.\n"
+              },
+              {
+                "name": "annotation_user_id",
+                "value": "",
+                "type": "query",
+                "description": "Must have an annotation created by this user\n"
+              },
+              {
+                "name": "acc_above",
+                "value": "",
+                "type": "query",
+                "description": "Must have a positional accuracy above this value (meters)"
+              },
+              {
+                "name": "acc_below",
+                "value": "",
+                "type": "query",
+                "description": "Must have a positional accuracy below this value (meters)"
+              },
+              {
+                "name": "acc_below_or_unknown",
+                "value": "",
+                "type": "query",
+                "description": "Positional accuracy must be below this value (in meters) or be unknown"
+              },
+              {
+                "name": "d1",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed on or after this date"
+              },
+              {
+                "name": "d2",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed on or before this date"
+              },
+              {
+                "name": "created_d1",
+                "value": "",
+                "type": "query",
+                "description": "Must be created at or after this time"
+              },
+              {
+                "name": "created_d2",
+                "value": "",
+                "type": "query",
+                "description": "Must be created at or before this time"
+              },
+              {
+                "name": "created_on",
+                "value": "",
+                "type": "query",
+                "description": "Must be created on this date"
+              },
+              {
+                "name": "observed_on",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed on this date"
+              },
+              {
+                "name": "unobserved_by_user_id",
+                "value": "",
+                "type": "query",
+                "description": "Must not be of a taxon previously observed by this user"
+              },
+              {
+                "name": "apply_project_rules_for",
+                "value": "",
+                "type": "query",
+                "description": "Must match the rules of the project with this ID or slug"
+              },
+              {
+                "name": "cs",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this conservation status code. If\nthe `place_id` parameter is also specified, this will only consider\nstatuses specific to that place\n"
+              },
+              {
+                "name": "csa",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have a conservation status from this authority. If\nthe `place_id` parameter is also specified, this will only consider\nstatuses specific to that place\n"
+              },
+              {
+                "name": "csi",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this IUCN conservation status. If\nthe `place_id` parameter is also specified, this will only consider\nstatuses specific to that place\n"
+              },
+              {
+                "name": "geoprivacy",
+                "value": "",
+                "type": "query",
+                "description": "Must have this geoprivacy setting"
+              },
+              {
+                "name": "taxon_geoprivacy",
+                "value": "",
+                "type": "query",
+                "description": "Filter observations by the most conservative geoprivacy applied by a\nconservation status associated with one of the taxa proposed in the\ncurrent identifications.\n"
+              },
+              {
+                "name": "obscuration",
+                "value": "",
+                "type": "query",
+                "description": "Must have `geoprivacy` or `taxon_geoprivacy` fields matching these values\n"
+              },
+              {
+                "name": "hrank",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this rank or lower"
+              },
+              {
+                "name": "lrank",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this rank or higher"
+              },
+              {
+                "name": "iconic_taxa",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must by within this iconic taxon"
+              },
+              {
+                "name": "id_above",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID above this value"
+              },
+              {
+                "name": "id_below",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID below this value"
+              },
+              {
+                "name": "identifications",
+                "value": "",
+                "type": "query",
+                "description": "Identifications must meet these criteria"
+              },
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Must be within a {`radius`} kilometer circle around this lat/lng\n(*lat, *lng, radius)\n"
+              },
+              {
+                "name": "lng",
+                "value": "",
+                "type": "query",
+                "description": "Must be within a {`radius`} kilometer circle around this lat/lng\n(*lat, *lng, radius)\n"
+              },
+              {
+                "name": "radius",
+                "value": "",
+                "type": "query",
+                "description": "Must be within a {`radius`} kilometer circle around this lat/lng\n(*lat, *lng, radius)\n"
+              },
+              {
+                "name": "nelat",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "nelng",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "swlat",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "swlng",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must be in the list with this ID"
+              },
+              {
+                "name": "not_in_project",
+                "value": "",
+                "type": "query",
+                "description": "Must not be in the project with this ID or slug"
+              },
+              {
+                "name": "not_matching_project_rules_for",
+                "value": "",
+                "type": "query",
+                "description": "Must not match the rules of the project with this ID or slug"
+              },
+              {
+                "name": "observation_accuracy_experiment_id",
+                "value": "",
+                "type": "query",
+                "description": "Must included in this observation accuracy experiment"
+              },
+              {
+                "name": "fails_dqa_accurate",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not accurately depicting an organism or scene"
+              },
+              {
+                "name": "fails_dqa_date",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not having an accurate date"
+              },
+              {
+                "name": "fails_dqa_evidence",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not evidence of an organism"
+              },
+              {
+                "name": "fails_dqa_location",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not having an accurate location"
+              },
+              {
+                "name": "fails_dqa_needs_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as the community ID cannot be improved"
+              },
+              {
+                "name": "fails_dqa_recent",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not recent evidence of an organism"
+              },
+              {
+                "name": "fails_dqa_subject",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not having evidence related to a single subject"
+              },
+              {
+                "name": "fails_dqa_wild",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not wild"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search observation properties. Can be combined with `search_on`"
+              },
+              {
+                "name": "search_on",
+                "value": "",
+                "type": "query",
+                "description": "Properties to search on, when combined with `q`.\nSearches across all properties by default\n"
+              },
+              {
+                "name": "quality_grade",
+                "value": "",
+                "type": "query",
+                "description": "Must have this quality grade"
+              },
+              {
+                "name": "updated_since",
+                "value": "",
+                "type": "query",
+                "description": "Must be updated since this time"
+              },
+              {
+                "name": "viewer_id",
+                "value": "",
+                "type": "query",
+                "description": "See `reviewed`"
+              },
+              {
+                "name": "reviewed",
+                "value": "",
+                "type": "query",
+                "description": "Observations have been reviewed by the user with ID equal to\nthe value of the `viewer_id` parameter\n"
+              },
+              {
+                "name": "locale",
+                "value": "",
+                "type": "query",
+                "description": "Locale preference for taxon common names\n"
+              },
+              {
+                "name": "preferred_place_id",
+                "value": "",
+                "type": "query",
+                "description": "Place preference for regional taxon common names\n"
+              },
+              {
+                "name": "ttl",
+                "value": "",
+                "type": "query",
+                "description": "Set the `Cache-Control` HTTP header with this value as `max-age`, in\nseconds. This means subsequent identical requests will be cached on\niNaturalist servers, and commonly within web browsers\n"
+              }
+            ]
+          },
+          "docs": "Given zero to many of following parameters, returns an array of\nrelevant controlled terms values and a monthly histogram\n"
+        },
+        {
+          "info": {
+            "name": "Observation Species Counts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/observations/species_counts",
+            "params": [
+              {
+                "name": "acc",
+                "value": "",
+                "type": "query",
+                "description": "Whether or not positional accuracy / coordinate uncertainty has been specified"
+              },
+              {
+                "name": "captive",
+                "value": "",
+                "type": "query",
+                "description": "Captive or cultivated observations"
+              },
+              {
+                "name": "endemic",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are endemic to their location"
+              },
+              {
+                "name": "geo",
+                "value": "",
+                "type": "query",
+                "description": "Observations that are georeferenced"
+              },
+              {
+                "name": "id_please",
+                "value": "",
+                "type": "query",
+                "description": "Observations with the deprecated `ID, Please!` flag. Note that this will return observations, but that this attribute is no longer used."
+              },
+              {
+                "name": "identified",
+                "value": "",
+                "type": "query",
+                "description": "Observations that have community identifications"
+              },
+              {
+                "name": "introduced",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are introduced in their location\n"
+              },
+              {
+                "name": "mappable",
+                "value": "",
+                "type": "query",
+                "description": "Observations that show on map tiles"
+              },
+              {
+                "name": "native",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are native to their location"
+              },
+              {
+                "name": "out_of_range",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are outside their known ranges"
+              },
+              {
+                "name": "pcid",
+                "value": "",
+                "type": "query",
+                "description": "Observations identified by the curator of a project. If\nthe `project_id` parameter is also specified, this will only consider\nobservations identified by curators of the specified project(s)\n"
+              },
+              {
+                "name": "photos",
+                "value": "",
+                "type": "query",
+                "description": "Observations with photos"
+              },
+              {
+                "name": "popular",
+                "value": "",
+                "type": "query",
+                "description": "Observations that have been favorited by at least one user\n"
+              },
+              {
+                "name": "sounds",
+                "value": "",
+                "type": "query",
+                "description": "Observations with sounds"
+              },
+              {
+                "name": "taxon_is_active",
+                "value": "",
+                "type": "query",
+                "description": "Observations of active taxon concepts\n"
+              },
+              {
+                "name": "threatened",
+                "value": "",
+                "type": "query",
+                "description": "Observations whose taxa are threatened in their location\n"
+              },
+              {
+                "name": "verifiable",
+                "value": "",
+                "type": "query",
+                "description": "Observations with a `quality_grade` of either `needs_id` or\n`research`. Equivalent to `quality_grade=needs_id,research`\n"
+              },
+              {
+                "name": "licensed",
+                "value": "",
+                "type": "query",
+                "description": "License attribute of an observation must not be null"
+              },
+              {
+                "name": "photo_licensed",
+                "value": "",
+                "type": "query",
+                "description": "License attribute of at least one photo of an observation must not be null"
+              },
+              {
+                "name": "expected_nearby",
+                "value": "",
+                "type": "query",
+                "description": "Observation taxon is expected nearby"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Must have this ID"
+              },
+              {
+                "name": "not_id",
+                "value": "",
+                "type": "query",
+                "description": "Must not have this ID"
+              },
+              {
+                "name": "license",
+                "value": "",
+                "type": "query",
+                "description": "Observation must have this license"
+              },
+              {
+                "name": "ofv_datatype",
+                "value": "",
+                "type": "query",
+                "description": "Must have an observation field value with this datatype"
+              },
+              {
+                "name": "photo_license",
+                "value": "",
+                "type": "query",
+                "description": "Must have at least one photo with this license"
+              },
+              {
+                "name": "place_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within the place with this ID"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be added to the project this ID or slug"
+              },
+              {
+                "name": "rank",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this rank"
+              },
+              {
+                "name": "site_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be affiliated with the iNaturalist network website with this ID\n"
+              },
+              {
+                "name": "sound_license",
+                "value": "",
+                "type": "query",
+                "description": "Must have at least one sound with this license"
+              },
+              {
+                "name": "taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Only show observations of these taxa and their descendants"
+              },
+              {
+                "name": "without_taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude observations of these taxa and their descendants"
+              },
+              {
+                "name": "taxon_name",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have a scientific or common name matching this string\n"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "User must have this ID or login"
+              },
+              {
+                "name": "user_login",
+                "value": "",
+                "type": "query",
+                "description": "User must have this login"
+              },
+              {
+                "name": "ident_user_id",
+                "value": "",
+                "type": "query",
+                "description": "Observations identified by a particular user"
+              },
+              {
+                "name": "hour",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this hour of the day"
+              },
+              {
+                "name": "day",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this day of the month"
+              },
+              {
+                "name": "month",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this month"
+              },
+              {
+                "name": "year",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed within this year"
+              },
+              {
+                "name": "created_day",
+                "value": "",
+                "type": "query",
+                "description": "Must be created within this day of the month"
+              },
+              {
+                "name": "created_month",
+                "value": "",
+                "type": "query",
+                "description": "Must be created within this month"
+              },
+              {
+                "name": "created_year",
+                "value": "",
+                "type": "query",
+                "description": "Must be created within this year"
+              },
+              {
+                "name": "term_id",
+                "value": "",
+                "type": "query",
+                "description": "Must have an annotation using this controlled term ID"
+              },
+              {
+                "name": "term_value_id",
+                "value": "",
+                "type": "query",
+                "description": "Must have an annotation using this controlled value ID. Must be combined\nwith the `term_id` parameter\n"
+              },
+              {
+                "name": "without_term_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude observations with annotations using this controlled value ID.\n"
+              },
+              {
+                "name": "without_term_value_id",
+                "value": "",
+                "type": "query",
+                "description": "Exclude observations with annotations using this controlled value ID.\nMust be combined with the `term_id` parameter\n"
+              },
+              {
+                "name": "term_id_or_unknown",
+                "value": "",
+                "type": "query",
+                "description": "Must be combined with the `term_value_id` or the `without_term_value_id` parameter.\nMust have an annotation using this controlled term ID and associated term value IDs\nor be missing this annotation.\n"
+              },
+              {
+                "name": "annotation_user_id",
+                "value": "",
+                "type": "query",
+                "description": "Must have an annotation created by this user\n"
+              },
+              {
+                "name": "acc_above",
+                "value": "",
+                "type": "query",
+                "description": "Must have a positional accuracy above this value (meters)"
+              },
+              {
+                "name": "acc_below",
+                "value": "",
+                "type": "query",
+                "description": "Must have a positional accuracy below this value (meters)"
+              },
+              {
+                "name": "acc_below_or_unknown",
+                "value": "",
+                "type": "query",
+                "description": "Positional accuracy must be below this value (in meters) or be unknown"
+              },
+              {
+                "name": "d1",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed on or after this date"
+              },
+              {
+                "name": "d2",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed on or before this date"
+              },
+              {
+                "name": "created_d1",
+                "value": "",
+                "type": "query",
+                "description": "Must be created at or after this time"
+              },
+              {
+                "name": "created_d2",
+                "value": "",
+                "type": "query",
+                "description": "Must be created at or before this time"
+              },
+              {
+                "name": "created_on",
+                "value": "",
+                "type": "query",
+                "description": "Must be created on this date"
+              },
+              {
+                "name": "observed_on",
+                "value": "",
+                "type": "query",
+                "description": "Must be observed on this date"
+              },
+              {
+                "name": "unobserved_by_user_id",
+                "value": "",
+                "type": "query",
+                "description": "Must not be of a taxon previously observed by this user"
+              },
+              {
+                "name": "apply_project_rules_for",
+                "value": "",
+                "type": "query",
+                "description": "Must match the rules of the project with this ID or slug"
+              },
+              {
+                "name": "cs",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this conservation status code. If\nthe `place_id` parameter is also specified, this will only consider\nstatuses specific to that place\n"
+              },
+              {
+                "name": "csa",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have a conservation status from this authority. If\nthe `place_id` parameter is also specified, this will only consider\nstatuses specific to that place\n"
+              },
+              {
+                "name": "csi",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this IUCN conservation status. If\nthe `place_id` parameter is also specified, this will only consider\nstatuses specific to that place\n"
+              },
+              {
+                "name": "geoprivacy",
+                "value": "",
+                "type": "query",
+                "description": "Must have this geoprivacy setting"
+              },
+              {
+                "name": "taxon_geoprivacy",
+                "value": "",
+                "type": "query",
+                "description": "Filter observations by the most conservative geoprivacy applied by a\nconservation status associated with one of the taxa proposed in the\ncurrent identifications.\n"
+              },
+              {
+                "name": "obscuration",
+                "value": "",
+                "type": "query",
+                "description": "Must have `geoprivacy` or `taxon_geoprivacy` fields matching these values\n"
+              },
+              {
+                "name": "hrank",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this rank or lower"
+              },
+              {
+                "name": "lrank",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must have this rank or higher"
+              },
+              {
+                "name": "iconic_taxa",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must by within this iconic taxon"
+              },
+              {
+                "name": "id_above",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID above this value"
+              },
+              {
+                "name": "id_below",
+                "value": "",
+                "type": "query",
+                "description": "Must have an ID below this value"
+              },
+              {
+                "name": "identifications",
+                "value": "",
+                "type": "query",
+                "description": "Identifications must meet these criteria"
+              },
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Must be within a {`radius`} kilometer circle around this lat/lng\n(*lat, *lng, radius)\n"
+              },
+              {
+                "name": "lng",
+                "value": "",
+                "type": "query",
+                "description": "Must be within a {`radius`} kilometer circle around this lat/lng\n(*lat, *lng, radius)\n"
+              },
+              {
+                "name": "radius",
+                "value": "",
+                "type": "query",
+                "description": "Must be within a {`radius`} kilometer circle around this lat/lng\n(*lat, *lng, radius)\n"
+              },
+              {
+                "name": "nelat",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "nelng",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "swlat",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "swlng",
+                "value": "",
+                "type": "query",
+                "description": "Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "query",
+                "description": "Taxon must be in the list with this ID"
+              },
+              {
+                "name": "not_in_project",
+                "value": "",
+                "type": "query",
+                "description": "Must not be in the project with this ID or slug"
+              },
+              {
+                "name": "not_matching_project_rules_for",
+                "value": "",
+                "type": "query",
+                "description": "Must not match the rules of the project with this ID or slug"
+              },
+              {
+                "name": "observation_accuracy_experiment_id",
+                "value": "",
+                "type": "query",
+                "description": "Must included in this observation accuracy experiment"
+              },
+              {
+                "name": "fails_dqa_accurate",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not accurately depicting an organism or scene"
+              },
+              {
+                "name": "fails_dqa_date",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not having an accurate date"
+              },
+              {
+                "name": "fails_dqa_evidence",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not evidence of an organism"
+              },
+              {
+                "name": "fails_dqa_location",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not having an accurate location"
+              },
+              {
+                "name": "fails_dqa_needs_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as the community ID cannot be improved"
+              },
+              {
+                "name": "fails_dqa_recent",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not recent evidence of an organism"
+              },
+              {
+                "name": "fails_dqa_subject",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not having evidence related to a single subject"
+              },
+              {
+                "name": "fails_dqa_wild",
+                "value": "",
+                "type": "query",
+                "description": "Must be voted as not wild"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search observation properties. Can be combined with `search_on`"
+              },
+              {
+                "name": "search_on",
+                "value": "",
+                "type": "query",
+                "description": "Properties to search on, when combined with `q`.\nSearches across all properties by default\n"
+              },
+              {
+                "name": "quality_grade",
+                "value": "",
+                "type": "query",
+                "description": "Must have this quality grade"
+              },
+              {
+                "name": "updated_since",
+                "value": "",
+                "type": "query",
+                "description": "Must be updated since this time"
+              },
+              {
+                "name": "viewer_id",
+                "value": "",
+                "type": "query",
+                "description": "See `reviewed`"
+              },
+              {
+                "name": "reviewed",
+                "value": "",
+                "type": "query",
+                "description": "Observations have been reviewed by the user with ID equal to\nthe value of the `viewer_id` parameter\n"
+              },
+              {
+                "name": "locale",
+                "value": "",
+                "type": "query",
+                "description": "Locale preference for taxon common names\n"
+              },
+              {
+                "name": "preferred_place_id",
+                "value": "",
+                "type": "query",
+                "description": "Place preference for regional taxon common names\n"
+              },
+              {
+                "name": "ttl",
+                "value": "",
+                "type": "query",
+                "description": "Set the `Cache-Control` HTTP header with this value as `max-age`, in\nseconds. This means subsequent identical requests will be cached on\niNaturalist servers, and commonly within web browsers\n"
+              },
+              {
+                "name": "include_ancestors",
+                "value": "",
+                "type": "query",
+                "description": "Include taxon ancestors in the response"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination `page` number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return in a `page`. The maximum value is 500\n"
+              }
+            ]
+          },
+          "docs": "Given zero to many of following parameters, returns `leaf taxa`\nassociated with observations matching the search criteria and the count of\nobservations they are associated with, ordered by count descending.\n`Leaf taxa` are the leaves of the taxonomic tree containing only the\ntaxa associated with observations matching the search criteria.\n"
+        },
+        {
+          "info": {
+            "name": "Observation User Updates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/observations/updates",
+            "params": [
+              {
+                "name": "created_after",
+                "value": "",
+                "type": "query",
+                "description": "Must be created at or after this time"
+              },
+              {
+                "name": "viewed",
+                "value": "",
+                "type": "query",
+                "description": "Notification has been viewed by the user before"
+              },
+              {
+                "name": "observations_by",
+                "value": "",
+                "type": "query",
+                "description": "Only show updates on observations owned by the currently authenticated\nuser or on observations the authenticated user is following but does not\nown.\n"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination `page` number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return in a `page`. The maximum value is generally\n200 unless otherwise noted\n"
+              }
+            ]
+          },
+          "docs": "Given zero to many of following parameters, returns an array of objects\nrepresenting new comments and identifications on observations the authenticated\nuser has subscribed to. Requires authentication\n"
+        },
+        {
+          "info": {
+            "name": "Observation Field Value Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/observations/:id/viewed_updates",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Mark all updates associated with this observation as viewed by logged-in user\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

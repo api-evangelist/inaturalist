@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "iNaturalist Annotations Observation Field Values API",
+    "version": "1.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Observation Field Values",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Observation Field Value Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/observation_field_values/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Update an observation field value\n"
+        },
+        {
+          "info": {
+            "name": "Observation Field Value Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/observation_field_values/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Delete an observation field value\n"
+        },
+        {
+          "info": {
+            "name": "Observation Field Value Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/observation_field_values"
+          },
+          "docs": "Create an observation field value\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

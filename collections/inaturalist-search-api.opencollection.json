@@ -1,0 +1,73 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "iNaturalist Annotations Search API",
+    "version": "1.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Site Search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search object properties"
+              },
+              {
+                "name": "sources",
+                "value": "",
+                "type": "query",
+                "description": "Must be of this type"
+              },
+              {
+                "name": "place_id",
+                "value": "",
+                "type": "query",
+                "description": "Must be associated with this place"
+              },
+              {
+                "name": "include_taxon_ancestors",
+                "value": "",
+                "type": "query",
+                "description": "Include taxon ancestors in the response"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return in a `page`. The maximum value is generally\n200 unless otherwise noted\n"
+              },
+              {
+                "name": "locale",
+                "value": "",
+                "type": "query",
+                "description": "Locale preference for taxon common names\n"
+              },
+              {
+                "name": "preferred_place_id",
+                "value": "",
+                "type": "query",
+                "description": "Place preference for regional taxon common names\n"
+              }
+            ]
+          },
+          "docs": "Given zero to many of following parameters, returns object matching the search criteria\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

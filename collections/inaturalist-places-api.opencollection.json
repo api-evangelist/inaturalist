@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "iNaturalist Annotations Places API",
+    "version": "1.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Places",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Place Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/places/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Must have this ID or slug"
+              },
+              {
+                "name": "admin_level",
+                "value": "",
+                "type": "query",
+                "description": "Admin level of a place, or an array of admin levels\nin comma-delimited format. Supported admin levels are: -10\n(continent), 0 (country), 10 (state), 20 (county), 30 (town),\n100 (park)"
+              }
+            ]
+          },
+          "docs": "Given an ID, or an array of IDs in comma-delimited format, returns\ncorresponding places. A maximum of 500 results will be returned\n"
+        },
+        {
+          "info": {
+            "name": "Place Autocomplete",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/places/autocomplete",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search by name (must start with this value) or by ID (exact match)."
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "Sort field"
+              }
+            ]
+          },
+          "docs": "Given an string, returns places with names starting with the search\nterm.\n"
+        },
+        {
+          "info": {
+            "name": "Nearby Places",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/places/nearby",
+            "params": [
+              {
+                "name": "nelat",
+                "value": "",
+                "type": "query",
+                "description": "Must be nearby this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "nelng",
+                "value": "",
+                "type": "query",
+                "description": "Must be nearby this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "swlat",
+                "value": "",
+                "type": "query",
+                "description": "Must be nearby this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "swlng",
+                "value": "",
+                "type": "query",
+                "description": "Must be nearby this bounding box (*nelat, *nelng, *swlat, *swlng)\n"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Name must match this value"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return in a `page`. The maximum value is generally\n200 unless otherwise noted\n"
+              }
+            ]
+          },
+          "docs": "Given an bounding box, and an optional name query, return `standard`\niNaturalist curator approved and `community` non-curated places nearby\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

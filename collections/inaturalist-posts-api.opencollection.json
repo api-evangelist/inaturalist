@@ -1,0 +1,135 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "iNaturalist Annotations Posts API",
+    "version": "1.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Posts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Posts Search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/posts",
+            "params": [
+              {
+                "name": "login",
+                "value": "",
+                "type": "query",
+                "description": "Return posts by this user"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Return posts from this project"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination `page` number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return in a `page`. The maximum value is generally\n200 unless otherwise noted\n"
+              }
+            ]
+          },
+          "docs": "Return journal posts from the iNaturalist site\n"
+        },
+        {
+          "info": {
+            "name": "Post Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/posts"
+          },
+          "docs": "Create a post\n"
+        },
+        {
+          "info": {
+            "name": "Post Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/posts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Update a post\n"
+        },
+        {
+          "info": {
+            "name": "Post Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/posts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record"
+              }
+            ]
+          },
+          "docs": "Delete a post\n"
+        },
+        {
+          "info": {
+            "name": "Posts For User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/posts/for_user",
+            "params": [
+              {
+                "name": "newer_than",
+                "value": "",
+                "type": "query",
+                "description": "returns posts newer than the post with this ID"
+              },
+              {
+                "name": "older_than",
+                "value": "",
+                "type": "query",
+                "description": "returns posts older than the post with this ID"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination `page` number"
+              }
+            ]
+          },
+          "docs": "Return journal posts from the iNaturalist site. If the user is logged-in,\nalso return posts from projects the user is subscribed to\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

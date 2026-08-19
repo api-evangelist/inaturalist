@@ -1,0 +1,153 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "iNaturalist Annotations Polygon Tiles API",
+    "version": "1.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Polygon Tiles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Place Tiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/places/:place_id/:zoom/:x/:y.png",
+            "params": [
+              {
+                "name": "place_id",
+                "value": "",
+                "type": "path",
+                "description": "Place ID"
+              },
+              {
+                "name": "zoom",
+                "value": "",
+                "type": "path",
+                "description": "Zoom level. Z coordinate in the XYZ tiling scheme"
+              },
+              {
+                "name": "x",
+                "value": "",
+                "type": "path",
+                "description": "X coordinate in the XYZ tiling scheme. Must be less than 2^zoom"
+              },
+              {
+                "name": "y",
+                "value": "",
+                "type": "path",
+                "description": "Y coordinate in the XYZ tiling scheme. Must be less than 2^zoom"
+              },
+              {
+                "name": "ttl",
+                "value": "",
+                "type": "query",
+                "description": "Set the `Cache-Control` HTTP header with this value as `max-age`, in\nseconds. This means subsequent identical requests will be cached on\niNaturalist servers, and commonly within web browsers\n"
+              }
+            ]
+          },
+          "docs": "Returns a PNG map tile representing the boundary of this place,\nfollowing the XYZ tiling scheme\n"
+        },
+        {
+          "info": {
+            "name": "Taxon Place Tiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/taxon_places/:taxon_id/:zoom/:x/:y.png",
+            "params": [
+              {
+                "name": "taxon_id",
+                "value": "",
+                "type": "path",
+                "description": "Taxon ID"
+              },
+              {
+                "name": "zoom",
+                "value": "",
+                "type": "path",
+                "description": "Zoom level. Z coordinate in the XYZ tiling scheme"
+              },
+              {
+                "name": "x",
+                "value": "",
+                "type": "path",
+                "description": "X coordinate in the XYZ tiling scheme. Must be less than 2^zoom"
+              },
+              {
+                "name": "y",
+                "value": "",
+                "type": "path",
+                "description": "Y coordinate in the XYZ tiling scheme. Must be less than 2^zoom"
+              },
+              {
+                "name": "ttl",
+                "value": "",
+                "type": "query",
+                "description": "Set the `Cache-Control` HTTP header with this value as `max-age`, in\nseconds. This means subsequent identical requests will be cached on\niNaturalist servers, and commonly within web browsers\n"
+              }
+            ]
+          },
+          "docs": "Returns a PNG map tile representing the boundaries of places this taxon\nis known to occur, following the XYZ tiling scheme\n"
+        },
+        {
+          "info": {
+            "name": "Taxon Range Tiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/taxon_ranges/:taxon_id/:zoom/:x/:y.png",
+            "params": [
+              {
+                "name": "taxon_id",
+                "value": "",
+                "type": "path",
+                "description": "Taxon ID"
+              },
+              {
+                "name": "zoom",
+                "value": "",
+                "type": "path",
+                "description": "Zoom level. Z coordinate in the XYZ tiling scheme"
+              },
+              {
+                "name": "x",
+                "value": "",
+                "type": "path",
+                "description": "X coordinate in the XYZ tiling scheme. Must be less than 2^zoom"
+              },
+              {
+                "name": "y",
+                "value": "",
+                "type": "path",
+                "description": "Y coordinate in the XYZ tiling scheme. Must be less than 2^zoom"
+              },
+              {
+                "name": "color",
+                "value": "",
+                "type": "query",
+                "description": "Primary color to use in tile creation. Accepts common colors by string\n(e.g. `color=blue`), and accepts escaped color HEX codes\n(e.g. `color=%2386a91c`)\n"
+              },
+              {
+                "name": "ttl",
+                "value": "",
+                "type": "query",
+                "description": "Set the `Cache-Control` HTTP header with this value as `max-age`, in\nseconds. This means subsequent identical requests will be cached on\niNaturalist servers, and commonly within web browsers\n"
+              }
+            ]
+          },
+          "docs": "Returns a PNG map tile representing the range of this taxon, following\nthe XYZ tiling scheme\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

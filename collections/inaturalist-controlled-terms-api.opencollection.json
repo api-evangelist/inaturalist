@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "iNaturalist Annotations Controlled Terms API",
+    "version": "1.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Controlled Terms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Terms Index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/controlled_terms"
+          },
+          "docs": "List all attribute controlled terms\n"
+        },
+        {
+          "info": {
+            "name": "Terms for Taxon",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/controlled_terms/for_taxon",
+            "params": [
+              {
+                "name": "taxon_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by this taxon"
+              }
+            ]
+          },
+          "docs": "Returns attribute controlled terms relevant to a taxon\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
