@@ -163,6 +163,8 @@ apis:
   humanURL: https://www.inaturalist.org/pages/api+reference
   baseURL: https://api.inaturalist.org/v1
   tags:
+  - Message
+  tags_raw:
   - Messages
   properties:
   - type: OpenAPI
@@ -373,6 +375,8 @@ apis:
   humanURL: https://www.inaturalist.org/pages/api+reference
   baseURL: https://api.inaturalist.org/v1
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
@@ -436,6 +440,8 @@ apis:
   humanURL: https://www.inaturalist.org/pages/api+reference
   baseURL: https://api.inaturalist.org/v1
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
