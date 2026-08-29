@@ -7,6 +7,18 @@ description: >
   contributed by citizen scientists worldwide. The API supports reading and
   writing observations, taxa lookups, identifications, places, projects, and
   user data across v0, v1, and v2 endpoints.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: free
   onboarding: self-serve
