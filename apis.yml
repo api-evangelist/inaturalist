@@ -492,6 +492,8 @@ apis:
   - type: FinOps
     url: https://raw.githubusercontent.com/api-evangelist/inaturalist/main/finops/finops.yml
 common:
+  - type: Website
+    url: https://www.inaturalist.org/
   - type: AgenticAccess
     url: agentic-access/inaturalist-agentic-access.yml
   - type: DomainSecurity
