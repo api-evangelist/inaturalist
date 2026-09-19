@@ -71,6 +71,8 @@ apis:
   humanURL: https://www.inaturalist.org/pages/api+reference
   baseURL: https://api.inaturalist.org/v1
   tags:
+  - Annotation
+  tags_raw:
   - Annotations
   properties:
   - type: OpenAPI
