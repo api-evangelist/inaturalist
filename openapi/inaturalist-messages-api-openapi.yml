@@ -1,193 +1,51 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
-  title: iNaturalist Annotations Messages API
+  title: iNaturalist Messages API
   description: '# https://api.inaturalist.org/v1/
 
 
-    [iNaturalist](https://www.inaturalist.org/) is a global community of
+    iNaturalist is a global community of
 
     naturalists, scientists, and members of the public sharing over a million
 
     wildlife sightings to teach one another about the natural world while
 
-    creating high quality citizen science data for science and conservation.
-
-
-    These API methods return data in JSON/JSONP and PNG response formats. They
-
-    are meant to supplement the existing [iNaturalist
-
-    API](https://www.inaturalist.org/pages/api+reference), implemented in Ruby
-
-    on Rails, which has more functionality and supports more write operations,
-
-    but tends to be slower and have less consistent response formats. Visit our
-
-    [developers page](https://www.inaturalist.org/pages/developers) for more
-
-    information. Write operations that expect and return JSON describe a single
-
-    `body` parameter that represents the request body, which should be specified
-
-    as JSON. See the "Model" of each body parameter for attributes that we
-
-    accept in these JSON objects.
-
-
-    Multiple values for a single URL parameter should be separated by commas,
-
-    e.g. `taxon_id=1,2,3`.
-
-
-    Map tiles are generated using the
-
-    [node-mapnik](https://github.com/mapnik/node-mapnik) library, following the
-
-    XYZ map tiling scheme. The "Observation Tile" methods accept nearly all the
-
-    parameters of the observation search APIs, and will generate map tiles
-
-    reflecting the same observations returned by searches. These
-
-    "Observation Tile" methods have corresponding
-
-    [UTFGrid](https://github.com/mapbox/utfgrid-spec) JSON
-
-    responses which return information needed to make interactive maps.
-
-
-    Authentication in the Node API is handled via JSON Web Tokens (JWT). To
-
-    obtain one, make an [OAuth-authenticated
-
-    request](http://www.inaturalist.org/pages/api+reference#auth) to
-
-    https://www.inaturalist.org/users/api_token. Each JWT will expire after 24
-
-    hours. Authentication required for all PUT and POST requests. Some GET
-
-    requests will also include private information like hidden coordinates if
-
-    the authenticated user has permission to view them.
-
-
-    Photos served from https://static.inaturalist.org and
-
-    https://inaturalist-open-data.s3.amazonaws.com have multiple size
-
-    variants and not all size variants are returned in responses. To access
-
-    other sizes, the photo URL can be modified to replace only the size
-
-    qualifier (each variant shares the exact same extension). The domain a photo
-
-    is hosted under reflects the license under which the photo is being shared,
-
-    and the domain may change over time if the license changes. Photos in
-
-    the `inaturalist-open-data` domain are shared under open licenses. These can
-
-    be accessed in bulk in the [iNaturalist AWS Open Dataset](
-
-    https://registry.opendata.aws/inaturalist-open-data/). Photos in the
-
-    `static.inaturalist.org` domain do not have open licenses.
-
-
-    The available photo sizes are:
-
-    * original (max 2048px in either dimension)
-
-    * large (max 1024px in either dimension)
-
-    * medium (max 500px in either dimension)
-
-    * small (max 240px in either dimension)
-
-    * thumb (max 100px in either dimension)
-
-    * square (75px square)
-
-
-    iNaturalist Website: https://www.inaturalist.org/
-
-
-    Open Source Software: https://github.com/inaturalist/
-
-
-    ## Terms of Use
-
-
-    Use of this API is subject to the iNaturalist
-
-    [Terms of Service](https://www.inaturalist.org/terms) and
-
-    [Privacy Policy](https://www.inaturalist.org/privacy). We will block any
-
-    use of our API that violates our Terms or Privacy Policy without notice.
-
-    The API is intended to support application development, not data scraping.
-
-    For pre- generated data exports, see
-
-    https://www.inaturalist.org/pages/developers.
-
-
-    Please note that we throttle API usage to a max of 100 requests per minute,
-
-    though we ask that you try to keep it to 60 requests per minute or lower,
-
-    and to keep under 10,000 requests per day. If we notice usage that has
-
-    serious impact on our performance we may institute blocks without
-
-    notification.
-
-
-    Terms of Service: https://www.inaturalist.org/terms
-
-
-    Privacy Policy: https://www.inaturalist.org/privacy
-
-    '
+    creating high quality citizen science data for science and conservation.'
   version: 1.3.0
-basePath: /v1
-schemes:
-- http
-- https
-produces:
-- application/json
+servers:
+- url: /v1
 tags:
 - name: Messages
   description: Create, fetch, delete
 paths:
   /messages:
     get:
-      summary: Retrieve messages for the authenticated user. This does not mark them as read.
+      summary: Retrieve messages for the authenticated user. This does not mark them as read
       description: Show the user's inbox or sent box
       parameters:
-      - $ref: '#/parameters/page'
+      - $ref: '#/components/parameters/page'
       - name: box
         in: query
-        type: string
         description: Whether to view messages the user has received (default) or messages the user has sent
-        default: inbox
-        enum:
-        - inbox
-        - sent
-        - any
+        schema:
+          type: string
+          enum:
+          - inbox
+          - sent
+          - any
+          default: inbox
       - name: q
         in: query
-        type: string
         description: Search query for subject and body
+        schema:
+          type: string
       - name: user_id
         in: query
-        type: string
         description: User ID or username of correspondent to filter by
+        schema:
+          type: string
       - name: threads
         in: query
-        type: boolean
-        default: false
         description: 'Groups results by `thread_id`, only shows the latest message per
 
           thread, and includes a `thread_messages_count` attribute showing the
@@ -201,6 +59,9 @@ paths:
           you restrict it to `inbox` or `sent`.
 
           '
+        schema:
+          type: boolean
+          default: false
       tags:
       - Messages
       security:
@@ -212,8 +73,12 @@ paths:
           description: 'Returns an object with metadata and an array of messages
 
             '
-          schema:
-            $ref: '#/definitions/MessagesResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessagesResponse'
+      operationId: getMessages
+      x-operation-id-source: derived
     post:
       summary: Create a new message
       description: Create and deliver a new message to another user
@@ -221,77 +86,85 @@ paths:
       - Messages
       security:
       - api_token: []
-      parameters:
-      - name: body
-        in: body
-        schema:
-          $ref: '#/definitions/PostMessage'
       responses:
         '200':
           description: 'Returns the message just created
 
             '
-          schema:
-            $ref: '#/definitions/Message'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
         default:
           description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostMessage'
+      operationId: postMessages
+      x-operation-id-source: derived
   /messages/{id}:
     get:
       summary: Retrieve messages in a thread
       description: 'Retrieves all messages in the thread the specified message belongs to
 
-        and marks them all as read.
-
-        '
+        and marks them all as read.'
       tags:
       - Messages
       security:
       - api_token: []
       parameters:
-      - $ref: '#/parameters/path_id'
+      - $ref: '#/components/parameters/path_id'
       responses:
         '200':
           description: 'Returns an object with metadata and an array of messages
 
             '
-          schema:
-            properties:
-              reply_to_user:
-                description: User to reply to
-                $ref: '#/definitions/User'
-              thread_id:
-                description: Identifier for this thread
-                type: integer
-              flaggable_message_id:
-                description: 'Identifier for the message that should be flagged if the user
+          content:
+            application/json:
+              schema:
+                properties:
+                  reply_to_user:
+                    description: User to reply to
+                    $ref: '#/components/schemas/User'
+                  thread_id:
+                    description: Identifier for this thread
+                    type: integer
+                  flaggable_message_id:
+                    description: 'Identifier for the message that should be flagged if the user
 
-                  chooses to flag this thread
+                      chooses to flag this thread
 
-                  '
-                type: integer
-              results:
-                type: array
-                items:
-                  $ref: '#/definitions/Message'
+                      '
+                    type: integer
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Message'
         default:
           description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      operationId: getMessagesById
+      x-operation-id-source: derived
     delete:
       summary: Delete a message / thread
       description: 'This will all of the authenticated user''s copies of the messages in tha
 
-        thread to which the specified message belongs.
-
-        '
+        thread to which the specified message belongs.'
       tags:
       - Messages
       security:
       - api_token: []
       parameters:
-      - $ref: '#/parameters/path_id'
+      - $ref: '#/components/parameters/path_id'
       responses:
         '200':
           description: 'No return data, 200 just means deletion was successful
@@ -303,8 +176,12 @@ paths:
             '
         default:
           description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      operationId: deleteMessagesById
+      x-operation-id-source: derived
   /messages/unread:
     get:
       summary: Gets a count of messages the authenticated user has not read
@@ -315,165 +192,174 @@ paths:
       responses:
         '200':
           description: Number of unread messages
-          schema:
-            properties:
-              count:
-                type: integer
-                description: Number of unread messages
+          content:
+            application/json:
+              schema:
+                properties:
+                  count:
+                    type: integer
+                    description: Number of unread messages
         default:
           description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'
-definitions:
-  Error:
-    type: object
-    properties:
-      code:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      operationId: getMessagesUnread
+      x-operation-id-source: derived
+components:
+  parameters:
+    path_id:
+      name: id
+      in: path
+      required: true
+      description: ID of the record
+      schema:
         type: integer
-      message:
+    page:
+      name: page
+      in: query
+      description: Pagination `page` number
+      schema:
         type: string
-  MessagesResponse:
-    allOf:
-    - $ref: '#/definitions/BaseResponse'
-    - required:
-      - results
+  schemas:
+    BaseResponse:
+      type: object
       properties:
-        results:
+        total_results:
+          type: integer
+        page:
+          type: integer
+        per_page:
+          type: integer
+    Message:
+      type: object
+      properties:
+        id:
+          type: integer
+        subject:
+          type: string
+        body:
+          type: string
+        user_id:
+          type: integer
+          description: 'ID of the user to whom this message belongs. Messages work like email,
+
+            so the sender gets a copy and the recipient gets a copy of each
+
+            message. This is always the authenticated user, so there''s no real
+
+            need for a full user object.
+
+            '
+        to_user:
+          $ref: '#/components/schemas/User'
+        from_user:
+          $ref: '#/components/schemas/User'
+        thread_id:
+          type: integer
+          description: 'Identifier for the message thread, generally the ID of the sender''s
+
+            copy of the first message
+
+            '
+        thread_messages_count:
+          type: integer
+          description: 'Number of messages in this thread. Only included when threads=true
+
+            '
+        thread_flags:
+          type: array
+          description: 'Array of flags on messages in this thread. Only included when
+
+            threads=true
+
+            '
+          items:
+            type: object
+    User:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+        id:
+          type: integer
+        icon:
+          type: string
+        icon_url:
+          type: string
+        identifications_count:
+          type: integer
+        journal_posts_count:
+          type: integer
+        login:
+          type: string
+        name:
+          type: string
+        observations_count:
+          type: integer
+        orcid:
+          type: string
+        roles:
           type: array
           items:
-            $ref: '#/definitions/Message'
-  Message:
-    type: object
-    properties:
-      id:
-        type: integer
-      subject:
-        type: string
-      body:
-        type: string
-      user_id:
-        type: integer
-        description: 'ID of the user to whom this message belongs. Messages work like email,
-
-          so the sender gets a copy and the recipient gets a copy of each
-
-          message. This is always the authenticated user, so there''s no real
-
-          need for a full user object.
-
-          '
-      to_user:
-        $ref: '#/definitions/User'
-      from_user:
-        $ref: '#/definitions/User'
-      thread_id:
-        type: integer
-        description: 'Identifier for the message thread, generally the ID of the sender''s
-
-          copy of the first message
-
-          '
-      thread_messages_count:
-        type: integer
-        description: 'Number of messages in this thread. Only included when threads=true
-
-          '
-      thread_flags:
-        type: array
-        description: 'Array of flags on messages in this thread. Only included when
-
-          threads=true
-
-          '
-        items:
-          type: object
-  BaseResponse:
-    type: object
-    properties:
-      total_results:
-        type: integer
-      page:
-        type: integer
-      per_page:
-        type: integer
-  User:
-    type: object
-    properties:
-      created_at:
-        type: string
-        format: date-time
-      id:
-        type: integer
-      icon:
-        type: string
-      icon_url:
-        type: string
-      identifications_count:
-        type: integer
-      journal_posts_count:
-        type: integer
-      login:
-        type: string
-      name:
-        type: string
-      observations_count:
-        type: integer
-      orcid:
-        type: string
-      roles:
-        type: array
-        items:
+            type: string
+            enum:
+            - admin
+            - app owner
+            - curator
+        site_id:
+          type: integer
+        species_count:
+          type: integer
+        spam:
+          type: boolean
+        suspended:
+          type: boolean
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
           type: string
-          enum:
-          - admin
-          - app owner
-          - curator
-      site_id:
-        type: integer
-      species_count:
-        type: integer
-      spam:
-        type: boolean
-      suspended:
-        type: boolean
-  PostMessage:
-    type: object
-    properties:
-      message:
-        type: object
+    PostMessage:
+      type: object
+      properties:
+        message:
+          type: object
+          properties:
+            to_user_id:
+              type: integer
+              description: User ID of the recipient
+            thread_id:
+              type: integer
+              description: 'Identifier for the thread. Should be blank for new threads,
+
+                but when replying to an existing message, it should be set to
+
+                the thread_id of the message being replied to.
+
+                '
+            subject:
+              type: string
+              description: Subject of the message
+            body:
+              type: string
+              description: Body of the message
+    MessagesResponse:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponse'
+      - required:
+        - results
         properties:
-          to_user_id:
-            type: integer
-            description: User ID of the recipient
-          thread_id:
-            type: integer
-            description: 'Identifier for the thread. Should be blank for new threads,
-
-              but when replying to an existing message, it should be set to
-
-              the thread_id of the message being replied to.
-
-              '
-          subject:
-            type: string
-            description: Subject of the message
-          body:
-            type: string
-            description: Body of the message
-parameters:
-  page:
-    name: page
-    type: string
-    in: query
-    description: Pagination `page` number
-  path_id:
-    name: id
-    in: path
-    required: true
-    type: integer
-    description: ID of the record
-securityDefinitions:
-  api_token:
-    type: apiKey
-    name: Authorization
-    in: header
+          results:
+            type: array
+            items:
+              $ref: '#/components/schemas/Message'
+  securitySchemes:
+    api_token:
+      type: apiKey
+      name: Authorization
+      in: header

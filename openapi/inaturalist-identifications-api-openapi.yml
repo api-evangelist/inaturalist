@@ -1,162 +1,19 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
-  title: iNaturalist Annotations Identifications API
+  title: iNaturalist Identifications API
   description: '# https://api.inaturalist.org/v1/
 
 
-    [iNaturalist](https://www.inaturalist.org/) is a global community of
+    iNaturalist is a global community of
 
     naturalists, scientists, and members of the public sharing over a million
 
     wildlife sightings to teach one another about the natural world while
 
-    creating high quality citizen science data for science and conservation.
-
-
-    These API methods return data in JSON/JSONP and PNG response formats. They
-
-    are meant to supplement the existing [iNaturalist
-
-    API](https://www.inaturalist.org/pages/api+reference), implemented in Ruby
-
-    on Rails, which has more functionality and supports more write operations,
-
-    but tends to be slower and have less consistent response formats. Visit our
-
-    [developers page](https://www.inaturalist.org/pages/developers) for more
-
-    information. Write operations that expect and return JSON describe a single
-
-    `body` parameter that represents the request body, which should be specified
-
-    as JSON. See the "Model" of each body parameter for attributes that we
-
-    accept in these JSON objects.
-
-
-    Multiple values for a single URL parameter should be separated by commas,
-
-    e.g. `taxon_id=1,2,3`.
-
-
-    Map tiles are generated using the
-
-    [node-mapnik](https://github.com/mapnik/node-mapnik) library, following the
-
-    XYZ map tiling scheme. The "Observation Tile" methods accept nearly all the
-
-    parameters of the observation search APIs, and will generate map tiles
-
-    reflecting the same observations returned by searches. These
-
-    "Observation Tile" methods have corresponding
-
-    [UTFGrid](https://github.com/mapbox/utfgrid-spec) JSON
-
-    responses which return information needed to make interactive maps.
-
-
-    Authentication in the Node API is handled via JSON Web Tokens (JWT). To
-
-    obtain one, make an [OAuth-authenticated
-
-    request](http://www.inaturalist.org/pages/api+reference#auth) to
-
-    https://www.inaturalist.org/users/api_token. Each JWT will expire after 24
-
-    hours. Authentication required for all PUT and POST requests. Some GET
-
-    requests will also include private information like hidden coordinates if
-
-    the authenticated user has permission to view them.
-
-
-    Photos served from https://static.inaturalist.org and
-
-    https://inaturalist-open-data.s3.amazonaws.com have multiple size
-
-    variants and not all size variants are returned in responses. To access
-
-    other sizes, the photo URL can be modified to replace only the size
-
-    qualifier (each variant shares the exact same extension). The domain a photo
-
-    is hosted under reflects the license under which the photo is being shared,
-
-    and the domain may change over time if the license changes. Photos in
-
-    the `inaturalist-open-data` domain are shared under open licenses. These can
-
-    be accessed in bulk in the [iNaturalist AWS Open Dataset](
-
-    https://registry.opendata.aws/inaturalist-open-data/). Photos in the
-
-    `static.inaturalist.org` domain do not have open licenses.
-
-
-    The available photo sizes are:
-
-    * original (max 2048px in either dimension)
-
-    * large (max 1024px in either dimension)
-
-    * medium (max 500px in either dimension)
-
-    * small (max 240px in either dimension)
-
-    * thumb (max 100px in either dimension)
-
-    * square (75px square)
-
-
-    iNaturalist Website: https://www.inaturalist.org/
-
-
-    Open Source Software: https://github.com/inaturalist/
-
-
-    ## Terms of Use
-
-
-    Use of this API is subject to the iNaturalist
-
-    [Terms of Service](https://www.inaturalist.org/terms) and
-
-    [Privacy Policy](https://www.inaturalist.org/privacy). We will block any
-
-    use of our API that violates our Terms or Privacy Policy without notice.
-
-    The API is intended to support application development, not data scraping.
-
-    For pre- generated data exports, see
-
-    https://www.inaturalist.org/pages/developers.
-
-
-    Please note that we throttle API usage to a max of 100 requests per minute,
-
-    though we ask that you try to keep it to 60 requests per minute or lower,
-
-    and to keep under 10,000 requests per day. If we notice usage that has
-
-    serious impact on our performance we may institute blocks without
-
-    notification.
-
-
-    Terms of Service: https://www.inaturalist.org/terms
-
-
-    Privacy Policy: https://www.inaturalist.org/privacy
-
-    '
+    creating high quality citizen science data for science and conservation.'
   version: 1.3.0
-basePath: /v1
-schemes:
-- http
-- https
-produces:
-- application/json
+servers:
+- url: /v1
 tags:
 - name: Identifications
   description: Create, update, and delete
@@ -166,18 +23,16 @@ paths:
       summary: Identification Details
       description: 'Given an ID, or an array of IDs in comma-delimited format, returns
 
-        corresponding identifications. A maximum of 30 results will be returned
-
-        '
-      consumes:
-      - application/json
+        corresponding identifications. A maximum of 30 results will be returned'
       parameters:
-      - $ref: '#/parameters/path_multi_id'
+      - $ref: '#/components/parameters/path_multi_id'
       tags:
       - Identifications
       responses:
         '200':
           description: OK
+      operationId: getIdentificationsById
+      x-operation-id-source: derived
     put:
       summary: Identification Update
       description: 'Update an identification. Note that to "withdraw" an observation you
@@ -192,18 +47,9 @@ paths:
 
         identifications by the authenticated user for the given observation will
 
-        be withdrawn.
-
-        '
-      consumes:
-      - application/json
+        be withdrawn.'
       parameters:
-      - $ref: '#/parameters/path_id'
-      - name: body
-        in: body
-        description: Identification object
-        schema:
-          $ref: '#/definitions/PostIdentification'
+      - $ref: '#/components/parameters/path_id'
       tags:
       - Identifications
       security:
@@ -211,15 +57,21 @@ paths:
       responses:
         '200':
           description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostIdentification'
+        description: Identification object
+      operationId: putIdentificationsById
+      x-operation-id-source: derived
     delete:
       summary: Identification Delete
       description: 'Delete an identification. See description of `PUT /identifications/{id}
 
-        for notes on withdrawing and restoring identifications.
-
-        '
+        for notes on withdrawing and restoring identifications.'
       parameters:
-      - $ref: '#/parameters/path_id'
+      - $ref: '#/components/parameters/path_id'
       tags:
       - Identifications
       security:
@@ -227,18 +79,12 @@ paths:
       responses:
         '200':
           description: OK
+      operationId: deleteIdentificationsById
+      x-operation-id-source: derived
   /identifications:
     post:
       summary: Identification Create
       description: Create an identification
-      consumes:
-      - application/json
-      parameters:
-      - name: body
-        in: body
-        description: Identification object
-        schema:
-          $ref: '#/definitions/PostIdentification'
       tags:
       - Identifications
       security:
@@ -246,109 +92,117 @@ paths:
       responses:
         '200':
           description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostIdentification'
+        description: Identification object
+      operationId: postIdentifications
+      x-operation-id-source: derived
     get:
       summary: Identification Search
       description: 'Given zero to many of following parameters, returns identifications
 
-        matching the search criteria
-
-        '
+        matching the search criteria'
       parameters:
-      - $ref: '#/parameters/ids_current_taxon'
-      - $ref: '#/parameters/ids_own_observation'
-      - $ref: '#/parameters/ids_is_change'
-      - $ref: '#/parameters/ids_taxon_active'
-      - $ref: '#/parameters/ids_observation_taxon_active'
-      - $ref: '#/parameters/ids_id'
-      - $ref: '#/parameters/ids_rank'
-      - $ref: '#/parameters/ids_observation_rank'
-      - $ref: '#/parameters/ids_user_id'
-      - $ref: '#/parameters/ids_user_login'
-      - $ref: '#/parameters/ids_current'
-      - $ref: '#/parameters/ids_category'
-      - $ref: '#/parameters/ids_place_id'
-      - $ref: '#/parameters/ids_quality_grade'
-      - $ref: '#/parameters/ids_taxon_change_id'
-      - $ref: '#/parameters/ids_taxon_id'
-      - $ref: '#/parameters/ids_observation_taxon_id'
-      - $ref: '#/parameters/ids_iconic_taxon_id'
-      - $ref: '#/parameters/ids_observation_iconic_taxon_id'
-      - $ref: '#/parameters/ids_lrank'
-      - $ref: '#/parameters/ids_hrank'
-      - $ref: '#/parameters/ids_observation_lrank'
-      - $ref: '#/parameters/ids_observation_hrank'
-      - $ref: '#/parameters/ids_without_taxon_id'
-      - $ref: '#/parameters/ids_without_observation_taxon_id'
-      - $ref: '#/parameters/ids_d1'
-      - $ref: '#/parameters/ids_d2'
-      - $ref: '#/parameters/ids_observation_created_d1'
-      - $ref: '#/parameters/ids_observation_created_d2'
-      - $ref: '#/parameters/ids_observed_d1'
-      - $ref: '#/parameters/ids_observed_d2'
-      - $ref: '#/parameters/id_above'
-      - $ref: '#/parameters/id_below'
-      - $ref: '#/parameters/page'
-      - $ref: '#/parameters/per_page'
-      - $ref: '#/parameters/order'
-      - $ref: '#/parameters/ids_order_by'
-      - $ref: '#/parameters/only_id'
+      - $ref: '#/components/parameters/ids_current_taxon'
+      - $ref: '#/components/parameters/ids_own_observation'
+      - $ref: '#/components/parameters/ids_is_change'
+      - $ref: '#/components/parameters/ids_taxon_active'
+      - $ref: '#/components/parameters/ids_observation_taxon_active'
+      - $ref: '#/components/parameters/ids_id'
+      - $ref: '#/components/parameters/ids_rank'
+      - $ref: '#/components/parameters/ids_observation_rank'
+      - $ref: '#/components/parameters/ids_user_id'
+      - $ref: '#/components/parameters/ids_user_login'
+      - $ref: '#/components/parameters/ids_current'
+      - $ref: '#/components/parameters/ids_category'
+      - $ref: '#/components/parameters/ids_place_id'
+      - $ref: '#/components/parameters/ids_quality_grade'
+      - $ref: '#/components/parameters/ids_taxon_change_id'
+      - $ref: '#/components/parameters/ids_taxon_id'
+      - $ref: '#/components/parameters/ids_observation_taxon_id'
+      - $ref: '#/components/parameters/ids_iconic_taxon_id'
+      - $ref: '#/components/parameters/ids_observation_iconic_taxon_id'
+      - $ref: '#/components/parameters/ids_lrank'
+      - $ref: '#/components/parameters/ids_hrank'
+      - $ref: '#/components/parameters/ids_observation_lrank'
+      - $ref: '#/components/parameters/ids_observation_hrank'
+      - $ref: '#/components/parameters/ids_without_taxon_id'
+      - $ref: '#/components/parameters/ids_without_observation_taxon_id'
+      - $ref: '#/components/parameters/ids_d1'
+      - $ref: '#/components/parameters/ids_d2'
+      - $ref: '#/components/parameters/ids_observation_created_d1'
+      - $ref: '#/components/parameters/ids_observation_created_d2'
+      - $ref: '#/components/parameters/ids_observed_d1'
+      - $ref: '#/components/parameters/ids_observed_d2'
+      - $ref: '#/components/parameters/id_above'
+      - $ref: '#/components/parameters/id_below'
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/per_page'
+      - $ref: '#/components/parameters/order'
+      - $ref: '#/components/parameters/ids_order_by'
+      - $ref: '#/components/parameters/only_id'
       tags:
       - Identifications
       responses:
         '200':
           description: OK
+      operationId: getIdentifications
+      x-operation-id-source: derived
   /identifications/categories:
     get:
       summary: Identification Categories
       description: 'Given zero to many of following parameters, return counts of the
 
-        categories of identifications matching the search criteria
-
-        '
+        categories of identifications matching the search criteria'
       parameters:
-      - $ref: '#/parameters/ids_current_taxon'
-      - $ref: '#/parameters/ids_own_observation'
-      - $ref: '#/parameters/ids_is_change'
-      - $ref: '#/parameters/ids_taxon_active'
-      - $ref: '#/parameters/ids_observation_taxon_active'
-      - $ref: '#/parameters/ids_id'
-      - $ref: '#/parameters/ids_rank'
-      - $ref: '#/parameters/ids_observation_rank'
-      - $ref: '#/parameters/ids_user_id'
-      - $ref: '#/parameters/ids_user_login'
-      - $ref: '#/parameters/ids_current'
-      - $ref: '#/parameters/ids_category'
-      - $ref: '#/parameters/ids_place_id'
-      - $ref: '#/parameters/ids_quality_grade'
-      - $ref: '#/parameters/ids_taxon_change_id'
-      - $ref: '#/parameters/ids_taxon_id'
-      - $ref: '#/parameters/ids_observation_taxon_id'
-      - $ref: '#/parameters/ids_iconic_taxon_id'
-      - $ref: '#/parameters/ids_observation_iconic_taxon_id'
-      - $ref: '#/parameters/ids_lrank'
-      - $ref: '#/parameters/ids_hrank'
-      - $ref: '#/parameters/ids_observation_lrank'
-      - $ref: '#/parameters/ids_observation_hrank'
-      - $ref: '#/parameters/ids_without_taxon_id'
-      - $ref: '#/parameters/ids_without_observation_taxon_id'
-      - $ref: '#/parameters/ids_d1'
-      - $ref: '#/parameters/ids_d2'
-      - $ref: '#/parameters/ids_observation_created_d1'
-      - $ref: '#/parameters/ids_observation_created_d2'
-      - $ref: '#/parameters/ids_observed_d1'
-      - $ref: '#/parameters/ids_observed_d2'
-      - $ref: '#/parameters/id_above'
-      - $ref: '#/parameters/id_below'
-      - $ref: '#/parameters/page'
-      - $ref: '#/parameters/per_page'
-      - $ref: '#/parameters/order'
-      - $ref: '#/parameters/ids_order_by'
-      - $ref: '#/parameters/only_id'
+      - $ref: '#/components/parameters/ids_current_taxon'
+      - $ref: '#/components/parameters/ids_own_observation'
+      - $ref: '#/components/parameters/ids_is_change'
+      - $ref: '#/components/parameters/ids_taxon_active'
+      - $ref: '#/components/parameters/ids_observation_taxon_active'
+      - $ref: '#/components/parameters/ids_id'
+      - $ref: '#/components/parameters/ids_rank'
+      - $ref: '#/components/parameters/ids_observation_rank'
+      - $ref: '#/components/parameters/ids_user_id'
+      - $ref: '#/components/parameters/ids_user_login'
+      - $ref: '#/components/parameters/ids_current'
+      - $ref: '#/components/parameters/ids_category'
+      - $ref: '#/components/parameters/ids_place_id'
+      - $ref: '#/components/parameters/ids_quality_grade'
+      - $ref: '#/components/parameters/ids_taxon_change_id'
+      - $ref: '#/components/parameters/ids_taxon_id'
+      - $ref: '#/components/parameters/ids_observation_taxon_id'
+      - $ref: '#/components/parameters/ids_iconic_taxon_id'
+      - $ref: '#/components/parameters/ids_observation_iconic_taxon_id'
+      - $ref: '#/components/parameters/ids_lrank'
+      - $ref: '#/components/parameters/ids_hrank'
+      - $ref: '#/components/parameters/ids_observation_lrank'
+      - $ref: '#/components/parameters/ids_observation_hrank'
+      - $ref: '#/components/parameters/ids_without_taxon_id'
+      - $ref: '#/components/parameters/ids_without_observation_taxon_id'
+      - $ref: '#/components/parameters/ids_d1'
+      - $ref: '#/components/parameters/ids_d2'
+      - $ref: '#/components/parameters/ids_observation_created_d1'
+      - $ref: '#/components/parameters/ids_observation_created_d2'
+      - $ref: '#/components/parameters/ids_observed_d1'
+      - $ref: '#/components/parameters/ids_observed_d2'
+      - $ref: '#/components/parameters/id_above'
+      - $ref: '#/components/parameters/id_below'
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/per_page'
+      - $ref: '#/components/parameters/order'
+      - $ref: '#/components/parameters/ids_order_by'
+      - $ref: '#/components/parameters/only_id'
       tags:
       - Identifications
       responses:
         '200':
           description: OK
+      operationId: getIdentificationsCategories
+      x-operation-id-source: derived
   /identifications/species_counts:
     get:
       summary: Identification Species Counts
@@ -360,64 +214,64 @@ paths:
 
         descending. `Leaf taxa` are the leaves of the taxonomic tree containing
 
-        only the taxa associated with observations matching the search criteria.
-
-        '
+        only the taxa associated with observations matching the search criteria.'
       parameters:
-      - $ref: '#/parameters/ids_current_taxon'
-      - $ref: '#/parameters/ids_own_observation'
-      - $ref: '#/parameters/ids_is_change'
-      - $ref: '#/parameters/ids_taxon_active'
-      - $ref: '#/parameters/ids_observation_taxon_active'
-      - $ref: '#/parameters/ids_id'
-      - $ref: '#/parameters/ids_rank'
-      - $ref: '#/parameters/ids_observation_rank'
-      - $ref: '#/parameters/ids_user_id'
-      - $ref: '#/parameters/ids_user_login'
-      - $ref: '#/parameters/ids_current'
-      - $ref: '#/parameters/ids_category'
-      - $ref: '#/parameters/ids_place_id'
-      - $ref: '#/parameters/ids_quality_grade'
-      - $ref: '#/parameters/ids_taxon_change_id'
-      - $ref: '#/parameters/ids_taxon_id'
-      - $ref: '#/parameters/ids_observation_taxon_id'
-      - $ref: '#/parameters/ids_iconic_taxon_id'
-      - $ref: '#/parameters/ids_observation_iconic_taxon_id'
-      - $ref: '#/parameters/ids_lrank'
-      - $ref: '#/parameters/ids_hrank'
-      - $ref: '#/parameters/ids_observation_lrank'
-      - $ref: '#/parameters/ids_observation_hrank'
-      - $ref: '#/parameters/ids_without_taxon_id'
-      - $ref: '#/parameters/ids_without_observation_taxon_id'
-      - $ref: '#/parameters/ids_d1'
-      - $ref: '#/parameters/ids_d2'
-      - $ref: '#/parameters/ids_observation_created_d1'
-      - $ref: '#/parameters/ids_observation_created_d2'
-      - $ref: '#/parameters/ids_observed_d1'
-      - $ref: '#/parameters/ids_observed_d2'
-      - $ref: '#/parameters/id_above'
-      - $ref: '#/parameters/id_below'
-      - $ref: '#/parameters/page'
-      - $ref: '#/parameters/per_page'
-      - $ref: '#/parameters/order'
-      - $ref: '#/parameters/ids_order_by'
-      - $ref: '#/parameters/only_id'
+      - $ref: '#/components/parameters/ids_current_taxon'
+      - $ref: '#/components/parameters/ids_own_observation'
+      - $ref: '#/components/parameters/ids_is_change'
+      - $ref: '#/components/parameters/ids_taxon_active'
+      - $ref: '#/components/parameters/ids_observation_taxon_active'
+      - $ref: '#/components/parameters/ids_id'
+      - $ref: '#/components/parameters/ids_rank'
+      - $ref: '#/components/parameters/ids_observation_rank'
+      - $ref: '#/components/parameters/ids_user_id'
+      - $ref: '#/components/parameters/ids_user_login'
+      - $ref: '#/components/parameters/ids_current'
+      - $ref: '#/components/parameters/ids_category'
+      - $ref: '#/components/parameters/ids_place_id'
+      - $ref: '#/components/parameters/ids_quality_grade'
+      - $ref: '#/components/parameters/ids_taxon_change_id'
+      - $ref: '#/components/parameters/ids_taxon_id'
+      - $ref: '#/components/parameters/ids_observation_taxon_id'
+      - $ref: '#/components/parameters/ids_iconic_taxon_id'
+      - $ref: '#/components/parameters/ids_observation_iconic_taxon_id'
+      - $ref: '#/components/parameters/ids_lrank'
+      - $ref: '#/components/parameters/ids_hrank'
+      - $ref: '#/components/parameters/ids_observation_lrank'
+      - $ref: '#/components/parameters/ids_observation_hrank'
+      - $ref: '#/components/parameters/ids_without_taxon_id'
+      - $ref: '#/components/parameters/ids_without_observation_taxon_id'
+      - $ref: '#/components/parameters/ids_d1'
+      - $ref: '#/components/parameters/ids_d2'
+      - $ref: '#/components/parameters/ids_observation_created_d1'
+      - $ref: '#/components/parameters/ids_observation_created_d2'
+      - $ref: '#/components/parameters/ids_observed_d1'
+      - $ref: '#/components/parameters/ids_observed_d2'
+      - $ref: '#/components/parameters/id_above'
+      - $ref: '#/components/parameters/id_below'
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/per_page'
+      - $ref: '#/components/parameters/order'
+      - $ref: '#/components/parameters/ids_order_by'
+      - $ref: '#/components/parameters/only_id'
       - name: taxon_of
-        type: string
         in: query
         description: Source of the taxon for counting
-        enum:
-        - identification
-        - observation
-        default: identification
+        schema:
+          type: string
+          enum:
+          - identification
+          - observation
+          default: identification
       - name: order
-        type: string
         in: query
         description: Sort order
-        default: desc
-        enum:
-        - desc
-        - asc
+        schema:
+          type: string
+          enum:
+          - desc
+          - asc
+          default: desc
       tags:
       - Identifications
       responses:
@@ -425,12 +279,18 @@ paths:
           description: 'Returns an object with metadata and an array of taxa
 
             '
-          schema:
-            $ref: '#/definitions/SpeciesCountsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpeciesCountsResponse'
         default:
           description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      operationId: getIdentificationsSpeciesCounts
+      x-operation-id-source: derived
   /identifications/identifiers:
     get:
       summary: Identification Identifiers
@@ -440,48 +300,46 @@ paths:
 
         matching identifications, ordered by count descending. A
 
-        maximum of 500 results will be returned
-
-        '
+        maximum of 500 results will be returned'
       parameters:
-      - $ref: '#/parameters/ids_current_taxon'
-      - $ref: '#/parameters/ids_own_observation'
-      - $ref: '#/parameters/ids_is_change'
-      - $ref: '#/parameters/ids_taxon_active'
-      - $ref: '#/parameters/ids_observation_taxon_active'
-      - $ref: '#/parameters/ids_id'
-      - $ref: '#/parameters/ids_rank'
-      - $ref: '#/parameters/ids_observation_rank'
-      - $ref: '#/parameters/ids_user_id'
-      - $ref: '#/parameters/ids_user_login'
-      - $ref: '#/parameters/ids_current'
-      - $ref: '#/parameters/ids_category'
-      - $ref: '#/parameters/ids_place_id'
-      - $ref: '#/parameters/ids_quality_grade'
-      - $ref: '#/parameters/ids_taxon_change_id'
-      - $ref: '#/parameters/ids_taxon_id'
-      - $ref: '#/parameters/ids_observation_taxon_id'
-      - $ref: '#/parameters/ids_iconic_taxon_id'
-      - $ref: '#/parameters/ids_observation_iconic_taxon_id'
-      - $ref: '#/parameters/ids_lrank'
-      - $ref: '#/parameters/ids_hrank'
-      - $ref: '#/parameters/ids_observation_lrank'
-      - $ref: '#/parameters/ids_observation_hrank'
-      - $ref: '#/parameters/ids_without_taxon_id'
-      - $ref: '#/parameters/ids_without_observation_taxon_id'
-      - $ref: '#/parameters/ids_d1'
-      - $ref: '#/parameters/ids_d2'
-      - $ref: '#/parameters/ids_observation_created_d1'
-      - $ref: '#/parameters/ids_observation_created_d2'
-      - $ref: '#/parameters/ids_observed_d1'
-      - $ref: '#/parameters/ids_observed_d2'
-      - $ref: '#/parameters/id_above'
-      - $ref: '#/parameters/id_below'
-      - $ref: '#/parameters/page'
-      - $ref: '#/parameters/per_page'
-      - $ref: '#/parameters/order'
-      - $ref: '#/parameters/ids_order_by'
-      - $ref: '#/parameters/only_id'
+      - $ref: '#/components/parameters/ids_current_taxon'
+      - $ref: '#/components/parameters/ids_own_observation'
+      - $ref: '#/components/parameters/ids_is_change'
+      - $ref: '#/components/parameters/ids_taxon_active'
+      - $ref: '#/components/parameters/ids_observation_taxon_active'
+      - $ref: '#/components/parameters/ids_id'
+      - $ref: '#/components/parameters/ids_rank'
+      - $ref: '#/components/parameters/ids_observation_rank'
+      - $ref: '#/components/parameters/ids_user_id'
+      - $ref: '#/components/parameters/ids_user_login'
+      - $ref: '#/components/parameters/ids_current'
+      - $ref: '#/components/parameters/ids_category'
+      - $ref: '#/components/parameters/ids_place_id'
+      - $ref: '#/components/parameters/ids_quality_grade'
+      - $ref: '#/components/parameters/ids_taxon_change_id'
+      - $ref: '#/components/parameters/ids_taxon_id'
+      - $ref: '#/components/parameters/ids_observation_taxon_id'
+      - $ref: '#/components/parameters/ids_iconic_taxon_id'
+      - $ref: '#/components/parameters/ids_observation_iconic_taxon_id'
+      - $ref: '#/components/parameters/ids_lrank'
+      - $ref: '#/components/parameters/ids_hrank'
+      - $ref: '#/components/parameters/ids_observation_lrank'
+      - $ref: '#/components/parameters/ids_observation_hrank'
+      - $ref: '#/components/parameters/ids_without_taxon_id'
+      - $ref: '#/components/parameters/ids_without_observation_taxon_id'
+      - $ref: '#/components/parameters/ids_d1'
+      - $ref: '#/components/parameters/ids_d2'
+      - $ref: '#/components/parameters/ids_observation_created_d1'
+      - $ref: '#/components/parameters/ids_observation_created_d2'
+      - $ref: '#/components/parameters/ids_observed_d1'
+      - $ref: '#/components/parameters/ids_observed_d2'
+      - $ref: '#/components/parameters/id_above'
+      - $ref: '#/components/parameters/id_below'
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/per_page'
+      - $ref: '#/components/parameters/order'
+      - $ref: '#/components/parameters/ids_order_by'
+      - $ref: '#/components/parameters/only_id'
       tags:
       - Identifications
       responses:
@@ -489,12 +347,18 @@ paths:
           description: 'Returns an object with metadata and an array of identifiers
 
             '
-          schema:
-            $ref: '#/definitions/UserCountsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserCountsResponse'
         default:
           description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      operationId: getIdentificationsIdentifiers
+      x-operation-id-source: derived
   /identifications/observers:
     get:
       summary: Identification Observers
@@ -502,48 +366,46 @@ paths:
 
         observations of identifications matching the search criteria and
 
-        the count of matching observations, ordered by count descending
-
-        '
+        the count of matching observations, ordered by count descending'
       parameters:
-      - $ref: '#/parameters/ids_current_taxon'
-      - $ref: '#/parameters/ids_own_observation'
-      - $ref: '#/parameters/ids_is_change'
-      - $ref: '#/parameters/ids_taxon_active'
-      - $ref: '#/parameters/ids_observation_taxon_active'
-      - $ref: '#/parameters/ids_id'
-      - $ref: '#/parameters/ids_rank'
-      - $ref: '#/parameters/ids_observation_rank'
-      - $ref: '#/parameters/ids_user_id'
-      - $ref: '#/parameters/ids_user_login'
-      - $ref: '#/parameters/ids_current'
-      - $ref: '#/parameters/ids_category'
-      - $ref: '#/parameters/ids_place_id'
-      - $ref: '#/parameters/ids_quality_grade'
-      - $ref: '#/parameters/ids_taxon_change_id'
-      - $ref: '#/parameters/ids_taxon_id'
-      - $ref: '#/parameters/ids_observation_taxon_id'
-      - $ref: '#/parameters/ids_iconic_taxon_id'
-      - $ref: '#/parameters/ids_observation_iconic_taxon_id'
-      - $ref: '#/parameters/ids_lrank'
-      - $ref: '#/parameters/ids_hrank'
-      - $ref: '#/parameters/ids_observation_lrank'
-      - $ref: '#/parameters/ids_observation_hrank'
-      - $ref: '#/parameters/ids_without_taxon_id'
-      - $ref: '#/parameters/ids_without_observation_taxon_id'
-      - $ref: '#/parameters/ids_d1'
-      - $ref: '#/parameters/ids_d2'
-      - $ref: '#/parameters/ids_observation_created_d1'
-      - $ref: '#/parameters/ids_observation_created_d2'
-      - $ref: '#/parameters/ids_observed_d1'
-      - $ref: '#/parameters/ids_observed_d2'
-      - $ref: '#/parameters/id_above'
-      - $ref: '#/parameters/id_below'
-      - $ref: '#/parameters/page'
-      - $ref: '#/parameters/per_page'
-      - $ref: '#/parameters/order'
-      - $ref: '#/parameters/ids_order_by'
-      - $ref: '#/parameters/only_id'
+      - $ref: '#/components/parameters/ids_current_taxon'
+      - $ref: '#/components/parameters/ids_own_observation'
+      - $ref: '#/components/parameters/ids_is_change'
+      - $ref: '#/components/parameters/ids_taxon_active'
+      - $ref: '#/components/parameters/ids_observation_taxon_active'
+      - $ref: '#/components/parameters/ids_id'
+      - $ref: '#/components/parameters/ids_rank'
+      - $ref: '#/components/parameters/ids_observation_rank'
+      - $ref: '#/components/parameters/ids_user_id'
+      - $ref: '#/components/parameters/ids_user_login'
+      - $ref: '#/components/parameters/ids_current'
+      - $ref: '#/components/parameters/ids_category'
+      - $ref: '#/components/parameters/ids_place_id'
+      - $ref: '#/components/parameters/ids_quality_grade'
+      - $ref: '#/components/parameters/ids_taxon_change_id'
+      - $ref: '#/components/parameters/ids_taxon_id'
+      - $ref: '#/components/parameters/ids_observation_taxon_id'
+      - $ref: '#/components/parameters/ids_iconic_taxon_id'
+      - $ref: '#/components/parameters/ids_observation_iconic_taxon_id'
+      - $ref: '#/components/parameters/ids_lrank'
+      - $ref: '#/components/parameters/ids_hrank'
+      - $ref: '#/components/parameters/ids_observation_lrank'
+      - $ref: '#/components/parameters/ids_observation_hrank'
+      - $ref: '#/components/parameters/ids_without_taxon_id'
+      - $ref: '#/components/parameters/ids_without_observation_taxon_id'
+      - $ref: '#/components/parameters/ids_d1'
+      - $ref: '#/components/parameters/ids_d2'
+      - $ref: '#/components/parameters/ids_observation_created_d1'
+      - $ref: '#/components/parameters/ids_observation_created_d2'
+      - $ref: '#/components/parameters/ids_observed_d1'
+      - $ref: '#/components/parameters/ids_observed_d2'
+      - $ref: '#/components/parameters/id_above'
+      - $ref: '#/components/parameters/id_below'
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/per_page'
+      - $ref: '#/components/parameters/order'
+      - $ref: '#/components/parameters/ids_order_by'
+      - $ref: '#/components/parameters/only_id'
       tags:
       - Identifications
       responses:
@@ -551,12 +413,18 @@ paths:
           description: 'Returns an object with metadata and an array of observers
 
             '
-          schema:
-            $ref: '#/definitions/UserCountsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserCountsResponse'
         default:
           description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      operationId: getIdentificationsObservers
+      x-operation-id-source: derived
   /identifications/recent_taxa:
     get:
       summary: Identification Recent Taxa
@@ -564,53 +432,53 @@ paths:
 
         taxon. Returns IDs representing the earliest occurrence of taxa
 
-        associated with identifications in the filtered set of results
-
-        '
+        associated with identifications in the filtered set of results'
       parameters:
-      - $ref: '#/parameters/ids_current_taxon'
-      - $ref: '#/parameters/ids_own_observation'
-      - $ref: '#/parameters/ids_is_change'
-      - $ref: '#/parameters/ids_taxon_active'
-      - $ref: '#/parameters/ids_observation_taxon_active'
-      - $ref: '#/parameters/ids_id'
-      - $ref: '#/parameters/ids_rank'
-      - $ref: '#/parameters/ids_observation_rank'
-      - $ref: '#/parameters/ids_user_id'
-      - $ref: '#/parameters/ids_user_login'
-      - $ref: '#/parameters/ids_current'
-      - $ref: '#/parameters/ids_category'
-      - $ref: '#/parameters/ids_place_id'
-      - $ref: '#/parameters/ids_quality_grade'
-      - $ref: '#/parameters/ids_taxon_change_id'
-      - $ref: '#/parameters/ids_taxon_id'
-      - $ref: '#/parameters/ids_observation_taxon_id'
-      - $ref: '#/parameters/ids_iconic_taxon_id'
-      - $ref: '#/parameters/ids_observation_iconic_taxon_id'
-      - $ref: '#/parameters/ids_lrank'
-      - $ref: '#/parameters/ids_hrank'
-      - $ref: '#/parameters/ids_observation_lrank'
-      - $ref: '#/parameters/ids_observation_hrank'
-      - $ref: '#/parameters/ids_without_taxon_id'
-      - $ref: '#/parameters/ids_without_observation_taxon_id'
-      - $ref: '#/parameters/ids_d1'
-      - $ref: '#/parameters/ids_d2'
-      - $ref: '#/parameters/ids_observation_created_d1'
-      - $ref: '#/parameters/ids_observation_created_d2'
-      - $ref: '#/parameters/ids_observed_d1'
-      - $ref: '#/parameters/ids_observed_d2'
-      - $ref: '#/parameters/id_above'
-      - $ref: '#/parameters/id_below'
-      - $ref: '#/parameters/page'
-      - $ref: '#/parameters/per_page'
-      - $ref: '#/parameters/order'
-      - $ref: '#/parameters/ids_order_by'
-      - $ref: '#/parameters/only_id'
+      - $ref: '#/components/parameters/ids_current_taxon'
+      - $ref: '#/components/parameters/ids_own_observation'
+      - $ref: '#/components/parameters/ids_is_change'
+      - $ref: '#/components/parameters/ids_taxon_active'
+      - $ref: '#/components/parameters/ids_observation_taxon_active'
+      - $ref: '#/components/parameters/ids_id'
+      - $ref: '#/components/parameters/ids_rank'
+      - $ref: '#/components/parameters/ids_observation_rank'
+      - $ref: '#/components/parameters/ids_user_id'
+      - $ref: '#/components/parameters/ids_user_login'
+      - $ref: '#/components/parameters/ids_current'
+      - $ref: '#/components/parameters/ids_category'
+      - $ref: '#/components/parameters/ids_place_id'
+      - $ref: '#/components/parameters/ids_quality_grade'
+      - $ref: '#/components/parameters/ids_taxon_change_id'
+      - $ref: '#/components/parameters/ids_taxon_id'
+      - $ref: '#/components/parameters/ids_observation_taxon_id'
+      - $ref: '#/components/parameters/ids_iconic_taxon_id'
+      - $ref: '#/components/parameters/ids_observation_iconic_taxon_id'
+      - $ref: '#/components/parameters/ids_lrank'
+      - $ref: '#/components/parameters/ids_hrank'
+      - $ref: '#/components/parameters/ids_observation_lrank'
+      - $ref: '#/components/parameters/ids_observation_hrank'
+      - $ref: '#/components/parameters/ids_without_taxon_id'
+      - $ref: '#/components/parameters/ids_without_observation_taxon_id'
+      - $ref: '#/components/parameters/ids_d1'
+      - $ref: '#/components/parameters/ids_d2'
+      - $ref: '#/components/parameters/ids_observation_created_d1'
+      - $ref: '#/components/parameters/ids_observation_created_d2'
+      - $ref: '#/components/parameters/ids_observed_d1'
+      - $ref: '#/components/parameters/ids_observed_d2'
+      - $ref: '#/components/parameters/id_above'
+      - $ref: '#/components/parameters/id_below'
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/per_page'
+      - $ref: '#/components/parameters/order'
+      - $ref: '#/components/parameters/ids_order_by'
+      - $ref: '#/components/parameters/only_id'
       tags:
       - Identifications
       responses:
         '200':
           description: OK
+      operationId: getIdentificationsRecentTaxa
+      x-operation-id-source: derived
   /identifications/similar_species:
     get:
       summary: Identification Similar Species
@@ -620,1613 +488,1749 @@ paths:
 
         frequency descending. This will only return species in the same iconic
 
-        taxon, and will never return descendants of the chosen taxon
-
-        '
+        taxon, and will never return descendants of the chosen taxon'
       parameters:
-      - $ref: '#/parameters/acc'
-      - $ref: '#/parameters/captive'
-      - $ref: '#/parameters/endemic'
-      - $ref: '#/parameters/geo'
-      - $ref: '#/parameters/id_please'
-      - $ref: '#/parameters/identified'
-      - $ref: '#/parameters/introduced'
-      - $ref: '#/parameters/mappable'
-      - $ref: '#/parameters/native'
-      - $ref: '#/parameters/out_of_range'
-      - $ref: '#/parameters/pcid'
-      - $ref: '#/parameters/photos'
-      - $ref: '#/parameters/popular'
-      - $ref: '#/parameters/sounds'
-      - $ref: '#/parameters/taxon_is_active'
-      - $ref: '#/parameters/threatened'
-      - $ref: '#/parameters/verifiable'
-      - $ref: '#/parameters/licensed'
-      - $ref: '#/parameters/photo_licensed'
-      - $ref: '#/parameters/expected_nearby'
-      - $ref: '#/parameters/id'
-      - $ref: '#/parameters/not_id'
-      - $ref: '#/parameters/license'
-      - $ref: '#/parameters/ofv_datatype'
-      - $ref: '#/parameters/photo_license'
-      - $ref: '#/parameters/place_id'
-      - $ref: '#/parameters/project_id'
-      - $ref: '#/parameters/rank'
-      - $ref: '#/parameters/site_id'
-      - $ref: '#/parameters/sound_license'
-      - $ref: '#/parameters/without_taxon_id'
-      - $ref: '#/parameters/taxon_name'
-      - $ref: '#/parameters/user_id'
-      - $ref: '#/parameters/user_login'
-      - $ref: '#/parameters/ident_user_id'
-      - $ref: '#/parameters/hour'
-      - $ref: '#/parameters/day'
-      - $ref: '#/parameters/month'
-      - $ref: '#/parameters/year'
-      - $ref: '#/parameters/created_day'
-      - $ref: '#/parameters/created_month'
-      - $ref: '#/parameters/created_year'
-      - $ref: '#/parameters/term_id'
-      - $ref: '#/parameters/term_value_id'
-      - $ref: '#/parameters/without_term_id'
-      - $ref: '#/parameters/without_term_value_id'
-      - $ref: '#/parameters/term_id_or_unknown'
-      - $ref: '#/parameters/annotation_user_id'
-      - $ref: '#/parameters/acc_above'
-      - $ref: '#/parameters/acc_below'
-      - $ref: '#/parameters/acc_below_or_unknown'
-      - $ref: '#/parameters/d1'
-      - $ref: '#/parameters/d2'
-      - $ref: '#/parameters/created_d1'
-      - $ref: '#/parameters/created_d2'
-      - $ref: '#/parameters/created_on'
-      - $ref: '#/parameters/observed_on'
-      - $ref: '#/parameters/unobserved_by_user_id'
-      - $ref: '#/parameters/apply_project_rules_for'
-      - $ref: '#/parameters/cs'
-      - $ref: '#/parameters/csa'
-      - $ref: '#/parameters/csi'
-      - $ref: '#/parameters/geoprivacy'
-      - $ref: '#/parameters/taxon_geoprivacy'
-      - $ref: '#/parameters/obscuration'
-      - $ref: '#/parameters/hrank'
-      - $ref: '#/parameters/lrank'
-      - $ref: '#/parameters/iconic_taxa'
-      - $ref: '#/parameters/id_above'
-      - $ref: '#/parameters/id_below'
-      - $ref: '#/parameters/identifications'
-      - $ref: '#/parameters/lat'
-      - $ref: '#/parameters/lng'
-      - $ref: '#/parameters/radius'
-      - $ref: '#/parameters/nelat'
-      - $ref: '#/parameters/nelng'
-      - $ref: '#/parameters/swlat'
-      - $ref: '#/parameters/swlng'
-      - $ref: '#/parameters/list_id'
-      - $ref: '#/parameters/not_in_project'
-      - $ref: '#/parameters/not_matching_project_rules_for'
-      - $ref: '#/parameters/observation_accuracy_experiment_id'
-      - $ref: '#/parameters/fails_dqa_accurate'
-      - $ref: '#/parameters/fails_dqa_date'
-      - $ref: '#/parameters/fails_dqa_evidence'
-      - $ref: '#/parameters/fails_dqa_location'
-      - $ref: '#/parameters/fails_dqa_needs_id'
-      - $ref: '#/parameters/fails_dqa_recent'
-      - $ref: '#/parameters/fails_dqa_subject'
-      - $ref: '#/parameters/fails_dqa_wild'
-      - $ref: '#/parameters/q'
-      - $ref: '#/parameters/search_on'
-      - $ref: '#/parameters/quality_grade'
-      - $ref: '#/parameters/updated_since'
-      - $ref: '#/parameters/viewer_id'
-      - $ref: '#/parameters/reviewed'
+      - $ref: '#/components/parameters/acc'
+      - $ref: '#/components/parameters/captive'
+      - $ref: '#/components/parameters/endemic'
+      - $ref: '#/components/parameters/geo'
+      - $ref: '#/components/parameters/id_please'
+      - $ref: '#/components/parameters/identified'
+      - $ref: '#/components/parameters/introduced'
+      - $ref: '#/components/parameters/mappable'
+      - $ref: '#/components/parameters/native'
+      - $ref: '#/components/parameters/out_of_range'
+      - $ref: '#/components/parameters/pcid'
+      - $ref: '#/components/parameters/photos'
+      - $ref: '#/components/parameters/popular'
+      - $ref: '#/components/parameters/sounds'
+      - $ref: '#/components/parameters/taxon_is_active'
+      - $ref: '#/components/parameters/threatened'
+      - $ref: '#/components/parameters/verifiable'
+      - $ref: '#/components/parameters/licensed'
+      - $ref: '#/components/parameters/photo_licensed'
+      - $ref: '#/components/parameters/expected_nearby'
+      - $ref: '#/components/parameters/id'
+      - $ref: '#/components/parameters/not_id'
+      - $ref: '#/components/parameters/license'
+      - $ref: '#/components/parameters/ofv_datatype'
+      - $ref: '#/components/parameters/photo_license'
+      - $ref: '#/components/parameters/place_id'
+      - $ref: '#/components/parameters/project_id'
+      - $ref: '#/components/parameters/rank'
+      - $ref: '#/components/parameters/site_id'
+      - $ref: '#/components/parameters/sound_license'
+      - $ref: '#/components/parameters/without_taxon_id'
+      - $ref: '#/components/parameters/taxon_name'
+      - $ref: '#/components/parameters/user_id'
+      - $ref: '#/components/parameters/user_login'
+      - $ref: '#/components/parameters/ident_user_id'
+      - $ref: '#/components/parameters/hour'
+      - $ref: '#/components/parameters/day'
+      - $ref: '#/components/parameters/month'
+      - $ref: '#/components/parameters/year'
+      - $ref: '#/components/parameters/created_day'
+      - $ref: '#/components/parameters/created_month'
+      - $ref: '#/components/parameters/created_year'
+      - $ref: '#/components/parameters/term_id'
+      - $ref: '#/components/parameters/term_value_id'
+      - $ref: '#/components/parameters/without_term_id'
+      - $ref: '#/components/parameters/without_term_value_id'
+      - $ref: '#/components/parameters/term_id_or_unknown'
+      - $ref: '#/components/parameters/annotation_user_id'
+      - $ref: '#/components/parameters/acc_above'
+      - $ref: '#/components/parameters/acc_below'
+      - $ref: '#/components/parameters/acc_below_or_unknown'
+      - $ref: '#/components/parameters/d1'
+      - $ref: '#/components/parameters/d2'
+      - $ref: '#/components/parameters/created_d1'
+      - $ref: '#/components/parameters/created_d2'
+      - $ref: '#/components/parameters/created_on'
+      - $ref: '#/components/parameters/observed_on'
+      - $ref: '#/components/parameters/unobserved_by_user_id'
+      - $ref: '#/components/parameters/apply_project_rules_for'
+      - $ref: '#/components/parameters/cs'
+      - $ref: '#/components/parameters/csa'
+      - $ref: '#/components/parameters/csi'
+      - $ref: '#/components/parameters/geoprivacy'
+      - $ref: '#/components/parameters/taxon_geoprivacy'
+      - $ref: '#/components/parameters/obscuration'
+      - $ref: '#/components/parameters/hrank'
+      - $ref: '#/components/parameters/lrank'
+      - $ref: '#/components/parameters/iconic_taxa'
+      - $ref: '#/components/parameters/id_above'
+      - $ref: '#/components/parameters/id_below'
+      - $ref: '#/components/parameters/identifications'
+      - $ref: '#/components/parameters/lat'
+      - $ref: '#/components/parameters/lng'
+      - $ref: '#/components/parameters/radius'
+      - $ref: '#/components/parameters/nelat'
+      - $ref: '#/components/parameters/nelng'
+      - $ref: '#/components/parameters/swlat'
+      - $ref: '#/components/parameters/swlng'
+      - $ref: '#/components/parameters/list_id'
+      - $ref: '#/components/parameters/not_in_project'
+      - $ref: '#/components/parameters/not_matching_project_rules_for'
+      - $ref: '#/components/parameters/observation_accuracy_experiment_id'
+      - $ref: '#/components/parameters/fails_dqa_accurate'
+      - $ref: '#/components/parameters/fails_dqa_date'
+      - $ref: '#/components/parameters/fails_dqa_evidence'
+      - $ref: '#/components/parameters/fails_dqa_location'
+      - $ref: '#/components/parameters/fails_dqa_needs_id'
+      - $ref: '#/components/parameters/fails_dqa_recent'
+      - $ref: '#/components/parameters/fails_dqa_subject'
+      - $ref: '#/components/parameters/fails_dqa_wild'
+      - $ref: '#/components/parameters/q'
+      - $ref: '#/components/parameters/search_on'
+      - $ref: '#/components/parameters/quality_grade'
+      - $ref: '#/components/parameters/updated_since'
+      - $ref: '#/components/parameters/viewer_id'
+      - $ref: '#/components/parameters/reviewed'
       - name: taxon_id
-        type: integer
         in: query
-        minimum: 1
         description: Only show observations of these taxa and their descendants
         required: true
+        schema:
+          type: integer
+          minimum: 1
       tags:
       - Identifications
       responses:
         '200':
           description: OK
-definitions:
-  User:
-    type: object
-    properties:
-      created_at:
-        type: string
-        format: date-time
-      id:
-        type: integer
-      icon:
-        type: string
-      icon_url:
-        type: string
-      identifications_count:
-        type: integer
-      journal_posts_count:
-        type: integer
-      login:
-        type: string
-      name:
-        type: string
-      observations_count:
-        type: integer
-      orcid:
-        type: string
-      roles:
+      operationId: getIdentificationsSimilarSpecies
+      x-operation-id-source: derived
+components:
+  parameters:
+    ids_quality_grade:
+      name: quality_grade
+      in: query
+      description: Observation must have this quality grade
+      schema:
         type: array
         items:
           type: string
-          enum:
-          - admin
-          - app owner
-          - curator
-      site_id:
-        type: integer
-      species_count:
-        type: integer
-      spam:
+        enum:
+        - casual
+        - needs_id
+        - research
+    fails_dqa_location:
+      name: fails_dqa_location
+      in: query
+      description: Must be voted as not having an accurate location
+      schema:
         type: boolean
-      suspended:
+    ids_observation_hrank:
+      name: observation_hrank
+      in: query
+      description: Observation taxon must have this rank or lower
+      schema:
+        type: string
+        enum:
+        - stateofmatter
+        - kingdom
+        - phylum
+        - subphylum
+        - superclass
+        - class
+        - subclass
+        - superorder
+        - order
+        - suborder
+        - infraorder
+        - superfamily
+        - epifamily
+        - family
+        - subfamily
+        - supertribe
+        - tribe
+        - subtribe
+        - genus
+        - genushybrid
+        - species
+        - hybrid
+        - subspecies
+        - variety
+        - form
+    not_id:
+      name: not_id
+      in: query
+      description: Must not have this ID
+      schema:
+        type: array
+        items:
+          type: string
+        minimum: 1
+    id_please:
+      name: id_please
+      in: query
+      description: Observations with the deprecated `ID, Please!` flag. Note that this will return observations, but that this attribute is no longer used.
+      schema:
         type: boolean
-  TaxonConservationStatus:
-    allOf:
-    - $ref: '#/definitions/RawConservationStatus'
-    - type: object
-      properties:
-        place:
-          $ref: '#/definitions/CorePlace'
-  EstablishmentMeans:
-    type: object
-    properties:
-      establishment_means:
+    swlng:
+      name: swlng
+      in: query
+      description: 'Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)
+
+        '
+      schema:
+        type: number
+        format: double
+    not_matching_project_rules_for:
+      name: not_matching_project_rules_for
+      in: query
+      description: Must not match the rules of the project with this ID or slug
+      schema:
         type: string
-      place:
-        $ref: '#/definitions/CorePlace'
-  CorePlace:
-    type: object
-    properties:
-      id:
+    path_multi_id:
+      name: id
+      in: path
+      required: true
+      description: Must have this ID
+      schema:
+        type: array
+        items:
+          type: integer
+    ids_taxon_active:
+      name: taxon_active
+      in: query
+      description: ID's taxon is currently an active taxon
+      schema:
+        type: boolean
+    ids_hrank:
+      name: hrank
+      in: query
+      description: ID taxon must have this rank or lower
+      schema:
+        type: string
+        enum:
+        - stateofmatter
+        - kingdom
+        - phylum
+        - subphylum
+        - superclass
+        - class
+        - subclass
+        - superorder
+        - order
+        - suborder
+        - infraorder
+        - superfamily
+        - epifamily
+        - family
+        - subfamily
+        - supertribe
+        - tribe
+        - subtribe
+        - genus
+        - genushybrid
+        - species
+        - hybrid
+        - subspecies
+        - variety
+        - form
+    nelng:
+      name: nelng
+      in: query
+      description: 'Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)
+
+        '
+      schema:
+        type: number
+        format: double
+    d2:
+      name: d2
+      in: query
+      description: Must be observed on or before this date
+      schema:
+        type: string
+        format: date
+    geo:
+      name: geo
+      in: query
+      description: Observations that are georeferenced
+      schema:
+        type: boolean
+    acc_below:
+      name: acc_below
+      in: query
+      description: Must have a positional accuracy below this value (meters)
+      schema:
+        type: string
+    geoprivacy:
+      name: geoprivacy
+      in: query
+      description: Must have this geoprivacy setting
+      schema:
+        type: array
+        items:
+          type: string
+        enum:
+        - obscured
+        - obscured_private
+        - open
+        - private
+    nelat:
+      name: nelat
+      in: query
+      description: 'Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)
+
+        '
+      schema:
+        type: number
+        format: double
+    per_page:
+      name: per_page
+      in: query
+      description: 'Number of results to return in a `page`. The maximum value is generally
+
+        200 unless otherwise noted
+
+        '
+      schema:
+        type: string
+    captive:
+      name: captive
+      in: query
+      description: Captive or cultivated observations
+      schema:
+        type: boolean
+    user_login:
+      name: user_login
+      in: query
+      description: User must have this login
+      schema:
+        type: array
+        items:
+          type: string
+    place_id:
+      name: place_id
+      in: query
+      description: Must be observed within the place with this ID
+      schema:
+        type: array
+        items:
+          type: integer
+    license:
+      name: license
+      in: query
+      description: Observation must have this license
+      schema:
+        type: array
+        items:
+          type: string
+        enum:
+        - cc-by
+        - cc-by-nc
+        - cc-by-nd
+        - cc-by-sa
+        - cc-by-nc-nd
+        - cc-by-nc-sa
+        - cc0
+    fails_dqa_subject:
+      name: fails_dqa_subject
+      in: query
+      description: Must be voted as not having evidence related to a single subject
+      schema:
+        type: boolean
+    created_month:
+      name: created_month
+      in: query
+      description: Must be created within this month
+      schema:
+        type: array
+        items:
+          type: string
+        maximum: 12
+        minimum: 1
+    ids_is_change:
+      name: is_change
+      in: query
+      description: ID was created as a results of a taxon change
+      schema:
+        type: boolean
+    iconic_taxa:
+      name: iconic_taxa
+      in: query
+      description: Taxon must by within this iconic taxon
+      schema:
+        type: array
+        items:
+          type: string
+        enum:
+        - Actinopterygii
+        - Animalia
+        - Amphibia
+        - Arachnida
+        - Aves
+        - Chromista
+        - Fungi
+        - Insecta
+        - Mammalia
+        - Mollusca
+        - Reptilia
+        - Plantae
+        - Protozoa
+        - unknown
+    verifiable:
+      name: verifiable
+      in: query
+      description: 'Observations with a `quality_grade` of either `needs_id` or
+
+        `research`. Equivalent to `quality_grade=needs_id,research`
+
+        '
+      schema:
+        type: boolean
+    ids_observation_taxon_active:
+      name: observation_taxon_active
+      in: query
+      description: Observation's taxon is currently an active taxon
+      schema:
+        type: boolean
+    csa:
+      name: csa
+      in: query
+      description: 'Taxon must have a conservation status from this authority. If
+
+        the `place_id` parameter is also specified, this will only consider
+
+        statuses specific to that place
+
+        '
+      schema:
+        type: string
+    taxon_geoprivacy:
+      name: taxon_geoprivacy
+      in: query
+      description: 'Filter observations by the most conservative geoprivacy applied by a
+
+        conservation status associated with one of the taxa proposed in the
+
+        current identifications.
+
+        '
+      schema:
+        type: array
+        items:
+          type: string
+        enum:
+        - obscured
+        - obscured_private
+        - open
+        - private
+    acc_above:
+      name: acc_above
+      in: query
+      description: Must have a positional accuracy above this value (meters)
+      schema:
+        type: string
+    month:
+      name: month
+      in: query
+      description: Must be observed within this month
+      schema:
+        type: array
+        items:
+          type: string
+        maximum: 12
+        minimum: 1
+    introduced:
+      name: introduced
+      in: query
+      description: 'Observations whose taxa are introduced in their location
+
+        '
+      schema:
+        type: boolean
+    term_value_id:
+      name: term_value_id
+      in: query
+      description: 'Must have an annotation using this controlled value ID. Must be combined
+
+        with the `term_id` parameter
+
+        '
+      schema:
+        type: array
+        items:
+          type: integer
+    user_id:
+      name: user_id
+      in: query
+      description: User must have this ID or login
+      schema:
+        type: array
+        items:
+          type: string
+        minimum: 1
+    viewer_id:
+      name: viewer_id
+      in: query
+      description: See `reviewed`
+      schema:
+        type: string
+    lng:
+      name: lng
+      in: query
+      description: 'Must be within a {`radius`} kilometer circle around this lat/lng
+
+        (*lat, *lng, radius)
+
+        '
+      schema:
+        type: number
+        format: double
+    acc:
+      name: acc
+      in: query
+      description: Whether or not positional accuracy / coordinate uncertainty has been specified
+      schema:
+        type: boolean
+    ident_user_id:
+      name: ident_user_id
+      in: query
+      description: Observations identified by a particular user
+      schema:
         type: integer
-      name:
+    identified:
+      name: identified
+      in: query
+      description: Observations that have community identifications
+      schema:
+        type: boolean
+    ids_observation_created_d2:
+      name: observation_created_d2
+      in: query
+      description: Observation created on or before this date
+      schema:
         type: string
-      display_name:
+        format: date
+    ofv_datatype:
+      name: ofv_datatype
+      in: query
+      description: Must have an observation field value with this datatype
+      schema:
+        type: array
+        items:
+          type: string
+        maximum: 31
+        minimum: 1
+    ids_order_by:
+      name: order_by
+      in: query
+      description: Sort field
+      schema:
         type: string
-  SpeciesCountsResponse:
-    allOf:
-    - $ref: '#/definitions/BaseResponse'
-    - required:
-      - results
+        enum:
+        - created_at
+        - id
+        default: created_at
+    q:
+      name: q
+      in: query
+      description: Search observation properties. Can be combined with `search_on`
+      schema:
+        type: string
+    annotation_user_id:
+      name: annotation_user_id
+      in: query
+      description: 'Must have an annotation created by this user
+
+        '
+      schema:
+        type: array
+        items:
+          type: string
+    page:
+      name: page
+      in: query
+      description: Pagination `page` number
+      schema:
+        type: string
+    created_d2:
+      name: created_d2
+      in: query
+      description: Must be created at or before this time
+      schema:
+        type: string
+        format: date-time
+    ids_rank:
+      name: rank
+      in: query
+      description: ID's taxon must have this rank
+      schema:
+        type: array
+        items:
+          type: string
+        enum:
+        - stateofmatter
+        - kingdom
+        - phylum
+        - subphylum
+        - superclass
+        - class
+        - subclass
+        - superorder
+        - order
+        - suborder
+        - infraorder
+        - superfamily
+        - epifamily
+        - family
+        - subfamily
+        - supertribe
+        - tribe
+        - subtribe
+        - genus
+        - genushybrid
+        - species
+        - hybrid
+        - subspecies
+        - variety
+        - form
+    id_below:
+      name: id_below
+      in: query
+      description: Must have an ID below this value
+      schema:
+        type: string
+    day:
+      name: day
+      in: query
+      description: Must be observed within this day of the month
+      schema:
+        type: array
+        items:
+          type: string
+        maximum: 31
+        minimum: 1
+    obscuration:
+      name: obscuration
+      in: query
+      description: 'Must have `geoprivacy` or `taxon_geoprivacy` fields matching these values
+
+        '
+      schema:
+        type: array
+        items:
+          type: string
+        enum:
+        - obscured
+        - private
+        - none
+    order:
+      name: order
+      in: query
+      description: Sort order
+      schema:
+        type: string
+        enum:
+        - desc
+        - asc
+        default: desc
+    native:
+      name: native
+      in: query
+      description: Observations whose taxa are native to their location
+      schema:
+        type: boolean
+    out_of_range:
+      name: out_of_range
+      in: query
+      description: Observations whose taxa are outside their known ranges
+      schema:
+        type: boolean
+    ids_current:
+      name: current
+      in: query
+      description: Most recent ID on a observation by a user
+      schema:
+        type: boolean
+        enum:
+        - true
+        - false
+        - any
+        default: true
+    ids_taxon_id:
+      name: taxon_id
+      in: query
+      description: ID taxa must match the given taxa or their descendants
+      schema:
+        type: array
+        items:
+          type: string
+        minimum: 1
+    created_d1:
+      name: created_d1
+      in: query
+      description: Must be created at or after this time
+      schema:
+        type: string
+        format: date-time
+    search_on:
+      name: search_on
+      in: query
+      description: 'Properties to search on, when combined with `q`.
+
+        Searches across all properties by default
+
+        '
+      schema:
+        type: string
+        enum:
+        - names
+        - tags
+        - description
+        - place
+    d1:
+      name: d1
+      in: query
+      description: Must be observed on or after this date
+      schema:
+        type: string
+        format: date
+    term_id_or_unknown:
+      name: term_id_or_unknown
+      in: query
+      description: 'Must be combined with the `term_value_id` or the `without_term_value_id` parameter.
+
+        Must have an annotation using this controlled term ID and associated term value IDs
+
+        or be missing this annotation.
+
+        '
+      schema:
+        type: array
+        items:
+          type: integer
+    ids_d2:
+      name: d2
+      in: query
+      description: ID created on or before this time
+      schema:
+        type: string
+        format: date
+    fails_dqa_accurate:
+      name: fails_dqa_accurate
+      in: query
+      description: Must be voted as not accurately depicting an organism or scene
+      schema:
+        type: boolean
+    apply_project_rules_for:
+      name: apply_project_rules_for
+      in: query
+      description: Must match the rules of the project with this ID or slug
+      schema:
+        type: string
+    ids_lrank:
+      name: lrank
+      in: query
+      description: ID taxon must have this rank or higher
+      schema:
+        type: string
+        enum:
+        - stateofmatter
+        - kingdom
+        - phylum
+        - subphylum
+        - superclass
+        - class
+        - subclass
+        - superorder
+        - order
+        - suborder
+        - infraorder
+        - superfamily
+        - epifamily
+        - family
+        - subfamily
+        - supertribe
+        - tribe
+        - subtribe
+        - genus
+        - genushybrid
+        - species
+        - hybrid
+        - subspecies
+        - variety
+        - form
+    rank:
+      name: rank
+      in: query
+      description: Taxon must have this rank
+      schema:
+        type: array
+        items:
+          type: string
+        enum:
+        - stateofmatter
+        - kingdom
+        - phylum
+        - subphylum
+        - superclass
+        - class
+        - subclass
+        - superorder
+        - order
+        - suborder
+        - infraorder
+        - superfamily
+        - epifamily
+        - family
+        - subfamily
+        - supertribe
+        - tribe
+        - subtribe
+        - genus
+        - genushybrid
+        - species
+        - hybrid
+        - subspecies
+        - variety
+        - form
+    radius:
+      name: radius
+      in: query
+      description: 'Must be within a {`radius`} kilometer circle around this lat/lng
+
+        (*lat, *lng, radius)
+
+        '
+      schema:
+        type: string
+    created_year:
+      name: created_year
+      in: query
+      description: Must be created within this year
+      schema:
+        type: array
+        items:
+          type: string
+        minimum: 1
+    licensed:
+      name: licensed
+      in: query
+      description: License attribute of an observation must not be null
+      schema:
+        type: boolean
+    ids_observation_rank:
+      name: observation_rank
+      in: query
+      description: Observation's taxon must have this rank
+      schema:
+        type: array
+        items:
+          type: string
+        enum:
+        - stateofmatter
+        - kingdom
+        - phylum
+        - subphylum
+        - superclass
+        - class
+        - subclass
+        - superorder
+        - order
+        - suborder
+        - infraorder
+        - superfamily
+        - epifamily
+        - family
+        - subfamily
+        - supertribe
+        - tribe
+        - subtribe
+        - genus
+        - genushybrid
+        - species
+        - hybrid
+        - subspecies
+        - variety
+        - form
+    fails_dqa_wild:
+      name: fails_dqa_wild
+      in: query
+      description: Must be voted as not wild
+      schema:
+        type: boolean
+    fails_dqa_needs_id:
+      name: fails_dqa_needs_id
+      in: query
+      description: Must be voted as the community ID cannot be improved
+      schema:
+        type: boolean
+    popular:
+      name: popular
+      in: query
+      description: 'Observations that have been favorited by at least one user
+
+        '
+      schema:
+        type: boolean
+    hrank:
+      name: hrank
+      in: query
+      description: Taxon must have this rank or lower
+      schema:
+        type: string
+        enum:
+        - stateofmatter
+        - kingdom
+        - phylum
+        - subphylum
+        - superclass
+        - class
+        - subclass
+        - superorder
+        - order
+        - suborder
+        - infraorder
+        - superfamily
+        - epifamily
+        - family
+        - subfamily
+        - supertribe
+        - tribe
+        - subtribe
+        - genus
+        - genushybrid
+        - species
+        - hybrid
+        - subspecies
+        - variety
+        - form
+    ids_without_taxon_id:
+      name: without_taxon_id
+      in: query
+      description: Exclude IDs of these taxa and their descendants
+      schema:
+        type: array
+        items:
+          type: string
+        minimum: 1
+    endemic:
+      name: endemic
+      in: query
+      description: Observations whose taxa are endemic to their location
+      schema:
+        type: boolean
+    unobserved_by_user_id:
+      name: unobserved_by_user_id
+      in: query
+      description: Must not be of a taxon previously observed by this user
+      schema:
+        type: integer
+    observation_accuracy_experiment_id:
+      name: observation_accuracy_experiment_id
+      in: query
+      description: Must included in this observation accuracy experiment
+      schema:
+        type: array
+        items:
+          type: integer
+    ids_observation_lrank:
+      name: observation_lrank
+      in: query
+      description: Observation taxon must have this rank or higher
+      schema:
+        type: string
+        enum:
+        - stateofmatter
+        - kingdom
+        - phylum
+        - subphylum
+        - superclass
+        - class
+        - subclass
+        - superorder
+        - order
+        - suborder
+        - infraorder
+        - superfamily
+        - epifamily
+        - family
+        - subfamily
+        - supertribe
+        - tribe
+        - subtribe
+        - genus
+        - genushybrid
+        - species
+        - hybrid
+        - subspecies
+        - variety
+        - form
+    threatened:
+      name: threatened
+      in: query
+      description: 'Observations whose taxa are threatened in their location
+
+        '
+      schema:
+        type: boolean
+    without_term_id:
+      name: without_term_id
+      in: query
+      description: 'Exclude observations with annotations using this controlled value ID.
+
+        '
+      schema:
+        type: integer
+    created_on:
+      name: created_on
+      in: query
+      description: Must be created on this date
+      schema:
+        type: string
+        format: date
+    not_in_project:
+      name: not_in_project
+      in: query
+      description: Must not be in the project with this ID or slug
+      schema:
+        type: string
+    ids_observation_taxon_id:
+      name: observation_taxon_id
+      in: query
+      description: Observation taxa must match the given taxa or their descendants
+      schema:
+        type: array
+        items:
+          type: string
+        minimum: 1
+    ids_taxon_change_id:
+      name: taxon_change_id
+      in: query
+      description: Only return identifications that were created as part of the specified taxon change
+      schema:
+        type: array
+        minimum: 1
+    term_id:
+      name: term_id
+      in: query
+      description: Must have an annotation using this controlled term ID
+      schema:
+        type: array
+        items:
+          type: integer
+    ids_user_id:
+      name: user_id
+      in: query
+      description: Identifier must have this user ID
+      schema:
+        type: array
+        items:
+          type: integer
+        minimum: 1
+    observed_on:
+      name: observed_on
+      in: query
+      description: Must be observed on this date
+      schema:
+        type: string
+        format: date
+    acc_below_or_unknown:
+      name: acc_below_or_unknown
+      in: query
+      description: Positional accuracy must be below this value (in meters) or be unknown
+      schema:
+        type: string
+    only_id:
+      name: only_id
+      in: query
+      description: Return only the record IDs
+      schema:
+        type: boolean
+    fails_dqa_date:
+      name: fails_dqa_date
+      in: query
+      description: Must be voted as not having an accurate date
+      schema:
+        type: boolean
+    photo_licensed:
+      name: photo_licensed
+      in: query
+      description: License attribute of at least one photo of an observation must not be null
+      schema:
+        type: boolean
+    ids_user_login:
+      name: user_login
+      in: query
+      description: Identifier must have this login
+      schema:
+        type: array
+        items:
+          type: string
+    updated_since:
+      name: updated_since
+      in: query
+      description: Must be updated since this time
+      schema:
+        type: string
+    ids_iconic_taxon_id:
+      name: iconic_taxon_id
+      in: query
+      description: ID iconic taxon ID
+      schema:
+        type: array
+        items:
+          type: string
+        minimum: 1
+    list_id:
+      name: list_id
+      in: query
+      description: Taxon must be in the list with this ID
+      schema:
+        type: integer
+    mappable:
+      name: mappable
+      in: query
+      description: Observations that show on map tiles
+      schema:
+        type: boolean
+    expected_nearby:
+      name: expected_nearby
+      in: query
+      description: Observation taxon is expected nearby
+      schema:
+        type: boolean
+    swlat:
+      name: swlat
+      in: query
+      description: 'Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)
+
+        '
+      schema:
+        type: number
+        format: double
+    ids_current_taxon:
+      name: current_taxon
+      in: query
+      description: ID's taxon is the same it's observation's taxon
+      schema:
+        type: boolean
+    path_id:
+      name: id
+      in: path
+      required: true
+      description: ID of the record
+      schema:
+        type: integer
+    created_day:
+      name: created_day
+      in: query
+      description: Must be created within this day of the month
+      schema:
+        type: array
+        items:
+          type: string
+        maximum: 31
+        minimum: 1
+    ids_without_observation_taxon_id:
+      name: without_observation_taxon_id
+      in: query
+      description: Exclude IDs of observations of these taxa and their descendants
+      schema:
+        type: array
+        items:
+          type: string
+        minimum: 1
+    photo_license:
+      name: photo_license
+      in: query
+      description: Must have at least one photo with this license
+      schema:
+        type: array
+        items:
+          type: string
+        enum:
+        - cc-by
+        - cc-by-nc
+        - cc-by-nd
+        - cc-by-sa
+        - cc-by-nc-nd
+        - cc-by-nc-sa
+        - cc0
+    cs:
+      name: cs
+      in: query
+      description: 'Taxon must have this conservation status code. If
+
+        the `place_id` parameter is also specified, this will only consider
+
+        statuses specific to that place
+
+        '
+      schema:
+        type: string
+    project_id:
+      name: project_id
+      in: query
+      description: Must be added to the project this ID or slug
+      schema:
+        type: array
+        items:
+          type: string
+    sounds:
+      name: sounds
+      in: query
+      description: Observations with sounds
+      schema:
+        type: boolean
+    lrank:
+      name: lrank
+      in: query
+      description: Taxon must have this rank or higher
+      schema:
+        type: string
+        enum:
+        - stateofmatter
+        - kingdom
+        - phylum
+        - subphylum
+        - superclass
+        - class
+        - subclass
+        - superorder
+        - order
+        - suborder
+        - infraorder
+        - superfamily
+        - epifamily
+        - family
+        - subfamily
+        - supertribe
+        - tribe
+        - subtribe
+        - genus
+        - genushybrid
+        - species
+        - hybrid
+        - subspecies
+        - variety
+        - form
+    year:
+      name: year
+      in: query
+      description: Must be observed within this year
+      schema:
+        type: array
+        items:
+          type: string
+        minimum: 1
+    taxon_is_active:
+      name: taxon_is_active
+      in: query
+      description: 'Observations of active taxon concepts
+
+        '
+      schema:
+        type: boolean
+    lat:
+      name: lat
+      in: query
+      description: 'Must be within a {`radius`} kilometer circle around this lat/lng
+
+        (*lat, *lng, radius)
+
+        '
+      schema:
+        type: number
+        format: double
+    ids_observation_created_d1:
+      name: observation_created_d1
+      in: query
+      description: Observation created on or after this date
+      schema:
+        type: string
+        format: date
+    id_above:
+      name: id_above
+      in: query
+      description: Must have an ID above this value
+      schema:
+        type: string
+    taxon_name:
+      name: taxon_name
+      in: query
+      description: 'Taxon must have a scientific or common name matching this string
+
+        '
+      schema:
+        type: array
+        items:
+          type: string
+    csi:
+      name: csi
+      in: query
+      description: 'Taxon must have this IUCN conservation status. If
+
+        the `place_id` parameter is also specified, this will only consider
+
+        statuses specific to that place
+
+        '
+      schema:
+        type: array
+        items:
+          type: string
+        enum:
+        - LC
+        - NT
+        - VU
+        - EN
+        - CR
+        - EW
+        - EX
+    ids_category:
+      name: category
+      in: query
+      description: Type of identification
+      schema:
+        type: array
+        items:
+          type: string
+        enum:
+        - improving
+        - supporting
+        - leading
+        - maverick
+    id:
+      name: id
+      in: query
+      description: Must have this ID
+      schema:
+        type: array
+        items:
+          type: string
+        minimum: 1
+    ids_id:
+      name: id
+      in: query
+      description: Identification ID
+      schema:
+        type: array
+        items:
+          type: integer
+    sound_license:
+      name: sound_license
+      in: query
+      description: Must have at least one sound with this license
+      schema:
+        type: array
+        items:
+          type: string
+        enum:
+        - cc-by
+        - cc-by-nc
+        - cc-by-nd
+        - cc-by-sa
+        - cc-by-nc-nd
+        - cc-by-nc-sa
+        - cc0
+    without_term_value_id:
+      name: without_term_value_id
+      in: query
+      description: 'Exclude observations with annotations using this controlled value ID.
+
+        Must be combined with the `term_id` parameter
+
+        '
+      schema:
+        type: array
+        items:
+          type: integer
+    ids_place_id:
+      name: place_id
+      in: query
+      description: Observation must occur in this place
+      schema:
+        type: array
+        items:
+          type: string
+    hour:
+      name: hour
+      in: query
+      description: Must be observed within this hour of the day
+      schema:
+        type: array
+        items:
+          type: string
+        maximum: 23
+        minimum: 0
+    ids_observation_iconic_taxon_id:
+      name: observation_iconic_taxon_id
+      in: query
+      description: Observation iconic taxon ID
+      schema:
+        type: array
+        items:
+          type: string
+        minimum: 1
+    ids_own_observation:
+      name: own_observation
+      in: query
+      description: ID was added by the observer
+      schema:
+        type: boolean
+    fails_dqa_evidence:
+      name: fails_dqa_evidence
+      in: query
+      description: Must be voted as not evidence of an organism
+      schema:
+        type: boolean
+    ids_observed_d2:
+      name: observed_d2
+      in: query
+      description: Observation observed on or before this date
+      schema:
+        type: string
+        format: date
+    quality_grade:
+      name: quality_grade
+      in: query
+      description: Must have this quality grade
+      schema:
+        type: string
+        enum:
+        - casual
+        - needs_id
+        - research
+    ids_d1:
+      name: d1
+      in: query
+      description: ID created on or after this time
+      schema:
+        type: string
+        format: date
+    pcid:
+      name: pcid
+      in: query
+      description: 'Observations identified by the curator of a project. If
+
+        the `project_id` parameter is also specified, this will only consider
+
+        observations identified by curators of the specified project(s)
+
+        '
+      schema:
+        type: boolean
+    photos:
+      name: photos
+      in: query
+      description: Observations with photos
+      schema:
+        type: boolean
+    identifications:
+      name: identifications
+      in: query
+      description: Identifications must meet these criteria
+      schema:
+        type: string
+        enum:
+        - most_agree
+        - most_disagree
+        - some_agree
+    reviewed:
+      name: reviewed
+      in: query
+      description: 'Observations have been reviewed by the user with ID equal to
+
+        the value of the `viewer_id` parameter
+
+        '
+      schema:
+        type: boolean
+    site_id:
+      name: site_id
+      in: query
+      description: 'Must be affiliated with the iNaturalist network website with this ID
+
+        '
+      schema:
+        type: array
+        items:
+          type: string
+    fails_dqa_recent:
+      name: fails_dqa_recent
+      in: query
+      description: Must be voted as not recent evidence of an organism
+      schema:
+        type: boolean
+    without_taxon_id:
+      name: without_taxon_id
+      in: query
+      description: Exclude observations of these taxa and their descendants
+      schema:
+        type: array
+        items:
+          type: string
+        minimum: 1
+    ids_observed_d1:
+      name: observed_d1
+      in: query
+      description: Observation observed on or after this date
+      schema:
+        type: string
+        format: date
+  schemas:
+    Color:
+      type: object
       properties:
-        results:
-          type: array
-          items:
-            type: object
-            properties:
-              count:
-                type: integer
-              taxon:
-                $ref: '#/definitions/ShowTaxon'
-  ShowTaxon:
-    allOf:
-    - $ref: '#/definitions/CoreTaxon'
-    - type: object
+        id:
+          type: integer
+        value:
+          type: string
+    SpeciesCountsResponse:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponse'
+      - required:
+        - results
+        properties:
+          results:
+            type: array
+            items:
+              type: object
+              properties:
+                count:
+                  type: integer
+                taxon:
+                  $ref: '#/components/schemas/ShowTaxon'
+    RawConservationStatus:
+      type: object
       properties:
-        ancestor_ids:
-          type: array
-          items:
+        source_id:
+          type: integer
+          description: 'Identifier for the iNat source record associated with this status,
+
+            retrievable via https://www.inaturalist.org/sources/:id.json
+
+            (this endpoint is not a part of our public API and is thus subject to
+
+            change or removal)
+
+            '
+        authority:
+          type: string
+          description: 'Organization that declared this status
+
+            '
+        status:
+          type: string
+          description: 'Body of the status, often coded, particularly when the status comes
+
+            from the IUCN or NatureServe. Consult the authority and/or the
+
+            status URL for details about the meanings of codes.
+
+            '
+        status_name:
+          type: string
+          description: 'Human-readable name of the status if it was coded.
+
+            '
+        iucn:
+          type: integer
+          description: 'Coded value representing the equivalent IUCN status. Mappings:
+
+            NOT_EVALUATED = 0, DATA_DEFICIENT = 5, LEAST_CONCERN = 10,
+
+            NEAR_THREATENED = 20, VULNERABLE = 30, ENDANGERED = 40,
+
+            CRITICALLY_ENDANGERED = 50, EXTINCT_IN_THE_WILD = 60, EXTINCT = 70
+
+            '
+        geoprivacy:
+          type: string
+          description: 'Default geoprivacy for observations of this taxon in the status''s place.
+
+            '
+    ShowTaxon:
+      allOf:
+      - $ref: '#/components/schemas/CoreTaxon'
+      - type: object
+        properties:
+          ancestor_ids:
+            type: array
+            items:
+              type: integer
+          colors:
+            type: array
+            items:
+              $ref: '#/components/schemas/Color'
+          conservation_status:
+            $ref: '#/components/schemas/ConservationStatus'
+          conservation_statuses:
+            type: array
+            items:
+              $ref: '#/components/schemas/TaxonConservationStatus'
+          default_photo:
+            $ref: '#/components/schemas/TaxonPhoto'
+          establishment_means:
+            $ref: '#/components/schemas/EstablishmentMeans'
+          observations_count:
             type: integer
-        colors:
-          type: array
-          items:
-            $ref: '#/definitions/Color'
-        conservation_status:
-          $ref: '#/definitions/ConservationStatus'
-        conservation_statuses:
-          type: array
-          items:
-            $ref: '#/definitions/TaxonConservationStatus'
-        default_photo:
-          $ref: '#/definitions/TaxonPhoto'
-        establishment_means:
-          $ref: '#/definitions/EstablishmentMeans'
+          preferred_establishment_means:
+            type: string
+    TaxonPhoto:
+      allOf:
+      - $ref: '#/components/schemas/Photo'
+      - type: object
+        properties:
+          medium_url:
+            type: string
+          square_url:
+            type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    User:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+        id:
+          type: integer
+        icon:
+          type: string
+        icon_url:
+          type: string
+        identifications_count:
+          type: integer
+        journal_posts_count:
+          type: integer
+        login:
+          type: string
+        name:
+          type: string
         observations_count:
           type: integer
-        preferred_establishment_means:
+        orcid:
           type: string
-  ConservationStatus:
-    type: object
-    properties:
-      place_id:
-        type: integer
-      place:
-        $ref: '#/definitions/CorePlace'
-      status:
-        type: string
-  PostIdentification:
-    type: object
-    properties:
-      identification:
-        type: object
-        properties:
-          observation_id:
-            type: integer
-          taxon_id:
-            type: integer
-          current:
-            type: boolean
-          body:
-            type: string
-  RawConservationStatus:
-    type: object
-    properties:
-      source_id:
-        type: integer
-        description: 'Identifier for the iNat source record associated with this status,
-
-          retrievable via https://www.inaturalist.org/sources/:id.json
-
-          (this endpoint is not a part of our public API and is thus subject to
-
-          change or removal)
-
-          '
-      authority:
-        type: string
-        description: 'Organization that declared this status
-
-          '
-      status:
-        type: string
-        description: 'Body of the status, often coded, particularly when the status comes
-
-          from the IUCN or NatureServe. Consult the authority and/or the
-
-          status URL for details about the meanings of codes.
-
-          '
-      status_name:
-        type: string
-        description: 'Human-readable name of the status if it was coded.
-
-          '
-      iucn:
-        type: integer
-        description: 'Coded value representing the equivalent IUCN status. Mappings:
-
-          NOT_EVALUATED = 0, DATA_DEFICIENT = 5, LEAST_CONCERN = 10,
-
-          NEAR_THREATENED = 20, VULNERABLE = 30, ENDANGERED = 40,
-
-          CRITICALLY_ENDANGERED = 50, EXTINCT_IN_THE_WILD = 60, EXTINCT = 70
-
-          '
-      geoprivacy:
-        type: string
-        description: 'Default geoprivacy for observations of this taxon in the status''s place.
-
-          '
-  Error:
-    type: object
-    properties:
-      code:
-        type: integer
-      message:
-        type: string
-  Photo:
-    type: object
-    properties:
-      id:
-        type: integer
-      attribution:
-        type: string
-      license_code:
-        type: string
-      url:
-        type: string
-  CoreTaxon:
-    type: object
-    properties:
-      id:
-        type: integer
-      iconic_taxon_id:
-        type: integer
-      iconic_taxon_name:
-        type: string
-      is_active:
-        type: boolean
-      name:
-        type: string
-      preferred_common_name:
-        type: string
-      rank:
-        type: string
-      rank_level:
-        type: number
-  BaseResponse:
-    type: object
-    properties:
-      total_results:
-        type: integer
-      page:
-        type: integer
-      per_page:
-        type: integer
-  Color:
-    type: object
-    properties:
-      id:
-        type: integer
-      value:
-        type: string
-  UserCountsResponse:
-    allOf:
-    - $ref: '#/definitions/BaseResponse'
-    - required:
-      - results
-      properties:
-        results:
+        roles:
           type: array
           items:
-            type: object
-            properties:
-              count:
-                type: integer
-              user:
-                $ref: '#/definitions/User'
-  TaxonPhoto:
-    allOf:
-    - $ref: '#/definitions/Photo'
-    - type: object
+            type: string
+            enum:
+            - admin
+            - app owner
+            - curator
+        site_id:
+          type: integer
+        species_count:
+          type: integer
+        spam:
+          type: boolean
+        suspended:
+          type: boolean
+    PostIdentification:
+      type: object
       properties:
-        medium_url:
+        identification:
+          type: object
+          properties:
+            observation_id:
+              type: integer
+            taxon_id:
+              type: integer
+            current:
+              type: boolean
+            body:
+              type: string
+    ConservationStatus:
+      type: object
+      properties:
+        place_id:
+          type: integer
+        place:
+          $ref: '#/components/schemas/CorePlace'
+        status:
           type: string
-        square_url:
+    BaseResponse:
+      type: object
+      properties:
+        total_results:
+          type: integer
+        page:
+          type: integer
+        per_page:
+          type: integer
+    EstablishmentMeans:
+      type: object
+      properties:
+        establishment_means:
           type: string
-parameters:
-  observed_on:
-    name: observed_on
-    type: string
-    format: date
-    in: query
-    description: Must be observed on this date
-  created_year:
-    name: created_year
-    type: array
-    items:
-      type: string
-    in: query
-    minimum: 1
-    description: Must be created within this year
-  ids_taxon_active:
-    name: taxon_active
-    type: boolean
-    in: query
-    description: ID's taxon is currently an active taxon
-  viewer_id:
-    name: viewer_id
-    type: string
-    in: query
-    description: See `reviewed`
-  created_on:
-    name: created_on
-    type: string
-    format: date
-    in: query
-    description: Must be created on this date
-  ids_without_observation_taxon_id:
-    name: without_observation_taxon_id
-    type: array
-    items:
-      type: string
-    in: query
-    minimum: 1
-    description: Exclude IDs of observations of these taxa and their descendants
-  ids_user_id:
-    name: user_id
-    type: array
-    items:
-      type: integer
-    in: query
-    minimum: 1
-    description: Identifier must have this user ID
-  ids_order_by:
-    name: order_by
-    type: string
-    in: query
-    description: Sort field
-    default: created_at
-    enum:
-    - created_at
-    - id
-  list_id:
-    name: list_id
-    type: integer
-    in: query
-    description: Taxon must be in the list with this ID
-  ids_is_change:
-    name: is_change
-    type: boolean
-    in: query
-    description: ID was created as a results of a taxon change
-  page:
-    name: page
-    type: string
-    in: query
-    description: Pagination `page` number
-  ids_user_login:
-    name: user_login
-    type: array
-    items:
-      type: string
-    in: query
-    description: Identifier must have this login
-  unobserved_by_user_id:
-    name: unobserved_by_user_id
-    type: integer
-    in: query
-    description: Must not be of a taxon previously observed by this user
-  lat:
-    name: lat
-    type: number
-    format: double
-    in: query
-    description: 'Must be within a {`radius`} kilometer circle around this lat/lng
-
-      (*lat, *lng, radius)
-
-      '
-  csa:
-    name: csa
-    type: string
-    in: query
-    description: 'Taxon must have a conservation status from this authority. If
-
-      the `place_id` parameter is also specified, this will only consider
-
-      statuses specific to that place
-
-      '
-  user_id:
-    name: user_id
-    type: array
-    items:
-      type: string
-    in: query
-    minimum: 1
-    description: User must have this ID or login
-  ids_category:
-    name: category
-    type: array
-    items:
-      type: string
-    in: query
-    enum:
-    - improving
-    - supporting
-    - leading
-    - maverick
-    description: Type of identification
-  sound_license:
-    name: sound_license
-    type: array
-    items:
-      type: string
-    in: query
-    description: Must have at least one sound with this license
-    enum:
-    - cc-by
-    - cc-by-nc
-    - cc-by-nd
-    - cc-by-sa
-    - cc-by-nc-nd
-    - cc-by-nc-sa
-    - cc0
-  ids_hrank:
-    name: hrank
-    type: string
-    in: query
-    description: ID taxon must have this rank or lower
-    enum:
-    - stateofmatter
-    - kingdom
-    - phylum
-    - subphylum
-    - superclass
-    - class
-    - subclass
-    - superorder
-    - order
-    - suborder
-    - infraorder
-    - superfamily
-    - epifamily
-    - family
-    - subfamily
-    - supertribe
-    - tribe
-    - subtribe
-    - genus
-    - genushybrid
-    - species
-    - hybrid
-    - subspecies
-    - variety
-    - form
-  out_of_range:
-    name: out_of_range
-    type: boolean
-    in: query
-    description: Observations whose taxa are outside their known ranges
-  identifications:
-    name: identifications
-    type: string
-    in: query
-    description: Identifications must meet these criteria
-    enum:
-    - most_agree
-    - most_disagree
-    - some_agree
-  photos:
-    name: photos
-    type: boolean
-    in: query
-    description: Observations with photos
-  lng:
-    name: lng
-    type: number
-    format: double
-    in: query
-    description: 'Must be within a {`radius`} kilometer circle around this lat/lng
-
-      (*lat, *lng, radius)
-
-      '
-  quality_grade:
-    name: quality_grade
-    type: string
-    in: query
-    description: Must have this quality grade
-    enum:
-    - casual
-    - needs_id
-    - research
-  term_value_id:
-    name: term_value_id
-    type: array
-    items:
-      type: integer
-    in: query
-    description: 'Must have an annotation using this controlled value ID. Must be combined
-
-      with the `term_id` parameter
-
-      '
-  mappable:
-    name: mappable
-    type: boolean
-    in: query
-    description: Observations that show on map tiles
-  native:
-    name: native
-    type: boolean
-    in: query
-    description: Observations whose taxa are native to their location
-  ids_id:
-    name: id
-    type: array
-    items:
-      type: integer
-    in: query
-    description: Identification ID
-  ident_user_id:
-    name: ident_user_id
-    type: integer
-    in: query
-    description: Observations identified by a particular user
-  taxon_name:
-    name: taxon_name
-    type: array
-    items:
-      type: string
-    in: query
-    description: 'Taxon must have a scientific or common name matching this string
-
-      '
-  ids_rank:
-    name: rank
-    type: array
-    items:
-      type: string
-    in: query
-    description: ID's taxon must have this rank
-    enum:
-    - stateofmatter
-    - kingdom
-    - phylum
-    - subphylum
-    - superclass
-    - class
-    - subclass
-    - superorder
-    - order
-    - suborder
-    - infraorder
-    - superfamily
-    - epifamily
-    - family
-    - subfamily
-    - supertribe
-    - tribe
-    - subtribe
-    - genus
-    - genushybrid
-    - species
-    - hybrid
-    - subspecies
-    - variety
-    - form
-  year:
-    name: year
-    type: array
-    items:
-      type: string
-    in: query
-    minimum: 1
-    description: Must be observed within this year
-  endemic:
-    name: endemic
-    type: boolean
-    in: query
-    description: Observations whose taxa are endemic to their location
-  acc_above:
-    name: acc_above
-    type: string
-    in: query
-    description: Must have a positional accuracy above this value (meters)
-  nelng:
-    name: nelng
-    type: number
-    format: double
-    in: query
-    description: 'Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)
-
-      '
-  ids_observation_lrank:
-    name: observation_lrank
-    type: string
-    in: query
-    description: Observation taxon must have this rank or higher
-    enum:
-    - stateofmatter
-    - kingdom
-    - phylum
-    - subphylum
-    - superclass
-    - class
-    - subclass
-    - superorder
-    - order
-    - suborder
-    - infraorder
-    - superfamily
-    - epifamily
-    - family
-    - subfamily
-    - supertribe
-    - tribe
-    - subtribe
-    - genus
-    - genushybrid
-    - species
-    - hybrid
-    - subspecies
-    - variety
-    - form
-  ids_observed_d1:
-    name: observed_d1
-    type: string
-    format: date
-    in: query
-    description: Observation observed on or after this date
-  fails_dqa_recent:
-    name: fails_dqa_recent
-    type: boolean
-    in: query
-    description: Must be voted as not recent evidence of an organism
-  ids_observation_iconic_taxon_id:
-    name: observation_iconic_taxon_id
-    type: array
-    items:
-      type: string
-    in: query
-    minimum: 1
-    description: Observation iconic taxon ID
-  ids_observation_taxon_active:
-    name: observation_taxon_active
-    type: boolean
-    in: query
-    description: Observation's taxon is currently an active taxon
-  without_term_value_id:
-    name: without_term_value_id
-    type: array
-    items:
-      type: integer
-    in: query
-    description: 'Exclude observations with annotations using this controlled value ID.
-
-      Must be combined with the `term_id` parameter
-
-      '
-  created_day:
-    name: created_day
-    type: array
-    items:
-      type: string
-    in: query
-    minimum: 1
-    maximum: 31
-    description: Must be created within this day of the month
-  ids_lrank:
-    name: lrank
-    type: string
-    in: query
-    description: ID taxon must have this rank or higher
-    enum:
-    - stateofmatter
-    - kingdom
-    - phylum
-    - subphylum
-    - superclass
-    - class
-    - subclass
-    - superorder
-    - order
-    - suborder
-    - infraorder
-    - superfamily
-    - epifamily
-    - family
-    - subfamily
-    - supertribe
-    - tribe
-    - subtribe
-    - genus
-    - genushybrid
-    - species
-    - hybrid
-    - subspecies
-    - variety
-    - form
-  ids_d2:
-    name: d2
-    type: string
-    format: date
-    in: query
-    description: ID created on or before this time
-  site_id:
-    name: site_id
-    type: array
-    items:
-      type: string
-    in: query
-    description: 'Must be affiliated with the iNaturalist network website with this ID
-
-      '
-  expected_nearby:
-    name: expected_nearby
-    type: boolean
-    in: query
-    description: Observation taxon is expected nearby
-  fails_dqa_needs_id:
-    name: fails_dqa_needs_id
-    type: boolean
-    in: query
-    description: Must be voted as the community ID cannot be improved
-  ids_observed_d2:
-    name: observed_d2
-    type: string
-    format: date
-    in: query
-    description: Observation observed on or before this date
-  d2:
-    name: d2
-    type: string
-    format: date
-    in: query
-    description: Must be observed on or before this date
-  fails_dqa_wild:
-    name: fails_dqa_wild
-    type: boolean
-    in: query
-    description: Must be voted as not wild
-  place_id:
-    name: place_id
-    type: array
-    items:
-      type: integer
-    in: query
-    description: Must be observed within the place with this ID
-  project_id:
-    name: project_id
-    type: array
-    items:
-      type: string
-    in: query
-    description: Must be added to the project this ID or slug
-  radius:
-    name: radius
-    type: string
-    in: query
-    description: 'Must be within a {`radius`} kilometer circle around this lat/lng
-
-      (*lat, *lng, radius)
-
-      '
-  annotation_user_id:
-    name: annotation_user_id
-    type: array
-    items:
-      type: string
-    in: query
-    description: 'Must have an annotation created by this user
-
-      '
-  fails_dqa_date:
-    name: fails_dqa_date
-    type: boolean
-    in: query
-    description: Must be voted as not having an accurate date
-  order:
-    name: order
-    type: string
-    in: query
-    description: Sort order
-    default: desc
-    enum:
-    - desc
-    - asc
-  geoprivacy:
-    name: geoprivacy
-    type: array
-    items:
-      type: string
-    in: query
-    description: Must have this geoprivacy setting
-    enum:
-    - obscured
-    - obscured_private
-    - open
-    - private
-  ids_observation_created_d1:
-    name: observation_created_d1
-    type: string
-    format: date
-    in: query
-    description: Observation created on or after this date
-  iconic_taxa:
-    name: iconic_taxa
-    type: array
-    items:
-      type: string
-    in: query
-    description: Taxon must by within this iconic taxon
-    enum:
-    - Actinopterygii
-    - Animalia
-    - Amphibia
-    - Arachnida
-    - Aves
-    - Chromista
-    - Fungi
-    - Insecta
-    - Mammalia
-    - Mollusca
-    - Reptilia
-    - Plantae
-    - Protozoa
-    - unknown
-  id_below:
-    name: id_below
-    type: string
-    in: query
-    description: Must have an ID below this value
-  path_id:
-    name: id
-    in: path
-    required: true
-    type: integer
-    description: ID of the record
-  id_please:
-    name: id_please
-    type: boolean
-    in: query
-    description: Observations with the deprecated `ID, Please!` flag. Note that this will return observations, but that this attribute is no longer used.
-  user_login:
-    name: user_login
-    type: array
-    items:
-      type: string
-    in: query
-    description: User must have this login
-  updated_since:
-    name: updated_since
-    type: string
-    in: query
-    description: Must be updated since this time
-  fails_dqa_accurate:
-    name: fails_dqa_accurate
-    type: boolean
-    in: query
-    description: Must be voted as not accurately depicting an organism or scene
-  lrank:
-    name: lrank
-    type: string
-    in: query
-    description: Taxon must have this rank or higher
-    enum:
-    - stateofmatter
-    - kingdom
-    - phylum
-    - subphylum
-    - superclass
-    - class
-    - subclass
-    - superorder
-    - order
-    - suborder
-    - infraorder
-    - superfamily
-    - epifamily
-    - family
-    - subfamily
-    - supertribe
-    - tribe
-    - subtribe
-    - genus
-    - genushybrid
-    - species
-    - hybrid
-    - subspecies
-    - variety
-    - form
-  reviewed:
-    name: reviewed
-    type: boolean
-    in: query
-    description: 'Observations have been reviewed by the user with ID equal to
-
-      the value of the `viewer_id` parameter
-
-      '
-  sounds:
-    name: sounds
-    type: boolean
-    in: query
-    description: Observations with sounds
-  not_matching_project_rules_for:
-    name: not_matching_project_rules_for
-    type: string
-    in: query
-    description: Must not match the rules of the project with this ID or slug
-  photo_licensed:
-    name: photo_licensed
-    type: boolean
-    in: query
-    description: License attribute of at least one photo of an observation must not be null
-  not_in_project:
-    name: not_in_project
-    type: string
-    in: query
-    description: Must not be in the project with this ID or slug
-  ids_without_taxon_id:
-    name: without_taxon_id
-    type: array
-    items:
-      type: string
-    in: query
-    minimum: 1
-    description: Exclude IDs of these taxa and their descendants
-  geo:
-    name: geo
-    type: boolean
-    in: query
-    description: Observations that are georeferenced
-  ids_current:
-    name: current
-    type: boolean
-    in: query
-    description: Most recent ID on a observation by a user
-    enum:
-    - true
-    - false
-    - any
-    default: true
-  threatened:
-    name: threatened
-    type: boolean
-    in: query
-    description: 'Observations whose taxa are threatened in their location
-
-      '
-  ids_taxon_id:
-    name: taxon_id
-    type: array
-    items:
-      type: string
-    in: query
-    minimum: 1
-    description: ID taxa must match the given taxa or their descendants
-  swlat:
-    name: swlat
-    type: number
-    format: double
-    in: query
-    description: 'Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)
-
-      '
-  acc:
-    name: acc
-    type: boolean
-    in: query
-    description: Whether or not positional accuracy / coordinate uncertainty has been specified
-  acc_below:
-    name: acc_below
-    type: string
-    in: query
-    description: Must have a positional accuracy below this value (meters)
-  term_id:
-    name: term_id
-    type: array
-    items:
-      type: integer
-    in: query
-    description: Must have an annotation using this controlled term ID
-  ids_d1:
-    name: d1
-    type: string
-    format: date
-    in: query
-    description: ID created on or after this time
-  ids_own_observation:
-    name: own_observation
-    type: boolean
-    in: query
-    description: ID was added by the observer
-  photo_license:
-    name: photo_license
-    type: array
-    items:
-      type: string
-    in: query
-    description: Must have at least one photo with this license
-    enum:
-    - cc-by
-    - cc-by-nc
-    - cc-by-nd
-    - cc-by-sa
-    - cc-by-nc-nd
-    - cc-by-nc-sa
-    - cc0
-  apply_project_rules_for:
-    name: apply_project_rules_for
-    type: string
-    in: query
-    description: Must match the rules of the project with this ID or slug
-  ids_quality_grade:
-    name: quality_grade
-    type: array
-    items:
-      type: string
-    in: query
-    description: Observation must have this quality grade
-    enum:
-    - casual
-    - needs_id
-    - research
-  license:
-    name: license
-    type: array
-    items:
-      type: string
-    in: query
-    description: Observation must have this license
-    enum:
-    - cc-by
-    - cc-by-nc
-    - cc-by-nd
-    - cc-by-sa
-    - cc-by-nc-nd
-    - cc-by-nc-sa
-    - cc0
-  path_multi_id:
-    name: id
-    in: path
-    required: true
-    type: array
-    items:
-      type: integer
-    description: Must have this ID
-  introduced:
-    name: introduced
-    type: boolean
-    in: query
-    description: 'Observations whose taxa are introduced in their location
-
-      '
-  captive:
-    name: captive
-    type: boolean
-    in: query
-    description: Captive or cultivated observations
-  csi:
-    name: csi
-    type: array
-    items:
-      type: string
-    in: query
-    description: 'Taxon must have this IUCN conservation status. If
-
-      the `place_id` parameter is also specified, this will only consider
-
-      statuses specific to that place
-
-      '
-    enum:
-    - LC
-    - NT
-    - VU
-    - EN
-    - CR
-    - EW
-    - EX
-  fails_dqa_evidence:
-    name: fails_dqa_evidence
-    type: boolean
-    in: query
-    description: Must be voted as not evidence of an organism
-  created_d2:
-    name: created_d2
-    type: string
-    format: date-time
-    in: query
-    description: Must be created at or before this time
-  taxon_geoprivacy:
-    name: taxon_geoprivacy
-    type: array
-    items:
-      type: string
-    in: query
-    description: 'Filter observations by the most conservative geoprivacy applied by a
-
-      conservation status associated with one of the taxa proposed in the
-
-      current identifications.
-
-      '
-    enum:
-    - obscured
-    - obscured_private
-    - open
-    - private
-  d1:
-    name: d1
-    type: string
-    format: date
-    in: query
-    description: Must be observed on or after this date
-  ids_observation_created_d2:
-    name: observation_created_d2
-    type: string
-    format: date
-    in: query
-    description: Observation created on or before this date
-  day:
-    name: day
-    type: array
-    items:
-      type: string
-    in: query
-    minimum: 1
-    maximum: 31
-    description: Must be observed within this day of the month
-  verifiable:
-    name: verifiable
-    type: boolean
-    in: query
-    description: 'Observations with a `quality_grade` of either `needs_id` or
-
-      `research`. Equivalent to `quality_grade=needs_id,research`
-
-      '
-  rank:
-    name: rank
-    type: array
-    items:
-      type: string
-    in: query
-    description: Taxon must have this rank
-    enum:
-    - stateofmatter
-    - kingdom
-    - phylum
-    - subphylum
-    - superclass
-    - class
-    - subclass
-    - superorder
-    - order
-    - suborder
-    - infraorder
-    - superfamily
-    - epifamily
-    - family
-    - subfamily
-    - supertribe
-    - tribe
-    - subtribe
-    - genus
-    - genushybrid
-    - species
-    - hybrid
-    - subspecies
-    - variety
-    - form
-  identified:
-    name: identified
-    type: boolean
-    in: query
-    description: Observations that have community identifications
-  month:
-    name: month
-    type: array
-    items:
-      type: string
-    in: query
-    minimum: 1
-    maximum: 12
-    description: Must be observed within this month
-  fails_dqa_location:
-    name: fails_dqa_location
-    type: boolean
-    in: query
-    description: Must be voted as not having an accurate location
-  swlng:
-    name: swlng
-    type: number
-    format: double
-    in: query
-    description: 'Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)
-
-      '
-  pcid:
-    name: pcid
-    type: boolean
-    in: query
-    description: 'Observations identified by the curator of a project. If
-
-      the `project_id` parameter is also specified, this will only consider
-
-      observations identified by curators of the specified project(s)
-
-      '
-  ids_place_id:
-    name: place_id
-    type: array
-    items:
-      type: string
-    in: query
-    description: Observation must occur in this place
-  cs:
-    name: cs
-    type: string
-    in: query
-    description: 'Taxon must have this conservation status code. If
-
-      the `place_id` parameter is also specified, this will only consider
-
-      statuses specific to that place
-
-      '
-  without_term_id:
-    name: without_term_id
-    type: integer
-    in: query
-    description: 'Exclude observations with annotations using this controlled value ID.
-
-      '
-  not_id:
-    name: not_id
-    type: array
-    items:
-      type: string
-    in: query
-    minimum: 1
-    description: Must not have this ID
-  ids_current_taxon:
-    name: current_taxon
-    type: boolean
-    in: query
-    description: ID's taxon is the same it's observation's taxon
-  hrank:
-    name: hrank
-    type: string
-    in: query
-    description: Taxon must have this rank or lower
-    enum:
-    - stateofmatter
-    - kingdom
-    - phylum
-    - subphylum
-    - superclass
-    - class
-    - subclass
-    - superorder
-    - order
-    - suborder
-    - infraorder
-    - superfamily
-    - epifamily
-    - family
-    - subfamily
-    - supertribe
-    - tribe
-    - subtribe
-    - genus
-    - genushybrid
-    - species
-    - hybrid
-    - subspecies
-    - variety
-    - form
-  taxon_is_active:
-    name: taxon_is_active
-    type: boolean
-    in: query
-    description: 'Observations of active taxon concepts
-
-      '
-  ids_observation_rank:
-    name: observation_rank
-    type: array
-    items:
-      type: string
-    in: query
-    description: Observation's taxon must have this rank
-    enum:
-    - stateofmatter
-    - kingdom
-    - phylum
-    - subphylum
-    - superclass
-    - class
-    - subclass
-    - superorder
-    - order
-    - suborder
-    - infraorder
-    - superfamily
-    - epifamily
-    - family
-    - subfamily
-    - supertribe
-    - tribe
-    - subtribe
-    - genus
-    - genushybrid
-    - species
-    - hybrid
-    - subspecies
-    - variety
-    - form
-  observation_accuracy_experiment_id:
-    name: observation_accuracy_experiment_id
-    type: array
-    items:
-      type: integer
-    in: query
-    description: Must included in this observation accuracy experiment
-  search_on:
-    name: search_on
-    type: string
-    in: query
-    description: 'Properties to search on, when combined with `q`.
-
-      Searches across all properties by default
-
-      '
-    enum:
-    - names
-    - tags
-    - description
-    - place
-  created_month:
-    name: created_month
-    type: array
-    items:
-      type: string
-    in: query
-    minimum: 1
-    maximum: 12
-    description: Must be created within this month
-  created_d1:
-    name: created_d1
-    type: string
-    format: date-time
-    in: query
-    description: Must be created at or after this time
-  ids_observation_hrank:
-    name: observation_hrank
-    type: string
-    in: query
-    description: Observation taxon must have this rank or lower
-    enum:
-    - stateofmatter
-    - kingdom
-    - phylum
-    - subphylum
-    - superclass
-    - class
-    - subclass
-    - superorder
-    - order
-    - suborder
-    - infraorder
-    - superfamily
-    - epifamily
-    - family
-    - subfamily
-    - supertribe
-    - tribe
-    - subtribe
-    - genus
-    - genushybrid
-    - species
-    - hybrid
-    - subspecies
-    - variety
-    - form
-  ids_taxon_change_id:
-    name: taxon_change_id
-    type: array
-    in: query
-    minimum: 1
-    description: Only return identifications that were created as part of the specified taxon change
-  id:
-    name: id
-    type: array
-    items:
-      type: string
-    in: query
-    minimum: 1
-    description: Must have this ID
-  acc_below_or_unknown:
-    name: acc_below_or_unknown
-    type: string
-    in: query
-    description: Positional accuracy must be below this value (in meters) or be unknown
-  q:
-    name: q
-    type: string
-    in: query
-    description: Search observation properties. Can be combined with `search_on`
-  id_above:
-    name: id_above
-    type: string
-    in: query
-    description: Must have an ID above this value
-  fails_dqa_subject:
-    name: fails_dqa_subject
-    type: boolean
-    in: query
-    description: Must be voted as not having evidence related to a single subject
-  hour:
-    name: hour
-    type: array
-    items:
-      type: string
-    in: query
-    minimum: 0
-    maximum: 23
-    description: Must be observed within this hour of the day
-  popular:
-    name: popular
-    type: boolean
-    in: query
-    description: 'Observations that have been favorited by at least one user
-
-      '
-  ofv_datatype:
-    name: ofv_datatype
-    type: array
-    items:
-      type: string
-    in: query
-    minimum: 1
-    maximum: 31
-    description: Must have an observation field value with this datatype
-  without_taxon_id:
-    name: without_taxon_id
-    type: array
-    items:
-      type: string
-    in: query
-    minimum: 1
-    description: Exclude observations of these taxa and their descendants
-  licensed:
-    name: licensed
-    type: boolean
-    in: query
-    description: License attribute of an observation must not be null
-  obscuration:
-    name: obscuration
-    type: array
-    items:
-      type: string
-    in: query
-    description: 'Must have `geoprivacy` or `taxon_geoprivacy` fields matching these values
-
-      '
-    enum:
-    - obscured
-    - private
-    - none
-  ids_observation_taxon_id:
-    name: observation_taxon_id
-    type: array
-    items:
-      type: string
-    in: query
-    minimum: 1
-    description: Observation taxa must match the given taxa or their descendants
-  term_id_or_unknown:
-    name: term_id_or_unknown
-    type: array
-    items:
-      type: integer
-    in: query
-    description: 'Must be combined with the `term_value_id` or the `without_term_value_id` parameter.
-
-      Must have an annotation using this controlled term ID and associated term value IDs
-
-      or be missing this annotation.
-
-      '
-  only_id:
-    name: only_id
-    type: boolean
-    in: query
-    description: Return only the record IDs
-  per_page:
-    name: per_page
-    type: string
-    in: query
-    description: 'Number of results to return in a `page`. The maximum value is generally
-
-      200 unless otherwise noted
-
-      '
-  nelat:
-    name: nelat
-    type: number
-    format: double
-    in: query
-    description: 'Must be within this bounding box (*nelat, *nelng, *swlat, *swlng)
-
-      '
-  ids_iconic_taxon_id:
-    name: iconic_taxon_id
-    type: array
-    items:
-      type: string
-    in: query
-    minimum: 1
-    description: ID iconic taxon ID
-securityDefinitions:
-  api_token:
-    type: apiKey
-    name: Authorization
-    in: header
+        place:
+          $ref: '#/components/schemas/CorePlace'
+    TaxonConservationStatus:
+      allOf:
+      - $ref: '#/components/schemas/RawConservationStatus'
+      - type: object
+        properties:
+          place:
+            $ref: '#/components/schemas/CorePlace'
+    CoreTaxon:
+      type: object
+      properties:
+        id:
+          type: integer
+        iconic_taxon_id:
+          type: integer
+        iconic_taxon_name:
+          type: string
+        is_active:
+          type: boolean
+        name:
+          type: string
+        preferred_common_name:
+          type: string
+        rank:
+          type: string
+        rank_level:
+          type: number
+    CorePlace:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        display_name:
+          type: string
+    UserCountsResponse:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponse'
+      - required:
+        - results
+        properties:
+          results:
+            type: array
+            items:
+              type: object
+              properties:
+                count:
+                  type: integer
+                user:
+                  $ref: '#/components/schemas/User'
+    Photo:
+      type: object
+      properties:
+        id:
+          type: integer
+        attribution:
+          type: string
+        license_code:
+          type: string
+        url:
+          type: string
+  securitySchemes:
+    api_token:
+      type: apiKey
+      name: Authorization
+      in: header

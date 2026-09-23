@@ -1,26 +1,7 @@
 {
   "provider": "inaturalist",
   "sources": [
-    "inaturalist-annotations-api-openapi.yml",
-    "inaturalist-comments-api-openapi.yml",
-    "inaturalist-controlled-terms-api-openapi.yml",
-    "inaturalist-flags-api-openapi.yml",
-    "inaturalist-identifications-api-openapi.yml",
-    "inaturalist-messages-api-openapi.yml",
-    "inaturalist-observation-field-values-api-openapi.yml",
-    "inaturalist-observation-photos-api-openapi.yml",
-    "inaturalist-observation-tiles-api-openapi.yml",
-    "inaturalist-observations-api-openapi.yml",
-    "inaturalist-photos-api-openapi.yml",
-    "inaturalist-places-api-openapi.yml",
-    "inaturalist-polygon-tiles-api-openapi.yml",
-    "inaturalist-posts-api-openapi.yml",
-    "inaturalist-project-observations-api-openapi.yml",
-    "inaturalist-projects-api-openapi.yml",
-    "inaturalist-search-api-openapi.yml",
-    "inaturalist-taxa-api-openapi.yml",
-    "inaturalist-users-api-openapi.yml",
-    "inaturalist-utfgrid-api-openapi.yml"
+    "_original/openapi.json"
   ],
   "outputs": [
     "inaturalist-annotations-api-openapi.yml",
@@ -41,12 +22,38 @@
     "inaturalist-projects-api-openapi.yml",
     "inaturalist-search-api-openapi.yml",
     "inaturalist-taxa-api-openapi.yml",
-    "inaturalist-users-api-openapi.yml",
-    "inaturalist-utfgrid-api-openapi.yml"
+    "inaturalist-utfgrid-api-openapi.yml",
+    "inaturalist-users-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "openapi.json: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "openapi.json: declared missing tag: Photos",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "inaturalist-annotations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "inaturalist-comments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "inaturalist-controlled-terms-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "inaturalist-flags-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "inaturalist-identifications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "inaturalist-messages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "inaturalist-observation-field-values-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "inaturalist-observation-photos-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "inaturalist-observation-tiles-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "inaturalist-observations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "inaturalist-photos-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "inaturalist-places-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "inaturalist-polygon-tiles-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "inaturalist-posts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "inaturalist-project-observations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "inaturalist-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "inaturalist-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "inaturalist-taxa-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "inaturalist-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "inaturalist-utfgrid-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
