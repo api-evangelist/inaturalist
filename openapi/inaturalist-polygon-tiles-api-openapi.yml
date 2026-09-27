@@ -84,52 +84,6 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
-    tile_color:
-      name: color
-      in: query
-      description: 'Primary color to use in tile creation. Accepts common colors by string
-
-        (e.g. `color=blue`), and accepts escaped color HEX codes
-
-        (e.g. `color=%2386a91c`)
-
-        '
-      schema:
-        type: string
-    ttl:
-      name: ttl
-      in: query
-      description: 'Set the `Cache-Control` HTTP header with this value as `max-age`, in
-
-        seconds. This means subsequent identical requests will be cached on
-
-        iNaturalist servers, and commonly within web browsers
-
-        '
-      schema:
-        type: string
-    path_place_id:
-      name: place_id
-      in: path
-      required: true
-      description: Place ID
-      schema:
-        type: integer
-    y:
-      name: y
-      in: path
-      required: true
-      description: Y coordinate in the XYZ tiling scheme. Must be less than 2^zoom
-      schema:
-        type: integer
-        minimum: 0
-    path_taxon_id:
-      name: taxon_id
-      in: path
-      required: true
-      description: Taxon ID
-      schema:
-        type: integer
     zoom:
       name: zoom
       in: path
@@ -147,6 +101,52 @@ components:
       schema:
         type: integer
         minimum: 0
+    y:
+      name: y
+      in: path
+      required: true
+      description: Y coordinate in the XYZ tiling scheme. Must be less than 2^zoom
+      schema:
+        type: integer
+        minimum: 0
+    ttl:
+      name: ttl
+      in: query
+      description: 'Set the `Cache-Control` HTTP header with this value as `max-age`, in
+
+        seconds. This means subsequent identical requests will be cached on
+
+        iNaturalist servers, and commonly within web browsers
+
+        '
+      schema:
+        type: string
+    tile_color:
+      name: color
+      in: query
+      description: 'Primary color to use in tile creation. Accepts common colors by string
+
+        (e.g. `color=blue`), and accepts escaped color HEX codes
+
+        (e.g. `color=%2386a91c`)
+
+        '
+      schema:
+        type: string
+    path_place_id:
+      name: place_id
+      in: path
+      required: true
+      description: Place ID
+      schema:
+        type: integer
+    path_taxon_id:
+      name: taxon_id
+      in: path
+      required: true
+      description: Taxon ID
+      schema:
+        type: integer
   securitySchemes:
     api_token:
       type: apiKey

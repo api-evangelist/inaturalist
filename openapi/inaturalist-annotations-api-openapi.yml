@@ -89,14 +89,6 @@ paths:
       operationId: deleteVotesUnvoteAnnotationById
       x-operation-id-source: derived
 components:
-  parameters:
-    annotation_path_id:
-      name: id
-      in: path
-      required: true
-      description: ID or UUID of the annotation
-      schema:
-        type: string
   schemas:
     PostAnnotation:
       type: object
@@ -122,6 +114,14 @@ components:
           enum:
           - up
           - down
+  parameters:
+    annotation_path_id:
+      name: id
+      in: path
+      required: true
+      description: ID or UUID of the annotation
+      schema:
+        type: string
   securitySchemes:
     api_token:
       type: apiKey

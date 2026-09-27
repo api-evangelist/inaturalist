@@ -159,6 +159,12 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
+    page:
+      name: page
+      in: query
+      description: Pagination `page` number
+      schema:
+        type: string
     path_id:
       name: id
       in: path
@@ -166,45 +172,11 @@ components:
       description: ID of the record
       schema:
         type: integer
-    project_type:
-      name: project_type
-      in: query
-      description: 'Specify the type of project to return
-
-        '
-      schema:
-        type: string
-        enum:
-        - traditional
-        - collection
-        - umbrella
-    autocomplete_project_id:
-      name: project_id
-      in: query
-      description: Only show users with memberships to this project
-      schema:
-        type: integer
-    page:
-      name: page
-      in: query
-      description: Pagination `page` number
-      schema:
-        type: string
     autocomplete_q:
       name: q
       in: query
       required: true
       description: Search by name (must start with this value) or by ID (exact match).
-      schema:
-        type: string
-    per_page:
-      name: per_page
-      in: query
-      description: 'Number of results to return in a `page`. The maximum value is generally
-
-        200 unless otherwise noted
-
-        '
       schema:
         type: string
     rule_details:
@@ -219,6 +191,34 @@ components:
         type: string
         enum:
         - true
+    project_type:
+      name: project_type
+      in: query
+      description: 'Specify the type of project to return
+
+        '
+      schema:
+        type: string
+        enum:
+        - traditional
+        - collection
+        - umbrella
+    per_page:
+      name: per_page
+      in: query
+      description: 'Number of results to return in a `page`. The maximum value is generally
+
+        200 unless otherwise noted
+
+        '
+      schema:
+        type: string
+    autocomplete_project_id:
+      name: project_id
+      in: query
+      description: Only show users with memberships to this project
+      schema:
+        type: integer
   schemas:
     PostUserUpdateSession:
       type: object

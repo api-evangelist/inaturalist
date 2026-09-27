@@ -223,15 +223,63 @@ components:
       schema:
         type: string
   schemas:
-    BaseResponse:
+    User:
       type: object
       properties:
-        total_results:
+        created_at:
+          type: string
+          format: date-time
+        id:
           type: integer
-        page:
+        icon:
+          type: string
+        icon_url:
+          type: string
+        identifications_count:
           type: integer
-        per_page:
+        journal_posts_count:
           type: integer
+        login:
+          type: string
+        name:
+          type: string
+        observations_count:
+          type: integer
+        orcid:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+            enum:
+            - admin
+            - app owner
+            - curator
+        site_id:
+          type: integer
+        species_count:
+          type: integer
+        spam:
+          type: boolean
+        suspended:
+          type: boolean
+    MessagesResponse:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponse'
+      - required:
+        - results
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/components/schemas/Message'
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
     Message:
       type: object
       properties:
@@ -277,53 +325,6 @@ components:
             '
           items:
             type: object
-    User:
-      type: object
-      properties:
-        created_at:
-          type: string
-          format: date-time
-        id:
-          type: integer
-        icon:
-          type: string
-        icon_url:
-          type: string
-        identifications_count:
-          type: integer
-        journal_posts_count:
-          type: integer
-        login:
-          type: string
-        name:
-          type: string
-        observations_count:
-          type: integer
-        orcid:
-          type: string
-        roles:
-          type: array
-          items:
-            type: string
-            enum:
-            - admin
-            - app owner
-            - curator
-        site_id:
-          type: integer
-        species_count:
-          type: integer
-        spam:
-          type: boolean
-        suspended:
-          type: boolean
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
     PostMessage:
       type: object
       properties:
@@ -348,16 +349,15 @@ components:
             body:
               type: string
               description: Body of the message
-    MessagesResponse:
-      allOf:
-      - $ref: '#/components/schemas/BaseResponse'
-      - required:
-        - results
-        properties:
-          results:
-            type: array
-            items:
-              $ref: '#/components/schemas/Message'
+    BaseResponse:
+      type: object
+      properties:
+        total_results:
+          type: integer
+        page:
+          type: integer
+        per_page:
+          type: integer
   securitySchemes:
     api_token:
       type: apiKey

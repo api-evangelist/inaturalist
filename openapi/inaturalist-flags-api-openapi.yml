@@ -74,15 +74,15 @@ paths:
       operationId: deleteFlagsById
       x-operation-id-source: derived
 components:
+  parameters:
+    path_id:
+      name: id
+      in: path
+      required: true
+      description: ID of the record
+      schema:
+        type: integer
   schemas:
-    PutFlag:
-      type: object
-      properties:
-        flag:
-          type: object
-          properties:
-            resolved:
-              type: boolean
     PostFlag:
       type: object
       properties:
@@ -107,14 +107,14 @@ components:
               - other
         flag_explanation:
           type: string
-  parameters:
-    path_id:
-      name: id
-      in: path
-      required: true
-      description: ID of the record
-      schema:
-        type: integer
+    PutFlag:
+      type: object
+      properties:
+        flag:
+          type: object
+          properties:
+            resolved:
+              type: boolean
   securitySchemes:
     api_token:
       type: apiKey

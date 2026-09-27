@@ -73,14 +73,6 @@ paths:
       operationId: postObservationFieldValues
       x-operation-id-source: derived
 components:
-  parameters:
-    path_id:
-      name: id
-      in: path
-      required: true
-      description: ID of the record
-      schema:
-        type: integer
   schemas:
     PostObservationFieldValue:
       type: object
@@ -94,6 +86,14 @@ components:
               type: integer
             value:
               type: string
+  parameters:
+    path_id:
+      name: id
+      in: path
+      required: true
+      description: ID of the record
+      schema:
+        type: integer
   securitySchemes:
     api_token:
       type: apiKey

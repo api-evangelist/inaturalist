@@ -125,18 +125,18 @@ components:
       description: ID of the record
       schema:
         type: integer
-    posts_project_id:
-      name: project_id
-      in: query
-      description: Return posts from this project
-      schema:
-        type: integer
     page:
       name: page
       in: query
       description: Pagination `page` number
       schema:
         type: string
+    posts_project_id:
+      name: project_id
+      in: query
+      description: Return posts from this project
+      schema:
+        type: integer
     posts_login:
       name: login
       in: query

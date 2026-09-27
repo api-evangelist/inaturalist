@@ -303,25 +303,8 @@ components:
       description: ID of the record
       schema:
         type: integer
-    associated_place_id:
-      name: place_id
-      in: query
-      description: Must be associated with this place
-      schema:
-        type: array
-        items:
-          type: string
-    not_id:
-      name: not_id
-      in: query
-      description: Must not have this ID
-      schema:
-        type: array
-        items:
-          type: string
-        minimum: 1
-    lng:
-      name: lng
+    lat:
+      name: lat
       in: query
       description: 'Must be within a {`radius`} kilometer circle around this lat/lng
 
@@ -331,6 +314,88 @@ components:
       schema:
         type: number
         format: double
+    noteworthy:
+      name: noteworthy
+      in: query
+      description: Must be marked noteworthy for the relevant site
+      schema:
+        type: string
+        enum:
+        - true
+    not_id:
+      name: not_id
+      in: query
+      description: Must not have this ID
+      schema:
+        type: array
+        items:
+          type: string
+        minimum: 1
+    associated_place_id:
+      name: place_id
+      in: query
+      description: Must be associated with this place
+      schema:
+        type: array
+        items:
+          type: string
+    id:
+      name: id
+      in: query
+      description: Must have this ID
+      schema:
+        type: array
+        items:
+          type: string
+        minimum: 1
+    projects_radius:
+      name: radius
+      in: query
+      description: 'Must be within a {`radius`} kilometer circle around this lat/lng
+
+        (*lat, *lng, radius). Defaults to 500km
+
+        '
+      schema:
+        type: string
+    featured:
+      name: featured
+      in: query
+      description: Must be marked featured for the relevant site
+      schema:
+        type: string
+        enum:
+        - true
+    page:
+      name: page
+      in: query
+      description: Pagination `page` number
+      schema:
+        type: string
+    skip_counts:
+      name: skip_counts
+      in: query
+      description: 'If counts are not needed, consider setting this to true to save on
+
+        processing time, resulting in faster responses
+
+        '
+      schema:
+        type: boolean
+        default: false
+    autocomplete_q:
+      name: q
+      in: query
+      required: true
+      description: Search by name (must start with this value) or by ID (exact match).
+      schema:
+        type: string
+    autocomplete_q_not_required:
+      name: q
+      in: query
+      description: Search by name (must start with this value) or by ID (exact match).
+      schema:
+        type: string
     has_params:
       name: has_params
       in: query
@@ -349,57 +414,6 @@ components:
         - updated
         - distance
         - featured
-    lat:
-      name: lat
-      in: query
-      description: 'Must be within a {`radius`} kilometer circle around this lat/lng
-
-        (*lat, *lng, radius)
-
-        '
-      schema:
-        type: number
-        format: double
-    path_multi_id:
-      name: id
-      in: path
-      required: true
-      description: Must have this ID
-      schema:
-        type: array
-        items:
-          type: integer
-    autocomplete_q_not_required:
-      name: q
-      in: query
-      description: Search by name (must start with this value) or by ID (exact match).
-      schema:
-        type: string
-    page:
-      name: page
-      in: query
-      description: Pagination `page` number
-      schema:
-        type: string
-    projects_radius:
-      name: radius
-      in: query
-      description: 'Must be within a {`radius`} kilometer circle around this lat/lng
-
-        (*lat, *lng, radius). Defaults to 500km
-
-        '
-      schema:
-        type: string
-    id:
-      name: id
-      in: query
-      description: Must have this ID
-      schema:
-        type: array
-        items:
-          type: string
-        minimum: 1
     rule_details:
       name: rule_details
       in: query
@@ -412,6 +426,12 @@ components:
         type: string
         enum:
         - true
+    has_posts:
+      name: has_posts
+      in: query
+      description: Must have posts
+      schema:
+        type: boolean
     projects_site_id:
       name: site_id
       in: query
@@ -424,42 +444,21 @@ components:
         '
       schema:
         type: integer
-    noteworthy:
-      name: noteworthy
-      in: query
-      description: Must be marked noteworthy for the relevant site
-      schema:
-        type: string
-        enum:
-        - true
-    autocomplete_q:
-      name: q
-      in: query
+    path_multi_id_or_slug:
+      name: id
+      in: path
       required: true
-      description: Search by name (must start with this value) or by ID (exact match).
+      description: Must have this ID or slug
       schema:
-        type: string
-    per_page:
-      name: per_page
+        type: array
+        items:
+          type: string
+    member_id:
+      name: member_id
       in: query
-      description: 'Number of results to return in a `page`. The maximum value is generally
-
-        200 unless otherwise noted
-
-        '
+      description: Project must have member with this user ID
       schema:
-        type: string
-    skip_counts:
-      name: skip_counts
-      in: query
-      description: 'If counts are not needed, consider setting this to true to save on
-
-        processing time, resulting in faster responses
-
-        '
-      schema:
-        type: boolean
-        default: false
+        type: integer
     type:
       name: type
       in: query
@@ -471,45 +470,76 @@ components:
         enum:
         - collection
         - umbrella
-    featured:
-      name: featured
-      in: query
-      description: Must be marked featured for the relevant site
-      schema:
-        type: string
-        enum:
-        - true
-    path_multi_id_or_slug:
+    path_multi_id:
       name: id
       in: path
       required: true
-      description: Must have this ID or slug
+      description: Must have this ID
       schema:
         type: array
         items:
-          type: string
-    has_posts:
-      name: has_posts
+          type: integer
+    lng:
+      name: lng
       in: query
-      description: Must have posts
+      description: 'Must be within a {`radius`} kilometer circle around this lat/lng
+
+        (*lat, *lng, radius)
+
+        '
       schema:
-        type: boolean
-    member_id:
-      name: member_id
+        type: number
+        format: double
+    per_page:
+      name: per_page
       in: query
-      description: Project must have member with this user ID
+      description: 'Number of results to return in a `page`. The maximum value is generally
+
+        200 unless otherwise noted
+
+        '
       schema:
-        type: integer
+        type: string
   schemas:
-    BaseResponse:
+    ProjectMember:
       type: object
       properties:
-        total_results:
+        id:
           type: integer
-        page:
+        project_id:
           type: integer
-        per_page:
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        role:
+          type: string
+          enum:
+          - curator
+          - manager
+        observations_count:
           type: integer
+        taxa_count:
+          type: integer
+        user:
+          $ref: '#/components/schemas/User'
+    PostProjectAdd:
+      type: object
+      properties:
+        observation_id:
+          type: integer
+    ProjectsResponse:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponse'
+      - required:
+        - results
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/components/schemas/Project'
     User:
       type: object
       properties:
@@ -550,6 +580,23 @@ components:
           type: boolean
         suspended:
           type: boolean
+    ProjectMembersResponse:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponse'
+      - required:
+        - results
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/components/schemas/ProjectMember'
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
     Project:
       type: object
       properties:
@@ -561,62 +608,15 @@ components:
           type: string
         slug:
           type: string
-    ProjectMember:
+    BaseResponse:
       type: object
       properties:
-        id:
+        total_results:
           type: integer
-        project_id:
+        page:
           type: integer
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        role:
-          type: string
-          enum:
-          - curator
-          - manager
-        observations_count:
+        per_page:
           type: integer
-        taxa_count:
-          type: integer
-        user:
-          $ref: '#/components/schemas/User'
-    ProjectMembersResponse:
-      allOf:
-      - $ref: '#/components/schemas/BaseResponse'
-      - required:
-        - results
-        properties:
-          results:
-            type: array
-            items:
-              $ref: '#/components/schemas/ProjectMember'
-    ProjectsResponse:
-      allOf:
-      - $ref: '#/components/schemas/BaseResponse'
-      - required:
-        - results
-        properties:
-          results:
-            type: array
-            items:
-              $ref: '#/components/schemas/Project'
-    PostProjectAdd:
-      type: object
-      properties:
-        observation_id:
-          type: integer
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
   securitySchemes:
     api_token:
       type: apiKey
