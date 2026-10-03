@@ -138,38 +138,91 @@ paths:
       operationId: getPlacesNearby
       x-operation-id-source: derived
 components:
+  parameters:
+    per_page:
+      name: per_page
+      in: query
+      description: 'Number of results to return in a `page`. The maximum value is generally
+
+        200 unless otherwise noted
+
+        '
+      schema:
+        type: string
+    autocomplete_q:
+      name: q
+      in: query
+      required: true
+      description: Search by name (must start with this value) or by ID (exact match).
+      schema:
+        type: string
+    nelng_required:
+      name: nelng
+      in: query
+      required: true
+      description: 'Must be nearby this bounding box (*nelat, *nelng, *swlat, *swlng)
+
+        '
+      schema:
+        type: number
+        format: double
+    swlng_required:
+      name: swlng
+      in: query
+      required: true
+      description: 'Must be nearby this bounding box (*nelat, *nelng, *swlat, *swlng)
+
+        '
+      schema:
+        type: number
+        format: double
+    swlat_required:
+      name: swlat
+      in: query
+      required: true
+      description: 'Must be nearby this bounding box (*nelat, *nelng, *swlat, *swlng)
+
+        '
+      schema:
+        type: number
+        format: double
+    nelat_required:
+      name: nelat
+      in: query
+      required: true
+      description: 'Must be nearby this bounding box (*nelat, *nelng, *swlat, *swlng)
+
+        '
+      schema:
+        type: number
+        format: double
+    path_multi_id_or_slug:
+      name: id
+      in: path
+      required: true
+      description: Must have this ID or slug
+      schema:
+        type: array
+        items:
+          type: string
   schemas:
-    CorePlace:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        display_name:
-          type: string
-    PolygonGeoJson:
-      type: object
-      properties:
-        type:
-          type: string
-        coordinates:
-          type: array
-          items:
-            type: array
-            items:
-              type: array
-              description: an array of [long, lat]
-              items:
-                type: number
-                format: double
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
+    NearbyPlacesResponse:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponse'
+      - required:
+        - results
+        properties:
+          results:
+            type: object
+            properties:
+              standard:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ShowPlace'
+              community:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ShowPlace'
     PlacesResponse:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -180,6 +233,13 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/ShowPlace'
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
     ShowPlace:
       allOf:
       - $ref: '#/components/schemas/CorePlace'
@@ -203,23 +263,21 @@ components:
             type: string
           place_type:
             type: integer
-    NearbyPlacesResponse:
-      allOf:
-      - $ref: '#/components/schemas/BaseResponse'
-      - required:
-        - results
-        properties:
-          results:
-            type: object
-            properties:
-              standard:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ShowPlace'
-              community:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ShowPlace'
+    PolygonGeoJson:
+      type: object
+      properties:
+        type:
+          type: string
+        coordinates:
+          type: array
+          items:
+            type: array
+            items:
+              type: array
+              description: an array of [long, lat]
+              items:
+                type: number
+                format: double
     BaseResponse:
       type: object
       properties:
@@ -229,73 +287,15 @@ components:
           type: integer
         per_page:
           type: integer
-  parameters:
-    swlat_required:
-      name: swlat
-      in: query
-      required: true
-      description: 'Must be nearby this bounding box (*nelat, *nelng, *swlat, *swlng)
-
-        '
-      schema:
-        type: number
-        format: double
-    autocomplete_q:
-      name: q
-      in: query
-      required: true
-      description: Search by name (must start with this value) or by ID (exact match).
-      schema:
-        type: string
-    swlng_required:
-      name: swlng
-      in: query
-      required: true
-      description: 'Must be nearby this bounding box (*nelat, *nelng, *swlat, *swlng)
-
-        '
-      schema:
-        type: number
-        format: double
-    nelat_required:
-      name: nelat
-      in: query
-      required: true
-      description: 'Must be nearby this bounding box (*nelat, *nelng, *swlat, *swlng)
-
-        '
-      schema:
-        type: number
-        format: double
-    per_page:
-      name: per_page
-      in: query
-      description: 'Number of results to return in a `page`. The maximum value is generally
-
-        200 unless otherwise noted
-
-        '
-      schema:
-        type: string
-    path_multi_id_or_slug:
-      name: id
-      in: path
-      required: true
-      description: Must have this ID or slug
-      schema:
-        type: array
-        items:
+    CorePlace:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
           type: string
-    nelng_required:
-      name: nelng
-      in: query
-      required: true
-      description: 'Must be nearby this bounding box (*nelat, *nelng, *swlat, *swlng)
-
-        '
-      schema:
-        type: number
-        format: double
+        display_name:
+          type: string
   securitySchemes:
     api_token:
       type: apiKey

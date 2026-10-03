@@ -159,50 +159,6 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
-    page:
-      name: page
-      in: query
-      description: Pagination `page` number
-      schema:
-        type: string
-    path_id:
-      name: id
-      in: path
-      required: true
-      description: ID of the record
-      schema:
-        type: integer
-    autocomplete_q:
-      name: q
-      in: query
-      required: true
-      description: Search by name (must start with this value) or by ID (exact match).
-      schema:
-        type: string
-    rule_details:
-      name: rule_details
-      in: query
-      description: 'Return more information about project rules, for example return a full
-
-        taxon object instead of simply an ID
-
-        '
-      schema:
-        type: string
-        enum:
-        - true
-    project_type:
-      name: project_type
-      in: query
-      description: 'Specify the type of project to return
-
-        '
-      schema:
-        type: string
-        enum:
-        - traditional
-        - collection
-        - umbrella
     per_page:
       name: per_page
       in: query
@@ -219,6 +175,50 @@ components:
       description: Only show users with memberships to this project
       schema:
         type: integer
+    autocomplete_q:
+      name: q
+      in: query
+      required: true
+      description: Search by name (must start with this value) or by ID (exact match).
+      schema:
+        type: string
+    project_type:
+      name: project_type
+      in: query
+      description: 'Specify the type of project to return
+
+        '
+      schema:
+        type: string
+        enum:
+        - traditional
+        - collection
+        - umbrella
+    path_id:
+      name: id
+      in: path
+      required: true
+      description: ID of the record
+      schema:
+        type: integer
+    rule_details:
+      name: rule_details
+      in: query
+      description: 'Return more information about project rules, for example return a full
+
+        taxon object instead of simply an ID
+
+        '
+      schema:
+        type: string
+        enum:
+        - true
+    page:
+      name: page
+      in: query
+      description: Pagination `page` number
+      schema:
+        type: string
   schemas:
     PostUserUpdateSession:
       type: object

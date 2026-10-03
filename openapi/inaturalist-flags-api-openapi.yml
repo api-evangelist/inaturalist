@@ -83,6 +83,14 @@ components:
       schema:
         type: integer
   schemas:
+    PutFlag:
+      type: object
+      properties:
+        flag:
+          type: object
+          properties:
+            resolved:
+              type: boolean
     PostFlag:
       type: object
       properties:
@@ -107,14 +115,6 @@ components:
               - other
         flag_explanation:
           type: string
-    PutFlag:
-      type: object
-      properties:
-        flag:
-          type: object
-          properties:
-            resolved:
-              type: boolean
   securitySchemes:
     api_token:
       type: apiKey

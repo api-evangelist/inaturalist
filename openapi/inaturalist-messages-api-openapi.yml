@@ -208,21 +208,33 @@ paths:
       operationId: getMessagesUnread
       x-operation-id-source: derived
 components:
-  parameters:
-    path_id:
-      name: id
-      in: path
-      required: true
-      description: ID of the record
-      schema:
-        type: integer
-    page:
-      name: page
-      in: query
-      description: Pagination `page` number
-      schema:
-        type: string
   schemas:
+    MessagesResponse:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponse'
+      - required:
+        - results
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/components/schemas/Message'
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    BaseResponse:
+      type: object
+      properties:
+        total_results:
+          type: integer
+        page:
+          type: integer
+        per_page:
+          type: integer
     User:
       type: object
       properties:
@@ -263,23 +275,30 @@ components:
           type: boolean
         suspended:
           type: boolean
-    MessagesResponse:
-      allOf:
-      - $ref: '#/components/schemas/BaseResponse'
-      - required:
-        - results
-        properties:
-          results:
-            type: array
-            items:
-              $ref: '#/components/schemas/Message'
-    Error:
+    PostMessage:
       type: object
       properties:
-        code:
-          type: integer
         message:
-          type: string
+          type: object
+          properties:
+            to_user_id:
+              type: integer
+              description: User ID of the recipient
+            thread_id:
+              type: integer
+              description: 'Identifier for the thread. Should be blank for new threads,
+
+                but when replying to an existing message, it should be set to
+
+                the thread_id of the message being replied to.
+
+                '
+            subject:
+              type: string
+              description: Subject of the message
+            body:
+              type: string
+              description: Body of the message
     Message:
       type: object
       properties:
@@ -325,39 +344,20 @@ components:
             '
           items:
             type: object
-    PostMessage:
-      type: object
-      properties:
-        message:
-          type: object
-          properties:
-            to_user_id:
-              type: integer
-              description: User ID of the recipient
-            thread_id:
-              type: integer
-              description: 'Identifier for the thread. Should be blank for new threads,
-
-                but when replying to an existing message, it should be set to
-
-                the thread_id of the message being replied to.
-
-                '
-            subject:
-              type: string
-              description: Subject of the message
-            body:
-              type: string
-              description: Body of the message
-    BaseResponse:
-      type: object
-      properties:
-        total_results:
-          type: integer
-        page:
-          type: integer
-        per_page:
-          type: integer
+  parameters:
+    path_id:
+      name: id
+      in: path
+      required: true
+      description: ID of the record
+      schema:
+        type: integer
+    page:
+      name: page
+      in: query
+      description: Pagination `page` number
+      schema:
+        type: string
   securitySchemes:
     api_token:
       type: apiKey

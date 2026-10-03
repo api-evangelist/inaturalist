@@ -39,6 +39,40 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
+    locale:
+      name: locale
+      in: query
+      description: 'Locale preference for taxon common names
+
+        '
+      schema:
+        type: string
+    per_page:
+      name: per_page
+      in: query
+      description: 'Number of results to return in a `page`. The maximum value is generally
+
+        200 unless otherwise noted
+
+        '
+      schema:
+        type: string
+    associated_place_id:
+      name: place_id
+      in: query
+      description: Must be associated with this place
+      schema:
+        type: array
+        items:
+          type: string
+    preferred_place_id:
+      name: preferred_place_id
+      in: query
+      description: 'Place preference for regional taxon common names
+
+        '
+      schema:
+        type: integer
     include_taxon_ancestors:
       name: include_taxon_ancestors
       in: query
@@ -46,12 +80,10 @@ components:
       schema:
         type: boolean
         default: false
-    locale:
-      name: locale
+    search_q:
+      name: q
       in: query
-      description: 'Locale preference for taxon common names
-
-        '
+      description: Search object properties
       schema:
         type: string
     sources:
@@ -67,38 +99,6 @@ components:
         - projects
         - taxa
         - users
-    associated_place_id:
-      name: place_id
-      in: query
-      description: Must be associated with this place
-      schema:
-        type: array
-        items:
-          type: string
-    per_page:
-      name: per_page
-      in: query
-      description: 'Number of results to return in a `page`. The maximum value is generally
-
-        200 unless otherwise noted
-
-        '
-      schema:
-        type: string
-    search_q:
-      name: q
-      in: query
-      description: Search object properties
-      schema:
-        type: string
-    preferred_place_id:
-      name: preferred_place_id
-      in: query
-      description: 'Place preference for regional taxon common names
-
-        '
-      schema:
-        type: integer
   securitySchemes:
     api_token:
       type: apiKey

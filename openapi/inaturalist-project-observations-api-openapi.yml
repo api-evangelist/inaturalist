@@ -74,6 +74,13 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    PostProjectObservation:
+      type: object
+      properties:
+        project_id:
+          type: integer
+        observation_id:
+          type: integer
     UpdateProjectObservation:
       type: object
       properties:
@@ -86,13 +93,6 @@ components:
               type: integer
             prefers_curator_coordinate_access:
               type: boolean
-    PostProjectObservation:
-      type: object
-      properties:
-        project_id:
-          type: integer
-        observation_id:
-          type: integer
   parameters:
     path_id:
       name: id

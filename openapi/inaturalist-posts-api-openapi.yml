@@ -118,31 +118,6 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
-    path_id:
-      name: id
-      in: path
-      required: true
-      description: ID of the record
-      schema:
-        type: integer
-    page:
-      name: page
-      in: query
-      description: Pagination `page` number
-      schema:
-        type: string
-    posts_project_id:
-      name: project_id
-      in: query
-      description: Return posts from this project
-      schema:
-        type: integer
-    posts_login:
-      name: login
-      in: query
-      description: Return posts by this user
-      schema:
-        type: string
     per_page:
       name: per_page
       in: query
@@ -151,6 +126,31 @@ components:
         200 unless otherwise noted
 
         '
+      schema:
+        type: string
+    posts_project_id:
+      name: project_id
+      in: query
+      description: Return posts from this project
+      schema:
+        type: integer
+    path_id:
+      name: id
+      in: path
+      required: true
+      description: ID of the record
+      schema:
+        type: integer
+    posts_login:
+      name: login
+      in: query
+      description: Return posts by this user
+      schema:
+        type: string
+    page:
+      name: page
+      in: query
+      description: Pagination `page` number
       schema:
         type: string
   schemas:

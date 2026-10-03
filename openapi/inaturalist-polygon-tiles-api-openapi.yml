@@ -84,6 +84,13 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
+    path_taxon_id:
+      name: taxon_id
+      in: path
+      required: true
+      description: Taxon ID
+      schema:
+        type: integer
     zoom:
       name: zoom
       in: path
@@ -92,14 +99,6 @@ components:
       schema:
         type: integer
         maximum: 21
-        minimum: 0
-    x:
-      name: x
-      in: path
-      required: true
-      description: X coordinate in the XYZ tiling scheme. Must be less than 2^zoom
-      schema:
-        type: integer
         minimum: 0
     y:
       name: y
@@ -121,6 +120,21 @@ components:
         '
       schema:
         type: string
+    x:
+      name: x
+      in: path
+      required: true
+      description: X coordinate in the XYZ tiling scheme. Must be less than 2^zoom
+      schema:
+        type: integer
+        minimum: 0
+    path_place_id:
+      name: place_id
+      in: path
+      required: true
+      description: Place ID
+      schema:
+        type: integer
     tile_color:
       name: color
       in: query
@@ -133,20 +147,6 @@ components:
         '
       schema:
         type: string
-    path_place_id:
-      name: place_id
-      in: path
-      required: true
-      description: Place ID
-      schema:
-        type: integer
-    path_taxon_id:
-      name: taxon_id
-      in: path
-      required: true
-      description: Taxon ID
-      schema:
-        type: integer
   securitySchemes:
     api_token:
       type: apiKey
