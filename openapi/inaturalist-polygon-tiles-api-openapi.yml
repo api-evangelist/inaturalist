@@ -91,6 +91,34 @@ components:
       description: Taxon ID
       schema:
         type: integer
+    y:
+      name: y
+      in: path
+      required: true
+      description: Y coordinate in the XYZ tiling scheme. Must be less than 2^zoom
+      schema:
+        type: integer
+        minimum: 0
+    x:
+      name: x
+      in: path
+      required: true
+      description: X coordinate in the XYZ tiling scheme. Must be less than 2^zoom
+      schema:
+        type: integer
+        minimum: 0
+    tile_color:
+      name: color
+      in: query
+      description: 'Primary color to use in tile creation. Accepts common colors by string
+
+        (e.g. `color=blue`), and accepts escaped color HEX codes
+
+        (e.g. `color=%2386a91c`)
+
+        '
+      schema:
+        type: string
     zoom:
       name: zoom
       in: path
@@ -100,14 +128,13 @@ components:
         type: integer
         maximum: 21
         minimum: 0
-    y:
-      name: y
+    path_place_id:
+      name: place_id
       in: path
       required: true
-      description: Y coordinate in the XYZ tiling scheme. Must be less than 2^zoom
+      description: Place ID
       schema:
         type: integer
-        minimum: 0
     ttl:
       name: ttl
       in: query
@@ -116,33 +143,6 @@ components:
         seconds. This means subsequent identical requests will be cached on
 
         iNaturalist servers, and commonly within web browsers
-
-        '
-      schema:
-        type: string
-    x:
-      name: x
-      in: path
-      required: true
-      description: X coordinate in the XYZ tiling scheme. Must be less than 2^zoom
-      schema:
-        type: integer
-        minimum: 0
-    path_place_id:
-      name: place_id
-      in: path
-      required: true
-      description: Place ID
-      schema:
-        type: integer
-    tile_color:
-      name: color
-      in: query
-      description: 'Primary color to use in tile creation. Accepts common colors by string
-
-        (e.g. `color=blue`), and accepts escaped color HEX codes
-
-        (e.g. `color=%2386a91c`)
 
         '
       schema:

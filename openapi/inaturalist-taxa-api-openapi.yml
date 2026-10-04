@@ -137,14 +137,162 @@ paths:
       operationId: getTaxaAutocomplete
       x-operation-id-source: derived
 components:
+  parameters:
+    taxa_order_by:
+      name: order_by
+      in: query
+      description: Sort field
+      schema:
+        type: string
+        enum:
+        - id
+        - created_at
+        - observations_count
+        default: observations_count
+    preferred_place_id:
+      name: preferred_place_id
+      in: query
+      description: 'Place preference for regional taxon common names
+
+        '
+      schema:
+        type: integer
+    path_multi_id:
+      name: id
+      in: path
+      required: true
+      description: Must have this ID
+      schema:
+        type: array
+        items:
+          type: integer
+    per_page:
+      name: per_page
+      in: query
+      description: 'Number of results to return in a `page`. The maximum value is generally
+
+        200 unless otherwise noted
+
+        '
+      schema:
+        type: string
+    all_names:
+      name: all_names
+      in: query
+      description: Include all taxon names in the response
+      schema:
+        type: boolean
+    parent_id:
+      name: parent_id
+      in: query
+      description: Taxon's parent must have this ID
+      schema:
+        type: integer
+    autocomplete_q:
+      name: q
+      in: query
+      required: true
+      description: Search by name (must start with this value) or by ID (exact match).
+      schema:
+        type: string
+    rank:
+      name: rank
+      in: query
+      description: Taxon must have this rank
+      schema:
+        type: array
+        items:
+          type: string
+        enum:
+        - stateofmatter
+        - kingdom
+        - phylum
+        - subphylum
+        - superclass
+        - class
+        - subclass
+        - superorder
+        - order
+        - suborder
+        - infraorder
+        - superfamily
+        - epifamily
+        - family
+        - subfamily
+        - supertribe
+        - tribe
+        - subtribe
+        - genus
+        - genushybrid
+        - species
+        - hybrid
+        - subspecies
+        - variety
+        - form
+    only_id:
+      name: only_id
+      in: query
+      description: Return only the record IDs
+      schema:
+        type: boolean
+    order:
+      name: order
+      in: query
+      description: Sort order
+      schema:
+        type: string
+        enum:
+        - desc
+        - asc
+        default: desc
+    taxa_taxon_id:
+      name: taxon_id
+      in: query
+      description: Only show taxa with this ID, or its descendants
+      schema:
+        type: array
+        items:
+          type: string
+        minimum: 1
+    id_above:
+      name: id_above
+      in: query
+      description: Must have an ID above this value
+      schema:
+        type: string
+    locale:
+      name: locale
+      in: query
+      description: 'Locale preference for taxon common names
+
+        '
+      schema:
+        type: string
+    id_below:
+      name: id_below
+      in: query
+      description: Must have an ID below this value
+      schema:
+        type: string
+    autocomplete_q_not_required:
+      name: q
+      in: query
+      description: Search by name (must start with this value) or by ID (exact match).
+      schema:
+        type: string
+    rank_level:
+      name: rank_level
+      in: query
+      description: 'Taxon must have this rank level. Some example values are 70 (kingdom),
+
+        60 (phylum), 50 (class), 40 (order), 30 (family), 20 (genus),
+
+        10 (species), 5 (subspecies)
+
+        '
+      schema:
+        type: number
   schemas:
-    TaxonConservationStatus:
-      allOf:
-      - $ref: '#/components/schemas/RawConservationStatus'
-      - type: object
-        properties:
-          place:
-            $ref: '#/components/schemas/CorePlace'
     CoreTaxon:
       type: object
       properties:
@@ -164,34 +312,6 @@ components:
           type: string
         rank_level:
           type: number
-    TaxaShowResponse:
-      allOf:
-      - $ref: '#/components/schemas/BaseResponse'
-      - required:
-        - results
-        properties:
-          results:
-            type: array
-            items:
-              $ref: '#/components/schemas/ShowTaxon'
-    Photo:
-      type: object
-      properties:
-        id:
-          type: integer
-        attribution:
-          type: string
-        license_code:
-          type: string
-        url:
-          type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
     ConservationStatus:
       type: object
       properties:
@@ -201,15 +321,31 @@ components:
           $ref: '#/components/schemas/CorePlace'
         status:
           type: string
-    BaseResponse:
+    Error:
       type: object
       properties:
-        total_results:
+        code:
           type: integer
-        page:
+        message:
+          type: string
+    CorePlace:
+      type: object
+      properties:
+        id:
           type: integer
-        per_page:
-          type: integer
+        name:
+          type: string
+        display_name:
+          type: string
+    TaxonPhoto:
+      allOf:
+      - $ref: '#/components/schemas/Photo'
+      - type: object
+        properties:
+          medium_url:
+            type: string
+          square_url:
+            type: string
     ShowTaxon:
       allOf:
       - $ref: '#/components/schemas/CoreTaxon'
@@ -237,59 +373,6 @@ components:
             type: integer
           preferred_establishment_means:
             type: string
-    CorePlace:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        display_name:
-          type: string
-    Color:
-      type: object
-      properties:
-        id:
-          type: integer
-        value:
-          type: string
-    AutocompleteTaxon:
-      allOf:
-      - $ref: '#/components/schemas/CoreTaxon'
-      - type: object
-        properties:
-          default_photo:
-            $ref: '#/components/schemas/TaxonPhoto'
-          matched_term:
-            type: string
-          observations_count:
-            type: integer
-    TaxaAutocompleteResponse:
-      allOf:
-      - $ref: '#/components/schemas/BaseResponse'
-      - required:
-        - results
-        properties:
-          results:
-            type: array
-            items:
-              $ref: '#/components/schemas/AutocompleteTaxon'
-    TaxonPhoto:
-      allOf:
-      - $ref: '#/components/schemas/Photo'
-      - type: object
-        properties:
-          medium_url:
-            type: string
-          square_url:
-            type: string
-    EstablishmentMeans:
-      type: object
-      properties:
-        establishment_means:
-          type: string
-        place:
-          $ref: '#/components/schemas/CorePlace'
     RawConservationStatus:
       type: object
       properties:
@@ -339,161 +422,78 @@ components:
           description: 'Default geoprivacy for observations of this taxon in the status''s place.
 
             '
-  parameters:
-    only_id:
-      name: only_id
-      in: query
-      description: Return only the record IDs
-      schema:
-        type: boolean
-    rank_level:
-      name: rank_level
-      in: query
-      description: 'Taxon must have this rank level. Some example values are 70 (kingdom),
-
-        60 (phylum), 50 (class), 40 (order), 30 (family), 20 (genus),
-
-        10 (species), 5 (subspecies)
-
-        '
-      schema:
-        type: number
-    locale:
-      name: locale
-      in: query
-      description: 'Locale preference for taxon common names
-
-        '
-      schema:
-        type: string
-    path_multi_id:
-      name: id
-      in: path
-      required: true
-      description: Must have this ID
-      schema:
-        type: array
-        items:
+    TaxaAutocompleteResponse:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponse'
+      - required:
+        - results
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/components/schemas/AutocompleteTaxon'
+    TaxaShowResponse:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponse'
+      - required:
+        - results
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/components/schemas/ShowTaxon'
+    EstablishmentMeans:
+      type: object
+      properties:
+        establishment_means:
+          type: string
+        place:
+          $ref: '#/components/schemas/CorePlace'
+    AutocompleteTaxon:
+      allOf:
+      - $ref: '#/components/schemas/CoreTaxon'
+      - type: object
+        properties:
+          default_photo:
+            $ref: '#/components/schemas/TaxonPhoto'
+          matched_term:
+            type: string
+          observations_count:
+            type: integer
+    Photo:
+      type: object
+      properties:
+        id:
           type: integer
-    all_names:
-      name: all_names
-      in: query
-      description: Include all taxon names in the response
-      schema:
-        type: boolean
-    preferred_place_id:
-      name: preferred_place_id
-      in: query
-      description: 'Place preference for regional taxon common names
-
-        '
-      schema:
-        type: integer
-    id_above:
-      name: id_above
-      in: query
-      description: Must have an ID above this value
-      schema:
-        type: string
-    taxa_order_by:
-      name: order_by
-      in: query
-      description: Sort field
-      schema:
-        type: string
-        enum:
-        - id
-        - created_at
-        - observations_count
-        default: observations_count
-    parent_id:
-      name: parent_id
-      in: query
-      description: Taxon's parent must have this ID
-      schema:
-        type: integer
-    per_page:
-      name: per_page
-      in: query
-      description: 'Number of results to return in a `page`. The maximum value is generally
-
-        200 unless otherwise noted
-
-        '
-      schema:
-        type: string
-    autocomplete_q:
-      name: q
-      in: query
-      required: true
-      description: Search by name (must start with this value) or by ID (exact match).
-      schema:
-        type: string
-    id_below:
-      name: id_below
-      in: query
-      description: Must have an ID below this value
-      schema:
-        type: string
-    order:
-      name: order
-      in: query
-      description: Sort order
-      schema:
-        type: string
-        enum:
-        - desc
-        - asc
-        default: desc
-    taxa_taxon_id:
-      name: taxon_id
-      in: query
-      description: Only show taxa with this ID, or its descendants
-      schema:
-        type: array
-        items:
+        attribution:
           type: string
-        minimum: 1
-    autocomplete_q_not_required:
-      name: q
-      in: query
-      description: Search by name (must start with this value) or by ID (exact match).
-      schema:
-        type: string
-    rank:
-      name: rank
-      in: query
-      description: Taxon must have this rank
-      schema:
-        type: array
-        items:
+        license_code:
           type: string
-        enum:
-        - stateofmatter
-        - kingdom
-        - phylum
-        - subphylum
-        - superclass
-        - class
-        - subclass
-        - superorder
-        - order
-        - suborder
-        - infraorder
-        - superfamily
-        - epifamily
-        - family
-        - subfamily
-        - supertribe
-        - tribe
-        - subtribe
-        - genus
-        - genushybrid
-        - species
-        - hybrid
-        - subspecies
-        - variety
-        - form
+        url:
+          type: string
+    TaxonConservationStatus:
+      allOf:
+      - $ref: '#/components/schemas/RawConservationStatus'
+      - type: object
+        properties:
+          place:
+            $ref: '#/components/schemas/CorePlace'
+    BaseResponse:
+      type: object
+      properties:
+        total_results:
+          type: integer
+        page:
+          type: integer
+        per_page:
+          type: integer
+    Color:
+      type: object
+      properties:
+        id:
+          type: integer
+        value:
+          type: string
   securitySchemes:
     api_token:
       type: apiKey

@@ -159,22 +159,24 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
-    per_page:
-      name: per_page
+    rule_details:
+      name: rule_details
       in: query
-      description: 'Number of results to return in a `page`. The maximum value is generally
+      description: 'Return more information about project rules, for example return a full
 
-        200 unless otherwise noted
+        taxon object instead of simply an ID
 
         '
       schema:
         type: string
-    autocomplete_project_id:
-      name: project_id
+        enum:
+        - true
+    page:
+      name: page
       in: query
-      description: Only show users with memberships to this project
+      description: Pagination `page` number
       schema:
-        type: integer
+        type: string
     autocomplete_q:
       name: q
       in: query
@@ -201,24 +203,22 @@ components:
       description: ID of the record
       schema:
         type: integer
-    rule_details:
-      name: rule_details
+    per_page:
+      name: per_page
       in: query
-      description: 'Return more information about project rules, for example return a full
+      description: 'Number of results to return in a `page`. The maximum value is generally
 
-        taxon object instead of simply an ID
+        200 unless otherwise noted
 
         '
       schema:
         type: string
-        enum:
-        - true
-    page:
-      name: page
+    autocomplete_project_id:
+      name: project_id
       in: query
-      description: Pagination `page` number
+      description: Only show users with memberships to this project
       schema:
-        type: string
+        type: integer
   schemas:
     PostUserUpdateSession:
       type: object

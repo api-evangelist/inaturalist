@@ -90,14 +90,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    PostVote:
-      type: object
-      properties:
-        vote:
-          type: string
-          enum:
-          - up
-          - down
     PostAnnotation:
       type: object
       properties:
@@ -114,6 +106,14 @@ components:
               type: integer
             controlled_value_id:
               type: integer
+    PostVote:
+      type: object
+      properties:
+        vote:
+          type: string
+          enum:
+          - up
+          - down
   parameters:
     annotation_path_id:
       name: id

@@ -209,16 +209,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    MessagesResponse:
-      allOf:
-      - $ref: '#/components/schemas/BaseResponse'
-      - required:
-        - results
-        properties:
-          results:
-            type: array
-            items:
-              $ref: '#/components/schemas/Message'
     Error:
       type: object
       properties:
@@ -226,55 +216,6 @@ components:
           type: integer
         message:
           type: string
-    BaseResponse:
-      type: object
-      properties:
-        total_results:
-          type: integer
-        page:
-          type: integer
-        per_page:
-          type: integer
-    User:
-      type: object
-      properties:
-        created_at:
-          type: string
-          format: date-time
-        id:
-          type: integer
-        icon:
-          type: string
-        icon_url:
-          type: string
-        identifications_count:
-          type: integer
-        journal_posts_count:
-          type: integer
-        login:
-          type: string
-        name:
-          type: string
-        observations_count:
-          type: integer
-        orcid:
-          type: string
-        roles:
-          type: array
-          items:
-            type: string
-            enum:
-            - admin
-            - app owner
-            - curator
-        site_id:
-          type: integer
-        species_count:
-          type: integer
-        spam:
-          type: boolean
-        suspended:
-          type: boolean
     PostMessage:
       type: object
       properties:
@@ -344,7 +285,72 @@ components:
             '
           items:
             type: object
+    MessagesResponse:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponse'
+      - required:
+        - results
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/components/schemas/Message'
+    User:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+        id:
+          type: integer
+        icon:
+          type: string
+        icon_url:
+          type: string
+        identifications_count:
+          type: integer
+        journal_posts_count:
+          type: integer
+        login:
+          type: string
+        name:
+          type: string
+        observations_count:
+          type: integer
+        orcid:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+            enum:
+            - admin
+            - app owner
+            - curator
+        site_id:
+          type: integer
+        species_count:
+          type: integer
+        spam:
+          type: boolean
+        suspended:
+          type: boolean
+    BaseResponse:
+      type: object
+      properties:
+        total_results:
+          type: integer
+        page:
+          type: integer
+        per_page:
+          type: integer
   parameters:
+    page:
+      name: page
+      in: query
+      description: Pagination `page` number
+      schema:
+        type: string
     path_id:
       name: id
       in: path
@@ -352,12 +358,6 @@ components:
       description: ID of the record
       schema:
         type: integer
-    page:
-      name: page
-      in: query
-      description: Pagination `page` number
-      schema:
-        type: string
   securitySchemes:
     api_token:
       type: apiKey

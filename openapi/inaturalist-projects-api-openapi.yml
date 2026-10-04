@@ -296,86 +296,8 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
-    noteworthy:
-      name: noteworthy
-      in: query
-      description: Must be marked noteworthy for the relevant site
-      schema:
-        type: string
-        enum:
-        - true
-    associated_place_id:
-      name: place_id
-      in: query
-      description: Must be associated with this place
-      schema:
-        type: array
-        items:
-          type: string
-    projects_site_id:
-      name: site_id
-      in: query
-      description: 'Site ID that applies to `featured` and `noteworthy`. Defaults to the site
-
-        of the authenticated user, or to the main iNaturalist site
-
-        https://www.inaturalist.org
-
-        '
-      schema:
-        type: integer
-    featured:
-      name: featured
-      in: query
-      description: Must be marked featured for the relevant site
-      schema:
-        type: string
-        enum:
-        - true
-    type:
-      name: type
-      in: query
-      description: Projects must be of this type
-      schema:
-        type: array
-        items:
-          type: string
-        enum:
-        - collection
-        - umbrella
-    path_id:
-      name: id
-      in: path
-      required: true
-      description: ID of the record
-      schema:
-        type: integer
-    projects_order_by:
-      name: order_by
-      in: query
-      description: Sort field
-      schema:
-        type: string
-        enum:
-        - recent_posts
-        - created
-        - updated
-        - distance
-        - featured
-    page:
-      name: page
-      in: query
-      description: Pagination `page` number
-      schema:
-        type: string
-    has_params:
-      name: has_params
-      in: query
-      description: Must have search parameter requirements
-      schema:
-        type: boolean
-    lng:
-      name: lng
+    lat:
+      name: lat
       in: query
       description: 'Must be within a {`radius`} kilometer circle around this lat/lng
 
@@ -385,6 +307,29 @@ components:
       schema:
         type: number
         format: double
+    featured:
+      name: featured
+      in: query
+      description: Must be marked featured for the relevant site
+      schema:
+        type: string
+        enum:
+        - true
+    member_id:
+      name: member_id
+      in: query
+      description: Project must have member with this user ID
+      schema:
+        type: integer
+    id:
+      name: id
+      in: query
+      description: Must have this ID
+      schema:
+        type: array
+        items:
+          type: string
+        minimum: 1
     path_multi_id:
       name: id
       in: path
@@ -394,6 +339,16 @@ components:
         type: array
         items:
           type: integer
+    per_page:
+      name: per_page
+      in: query
+      description: 'Number of results to return in a `page`. The maximum value is generally
+
+        200 unless otherwise noted
+
+        '
+      schema:
+        type: string
     rule_details:
       name: rule_details
       in: query
@@ -406,43 +361,6 @@ components:
         type: string
         enum:
         - true
-    id:
-      name: id
-      in: query
-      description: Must have this ID
-      schema:
-        type: array
-        items:
-          type: string
-        minimum: 1
-    per_page:
-      name: per_page
-      in: query
-      description: 'Number of results to return in a `page`. The maximum value is generally
-
-        200 unless otherwise noted
-
-        '
-      schema:
-        type: string
-    autocomplete_q:
-      name: q
-      in: query
-      required: true
-      description: Search by name (must start with this value) or by ID (exact match).
-      schema:
-        type: string
-    lat:
-      name: lat
-      in: query
-      description: 'Must be within a {`radius`} kilometer circle around this lat/lng
-
-        (*lat, *lng, radius)
-
-        '
-      schema:
-        type: number
-        format: double
     not_id:
       name: not_id
       in: query
@@ -452,6 +370,48 @@ components:
         items:
           type: string
         minimum: 1
+    page:
+      name: page
+      in: query
+      description: Pagination `page` number
+      schema:
+        type: string
+    type:
+      name: type
+      in: query
+      description: Projects must be of this type
+      schema:
+        type: array
+        items:
+          type: string
+        enum:
+        - collection
+        - umbrella
+    has_posts:
+      name: has_posts
+      in: query
+      description: Must have posts
+      schema:
+        type: boolean
+    autocomplete_q:
+      name: q
+      in: query
+      required: true
+      description: Search by name (must start with this value) or by ID (exact match).
+      schema:
+        type: string
+    projects_site_id:
+      name: site_id
+      in: query
+      description: 'Site ID that applies to `featured` and `noteworthy`. Defaults to the site
+
+        of the authenticated user, or to the main iNaturalist site
+
+        https://www.inaturalist.org
+
+        '
+      schema:
+        type: integer
     skip_counts:
       name: skip_counts
       in: query
@@ -463,12 +423,34 @@ components:
       schema:
         type: boolean
         default: false
-    member_id:
-      name: member_id
-      in: query
-      description: Project must have member with this user ID
+    path_multi_id_or_slug:
+      name: id
+      in: path
+      required: true
+      description: Must have this ID or slug
       schema:
-        type: integer
+        type: array
+        items:
+          type: string
+    lng:
+      name: lng
+      in: query
+      description: 'Must be within a {`radius`} kilometer circle around this lat/lng
+
+        (*lat, *lng, radius)
+
+        '
+      schema:
+        type: number
+        format: double
+    associated_place_id:
+      name: place_id
+      in: query
+      description: Must be associated with this place
+      schema:
+        type: array
+        items:
+          type: string
     projects_radius:
       name: radius
       in: query
@@ -479,104 +461,46 @@ components:
         '
       schema:
         type: string
-    has_posts:
-      name: has_posts
-      in: query
-      description: Must have posts
+    path_id:
+      name: id
+      in: path
+      required: true
+      description: ID of the record
       schema:
-        type: boolean
+        type: integer
+    noteworthy:
+      name: noteworthy
+      in: query
+      description: Must be marked noteworthy for the relevant site
+      schema:
+        type: string
+        enum:
+        - true
+    projects_order_by:
+      name: order_by
+      in: query
+      description: Sort field
+      schema:
+        type: string
+        enum:
+        - recent_posts
+        - created
+        - updated
+        - distance
+        - featured
     autocomplete_q_not_required:
       name: q
       in: query
       description: Search by name (must start with this value) or by ID (exact match).
       schema:
         type: string
-    path_multi_id_or_slug:
-      name: id
-      in: path
-      required: true
-      description: Must have this ID or slug
+    has_params:
+      name: has_params
+      in: query
+      description: Must have search parameter requirements
       schema:
-        type: array
-        items:
-          type: string
+        type: boolean
   schemas:
-    ProjectMember:
-      type: object
-      properties:
-        id:
-          type: integer
-        project_id:
-          type: integer
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        role:
-          type: string
-          enum:
-          - curator
-          - manager
-        observations_count:
-          type: integer
-        taxa_count:
-          type: integer
-        user:
-          $ref: '#/components/schemas/User'
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-    BaseResponse:
-      type: object
-      properties:
-        total_results:
-          type: integer
-        page:
-          type: integer
-        per_page:
-          type: integer
-    ProjectsResponse:
-      allOf:
-      - $ref: '#/components/schemas/BaseResponse'
-      - required:
-        - results
-        properties:
-          results:
-            type: array
-            items:
-              $ref: '#/components/schemas/Project'
-    Project:
-      type: object
-      properties:
-        id:
-          type: integer
-        title:
-          type: string
-        description:
-          type: string
-        slug:
-          type: string
-    ProjectMembersResponse:
-      allOf:
-      - $ref: '#/components/schemas/BaseResponse'
-      - required:
-        - results
-        properties:
-          results:
-            type: array
-            items:
-              $ref: '#/components/schemas/ProjectMember'
-    PostProjectAdd:
-      type: object
-      properties:
-        observation_id:
-          type: integer
     User:
       type: object
       properties:
@@ -617,6 +541,82 @@ components:
           type: boolean
         suspended:
           type: boolean
+    ProjectMembersResponse:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponse'
+      - required:
+        - results
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/components/schemas/ProjectMember'
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    Project:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        slug:
+          type: string
+    ProjectMember:
+      type: object
+      properties:
+        id:
+          type: integer
+        project_id:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        role:
+          type: string
+          enum:
+          - curator
+          - manager
+        observations_count:
+          type: integer
+        taxa_count:
+          type: integer
+        user:
+          $ref: '#/components/schemas/User'
+    PostProjectAdd:
+      type: object
+      properties:
+        observation_id:
+          type: integer
+    BaseResponse:
+      type: object
+      properties:
+        total_results:
+          type: integer
+        page:
+          type: integer
+        per_page:
+          type: integer
+    ProjectsResponse:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponse'
+      - required:
+        - results
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/components/schemas/Project'
   securitySchemes:
     api_token:
       type: apiKey

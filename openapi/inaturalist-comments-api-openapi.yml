@@ -73,6 +73,14 @@ paths:
       operationId: deleteCommentsById
       x-operation-id-source: derived
 components:
+  parameters:
+    path_id:
+      name: id
+      in: path
+      required: true
+      description: ID of the record
+      schema:
+        type: integer
   schemas:
     PostComment:
       type: object
@@ -93,14 +101,6 @@ components:
               type: integer
             body:
               type: string
-  parameters:
-    path_id:
-      name: id
-      in: path
-      required: true
-      description: ID of the record
-      schema:
-        type: integer
   securitySchemes:
     api_token:
       type: apiKey
