@@ -1,0 +1,12 @@
+{
+ "url": "https://api.inaturalist.org/v1/swagger.json",
+ "requested_url": "https://api.inaturalist.org/swagger.json",
+ "status": 200,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 170359,
+ "sha256": "46ffc2ab532c4a7acec53f3a01c163d3ec5c089978d318116d2e997c493ff8f5",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
