@@ -209,13 +209,15 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Error:
+    BaseResponse:
       type: object
       properties:
-        code:
+        total_results:
           type: integer
-        message:
-          type: string
+        page:
+          type: integer
+        per_page:
+          type: integer
     PostMessage:
       type: object
       properties:
@@ -285,16 +287,6 @@ components:
             '
           items:
             type: object
-    MessagesResponse:
-      allOf:
-      - $ref: '#/components/schemas/BaseResponse'
-      - required:
-        - results
-        properties:
-          results:
-            type: array
-            items:
-              $ref: '#/components/schemas/Message'
     User:
       type: object
       properties:
@@ -335,22 +327,24 @@ components:
           type: boolean
         suspended:
           type: boolean
-    BaseResponse:
+    Error:
       type: object
       properties:
-        total_results:
+        code:
           type: integer
-        page:
-          type: integer
-        per_page:
-          type: integer
+        message:
+          type: string
+    MessagesResponse:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponse'
+      - required:
+        - results
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/components/schemas/Message'
   parameters:
-    page:
-      name: page
-      in: query
-      description: Pagination `page` number
-      schema:
-        type: string
     path_id:
       name: id
       in: path
@@ -358,6 +352,12 @@ components:
       description: ID of the record
       schema:
         type: integer
+    page:
+      name: page
+      in: query
+      description: Pagination `page` number
+      schema:
+        type: string
   securitySchemes:
     api_token:
       type: apiKey

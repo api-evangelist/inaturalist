@@ -124,18 +124,6 @@ components:
       description: Return posts by this user
       schema:
         type: string
-    posts_project_id:
-      name: project_id
-      in: query
-      description: Return posts from this project
-      schema:
-        type: integer
-    page:
-      name: page
-      in: query
-      description: Pagination `page` number
-      schema:
-        type: string
     path_id:
       name: id
       in: path
@@ -151,6 +139,18 @@ components:
         200 unless otherwise noted
 
         '
+      schema:
+        type: string
+    posts_project_id:
+      name: project_id
+      in: query
+      description: Return posts from this project
+      schema:
+        type: integer
+    page:
+      name: page
+      in: query
+      description: Pagination `page` number
       schema:
         type: string
   schemas:

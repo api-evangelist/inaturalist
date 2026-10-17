@@ -75,6 +75,14 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    PutFlag:
+      type: object
+      properties:
+        flag:
+          type: object
+          properties:
+            resolved:
+              type: boolean
     PostFlag:
       type: object
       properties:
@@ -99,14 +107,6 @@ components:
               - other
         flag_explanation:
           type: string
-    PutFlag:
-      type: object
-      properties:
-        flag:
-          type: object
-          properties:
-            resolved:
-              type: boolean
   parameters:
     path_id:
       name: id
